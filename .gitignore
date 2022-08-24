@@ -1,0 +1,6 @@
+# node
+node_modules
+
+# compiled files
+client/dist/bundle.js
+client/dist/bundle.js.map
