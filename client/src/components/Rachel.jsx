@@ -1,3 +1,5 @@
+import React from 'react';
+
 let Rachel = (props) => (
   <div>
     <h1>[Rachel] Ratings & Reviews Section</h1>

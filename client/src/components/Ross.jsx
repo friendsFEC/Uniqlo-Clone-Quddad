@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Ross = () => {
   return (
     <div>
@@ -5,8 +7,6 @@ const Ross = () => {
     </div>
   )
 }
-
-
 
 
 
