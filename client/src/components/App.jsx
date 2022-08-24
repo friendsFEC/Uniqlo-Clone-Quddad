@@ -6,10 +6,6 @@ import Rachel from './Rachel.jsx';
 
 let App = (props) => (
   <div>
-    <Joey />
-    <Chandler />
-    <Ross />
-    <Rachel />
   </div>
 )
 
