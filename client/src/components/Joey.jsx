@@ -1,13 +1,4 @@
-import React from 'react'
-
-let App = (props) => (
-  <div>
-    <Joey />
-    <Chandler />
-    <Ross />
-    <Rachel />
-  </div>
-)
+import React from 'react';
 
 class Joey extends React.Component {
   constructor(props) {
@@ -23,4 +14,4 @@ class Joey extends React.Component {
   }
 }
 
-export default App;
+export default Joey;
