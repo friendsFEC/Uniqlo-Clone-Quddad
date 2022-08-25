@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Ross = () => {
+const Overview = () => {
   return (
     <div>
       Hello World from Ross!!
@@ -10,4 +10,4 @@ const Ross = () => {
 
 
 
-export default Ross;
+export default Overview;
