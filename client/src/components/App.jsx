@@ -6,10 +6,10 @@ import ReviewsAndRatings from './ReviewsAndRatings.jsx';
 
 let App = (props) => (
   <div>
-    <qa />
-    <Chandler />
-    <Ross />
+    <RelatedAndComparison />
+    <Overview />
     <QuestionsAndAnswers />
+    <ReviewsAndRatings />
   </div>
 )
 
