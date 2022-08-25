@@ -2,14 +2,14 @@ import React from 'react'
 import Joey from './Joey.jsx';
 import Chandler from './Chandler.jsx';
 import Ross from './Ross.jsx';
-import Rachel from './Rachel.jsx';
+import ReviewsAndRatings from './ReviewsAndRatings.jsx';
 
 let App = (props) => (
   <div>
     <Joey />
     <Chandler />
     <Ross />
-    <Rachel />
+    <ReviewsAndRatings />
   </div>
 )
 
