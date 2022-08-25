@@ -1,7 +1,7 @@
 import React from 'react';
 
 let ReviewsAndRatings = (props) => (
-  <div>
+  <div className="rr">
     <h1>Ratings & Reviews Section</h1>
     {[0,1 ,2,3,4,5].map((item, i) => (
       <p key={i}>{item} lorem ipsum dolor sit amet consectitur edipiscing elit</p>
