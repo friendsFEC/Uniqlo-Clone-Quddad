@@ -1,13 +1,13 @@
 import React from 'react'
 import Joey from './Joey.jsx';
-import Chandler from './Chandler.jsx';
+import RelatedAndComparison from './RelatedAndComparison.jsx';
 import Ross from './Ross.jsx';
 import Rachel from './Rachel.jsx';
 
 let App = (props) => (
   <div>
     <Joey />
-    <Chandler />
+    <RelatedAndComparison />
     <Ross />
     <Rachel />
   </div>
