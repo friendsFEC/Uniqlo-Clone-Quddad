@@ -12,6 +12,7 @@ class QuestionsAndAnswers extends React.Component {
   render() {
     return (
       <div id="qa">
+        <p>This is James's components</p>
         <Filter />
         <ListOfQA />
         <QAEntry />
