@@ -12,6 +12,10 @@ Run the development server with `npm run client-dev`, and open browse to
 
 ## Contributing Changes
 
+Make sure to create a `config.js` file in the root directory! It will need to
+have your GitHub API key added. E.g. `API: "<your key here>"`. Import this into
+your component for use with axios :)
+
 For now, CSS files should go in `client/dist`, and all the front-end javascript
 edits should be made in `client/src`. In the future, we'll be able to put CSS
 files in `client/src` and have webpack bundle them :)
