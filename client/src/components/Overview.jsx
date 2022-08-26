@@ -1,9 +1,18 @@
 import React from 'react';
+import ProductImage from './overview/ProductImage.jsx';
+import ProductInfo from './overview/ProductInfo.jsx';
+
 
 const Overview = () => {
   return (
     <div>
-      Hello World from Ross!!
+      <div>
+        <ProductImage/>
+        <ProductInfo/>
+      </div>
+      <div>
+
+      </div>
     </div>
   )
 }
