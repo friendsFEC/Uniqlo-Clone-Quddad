@@ -7,8 +7,8 @@ import ReviewsAndRatings from './ReviewsAndRatings.jsx';
 
 let App = (props) => (
   <div>
-    <RelatedAndComparison />
     <Overview />
+    <RelatedAndComparison />
     <QuestionsAndAnswers />
     <ReviewsAndRatings />
   </div>
