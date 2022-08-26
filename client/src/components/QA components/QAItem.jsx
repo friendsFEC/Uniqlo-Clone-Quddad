@@ -1,17 +1,15 @@
 import React from 'react';
 
-class QAEntry extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div id="qa-QAItem">
-        <p>Question item</p>
-      </div>
-    )
-  }
+let QAItem = (props) => {
+  let questionAnswer = props.questionAnswer;
+  console.log(questionAnswer);
+  return (
+    <div id="qa-QAItem">
+      <h3>Question:</h3>
+      <p>{questionAnswer.question_body}</p>
+      {console.log('QA Item')}
+    </div>
+  )
 }
 
-export default QAEntry;
+export default QAItem;

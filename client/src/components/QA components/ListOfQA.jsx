@@ -8,8 +8,7 @@ let ListOfQA = (props) => {
     1. display questions
     2. display answers */}
     {props.chosenProduct.map((item) => {
-      console.log('item ', item);
-      return <QAItem key={item.question_id} />
+      return <QAItem key={item.question_id} questionAnswer={item} />
     })}
     </div>
   )
