@@ -1,5 +1,4 @@
 # friends-fec
-Front End Capstone Project for Team Friends
 
 ## Getting Started
 
@@ -11,12 +10,18 @@ Run the development server with `npm run client-dev`, and open browse to
 
 ## Contributing Changes
 
+Make sure to create a `config.js` file in the root directory! It will need to
+have your GitHub API key added. E.g. `API: "<your key here>"`. Import this into
+your component for use with axios :)
+
 For now, CSS files should go in `client/dist`, and all the front-end javascript
 edits should be made in `client/src`. In the future, we'll be able to put CSS
 files in `client/src` and have webpack bundle them :)
 
+### Frequently Used Git commands
 
-### When working on a current branch (`current`) and `main` branch has been updated:
+
+#### When working on a current branch (`current`) and `main` branch has been updated:
 
 1. Make your changes. `git add`, then `git commit` on your current branch.
 2. Switch to main branch (`git checkout` or `git switch`) to main branch
@@ -27,7 +32,7 @@ files in `client/src` and have webpack bundle them :)
   - Edit the conflictng files
 6. If necessary `git add` fixed conflicts and `git commit` to finish the merge!
 
-### Code Review
+#### Code Review
 
 1. Clone this repo into a new space
 2. Create a new branch (`git branch <new branch name>`)
