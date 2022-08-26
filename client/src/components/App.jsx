@@ -1,15 +1,15 @@
 import React from 'react'
-import Joey from './Joey.jsx';
+import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
 import RelatedAndComparison from './RelatedAndComparison.jsx';
-import Oveview from './Overview.jsx';
+import Overview from './Overview.jsx';
 import ReviewsAndRatings from './ReviewsAndRatings.jsx';
 
 
 let App = (props) => (
   <div>
-    <Joey />
     <RelatedAndComparison />
     <Overview />
+    <QuestionsAndAnswers />
     <ReviewsAndRatings />
   </div>
 )

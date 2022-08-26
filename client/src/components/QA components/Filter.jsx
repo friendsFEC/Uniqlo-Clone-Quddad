@@ -1,17 +1,16 @@
 import React from 'react';
 
-class Joey extends React.Component {
+class Filter extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div id="Joey">
-        <h3>This is James</h3>
+      <div id="qa-filter">
       </div>
     )
   }
 }
 
-export default Joey;
+export default Filter;

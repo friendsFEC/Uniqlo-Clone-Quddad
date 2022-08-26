@@ -1,12 +1,16 @@
 # friends-fec
 Front End Capstone Project for Team Friends
 
+## Frequently used Git Commands
+
+
 ## Getting Started
 
 Run `npm install` and to get dependencies.
 
 Run the development server with `npm run client-dev`, and open browse to
 `http://localhost:3000` to see the rendered app!
+
 
 ## Contributing Changes
 
