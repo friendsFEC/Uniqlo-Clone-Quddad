@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductInfo = () => {
   return (
-    <div>
+    <div className="ov-infoBox">
       This will be the title
     </div>
   )

@@ -6,7 +6,7 @@ import ProductInfo from './overview/ProductInfo.jsx';
 const Overview = () => {
   return (
     <div>
-      <div>
+      <div className="ov-wrapper">
         <ProductImage/>
         <ProductInfo/>
       </div>
