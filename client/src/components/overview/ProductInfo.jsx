@@ -3,18 +3,34 @@ import axios from 'axios';
 import config from '../../../../config.js';
 
 
-const ProductInfo = () => {
-  axios.get('/products/65631', {
-    baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
-    headers: {
-      'Authorization': config.TOKEN
+class ProductInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: {}
     }
-  }).then((res) => (console.log(res.data)));
-  return (
-    <div className="ov-infoBox">
-      This will be the title
-    </div>
-  )
+  }
+
+  componentDidMount() {
+    this.fetch();
+  }
+
+  fetch() {
+    axios.get('/products/65631', {
+      baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
+      headers: {
+        'Authorization': config.TOKEN
+      }
+    }).then((res) => (this.setState({product: res.data})));
+  }
+
+  render () {
+    return (
+      <div className="ov-infoBox">
+        {this.state.product.name}
+      </div>
+    )
+  }
 }
 
 
