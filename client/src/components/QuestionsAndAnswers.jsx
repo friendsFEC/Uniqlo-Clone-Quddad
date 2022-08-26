@@ -9,6 +9,11 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
   }
 
+  //
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <div id="qa">
