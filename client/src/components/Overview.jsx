@@ -19,6 +19,15 @@ class Overview extends React.Component {
   }
 
   fetch() {
+    let one ='/products/65631';
+    let two = '/products/65631/styles';
+    let three = '/reviews/meta';
+
+    const one = axios.get(one, {
+
+    })
+
+
     axios.get('/products/65631', {
       baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
       headers: {
