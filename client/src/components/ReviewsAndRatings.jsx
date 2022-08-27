@@ -49,7 +49,6 @@ let ReviewsAndRatings = (props) => {
 
   /* rendering */
   useEffect(() => {
-    console.log('useEffect called');
     getReviews(productID).then(data => {
       setReviews(data.results);
       setAverage(calculateAverage(data));
