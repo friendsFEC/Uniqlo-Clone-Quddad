@@ -31,7 +31,7 @@ let ReviewsAndRatings = (props) => {
   const [reviews, setReviews] = useState([]);
   const [average, setAverage] = useState(0);
   useEffect(() => {
-    console.log('useEffect running');
+    // console.log('useEffect running');
     getReviews(productID).then(data => {
       setReviews(data.results);
       setAverage(calculateAverage(data));

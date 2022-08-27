@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Test from './rc/test.jsx'
+import RelatedProducts from './rc/RelatedProducts.jsx'
+import YourOutfit from './rc/YourOutfit.jsx'
 import config from '../../../config.js'
 
 // let RelatedAndComparison = (props) => {
@@ -19,49 +20,32 @@ import config from '../../../config.js'
 class RelatedAndComparison extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
-    // this.getAverageReview = this.getAverageReview.bind(this);
+    this.state = {
+      relatedProductIDs: [],
+    }
   }
 
   componentDidMount() {
-    // axios
-    // .get(config.API_KEY, {
-    //   headers: {
-    //     Authorization: '',
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
-    // .then(response => {window.datas = response.data; return response.data})
-    // .then(data =>
-    //   data.results.reduce((memo, review) => memo + review.rating, 0) / data.count)
-    //   .then(averageReview => console.log(averageReview))
-    //   .catch(err => console.log('Error fetching data:', err));
-  }
+    // get related product IDs of currently selected product (dynamic) e.g. takes in current product ID and uses that in axios.get
+    axios
+    .get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
+      headers: {
+        Authorization: config.API_KEY,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => this.setState({relatedProductIDs:res.data}))
+    // .then(res => console.log(res.data))
+    .catch(err => console.log('error getting related product IDs: ', err))
 
-  // getAverageReview() {
-  //   axios
-  //   .get(config.API_KEY, {
-  //     headers: {
-  //       Authorization: '',
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(response => {window.datas = response.data; return response.data})
-  //   .then(data =>
-  //     data.results.reduce((memo, review) => memo + review.rating, 0) / data.count)
-  //     .then(averageReview => console.log(averageReview))
-  //     .catch(err => console.log('Error fetching data:', err));
-  // }
+  }
 
   render() {
     return (
       <div>
-      <h2 className = "rc-title rc-title1style">Related And Comparison Section:</h2>
-      <button className = "rc-button">Normal button</button>
-      <button className = "rc-button rc-button--state-success" onClick = {this.getAverageReview}>Success button</button>
-      <button className = "rc-button rc-button--state-danger">Danger button</button>
-      <h3 className = "rc-title rc-title2style">another title</h3>
-      <Test />
+      <h5 className = "rc-title rc-title1style">Related And Comparison Section:</h5>
+      <RelatedProducts relatedProductIDs = {this.state.relatedProductIDs}/>
+      <YourOutfit />
       </div>
     )
   }
