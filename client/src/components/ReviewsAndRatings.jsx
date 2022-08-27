@@ -47,7 +47,6 @@ let ReviewsAndRatings = (props) => {
 
   /* rendering */
   useEffect(() => {
-    console.log('useEffect running');
     getReviews(productID).then(data => {
       setReviews(data.results);
       setAverage(calculateAverage(data));
@@ -62,7 +61,6 @@ let ReviewsAndRatings = (props) => {
         <button onClick={() => {
           getReviews(productID, (reviews.length / count) + 1, count, sort)
             .then(data => setReviews(reviews.concat(data.results)));
-          console.log(reviews);
         }}>More Reviews</button>
       ) : '' }
       <button>Add a review</button>
@@ -80,7 +78,8 @@ let ReviewsAndRatings = (props) => {
   );
   let SortOptions = (props) => (
     <div className="sort-options">
-      <p>Sort Options</p>
+      <p>Sort Options <input type="text" placeholder="" /></p>
+      
     </div>
   );
   let RatingBreakDown = (props) => (
