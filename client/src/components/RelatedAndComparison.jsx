@@ -4,19 +4,6 @@ import RelatedProducts from './RC/RelatedProducts.jsx'
 import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 
-// let RelatedAndComparison = (props) => {
-//   return (
-//   <div>
-//     <h2 className = "rc-title rc-title1style">Related And Comparison Section:</h2>
-//     <button className = "rc-button">Normal button</button>
-//     <button className = "rc-button rc-button--state-success">Success button</button>
-//     <button className = "rc-button rc-button--state-danger">Danger button</button>
-//     <h3 className = "rc-title rc-title2style">another title</h3>
-//     <Test />
-//   </div>
-//   )
-// }
-
 class RelatedAndComparison extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +22,6 @@ class RelatedAndComparison extends React.Component {
       }
     })
     .then(res => this.setState({relatedProductIDs:res.data}))
-    // .then(res => console.log(res.data))
     .catch(err => console.log('error getting related product IDs: ', err))
 
   }
@@ -43,7 +29,6 @@ class RelatedAndComparison extends React.Component {
   render() {
     return (
       <div>
-      <h5 className = "rc-title rc-title1style">Related And Comparison Section:</h5>
       <RelatedProducts relatedProductIDs = {this.state.relatedProductIDs}/>
       <YourOutfit />
       </div>
