@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
 import config from '../../../config.js';
 
@@ -16,6 +16,8 @@ let ReviewsAndRatings = (props) => {
   const [average, setAverage] = useState(0);
   const [sort, setSort] = useState('relevant');
   const [more, setMore] = useState(true);
+  const searchTerm = useRef('');
+  const [search, setSearch] = useState(RegExp(''));
   const count = 2;
 
   /* utility functions */
@@ -47,13 +49,14 @@ let ReviewsAndRatings = (props) => {
 
   /* rendering */
   useEffect(() => {
+    console.log('useEffect called');
     getReviews(productID).then(data => {
       setReviews(data.results);
       setAverage(calculateAverage(data));
     });
   }, [productID, average]);
 
-  /* components */
+  /* sub components */
   let ReviewList = (props) => (
     <div className="review-list">
       {reviews.map((review,i) => <ReviewTile key={i} review={review}/>)}
@@ -78,8 +81,18 @@ let ReviewsAndRatings = (props) => {
   );
   let SortOptions = (props) => (
     <div className="sort-options">
-      <p>Sort Options <input type="text" placeholder="" /></p>
-      
+      <div>
+        Sort Options <select>
+          <option>related</option>
+          <option>helpful</option>
+          <option>newest</option>
+        </select>
+        Search Reviews:<input type="text" onChange={({target}) => {
+          if(target.value.length) {
+            searchTerm.current = target.value;
+          }
+        }}/>
+      </div>
     </div>
   );
   let RatingBreakDown = (props) => (
@@ -101,7 +114,7 @@ let ReviewsAndRatings = (props) => {
         <SortOptions />
         <RatingBreakDown />
         <ProductBreakDown />
-        <ReviewList />
+        <ReviewList search={searchTerm}/>
       </div>
     </div>
   )
