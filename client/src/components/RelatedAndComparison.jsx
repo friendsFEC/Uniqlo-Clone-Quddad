@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import RelatedProducts from './rc/RelatedProducts.jsx'
-import YourOutfit from './rc/YourOutfit.jsx'
+import RelatedProducts from './RC/RelatedProducts.jsx'
+import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 
 // let RelatedAndComparison = (props) => {
