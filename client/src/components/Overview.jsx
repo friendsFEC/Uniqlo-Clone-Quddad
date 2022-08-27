@@ -29,7 +29,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="ov-main">
         <div className="ov-wrapper">
           <ProductImage />
           <ProductInfo product={this.state.product}/>
