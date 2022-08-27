@@ -1,7 +1,5 @@
 # friends-fec
 
-Front End Capstone Project for Team Friends
-
 ## Getting Started
 
 Run `npm install` and to get dependencies.
@@ -41,6 +39,6 @@ files in `client/src` and have webpack bundle them :)
 3. Run `git pull origin <name of branch to review>`
 4. Run `npm install` inside the cloned folder
 5. Run `npm run client-dev` to start the dev server
-6. If test code works (browse to `http://localhost:3000`) Remember to check the web console for errors! 
+6. If test code works (browse to `http://localhost:3000`) Remember to check the web console for errors!
   - No errors -> Approve the request
   - Errors? -> Add comments requesting any changes.

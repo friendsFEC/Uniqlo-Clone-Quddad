@@ -1,3 +1,16 @@
-.ross #thing {
-  color: blue;
+.ov-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
+
+.ov-infoBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+}
+
+.ov-descriptionBlock {
+  border-style: solid;
+}
+
