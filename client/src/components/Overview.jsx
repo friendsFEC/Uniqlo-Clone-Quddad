@@ -80,23 +80,7 @@ class Overview extends React.Component {
           this.setState({product: productInfo, styles: styles, rating: averageRating})
         }
       ).catch(errors => console.log(errors));
-
   }
-
-
-
-  //   axios.get('/products/65631', {
-  //     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
-  //     transformResponse: [(data) => {
-  //       data = JSON.parse(data);
-  //       let { id, name, category, description, slogan } = data;
-  //       return { id, name, category, description, slogan };
-  //     }],
-  //     headers: {
-  //       'Authorization': config.API_KEY
-  //     }
-  //   }).then((res) => (this.setState({product: res.data})));
-  // }
 
   render() {
     return (
