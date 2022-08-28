@@ -21,7 +21,6 @@ let ReviewsAndRatings = (props) => {
 
   /* utility functions */
   const calculateAverage = () => {
-    console.log('calc avg:', meta.ratings, total);
     let average = 0;
     if (meta.ratings) {
       let sum = 0;
@@ -31,7 +30,6 @@ let ReviewsAndRatings = (props) => {
       average = sum / total;
     } else {
     }
-    console.log('new avg:', average);
     return average;
   };
   const calculateTotal = () => {
@@ -41,7 +39,6 @@ let ReviewsAndRatings = (props) => {
         total += parseInt(meta.ratings[i]);
       }
     }
-    console.log('calc total:', total);
     return total;
   }
   const getReviewsMeta = () => (
@@ -74,10 +71,8 @@ let ReviewsAndRatings = (props) => {
         sort: sort
       }
     })
-    .then(response => {console.log('get review called', meta, productID); return response})
     .then(response => response.data)
     .then(data => {
-      console.log(data.results, data.results.length);
       (data.results.length === 0) ? setMore(false) : setMore(true);
       return data;
     }).then(data => data) // this is what gets 'returned'
@@ -109,7 +104,6 @@ let ReviewsAndRatings = (props) => {
 
   /* initial rendering and changes to product id */
   useEffect(() => {
-    console.log('use effect called');
     getReviewsMeta()
       .then(data => setMeta(data))
       .then(() => {
@@ -121,7 +115,7 @@ let ReviewsAndRatings = (props) => {
   
   /* render when sort changes */
   useEffect(() => {
-    getReviews(productID, 1, reviews.length || 2, sort).then(data => {
+    getReviews(1, reviews.length || 2, sort).then(data => {
       setReviews(data.results);
     });
   }, [sort])
