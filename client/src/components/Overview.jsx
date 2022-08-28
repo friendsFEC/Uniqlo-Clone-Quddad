@@ -1,25 +1,17 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import ProductImage from './overview/ProductImage.jsx';
 import ProductInfo from './overview/ProductInfo.jsx';
 import axios from 'axios';
 import config from '../../../config.js';
 
 
-class Overview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      product: {},
-      styles: [],
-      rating: 0
-    }
-  }
+const Overview = () => {
+  const [product, setProduct] = useState({});
+  const [styles, setStyles] = useState([]);
+  const [rating, setRating] = useState(0);
 
-  componentDidMount() {
-    this.fetch();
-  }
-
-  fetch() {
+  useEffect(() => {
     let one ='/products/65631';
     let two = '/products/65631/styles';
     let three = '/reviews/meta';
@@ -77,31 +69,31 @@ class Overview extends React.Component {
           const productInfo = responses[0][0].data;
           const styles = responses[0][1].data;
           const averageRating = responses[0][2].data;
-          this.setState({product: productInfo, styles: styles, rating: averageRating})
-        }
-      ).catch(errors => console.log(errors));
-  }
+          setProduct(productInfo);
+          setStyles(styles);
+          setRating(averageRating)
+        })
+        .catch(errors => console.log(errors));
 
-  render() {
-    if (this.state.styles.length > 0) {
+  }, []);
+
+    if (styles.length > 0) {
       return (
         <div className="ov-main">
           <div className="ov-wrapper">
-            <ProductImage style={this.state.styles[0]}/>
-            <ProductInfo product={this.state.product}/>
+            <ProductImage style={styles[0]}/>
+            <ProductInfo product={product}/>
           </div>
           <div className="ov-descriptionBlock">
-            <h3>{this.state.product.slogan}</h3>
-            <p>{this.state.product.description}</p>
+            <h3>{product.slogan}</h3>
+            <p>{product.description}</p>
           </div>
         </div>
       )
     } else {
       return  <div className="ov-imageBox">LOADING...</div>
     }
-  }
 }
-
 
 
 export default Overview;
