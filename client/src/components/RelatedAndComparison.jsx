@@ -42,10 +42,9 @@ class RelatedAndComparison extends React.Component {
 
 
   render() {
-    console.log(this.state.relatedProductInfo)
     return (
       <div>
-      <RelatedProducts />
+      <RelatedProducts relatedProductInfo = {this.state.relatedProductInfo}/>
       <YourOutfit />
       </div>
     )

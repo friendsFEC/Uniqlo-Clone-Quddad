@@ -46,8 +46,6 @@ class RelatedProductsEntry extends React.Component {
     // for each product ID, render out the related product card
     return (
       <div>
-        RelatedProductEntry cards go here
-        {this.state.review}
       </div>
     )
   }
