@@ -1,6 +1,14 @@
+
+.ov-main {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  padding-top: 3%;
+  padding-left: 20%;
+  padding-right: 20%;
+}
 .ov-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
 }
 
 .ov-infoBox {
@@ -11,6 +19,10 @@
 }
 
 .ov-descriptionBlock {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   border-style: solid;
+  padding: 40px;
 }
 
