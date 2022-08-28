@@ -29,7 +29,33 @@
   grid-column: 1/2;
   grid-row: 4/6;
 }
+.rr .write-review {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  border: solid 1px black;
+  background-color: white;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.15s;
+  transition-timing-function: ease-in;
+}
 
+/* hide elements */
 .rr .hidden {
-  display: none;
+  position: fixed;
+  z-index: -100;
+  /*display: none;*/
+  opacity: 0;
+}
+.rr .selected {
+  background-color: #57e389;
+}
+.rr .bold {
+  font-weight: bold;
+}
+.rr .testing {
+  border: dotted 2px red;
 }
