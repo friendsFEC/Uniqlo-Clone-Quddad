@@ -8,7 +8,7 @@ class RelatedAndComparison extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProductInfo: {}
+      relatedProductInfo: []
     }
   }
 
@@ -21,8 +21,9 @@ class RelatedAndComparison extends React.Component {
           'Content-Type': 'application/json'
         }
       })
-      // for each ID, get it's info
+      // for each ID, get it's info and store it in state
       .then(res => {
+        const dataStorage = [];
         res.data.forEach(id => {
           axios
             .get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/${id}`, {
@@ -31,7 +32,8 @@ class RelatedAndComparison extends React.Component {
               'Content-Type': 'application/json'
             }
           })
-          .then(res => this.setState({relatedProductInfo: res.data}))
+          .then(res => dataStorage.push(res.data))
+          .then(() => this.setState({relatedProductInfo:dataStorage}))
           .catch(err => console.log(err))
         })
       })
