@@ -1,7 +1,7 @@
 
 .ov-main {
-  display: grid;
-  grid-template-rows: 3fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
   padding-top: 3%;
   padding-left: 20%;
   padding-right: 20%;
@@ -12,17 +12,34 @@
 }
 
 .ov-infoBox {
+
   display: flex;
   align-items: center;
   justify-content: center;
   border-style: solid;
 }
 
-.ov-descriptionBlock {
+.ov-imageBox {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  border-style: solid;
+}
+
+.ov-descriptionBlock {
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
   flex-direction: column;
   border-style: solid;
   padding: 40px;
+}
+
+#ov-mainImage {
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+
 }
 

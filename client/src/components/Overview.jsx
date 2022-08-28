@@ -83,18 +83,22 @@ class Overview extends React.Component {
   }
 
   render() {
-    return (
-      <div className="ov-main">
-        <div className="ov-wrapper">
-          <ProductImage />
-          <ProductInfo product={this.state.product}/>
+    if (this.state.styles.length > 0) {
+      return (
+        <div className="ov-main">
+          <div className="ov-wrapper">
+            <ProductImage style={this.state.styles[0]}/>
+            <ProductInfo product={this.state.product}/>
+          </div>
+          <div className="ov-descriptionBlock">
+            <h3>{this.state.product.slogan}</h3>
+            <p>{this.state.product.description}</p>
+          </div>
         </div>
-        <div className="ov-descriptionBlock">
-          <h3>{this.state.product.slogan}</h3>
-          <p>{this.state.product.description}</p>
-        </div>
-      </div>
-    )
+      )
+    } else {
+      return  <div className="ov-imageBox">LOADING...</div>
+    }
   }
 }
 
