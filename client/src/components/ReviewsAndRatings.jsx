@@ -16,8 +16,7 @@ let ReviewsAndRatings = (props) => {
   const [average, setAverage] = useState(0);
   const [sort, setSort] = useState('relevant');
   const [more, setMore] = useState(true);
-  const searchTerm = useRef('');
-  const [search, setSearch] = useState(RegExp(''));
+  const [search, setSearch] = useState('');
   const count = 2;
 
   /* utility functions */
@@ -46,6 +45,13 @@ let ReviewsAndRatings = (props) => {
     }) // this is what gets 'returned'
     .catch(err => console.log('Error getting review data:', err))
   )
+  const searchFilter = (review) => {
+    let keys = ['summary', 'body', 'reviewer_name']
+    let re = RegExp(search.toLowerCase());
+    return keys.reduce((memo, k) => {
+      return re.test(review[k].toLowerCase()) ? true : memo;
+    }, false);
+  }
 
   /* rendering */
   useEffect(() => {
@@ -53,7 +59,7 @@ let ReviewsAndRatings = (props) => {
       setReviews(data.results);
       setAverage(calculateAverage(data));
     });
-  }, [productID, average]);
+  }, []); // effect runs once
 
   /* sub components */
   let ReviewList = (props) => (
@@ -68,32 +74,18 @@ let ReviewsAndRatings = (props) => {
       <button>Add a review</button>
     </div>
   );
-  let ReviewTile = (props) => (
-    <div className="review-tile">
-      <p>
-        Rating: {props.review.rating} by {props.review.reviewer_name}  at {props.review.date}
-      </p>
-      <p>{props.review.summary}</p>
-      <p>{props.review.body}</p>
-      <p></p>
-    </div>
-  );
-  let SortOptions = (props) => (
-    <div className="sort-options">
-      <div>
-        Sort Options <select>
-          <option>related</option>
-          <option>helpful</option>
-          <option>newest</option>
-        </select>
-        Search Reviews:<input type="text" onChange={({target}) => {
-          if(target.value.length) {
-            searchTerm.current = target.value;
-          }
-        }}/>
+  let ReviewTile = (props) => {
+    return (
+      <div className={search.length > 2 ? (searchFilter(props.review) ? "review-tile" : "review-tile hidden") : "review-tile"}>
+        <p>
+          Rating: {props.review.rating} by {props.review.reviewer_name}  at {props.review.date}
+        </p>
+        <p>{props.review.summary}</p>
+        <p>{props.review.body}</p>
+        <p></p>
       </div>
-    </div>
-  );
+    )
+  };
   let RatingBreakDown = (props) => (
     <div className="rating-breakdown">
       <p>Rating Breakdown</p>
@@ -110,14 +102,28 @@ let ReviewsAndRatings = (props) => {
       <h1>Ratings & Reviews Section</h1>
       <p>Product ID: {productID}</p>
       <div className="review-grid">
-        <SortOptions />
+        <SortOptions search={search} setSearch={setSearch}/>
         <RatingBreakDown />
         <ProductBreakDown />
-        <ReviewList search={searchTerm}/>
+        <ReviewList search={search}/>
       </div>
     </div>
   )
 }
+let SortOptions = (props) => (
+<div className="sort-options">
+  <div>
+    Sort Options <select>
+      <option>related</option>
+      <option>helpful</option>
+      <option>newest</option>
+    </select>
+    Search Reviews:<input type="text" value={props.search} onChange={({target}) => {
+      props.setSearch(target.value);
+    }}/>
+  </div>
+</div>
+);
 
 let WriteReview = (props) => (
   <p>Write Review</p>

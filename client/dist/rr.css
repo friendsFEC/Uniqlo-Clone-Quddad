@@ -21,11 +21,15 @@
 }
 .rr .rating-breakdown {
   border: solid 1px black;
-  grid-column: 1;
+  grid-column: 1/2;
   grid-row: 1/4;
 }
 .rr .product-breakdown {
   border: solid 1px black;
-  grid-column: 1;
+  grid-column: 1/2;
   grid-row: 4/6;
+}
+
+.rr .hidden {
+  display: none;
 }
