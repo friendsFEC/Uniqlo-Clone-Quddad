@@ -42,13 +42,10 @@
   transition-duration: 0.15s;
   transition-timing-function: ease-in;
 }
-
-/* hide elements */
-.rr .hidden {
-  position: fixed;
-  z-index: -100;
-  /*display: none;*/
-  opacity: 0;
+.rr .rating-filter {
+  /* ux during development change later */
+  color: blue;
+  text-decoration: underline;
 }
 .rr .selected {
   background-color: #57e389;
@@ -58,4 +55,12 @@
 }
 .rr .testing {
   border: dotted 2px red;
+}
+
+/* hide elements */
+.rr .hidden {
+  position: fixed;
+  z-index: -100;
+  /*display: none;*/
+  opacity: 0;
 }

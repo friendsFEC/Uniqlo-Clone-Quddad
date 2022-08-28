@@ -234,7 +234,10 @@ let StarRating = (props) => {
 };
 let PercentWidget = (props) => (
   <p
-    className={props.ratingFilter.indexOf(props.stars) > -1 ? 'selected' : ''}
+    className={
+      props.ratingFilter.indexOf(props.stars) > -1 ?
+        'rating-filter selected' : 'rating-filter'
+    }
     onClick={()=>
       props.toggleFilter(props.stars)
     }>
