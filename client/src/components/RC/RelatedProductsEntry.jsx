@@ -42,7 +42,7 @@ class RelatedProductsEntry extends React.Component {
 
 
   render() {
-    console.log(this.props.relatedProductIDs)
+    // console.log(this.props.relatedProductIDs)
     // for each product ID, render out the related product card
     return (
       <div>
