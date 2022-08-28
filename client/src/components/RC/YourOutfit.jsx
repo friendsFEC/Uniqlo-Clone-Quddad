@@ -10,7 +10,7 @@ class YourOutfit extends React.Component {
   render() {
     return (
       <div>
-        <h3>Your Outfit:</h3>
+        <h3 className = "rc-title">Your Outfit:</h3>
         <YourOutfitEntry />
       </div>
     )
