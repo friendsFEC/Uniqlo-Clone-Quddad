@@ -32,6 +32,7 @@ let ReviewsAndRatings = (props) => {
     }
     return average;
   };
+
   const calculateTotal = () => {
     let total = 0;
     if (meta.ratings) {
@@ -41,6 +42,7 @@ let ReviewsAndRatings = (props) => {
     }
     return total;
   }
+
   const getReviewsMeta = () => (
     axios.get(serverURL + '/meta', {
       headers: {
@@ -54,10 +56,9 @@ let ReviewsAndRatings = (props) => {
     })
     .then(response => response.data)
     .catch(err => console.log('Error getting review meta data:', err))
-  )
+  );
+
   const getReviews = (page=1, count=2, sort='relevant') => (
-    // args: integer for product ID
-    // returns: an array of objects
     axios.get(serverURL, {
       headers: {
         Authorization: config.API_KEY,
@@ -77,14 +78,16 @@ let ReviewsAndRatings = (props) => {
       return data;
     }).then(data => data) // this is what gets 'returned'
     .catch(err => console.log('Error getting review data:', err))
-  )
+  );
+
   const searchFilter = (review) => {
     let keys = ['summary', 'body', 'reviewer_name']
     let re = RegExp(search.toLowerCase());
     return keys.reduce((memo, k) => {
       return re.test(review[k].toLowerCase()) ? true : memo;
     }, false);
-  }
+  };
+
   const toggleFilter = (filter) => {
     let index = ratingFilter.indexOf(filter);
     if (index > -1) {
@@ -93,7 +96,8 @@ let ReviewsAndRatings = (props) => {
     } else {
       setRatingFilter([...ratingFilter, filter]);
     }
-  }
+  };
+
   const formatDate = (dateStr) => {
     let date = new Date(dateStr);
     // need to figure out how to configure locale
@@ -103,6 +107,20 @@ let ReviewsAndRatings = (props) => {
   }
 
   /* initial rendering and changes to product id */
+/* // infinite scroll, not working correctly
+  useEffect(() => {
+    let r = document.getElementsByClassName('review-list')[0];
+		let f = ({target}) => {
+			if ((target.scrollTop + target.clientHeight) === target.scrollHeight) {
+				if (more) {
+					getReviews((reviews.length / count) + 1, count, sort)
+          .then(data => setReviews(reviews.concat(data.results)))
+				}
+			}
+		};
+		r.addEventListener('scroll', f)
+  }, []);
+*/
   useEffect(() => {
     getReviewsMeta()
       .then(data => setMeta(data))
@@ -110,15 +128,15 @@ let ReviewsAndRatings = (props) => {
         getReviews().then(data => setReviews(data.results));
       })
   }, [productID]); // effect runs once
-  useEffect(() => setTotal(calculateTotal()), [meta])
-  useEffect(() => setAverage(calculateAverage()), [total])
+  useEffect(() => setTotal(calculateTotal()), [meta]);
+  useEffect(() => setAverage(calculateAverage()), [total]);
   
   /* render when sort changes */
   useEffect(() => {
     getReviews(1, reviews.length || 2, sort).then(data => {
       setReviews(data.results);
     });
-  }, [sort])
+  }, [sort]);
 
   return (
     <div className="rr">
@@ -141,6 +159,7 @@ let ReviewsAndRatings = (props) => {
           setSort={setSort}
           search={search}
           setSearch={setSearch}
+          total={total}
         />
         <RatingBreakDown
           meta={meta}
@@ -167,7 +186,8 @@ let ReviewsAndRatings = (props) => {
       </div>
     </div>
   )
-}
+};
+
 /* sub components */
 let ReviewList = (props) => (
   <div className="review-list">
@@ -184,11 +204,12 @@ let ReviewList = (props) => (
       <button onClick={() => {
         props.getReviews((props.reviews.length / props.count) + 1, props.count, props.sort)
           .then(data => props.setReviews(props.reviews.concat(data.results)));
-      }}>More Reviews</button>
+      }}>More Reviews</button> // add infinite scroll later on
     ) : '' }
     <button onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}>Add a review</button>
   </div>
 );
+
 let ReviewTile = (props) => {
   let hidden = false
   if (props.search.length > 2) {
@@ -204,28 +225,51 @@ let ReviewTile = (props) => {
   }
   return (
     <div className={hidden ? "review-tile hidden" : "review-tile"}>
-      <p>
-        Rating: <StarRating rating={props.review.rating} /> by {props.review.reviewer_name}  at {props.formatDate(props.review.date)}
-      </p>
+      <div>
+        <span className="star-rating"><StarRating rating={props.review.rating} /></span>
+        <div className="reviewer-and-date">
+           {props.review.reviewer_name}, {props.formatDate(props.review.date)}
+        </div>
+      </div>
       <p className="bold">{props.review.summary}</p>
       <p>{props.review.body}</p>
       {props.review.photos.map((obj, i) => <img key={i} src={obj.url} />)}
     </div>
   )
 };
+
 let StarRating = (props) => {
   let render = (rating) => {
-    let res = '';
-    for (let i=0; i < rating; i++) {
-      res += '*';
+    let res = [];
+    let i = 0;
+    // fill in full stars
+    for (i; i < Math.trunc(rating); i++) {
+      res.push(<img key={i} className="star" src='./img/star-full.svg' />);
     }
+    // fill in partial star
+    let partial = rating - Math.trunc(rating);
+    if (partial > 0) {
+      if (partial <= 0.25) {
+        res.push(<img key={i} className="star" src='./img/star-quarter.svg' />);
+      } else if (partial <= 0.5) {
+        res.push(<img key={i} className="star" src='./img/star-half.svg' />);
+      } else if (partial <= 0.75) {
+        res.push(<img key={i} className="star" src='./img/star-three-quarter.svg' />);
+      } else {
+        res.push(<img key={i} className="star" src='./img/star-full.svg' />);
+      }
+      i++;
+    }
+    // fill in empty
     while (res.length < 5) {
-      res += 'o';
+      res.push(<img key={i} className="star" src='./img/star-empty.svg' />);
+      i++;
     }
     return res;
   }
   return <span>{render(props.rating)}</span>
 };
+
 let PercentWidget = (props) => (
   <p
     className={
@@ -237,14 +281,14 @@ let PercentWidget = (props) => (
     }>
     {props.stars} Star: {props.percent.toFixed(2)}%
   </p>
-)
+);
+
 let RatingBreakDown = (props) => {
   let keys = props.meta ? (props.meta.ratings ? Object.keys(props.meta.ratings).reverse() : []) : [];
   return (
     <div className="rating-breakdown">
-      <p>Rating Breakdown</p>
-      <p><StarRating rating={props.average} /></p>
-      <p>Average Rating: {props.average.toFixed(2)} Stars</p>
+      <h2>Rating Breakdown</h2>
+      <h1>{props.average.toFixed(1)}<sup><StarRating rating={props.average} /></sup></h1>
       {keys.map(i =>
         <PercentWidget
           stars={i}
@@ -257,24 +301,26 @@ let RatingBreakDown = (props) => {
     </div>
   )
 };
+
 let ProductBreakDown = (props) => {
   let keys = props.meta ? (props.meta.characteristics ? Object.keys(props.meta.characteristics) : []) : [];
   return (
     <div className="product-breakdown">
-      <p>ProductBreakdown</p>
+      <h2>ProductBreakdown</h2>
       {keys.map((char,i) =>
         <p key={i}>{char}: {Number(props.meta.characteristics[char]['value']).toFixed(2)}</p>
       )}
     </div>
   )
 };
+
 let SortOptions = (props) => (
 <div className="sort-options">
   <div>
-    Sort Options <select onChange={({target}) => props.setSort(target.value)}>
-      <option>related</option>
-      <option>helpful</option>
-      <option>newest</option>
+    {props.total} reviews, sorted by <select onChange={({target}) => props.setSort(target.value)}>
+      <option value="related">relevance</option>
+      <option value="helpful">helpfulness</option>
+      <option value="newest">newest</option>
     </select>
     Search Reviews:<input type="text" value={props.search} onChange={({target}) => {
       props.setSearch(target.value);
