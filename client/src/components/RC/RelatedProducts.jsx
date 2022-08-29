@@ -12,15 +12,8 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div>
-        <h3 className = "rc-title">Related Products</h3>
-        {this.props.relatedProductInfo.map(product => {
-          return <div className = "rc-main" key = {product.id}>
-            <p>{JSON.stringify(product.category)}</p>
-            <p>{JSON.stringify(product.name)}</p>
-            <p>{JSON.stringify(product.default_price)}</p>
-            </div>
-        })}
-        <RelatedProductsEntry/>
+        <h3 className = "rc-title"> Related Products </h3>
+        {this.props.createCard()}
       </div>
     )
   }
