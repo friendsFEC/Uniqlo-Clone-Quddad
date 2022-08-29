@@ -236,7 +236,7 @@ let ReviewList = (props) => {
         ratingFilter={props.ratingFilter}
         formatDate={props.formatDate}
       />)}
-      <p id="rr-no-reviews-showing">No reviews to show with selected filters!</p>
+      <p id="rr-no-reviews-showing">No reviews to show with selected filters! Try including more filters or load more reviews to see some results.</p>
       { props.more ? (
         <button onClick={() => {
           props.getReviews((props.reviews.length / props.count) + 1, props.count, props.sort)
@@ -266,12 +266,37 @@ let ReviewTile = (props) => {
       <div>
         <span className="star-rating"><StarRating rating={props.review.rating} /></span>
         <div className="reviewer-and-date">
-           {props.review.reviewer_name}, {props.formatDate(props.review.date)}
+           [need to verify purchaser] {props.review.reviewer_name}, {props.formatDate(props.review.date)}
         </div>
       </div>
       <p className="bold">{props.review.summary}</p>
-      <p>{props.review.body}</p>
-      {props.review.photos.map((obj, i) => <img key={i} src={obj.url} />)}
+      {
+        (props.review.body.length <= 250) ?
+          <p>{props.review.body}</p>
+          :
+            <p>
+              {props.review.body.slice(0, 250)}
+              <a onClick={(ev) => {
+                ev.preventDefault();
+                let p = ev.target.parentElement;
+                p.removeChild(p.children[0]);
+                p.textContent += props.review.body.slice(250);
+              }}>Show More</a>
+            </p>
+      }
+      { props.review.recommend ? <p>[checkmark] I recommend this product</p> : '' }
+      <p>[not working yet] Was this review helpful? <button>Yes</button> <button>No</button></p>
+      {props.review.photos.map((obj, i) =>
+        <img
+          className='review-thumbnail'
+          key={i}
+          src={obj.url}
+          onClick={({target}) => {
+            target.classList.toggle('image-modal');
+            target.classList.toggle('review-thumbnail');
+          }}
+        />)
+      }
     </div>
   )
 };

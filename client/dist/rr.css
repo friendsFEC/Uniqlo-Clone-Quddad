@@ -22,6 +22,17 @@
   display: inline-block;
   width: 80%;
 }
+.rr img.review-thumbnail {
+  width: 8rem;
+  height: 6rem;
+}
+.rr img.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+}
 .rr img.star {
   height: 1rem;
   width: 1rem;
