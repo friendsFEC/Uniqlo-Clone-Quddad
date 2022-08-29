@@ -4,47 +4,47 @@ import RelatedProducts from './RC/RelatedProducts.jsx'
 import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 
-// let RelatedAndComparison = (props) => {
-//   return (
-//   <div>
-//     <h2 className = "rc-title rc-title1style">Related And Comparison Section:</h2>
-//     <button className = "rc-button">Normal button</button>
-//     <button className = "rc-button rc-button--state-success">Success button</button>
-//     <button className = "rc-button rc-button--state-danger">Danger button</button>
-//     <h3 className = "rc-title rc-title2style">another title</h3>
-//     <Test />
-//   </div>
-//   )
-// }
-
 class RelatedAndComparison extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProductIDs: [],
+      relatedProductInfo: []
     }
   }
 
   componentDidMount() {
-    // get related product IDs of currently selected product (dynamic) e.g. takes in current product ID and uses that in axios.get
+    // get related productIDs of current product
     axios
-    .get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
-      headers: {
-        Authorization: config.API_KEY,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => this.setState({relatedProductIDs:res.data}))
-    // .then(res => console.log(res.data))
-    .catch(err => console.log('error getting related product IDs: ', err))
-
+      .get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
+        headers: {
+          Authorization: config.API_KEY,
+          'Content-Type': 'application/json'
+        }
+      })
+      // for each ID, get it's info and store it in state
+      .then(res => {
+        const dataStorage = [];
+        res.data.forEach(id => {
+          axios
+            .get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/${id}`, {
+            headers: {
+              Authorization: config.API_KEY,
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(res => dataStorage.push(res.data))
+          .then(() => this.setState({relatedProductInfo:dataStorage}))
+          .catch(err => console.log(err))
+        })
+      })
+      .catch(err => console.log('error getting related product IDs & info: ', err))
   }
+
 
   render() {
     return (
       <div>
-      <h5 className = "rc-title rc-title1style">Related And Comparison Section:</h5>
-      <RelatedProducts relatedProductIDs = {this.state.relatedProductIDs}/>
+      <RelatedProducts relatedProductInfo = {this.state.relatedProductInfo}/>
       <YourOutfit />
       </div>
     )
