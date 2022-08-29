@@ -1,14 +1,27 @@
 
 .ov-main {
-  display: grid;
-  grid-template-rows: 3fr 1fr;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding-top: 3%;
-  padding-left: 20%;
-  padding-right: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .ov-wrapper {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.ov-imageBox {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-style: solid;
+  flex-flow: column;
+
 }
 
 .ov-infoBox {
@@ -19,10 +32,29 @@
 }
 
 .ov-descriptionBlock {
+  align-self: flex-end;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: column;
   border-style: solid;
   padding: 40px;
 }
 
+.ov-imageBox_mainImage {
+ height: 700px;
+ width: 600px;
+}
+
+.ov-imageBox_activeSlide {
+  display: flex;
+}
+
+.ov-imageBox_prev {
+  align-self: flex-start;
+  position: absolute;
+}
+
+.ov-imageBox_next {
+  position: absolute;
+  align-self: flex-end;
+}
