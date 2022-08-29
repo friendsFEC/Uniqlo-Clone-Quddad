@@ -81,7 +81,7 @@ const Overview = () => {
       return (
         <div className="ov-main">
           <div className="ov-wrapper">
-            <ProductImage style={styles[0]}/>
+            <ProductImage photosData={styles[0].photos}/>
             <ProductInfo product={product}/>
           </div>
           <div className="ov-descriptionBlock">

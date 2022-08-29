@@ -1,7 +1,7 @@
 
 .ov-main {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   padding-top: 3%;
   padding-left: 10%;
