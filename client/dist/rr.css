@@ -26,6 +26,11 @@
   height: 1rem;
   width: 1rem;
 }
+.rr .sort-options select {
+  border: none;
+  background-color: none;
+  text-decoration: underline;
+}
 .rr .sort-options {
   border: solid 1px black;
   grid-column: 2/5;

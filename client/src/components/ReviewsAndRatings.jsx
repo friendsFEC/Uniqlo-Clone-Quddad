@@ -130,6 +130,20 @@ let ReviewsAndRatings = (props) => {
   }, [productID]); // effect runs once
   useEffect(() => setTotal(calculateTotal()), [meta]);
   useEffect(() => setAverage(calculateAverage()), [total]);
+
+  /* for testing, safe to delete after component integration */
+  useEffect(() => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/${productID}`, {
+      headers: {
+        Authorization: config.API_KEY,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+      .then(response => response.data)
+      .then(data => document.getElementById('rr-product-name').textContent = data.name)
+      .catch(err => console.log('Error getting product information'))
+  }, [productID]);
   
   /* render when sort changes */
   useEffect(() => {
@@ -143,16 +157,25 @@ let ReviewsAndRatings = (props) => {
       <h1>Ratings & Reviews Section</h1>
       <p className="testing">
         <em>This part is just for testing, I'll remove it
-          once we tie everything togethor</em><br />
-        Total: {total}
-        Average: {average}
-        Product ID: {productID}
+          once we tie everything together</em><br />
+        Total: {total}<br />
+        Average: {average.toFixed(2)}<br />
+        Product ID: {productID}<br />
+        Product Name: <span id="rr-product-name"></span><br />
         <input id="rr-product-id" type="text" />
         <button onClick={() =>
             setProductID(document.getElementById('rr-product-id').value)
           }>
           load product information
-        </button>
+        </button><br />
+        <em>or use the slider! (Just click on it. If you click and drag
+        the slider, you'll get an API error)</em>
+        <input
+          type="range"
+          min="65631"
+          max="66641"
+          onChange={({target}) => setProductID(target.value)}
+        />
       </p>
       <div className="review-grid">
         <SortOptions
