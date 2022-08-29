@@ -4,14 +4,24 @@
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 3%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 .ov-wrapper {
   display: flex;
-  width: 100%;
-  align-items: stretch;
-  justify-content: space-between;
+  width: 80%;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .ov-wrapper {
+    flex-direction: column;
+  }
+
+  .ov-imageBox_mainImage {
+    height: 300px;
+    width: 200px;
+  }
 }
 
 .ov-imageBox {
@@ -26,9 +36,13 @@
 
 .ov-infoBox {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
+
   border-style: solid;
+  width: 500px;
 }
 
 .ov-descriptionBlock {
@@ -44,6 +58,8 @@
  height: 700px;
  width: 600px;
 }
+
+
 
 .ov-imageBox_activeSlide {
   display: flex;

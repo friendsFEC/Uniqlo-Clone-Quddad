@@ -10,6 +10,7 @@ const Overview = () => {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
+  const [currStyle, setCurrStyle] = useState(0);
 
   useEffect(() => {
     let one ='/products/65631';
@@ -81,7 +82,7 @@ const Overview = () => {
       return (
         <div className="ov-main">
           <div className="ov-wrapper">
-            <ProductImage photosData={styles[0].photos}/>
+            <ProductImage photosData={styles[currStyle].photos}/>
             <ProductInfo product={product}/>
           </div>
           <div className="ov-descriptionBlock">
