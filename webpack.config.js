@@ -33,5 +33,12 @@ module.exports = {
         }
       }
     ],
+  },
+  devServer: {
+    static: {
+      directory: DIST_DIR,
+    },
+    compress: true,
+    port: 3000
   }
 };
