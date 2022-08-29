@@ -293,7 +293,9 @@ let ReviewTile = (props) => {
           src={obj.url}
           onClick={({target}) => {
             target.classList.toggle('image-modal');
+            target.classList.toggle('hidden');
             target.classList.toggle('review-thumbnail');
+            setTimeout(() => target.classList.toggle('hidden'), 200);
           }}
         />)
       }
