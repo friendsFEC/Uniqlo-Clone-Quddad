@@ -1,8 +1,6 @@
 .rc-title {
-  display: inline-block;
-  border-radius: 3px;
-  font-family: "Lucida Console", "Courier New", monospace;
-  font-size: 20px;
+  font-size: 22px;
+  margin-left: 25px;
 }
 
 .rc-title1style {
@@ -13,4 +11,12 @@
   color: blue;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+}
+
+.rc-main {
+  border: 1px solid black;
+  display: inline-block;
+  height: 375px;
+  width: 250px;
+  margin-left: 25px;
 }
