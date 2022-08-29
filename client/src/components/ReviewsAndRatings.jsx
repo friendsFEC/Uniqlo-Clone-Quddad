@@ -145,6 +145,18 @@ let ReviewsAndRatings = (props) => {
       .catch(err => console.log('Error getting product information'))
   }, [productID]);
   
+  /* render when reviews change */
+  useEffect(() => {
+    let loadedReviews = Array.from(document.getElementsByClassName('review-tile'));
+    let targetWidget = document.getElementById('rr-no-reviews-showing');
+    let hiddenReviews = loadedReviews.filter(rev => rev.classList.contains('hidden'));
+    if (hiddenReviews.length === reviews.length) {
+      targetWidget.classList.contains('hidden') ? targetWidget.classList.toggle('hidden') : null;
+    } else {
+      targetWidget.classList.contains('hidden') ? null : targetWidget.classList.toggle('hidden');
+    }
+  }, [ratingFilter, reviews]);
+  
   /* render when sort changes */
   useEffect(() => {
     getReviews(1, reviews.length || 2, sort).then(data => {
@@ -212,26 +224,29 @@ let ReviewsAndRatings = (props) => {
 };
 
 /* sub components */
-let ReviewList = (props) => (
-  <div className="review-list">
-    {props.reviews.map((review,i) =>
-    <ReviewTile
-      key={i}
-      review={review}
-      search={props.search}
-      searchFilter={props.searchFilter}
-      ratingFilter={props.ratingFilter}
-      formatDate={props.formatDate}
-    />)}
-    { props.more ? (
-      <button onClick={() => {
-        props.getReviews((props.reviews.length / props.count) + 1, props.count, props.sort)
-          .then(data => props.setReviews(props.reviews.concat(data.results)));
-      }}>More Reviews</button> // add infinite scroll later on
-    ) : '' }
-    <button onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}>Add a review</button>
-  </div>
-);
+let ReviewList = (props) => {
+  return (
+    <div className="review-list">
+      {props.reviews.map((review,i) =>
+      <ReviewTile
+        key={i}
+        review={review}
+        search={props.search}
+        searchFilter={props.searchFilter}
+        ratingFilter={props.ratingFilter}
+        formatDate={props.formatDate}
+      />)}
+      <p id="rr-no-reviews-showing">No reviews to show with selected filters!</p>
+      { props.more ? (
+        <button onClick={() => {
+          props.getReviews((props.reviews.length / props.count) + 1, props.count, props.sort)
+            .then(data => props.setReviews(props.reviews.concat(data.results)));
+        }}>More Reviews</button> // add infinite scroll later on
+      ) : '' }
+      <button onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}>Add a review</button>
+    </div>
+  )
+};
 
 let ReviewTile = (props) => {
   let hidden = false
