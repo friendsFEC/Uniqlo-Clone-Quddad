@@ -4,14 +4,24 @@
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 3%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 8%;
+  padding-right: 8%;
 }
 .ov-wrapper {
   display: flex;
-  width: 100%;
-  align-items: stretch;
-  justify-content: space-between;
+  width: 80%;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .ov-wrapper {
+    flex-direction: column;
+  }
+
+  .ov-imageBox_mainImage {
+    height: 300px;
+    width: 200px;
+  }
 }
 
 .ov-imageBox {
@@ -19,16 +29,17 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  border-style: solid;
   flex-flow: column;
 
 }
 
 .ov-infoBox {
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: center;
   border-style: solid;
+  width: 500px;
+  row-gap: 2em;
+  padding-left: 20px;
 }
 
 .ov-descriptionBlock {
@@ -45,8 +56,14 @@
  width: 600px;
 }
 
+.ov-imageBox_slide {
+  position: absolute;
+  opacity: 0;
+  transition: opacity ease-in-out 0.5s;
+}
+
 .ov-imageBox_activeSlide {
-  display: flex;
+  opacity: 1;
 }
 
 .ov-imageBox_prev {
@@ -57,4 +74,51 @@
 .ov-imageBox_next {
   position: absolute;
   align-self: flex-end;
+}
+
+.ov-StarWrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.ov-star {
+  position: relative;
+}
+
+.ov-star--active {
+  position: absolute;
+}
+
+.ov-imageBox_thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  top: 0px;
+  left: -50px;
+  height: 30vh;
+}
+
+.ov-btn {
+  border-radius: 3px;
+  background-color: whitesmoke;
+  opacity: 0.5;
+  font-size: 1.5em;
+  z-index: 20;
+}
+
+.ov-btn:hover {
+  opacity: 1;
+}
+
+.ov-thumbnail {
+  border-style: solid;
+  border-top: 0cm;
+  border-right: 0cm;
+  border-left: 0cm;
+}
+
+.ov-thumbnail--image{
+  height: 40px;
+  width: 40px;
 }
