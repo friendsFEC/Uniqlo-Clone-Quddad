@@ -84,7 +84,7 @@ const Overview = () => {
         <div className="ov-main">
           <div className="ov-wrapper">
             <ProductImage photosData={styles[currStyle].photos}/>
-            <ProductInfo product={product}/>
+            <ProductInfo product={product} rating={rating}/>
           </div>
           <div className="ov-descriptionBlock">
             <h3>{product.slogan}</h3>

@@ -72,3 +72,20 @@
   position: absolute;
   align-self: flex-end;
 }
+
+.ov-StarWrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.ov-star {
+  position: relative;
+}
+
+.ov-star--active {
+  position: absolute;
+}
+
+.ov-star--partial {
+
+}
