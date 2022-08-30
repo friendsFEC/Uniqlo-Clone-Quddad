@@ -1,27 +1,6 @@
-.rc-button {
-	display: inline-block;
-	border-radius: 3px;
-	padding: 7px 12px;
-	border: 1px solid #D5D5D5;
-	background-image: linear-gradient(#EEE, #DDD);
-	font: 700 13px/18px Helvetica, arial;
-}
-
-.rc-button--state-success {
-	color: #FFF;
-	background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
-	border-color: #4A993E;
-}
-
-.rc-button--state-danger {
-	color: #900;
-}
-
 .rc-title {
-  display: inline-block;
-  border-radius: 3px;
-  font-family: "Lucida Console", "Courier New", monospace;
-  font-size: 30px;
+  font-size: 22px;
+  margin-left: 25px;
 }
 
 .rc-title1style {
@@ -32,4 +11,12 @@
   color: blue;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+}
+
+.rc-main {
+  border: 1px solid black;
+  display: inline-block;
+  height: 375px;
+  width: 250px;
+  margin-left: 25px;
 }
