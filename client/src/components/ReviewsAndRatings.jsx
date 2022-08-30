@@ -116,8 +116,23 @@ let ReviewsAndRatings = (props) => {
       month: 'long', day: 'numeric', year: 'numeric'
     });
   }
+  const positionArrowWidgets = () => {
+    if (meta.characteristics) {
+      let keys = Object.keys(meta.characteristics);
+      keys.map((char, i) => {
+        let arrow = document.getElementsByClassName('characteristics-arrow')[i];
+        let bar = arrow.parentElement;
+        let value = Number(meta.characteristics[char].value);
+        //let left = bar.offsetLeft + (bar.offsetWidth *  value / 5) - arrow.offsetWidth / 2;
+        let left = (bar.offsetWidth *  value / 5) - (arrow.width);
+        //console.log('value:', value, 'left padding:', left);
+        arrow.style.paddingLeft = left;
+      })
+    }
+  }
+  window.addEventListener('resize', positionArrowWidgets);
 
-
+  /* render once product id changes */
   useEffect(() => {
     getReviewsMeta()
       .then(data => setMeta(data))
@@ -125,7 +140,11 @@ let ReviewsAndRatings = (props) => {
         getReviews().then(data => setReviews(data.results));
       })
   }, [productID]); // effect runs on product id change
-  useEffect(() => setTotal(calculateTotal()), [meta]);
+  useEffect(() => {
+    /* non responsive rendering (doesn't fix if page resizes) */
+    setTotal(calculateTotal());
+    positionArrowWidgets();
+  }, [meta]);
   useEffect(() => setAverage(calculateAverage()), [total]);
 
   /* for testing, safe to delete after component integration */
@@ -201,7 +220,9 @@ let ReviewsAndRatings = (props) => {
           ratingFilter={ratingFilter}
           total={total}
         />
-        <ProductBreakDown meta={meta} />
+        <ProductBreakDown
+          meta={meta}
+        />
         <ReviewList
           more={more}
           search={search}
@@ -233,7 +254,7 @@ let ReviewList = (props) => {
         .catch(err => console.log('Error retrieving reviews from infinite scroll', err))
     }
   }
-  retrieveReviews = props.debounce(retrieveReviews, 300);
+  retrieveReviews = props.debounce(retrieveReviews, 500);
 
   return (
     <div
@@ -325,25 +346,25 @@ let StarRating = (props) => {
     let i = 0;
     // fill in full stars
     for (i; i < Math.trunc(rating); i++) {
-      res.push(<img key={i} className="star" src='./img/star-full.svg' />);
+      res.push(<img key={i} className="star" src='./img/rr/star-full.svg' />);
     }
     // fill in partial star
     let partial = rating - Math.trunc(rating);
     if (partial > 0) {
       if (partial <= 0.25) {
-        res.push(<img key={i} className="star" src='./img/star-quarter.svg' />);
+        res.push(<img key={i} className="star" src='./img/rr/star-quarter.svg' />);
       } else if (partial <= 0.5) {
-        res.push(<img key={i} className="star" src='./img/star-half.svg' />);
+        res.push(<img key={i} className="star" src='./img/rr/star-half.svg' />);
       } else if (partial <= 0.75) {
-        res.push(<img key={i} className="star" src='./img/star-three-quarter.svg' />);
+        res.push(<img key={i} className="star" src='./img//rr/star-three-quarter.svg' />);
       } else {
-        res.push(<img key={i} className="star" src='./img/star-full.svg' />);
+        res.push(<img key={i} className="star" src='./img/rr/star-full.svg' />);
       }
       i++;
     }
     // fill in empty
     while (res.length < 5) {
-      res.push(<img key={i} className="star" src='./img/star-empty.svg' />);
+      res.push(<img key={i} className="star" src='./img/rr/star-empty.svg' />);
       i++;
     }
     return res;
@@ -352,7 +373,7 @@ let StarRating = (props) => {
 };
 
 let PercentWidget = (props) => (
-  <p
+  <div
     className={
       props.ratingFilter.indexOf(props.stars) > -1 ?
         'rating-filter selected' : 'rating-filter'
@@ -360,8 +381,10 @@ let PercentWidget = (props) => (
     onClick={()=>
       props.toggleFilter(props.stars)
     }>
-    {props.stars} Star: {props.percent.toFixed(2)}%
-  </p>
+    {props.stars} stars <div className='rating-bar'>
+      <div className='inner-bar' style={{width: `${props.percent.toFixed(2)}%`}}></div>
+    </div>
+  </div>
 );
 
 let RatingBreakDown = (props) => {
@@ -389,11 +412,31 @@ let ProductBreakDown = (props) => {
     <div className="product-breakdown">
       <h2>ProductBreakdown</h2>
       {keys.map((char,i) =>
-        <p key={i}>{char}: {Number(props.meta.characteristics[char]['value']).toFixed(2)}</p>
+        <CharacteristicsWidget key={i} name={char} />
       )}
     </div>
   )
 };
+let CharacteristicsWidget = (props) => {
+  let text = {
+    Fit: {left: 'Too tight', middle: 'Perfect', right: 'Too loose'},
+    Comfort: {left: 'Uncomfortable', middle: 'Average', right: 'Comfortable'},
+    Length: {left: 'Too short', middle: 'Perfect', right: 'Too long'},
+    Quality: {left: 'Poor', middle: 'Average', right: 'Great'},
+    Size: {left: 'Too small', middle: 'Just right', right: 'Too large'},
+    Width: {left: 'Too thin', middle: 'Just right', right: 'Too wide'},
+  }
+  console.log(props.name);
+  return (
+    <div>
+      {props.name} 
+      <div className='characteristics-bar'>
+        <img className='characteristics-arrow' src='./img/rr/arrow.svg' />
+      </div>
+      <p>{text[props.name].left}{text[props.name].middle}{text[props.name].right}</p>
+    </div>
+  )
+}
 
 let SortOptions = (props) => (
 <div className="sort-options">
