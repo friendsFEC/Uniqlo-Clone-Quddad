@@ -13,7 +13,7 @@ class RelatedProducts extends React.Component {
     return (
       <div>
         <h3 className = "rc-title"> Related Products </h3>
-        {this.props.createCard()}
+        {this.props.createRPCard()}
       </div>
     )
   }

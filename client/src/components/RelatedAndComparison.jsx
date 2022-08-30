@@ -4,6 +4,7 @@ import RelatedProducts from './RC/RelatedProducts.jsx'
 import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
+import Modal from './RC/Modal.jsx'
 
 class RelatedAndComparison extends React.Component {
   constructor(props) {
@@ -12,11 +13,12 @@ class RelatedAndComparison extends React.Component {
       relatedProductInfo: [],
       relatedProductStyles: [],
       defaultProductStyles: [],
-      review: 0
+      review: 0,
+      modalStatus: false
     }
-    this.createCard = this.createCard.bind(this);
+    this.createRPCard = this.createRPCard.bind(this);
     this.getImage = this.getImage.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleModal = this.handleModal.bind(this);
     // this.getReview = this.getReview.bind(this);
   }
 
@@ -73,19 +75,25 @@ class RelatedAndComparison extends React.Component {
       .catch(err => console.log('error getting related product IDs & info: ', err))
   }
 
-  handleClick(e) {
-    e.preventDefault()
-    console.log('working')
-  }
+  // handleModal(e) {
+  //   e.preventDefault()
+  //   this.setState({modalStatus: true})
+  //   console.log('working')
+  //   if (!this.state.modalStatus) return null
+  //   return (
+  //     <Modal></Modal>
+  //   )
+  // }
 
-  createCard() {
+  createRPCard() {
     return (
       <div>
       {this.state.relatedProductInfo.map(product => {
         return <div className = "rc-main" key = {product.id}>
           {/* {this.getImage()} */}
           <div className = "rc-small-titles">
-          <button className = "rc-rp-button" onClick = {this.handleClick}><AiOutlineStar/></button>
+          <button className = "rc-rp-button" onClick = {this.handleModal}><AiOutlineStar/></button>
+          {/* <Modal modalStatus={this.state.modalStatus}></Modal> */}
           <p>{product.category}</p>
           <p>{product.name}</p>
           <p>{product.default_price}</p>
@@ -128,7 +136,7 @@ class RelatedAndComparison extends React.Component {
     return (
       <div>
       <RelatedProducts
-        createCard = {this.createCard}
+        createRPCard = {this.createRPCard}
       />
       <YourOutfit />
       </div>
