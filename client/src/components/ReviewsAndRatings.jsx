@@ -137,7 +137,7 @@ let ReviewsAndRatings = (props) => {
     getReviewsMeta()
       .then(data => setMeta(data))
       .then(() => {
-        getReviews().then(data => setReviews(data.results));
+        getReviews(1, 5).then(data => setReviews(data.results));
       })
   }, [productID]); // effect runs on product id change
   useEffect(() => {
@@ -410,7 +410,7 @@ let ProductBreakDown = (props) => {
   let keys = props.meta ? (props.meta.characteristics ? Object.keys(props.meta.characteristics) : []) : [];
   return (
     <div className="product-breakdown">
-      <h2>ProductBreakdown</h2>
+      <h2>Product Breakdown</h2>
       {keys.map((char,i) =>
         <CharacteristicsWidget key={i} name={char} />
       )}
@@ -428,12 +428,16 @@ let CharacteristicsWidget = (props) => {
   }
   console.log(props.name);
   return (
-    <div>
+    <div className='characteristics'>
       {props.name} 
       <div className='characteristics-bar'>
         <img className='characteristics-arrow' src='./img/rr/arrow.svg' />
       </div>
-      <p>{text[props.name].left}{text[props.name].middle}{text[props.name].right}</p>
+      <div className='characteristics-description'>
+        <p className='rr-left'>{text[props.name].left}</p>
+        <p className='rr-middle'>{text[props.name].middle}</p>
+        <p className='rr-right'>{text[props.name].right}</p>
+      </div>
     </div>
   )
 }
