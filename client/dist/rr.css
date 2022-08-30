@@ -1,8 +1,14 @@
 /* Ratings & Reviews CSS file */
 
+.rr {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
 .rr .review-grid {
   border: solid 1px black;
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .rr .review-list {
   border: solid 1px black;
@@ -13,6 +19,10 @@
 }
 .rr .review-tile {
   border: solid 1px black;
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
 }
 .rr .review-tile .star-rating {
   width: 20%;
@@ -55,11 +65,6 @@
   grid-column: 1/2;
   grid-row: 1/4;
 }
-.rr .product-breakdown {
-  border: solid 1px black;
-  grid-column: 1/2;
-  grid-row: 4/6;
-}
 .rr .write-review {
   position: fixed;
   top: 10%;
@@ -73,13 +78,41 @@
   transition-duration: 0.15s;
   transition-timing-function: ease-in;
 }
-.rr .rating-filter {
-  /* ux during development change later */
-  color: blue;
-  text-decoration: underline;
+.rr .rating-filter .rating-bar {
+  width: 70%;
+  height: 0.5rem;
+  background-color: #deddda;
+  display: inline-block;
+  vertical-align: middle;
+}
+.rr .rating-filter .rating-bar .inner-bar {
+  background-color: #33d17a;
+  height: 0.5rem;
+  vertical-align: middle;
 }
 .rr .selected {
   background-color: #57e389;
+}
+.rr .product-breakdown {
+  border: solid 1px black;
+  grid-column: 1/2;
+  grid-row: 4/6;
+}
+.rr .product-breakdown .characteristics-bar {
+  width: 80%;
+  background-color: #deddda;
+  height: 0.5rem;
+  vertical-align: middle;
+}
+.rr .product-breakdown img.characteristics-arrow {
+  position: relative;
+  top: -0.7rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  vertical-align: middle;
+}
+.rr .product-breakdown .characteristics-arrow {
 }
 .rr .bold {
   font-weight: bold;
