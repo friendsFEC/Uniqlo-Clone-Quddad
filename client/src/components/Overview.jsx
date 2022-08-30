@@ -10,10 +10,13 @@ const Overview = () => {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
+  const [currStyle, setCurrStyle] = useState(0);
+
+  const productId = 65631
 
   useEffect(() => {
-    let one ='/products/65631';
-    let two = '/products/65631/styles';
+    let one =`/products/${productId}`;
+    let two = `/products/${productId}/styles`;
     let three = '/reviews/meta';
 
     const Axios = axios.create({
@@ -48,12 +51,13 @@ const Overview = () => {
     const reqReview = () => {
       return Axios.get(three, {
         params: {
-          product_id: 65631
+          product_id: productId
         },
         transformResponse: [(data) => {
           data = JSON.parse(data);
           let ratings = data.ratings;
-          let totalPeople = Object.values(ratings).reduce((prev, curr) => prev + curr );
+          let totalPeople = Object.values(ratings).reduce((prev, curr) => (
+            Number(prev) + Number(curr)), 0);
           let totalRating = Object.keys(ratings).reduce((prevKey, currKey) => {
             return (prevKey + currKey * ratings[currKey]);
           }, 0)
@@ -81,8 +85,8 @@ const Overview = () => {
       return (
         <div className="ov-main">
           <div className="ov-wrapper">
-            <ProductImage photosData={styles[0].photos}/>
-            <ProductInfo product={product}/>
+            <ProductImage photosData={styles[currStyle].photos}/>
+            <ProductInfo product={product} rating={rating}/>
           </div>
           <div className="ov-descriptionBlock">
             <h3>{product.slogan}</h3>
