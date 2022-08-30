@@ -1,15 +1,13 @@
 import React from 'react'
 
-class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Modal = ({ open, onClose, children }) => {
+  if (!open) return null
 
-  render() {
-    return(
-      <div>MODAL</div>
-    )
-  }
+  return (
+    <div>
+      {children}
+    </div>
+  )
 }
 
-export default Modal
+export default Modal;

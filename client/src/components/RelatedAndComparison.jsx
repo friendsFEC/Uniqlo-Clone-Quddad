@@ -5,7 +5,6 @@ import RelatedProducts from './RC/RelatedProducts.jsx'
 import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
-import Modal from './RC/Modal.jsx'
 
 const RelatedAndComparison = () => {
   const [RPInfo, setRPInfo] = useState([]);

@@ -3,8 +3,12 @@ import axios from 'axios';
 import RelatedProductsEntry from './RelatedProductsEntry.jsx'
 import config from '../../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
+import Modal from './Modal.jsx'
+import { useState, useEffect } from 'react';
 
 const RelatedProducts = (props) => {
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const createRPCard = () => {
     return (
@@ -12,7 +16,11 @@ const RelatedProducts = (props) => {
       {props.RPInfo.map(product => {
         return <div className = "rc-main" key = {product.id}>
           <div className = "rc-small-titles">
-          <button className = "rc-rp-button"><AiOutlineStar/></button>
+          <button className = "rc-rp-button"
+          onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
+          <AiOutlineStar/>
+          </button>
+          <Modal open={isOpen} >Fancy Modal</Modal>
           <p>{product.category}</p>
           <p>{product.name}</p>
           <p>{product.default_price}</p>
