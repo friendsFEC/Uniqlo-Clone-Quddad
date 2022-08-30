@@ -96,7 +96,7 @@
   position: absolute;
   top: 0px;
   left: -50px;
-  height: 30vh;
+  height: 25vh;
 }
 
 .ov-btn {
@@ -120,7 +120,19 @@
 
 }
 
+.ov-StarWrapper {
+  display: flex;
+  align-items: center;
+
+}
+
 .ov-thumbnail--image{
   height: 30px;
   width: 30px;
+}
+
+.ov-title--reviews {
+  padding-left: 5px;
+  font-size: x-small;
+  text-decoration: underline;
 }

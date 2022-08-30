@@ -30,7 +30,7 @@ const StarRating = ({ rating }) => {
           </div>
         )
       })}
-      <span onClick={scrollToReviews}>(Read All Reviews)</span>
+      <span className="ov-title--reviews"onClick={scrollToReviews}>Read All Reviews</span>
     </div>
   )
 }
