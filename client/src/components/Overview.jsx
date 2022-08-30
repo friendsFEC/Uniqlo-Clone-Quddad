@@ -12,9 +12,11 @@ const Overview = () => {
   const [rating, setRating] = useState(0);
   const [currStyle, setCurrStyle] = useState(0);
 
+  const productId = 65631
+
   useEffect(() => {
-    let one ='/products/65631';
-    let two = '/products/65631/styles';
+    let one =`/products/${productId}`;
+    let two = `/products/${productId}/styles`;
     let three = '/reviews/meta';
 
     const Axios = axios.create({
@@ -49,7 +51,7 @@ const Overview = () => {
     const reqReview = () => {
       return Axios.get(three, {
         params: {
-          product_id: 65631
+          product_id: productId
         },
         transformResponse: [(data) => {
           data = JSON.parse(data);
