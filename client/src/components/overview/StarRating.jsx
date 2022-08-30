@@ -3,6 +3,10 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
 const StarRating = ({ rating }) => {
 
+  const scrollToReviews = () => {
+    document.getElementById('rr').scrollIntoView();
+  }
+
   return (
     <div className='ov-StarWrapper'>
       {[...Array(5)].map((star, idx) => {
@@ -24,9 +28,9 @@ const StarRating = ({ rating }) => {
               {emptyStar ? <AiOutlineStar/> : <AiFillStar/>}
             </div>
           </div>
-
         )
       })}
+      <span onClick={scrollToReviews}>(Read All Reviews)</span>
     </div>
   )
 }
