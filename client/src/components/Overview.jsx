@@ -54,7 +54,8 @@ const Overview = () => {
         transformResponse: [(data) => {
           data = JSON.parse(data);
           let ratings = data.ratings;
-          let totalPeople = Object.values(ratings).reduce((prev, curr) => prev + curr );
+          let totalPeople = Object.values(ratings).reduce((prev, curr) => (
+            Number(prev) + Number(curr)), 0);
           let totalRating = Object.keys(ratings).reduce((prevKey, currKey) => {
             return (prevKey + currKey * ratings[currKey]);
           }, 0)

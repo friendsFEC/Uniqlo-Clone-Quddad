@@ -20,6 +20,12 @@ const ProductInfo = ({ product }) => {
         <div>
               [style selector]
         </div>
+        <div>
+          [drop down menu for size selection]
+        </div>
+        <div>
+          [add to card button]
+        </div>
       </div>
     )
 }

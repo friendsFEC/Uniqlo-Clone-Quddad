@@ -35,14 +35,12 @@
 }
 
 .ov-infoBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  justify-items: center;
+  display: grid;
   align-items: center;
-
   border-style: solid;
   width: 500px;
+  row-gap: 2em;
+  padding-left: 20px;
 }
 
 .ov-descriptionBlock {
