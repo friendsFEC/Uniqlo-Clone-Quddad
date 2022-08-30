@@ -32,7 +32,6 @@ let ReviewsAndRatings = (props) => {
     }
     return average;
   };
-
   const calculateTotal = () => {
     let total = 0;
     if (meta.ratings) {
@@ -80,6 +79,18 @@ let ReviewsAndRatings = (props) => {
     .catch(err => console.log('Error getting review data:', err))
   );
 
+  const debounce = (fn, interval) => {
+    let free = true;
+    return function() {
+      if (free) {
+        free = false;
+        setTimeout(() => free = true, interval);
+        let result = fn.apply(this, arguments);
+        return result;
+      }
+    }
+  }
+
   const searchFilter = (review) => {
     let keys = ['summary', 'body', 'reviewer_name']
     let re = RegExp(search.toLowerCase());
@@ -106,28 +117,14 @@ let ReviewsAndRatings = (props) => {
     });
   }
 
-  /* initial rendering and changes to product id */
-/* // infinite scroll, not working correctly
-  useEffect(() => {
-    let r = document.getElementsByClassName('review-list')[0];
-		let f = ({target}) => {
-			if ((target.scrollTop + target.clientHeight) === target.scrollHeight) {
-				if (more) {
-					getReviews((reviews.length / count) + 1, count, sort)
-          .then(data => setReviews(reviews.concat(data.results)))
-				}
-			}
-		};
-		r.addEventListener('scroll', f)
-  }, []);
-*/
+
   useEffect(() => {
     getReviewsMeta()
       .then(data => setMeta(data))
       .then(() => {
         getReviews().then(data => setReviews(data.results));
       })
-  }, [productID]); // effect runs once
+  }, [productID]); // effect runs on product id change
   useEffect(() => setTotal(calculateTotal()), [meta]);
   useEffect(() => setAverage(calculateAverage()), [total]);
 
@@ -155,7 +152,7 @@ let ReviewsAndRatings = (props) => {
     } else {
       targetWidget.classList.contains('hidden') ? null : targetWidget.classList.toggle('hidden');
     }
-  }, [ratingFilter, reviews]);
+  }, [ratingFilter, reviews, search]);
   
   /* render when sort changes */
   useEffect(() => {
@@ -164,11 +161,12 @@ let ReviewsAndRatings = (props) => {
     });
   }, [sort]);
 
+
   return (
     <div className="rr">
       <h1>Ratings & Reviews Section</h1>
       <p className="testing">
-        <em>This part is just for testing, I'll remove it
+        <em onClick={() => console.log(reviews)}>This part is just for testing, I'll remove it
           once we tie everything together</em><br />
         Total: {total}<br />
         Average: {average.toFixed(2)}<br />
@@ -216,6 +214,7 @@ let ReviewsAndRatings = (props) => {
           sort={sort}
           ratingFilter={ratingFilter}
           formatDate={formatDate}
+          debounce={debounce}
         />
         <WriteReview />
       </div>
@@ -225,8 +224,25 @@ let ReviewsAndRatings = (props) => {
 
 /* sub components */
 let ReviewList = (props) => {
+  /* initial rendering and changes to product id */
+  // infinite scroll, not working correctly
+  let retrieveReviews = () => {
+    if (props.more) {
+      props.getReviews((props.reviews.length / props.count) + 1, props.count, props.sort)
+        .then(data => props.setReviews(props.reviews.concat(data.results)))
+        .catch(err => console.log('Error retrieving reviews from infinite scroll', err))
+    }
+  }
+  retrieveReviews = props.debounce(retrieveReviews, 300);
+
   return (
-    <div className="review-list">
+    <div
+      className="review-list"
+      onScroll={({target}) => {
+			if ((target.scrollTop + target.clientHeight) === target.scrollHeight) {
+        retrieveReviews();
+			}}}
+    >
       {props.reviews.map((review,i) =>
       <ReviewTile
         key={i}
@@ -292,8 +308,8 @@ let ReviewTile = (props) => {
           key={i}
           src={obj.url}
           onClick={({target}) => {
-            target.classList.toggle('image-modal');
             target.classList.toggle('hidden');
+            target.classList.toggle('image-modal');
             target.classList.toggle('review-thumbnail');
             setTimeout(() => target.classList.toggle('hidden'), 200);
           }}
