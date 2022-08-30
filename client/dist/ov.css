@@ -29,7 +29,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  border-style: solid;
   flex-flow: column;
 
 }
@@ -86,6 +85,23 @@
   position: absolute;
 }
 
-.ov-star--partial {
+.ov-imageBox_thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  left: 10px;
+  height: 100%;
+}
 
+.ov-thumbnail {
+  border-style: solid;
+  border-top: 0cm;
+  border-right: 0cm;
+  border-left: 0cm;
+}
+
+.ov-thumbnail--image{
+  height: 50px;
+  width: 50px;
 }

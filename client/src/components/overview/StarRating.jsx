@@ -3,8 +3,6 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
 const StarRating = ({ rating }) => {
 
-
-
   return (
     <div className='ov-StarWrapper'>
       {[...Array(5)].map((star, idx) => {
@@ -32,12 +30,6 @@ const StarRating = ({ rating }) => {
     </div>
   )
 }
-
-
-
-
-
-
 
 
 export default StarRating;
