@@ -30,12 +30,12 @@ const ProductImage = ({ photosData }) => {
           )
         })}
       </div>
-      <AiOutlineArrowLeft className="ov-imageBox_prev" onClick={changeToPrev}/>
-      <AiOutlineArrowRight className="ov-imageBox_next" onClick={changeToNext}/>
+      <AiOutlineArrowLeft className="ov-imageBox_prev ov-btn" onClick={changeToPrev}/>
+      <AiOutlineArrowRight className="ov-imageBox_next ov-btn" onClick={changeToNext}/>
       {photosData.map((photo, index) => {
         return (
           <div key={index} className={index === current ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}>
-            {index === current && <img className="ov-imageBox_mainImage"src={photo.url}/>}
+            <img className="ov-imageBox_mainImage"src={photo.url}/>
           </div>
         )
       })}

@@ -56,10 +56,14 @@
  width: 600px;
 }
 
-
+.ov-imageBox_slide {
+  position: absolute;
+  opacity: 0;
+  transition: opacity ease-in-out 0.5s;
+}
 
 .ov-imageBox_activeSlide {
-  display: flex;
+  opacity: 1;
 }
 
 .ov-imageBox_prev {
@@ -90,8 +94,21 @@
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
-  left: 10px;
-  height: 100%;
+  top: 0px;
+  left: -50px;
+  height: 30vh;
+}
+
+.ov-btn {
+  border-radius: 3px;
+  background-color: whitesmoke;
+  opacity: 0.5;
+  font-size: 1.5em;
+  z-index: 20;
+}
+
+.ov-btn:hover {
+  opacity: 1;
 }
 
 .ov-thumbnail {
@@ -102,6 +119,6 @@
 }
 
 .ov-thumbnail--image{
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
