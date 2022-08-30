@@ -3,7 +3,8 @@ import Filter from './QA components/Filter.jsx';
 import ListOfQA from './QA components/ListOfQA.jsx';
 import QAEntry from './QA components/QAEntry.jsx';
 import axios from 'axios';
-import example from './QA components/example.jsx'
+import example from './QA components/example.jsx';
+
 
 // {
 //   "question_id": 593041,
