@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import MainImageCarousel from './MainImageCarousel.jsx';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 
 const ProductImage = ({ photosData }) => {
@@ -21,17 +22,9 @@ const ProductImage = ({ photosData }) => {
 
   return (
     <div className="ov-imageBox">
-      <div className="ov-imageBox_thumbnail">
-        {photosData.map((photo, index) => {
-          return (
-            <div className="ov-thumbnail" key={index} onClick={(e)=> changeImage(e,index)}>
-              <img className="ov-thumbnail--image"src={photo.thumbnail_url}/>
-            </div>
-          )
-        })}
-      </div>
-      <AiOutlineArrowLeft className="ov-imageBox_prev ov-btn" onClick={changeToPrev}/>
-      <AiOutlineArrowRight className="ov-imageBox_next ov-btn" onClick={changeToNext}/>
+      <MainImageCarousel photosData={photosData} changeImage={changeImage} selected={current}/>
+      {current > 0 && <AiOutlineArrowLeft className="ov-imageBox_prev ov-btn" onClick={changeToPrev}/>}
+      {current < length - 1 && <AiOutlineArrowRight className="ov-imageBox_next ov-btn" onClick={changeToNext}/>}
       {photosData.map((photo, index) => {
         return (
           <div key={index} className={index === current ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}>
