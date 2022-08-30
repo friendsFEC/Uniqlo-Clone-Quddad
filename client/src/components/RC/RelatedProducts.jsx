@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import RelatedProductsEntry from './RelatedProductsEntry.jsx'
 import config from '../../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
 import Modal from './Modal.jsx'
@@ -12,7 +11,6 @@ const RelatedProducts = (props) => {
 
   // console.log('RPStyles:', props.RPStyles)
   // console.log('DPStyles: ', props.DPStyles)
-  console.log(props.RPInfo)
 
   const createRPCard = () => {
     return (

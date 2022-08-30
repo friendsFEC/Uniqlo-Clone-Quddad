@@ -160,7 +160,7 @@ let ReviewsAndRatings = (props) => {
       .then(data => document.getElementById('rr-product-name').textContent = data.name)
       .catch(err => console.log('Error getting product information'))
   }, [productID]);
-  
+
   /* render when reviews change */
   useEffect(() => {
     let loadedReviews = Array.from(document.getElementsByClassName('review-tile'));
@@ -172,7 +172,7 @@ let ReviewsAndRatings = (props) => {
       targetWidget.classList.contains('hidden') ? null : targetWidget.classList.toggle('hidden');
     }
   }, [ratingFilter, reviews, search]);
-  
+
   /* render when sort changes */
   useEffect(() => {
     getReviews(1, reviews.length || 2, sort).then(data => {
@@ -426,10 +426,9 @@ let CharacteristicsWidget = (props) => {
     Size: {left: 'Too small', middle: 'Just right', right: 'Too large'},
     Width: {left: 'Too thin', middle: 'Just right', right: 'Too wide'},
   }
-  console.log(props.name);
   return (
     <div className='characteristics'>
-      {props.name} 
+      {props.name}
       <div className='characteristics-bar'>
         <img className='characteristics-arrow' src='./img/rr/arrow.svg' />
       </div>
