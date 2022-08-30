@@ -10,6 +10,10 @@ const RelatedProducts = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  // console.log('RPStyles:', props.RPStyles)
+  // console.log('DPStyles: ', props.DPStyles)
+  console.log(props.RPInfo)
+
   const createRPCard = () => {
     return (
       <div>
@@ -20,7 +24,7 @@ const RelatedProducts = (props) => {
           onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
           <AiOutlineStar/>
           </button>
-          <Modal open={isOpen} >Fancy Modal</Modal>
+          <Modal open={isOpen} features={product.features}>Fancy Modal</Modal>
           <p>{product.category}</p>
           <p>{product.name}</p>
           <p>{product.default_price}</p>

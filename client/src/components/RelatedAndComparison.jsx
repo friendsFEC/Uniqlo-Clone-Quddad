@@ -43,14 +43,14 @@ const RelatedAndComparison = () => {
         .then(() => setRPStyles(styleStorage))
         .then(() => {
           const defaultProducts = [];
-          for (let i = 0; i < RPStyles.length; i++) {
-            for (let j = 0; j < RPStyles.length; j++) {
-              if (RPStyles[i][j]["default?"]) {
-                defaultProducts.push(RPStyles[i][j]);
+          for (let i = 0; i < styleStorage.length; i++) {
+            for (let j = 0; j < styleStorage.length; j++) {
+              if (styleStorage[i][j]["default?"]) {
+                defaultProducts.push(styleStorage[i][j])
               }
             }
           }
-        setDPStyles(defaultProducts);
+          setDPStyles(defaultProducts)
         })
         .catch(err => console.log(err))
       })
@@ -64,7 +64,7 @@ const RelatedAndComparison = () => {
 
   return (
     <div>
-    <RelatedProducts RPInfo = {RPInfo}/>
+    <RelatedProducts RPInfo = {RPInfo} RPStyles = {RPStyles} DPStyles = {DPStyles}/>
     <YourOutfit />
     </div>
   )

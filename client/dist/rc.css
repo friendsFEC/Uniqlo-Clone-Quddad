@@ -1,6 +1,7 @@
 .rc-title {
   font-size: 22px;
-  margin-left: 25px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .rc-title1style {
@@ -18,7 +19,8 @@
   display: inline-block;
   height: 375px;
   width: 250px;
-  margin-left: 25px;
+  margin-left: 10%;
+  margin-right: 5px;
 }
 
 .rc-small-titles {
@@ -26,6 +28,19 @@
 }
 
 .rc-rp-button {
-  margin-left: 200px;
-  font-size: 24px;
+  margin-left: 217px;
+  font-size: 25px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.rc-modal-style {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #FFF;
+  padding: 50px;
+  z-Index: 1000;
+  border: 1px solid black;
 }
