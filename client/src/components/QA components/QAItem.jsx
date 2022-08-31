@@ -39,12 +39,17 @@ let QAItem = (props) => {
             return;
           }
           // answerKeys:
-          // answerer_key (string)
+          // answerer_name (string)
           // body (string)
           // date (string)
           // helpfulness (number)
           //
-          return (<p key={answer.id}>{answer.body}</p>);
+          console.log('answer ', answer);
+          return (
+          <div key={answer.id}>
+            <p>{answer.body}</p>
+            <p><small>By {answer.answerer_name}, {answer.date}</small></p>
+          </div>);
         })
       }
     </div>
