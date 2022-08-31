@@ -43,4 +43,6 @@
   padding: 50px;
   z-Index: 1000;
   border: 1px solid black;
+  height: 250px;
+  width: 400px;
 }

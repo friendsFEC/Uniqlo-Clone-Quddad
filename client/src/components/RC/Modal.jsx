@@ -2,7 +2,7 @@ import React from 'react'
 
 const Modal = ({ open, onClose, children, product, currentInfo}) => {
   if (!open) return null
-  const NA = "not applicable"
+  const notApplicable = "Not Applicable"
   // issue here:
   // features are different for each product, so I am comparing everything to current product's features
   return (
@@ -23,12 +23,12 @@ const Modal = ({ open, onClose, children, product, currentInfo}) => {
             return <tr>
               <td>{feature.value}</td>
               <td>{feature.feature}</td>
-              <td>{null}</td>
+              <td>{notApplicable}</td>
             </tr>
           })}
           {product.features.map(feature => {
             return <tr>
-              <td>{null}</td>
+              <td>{notApplicable}</td>
               <td>{feature.feature}</td>
               <td>{feature.value}</td>
             </tr>
