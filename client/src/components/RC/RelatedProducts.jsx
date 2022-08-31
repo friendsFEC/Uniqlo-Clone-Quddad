@@ -9,13 +9,18 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
   const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
   const [isOpen, setIsOpen] = useState(false);
 
-  // console.log(relatedStyles)
   // const getDefaultPhoto = () => {
+  //   const photos = [];
   //   for (let i = 0; i < relatedStyles.length; i++) {
   //     for (let j = 0; j < relatedStyles.length; j++) {
-  //       console.log(relatedStyles[i].results[j])
+  //       if (relatedStyles[i].results[j]["default?"]) {
+  //         photos.push(relatedStyles[i].results[j].photos[0].thumbnail_url);
+  //       }
+  //       // if all defaults are false, do something
+  //       // how to check if all defaults are false
   //     }
   //   }
+  //   console.log(photos)
   // }
 
   const createRPCard = () => {
@@ -29,10 +34,10 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
           <AiOutlineStar/>
           </button>
           <Modal open={isOpen} product = {product} currentInfo = {currentInfo}/>
-          <img src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto}/>
-          <p>{product.category}</p>
-          <p>{product.name}</p>
-          <p>{product.default_price}</p>
+          <img className = "rc-rp-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto}/>
+          <p className = "rc-rp-category">{product.category}</p>
+          <p className = "rc-rp-name">{product.name}</p>
+          <p className = "rc-rp-price">${Math.round(product.default_price)}</p>
           </div>
         </div>
       })}

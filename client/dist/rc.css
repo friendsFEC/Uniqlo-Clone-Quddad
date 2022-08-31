@@ -4,22 +4,12 @@
   padding-right: 10%;
 }
 
-.rc-title1style {
-  color: green
-}
-
-.rc-title2style {
-  color: blue;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
-}
-
 .rc-main {
   border: 1px solid black;
   display: inline-block;
   height: 375px;
   width: 250px;
-  margin-left: 10%;
+  margin-left: 10px;
 }
 
 .rc-small-titles {
@@ -45,4 +35,15 @@
   border: 1px solid black;
   height: 250px;
   width: 400px;
+}
+
+.rc-rp-photos {
+  border-radius: 8px;
+  margin-top: 5px;
+  height: 225px;
+  width: 225px;
+}
+
+.rc-rp-name {
+  font-weight: bold;
 }
