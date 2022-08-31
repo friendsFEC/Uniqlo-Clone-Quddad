@@ -139,7 +139,16 @@ const RelatedAndComparison = () => {
     .catch(err => console.log(err))
   }, [relatedIDs])
 
-  return (<div>LOADING</div>)
+  return (
+  <div>
+    <RelatedProducts
+      currentInfo = {currentInfo}
+      relatedIDs = {relatedIDs}
+      relatedInfo = {relatedInfo}
+      relatedStyles = {relatedStyles}
+    />
+  </div>
+  )
 }
 
 export default RelatedAndComparison;
