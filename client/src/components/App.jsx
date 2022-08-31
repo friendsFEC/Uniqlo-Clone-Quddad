@@ -45,7 +45,7 @@ let App = (props) => {
       <Overview productId={productId}/>
       <RelatedAndComparison productId={productId}/>
       <QuestionsAndAnswers productId={productId}/>
-      <ReviewsAndRatings productId={productId}/>
+      <ReviewsAndRatings productId={productId} setProductId={setProductId}/>
     </div>
   )
 }

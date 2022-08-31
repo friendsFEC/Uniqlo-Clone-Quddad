@@ -8,7 +8,9 @@ const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews';
 
 let ReviewsAndRatings = (props) => {
   /* hooks */
-  const [productID, setProductID] = useState(props.productId || 65631);
+  //const [productID, setProductID] = useState(props.productId || 65631);
+  const productID = props.productId;
+  const setProductID = props.setProductId;
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [average, setAverage] = useState(0);
@@ -312,8 +314,10 @@ let ReviewTile = (props) => {
           <p>{props.review.body}</p>
           :
             <p>
-              {props.review.body.slice(0, 250)}
-              <a onClick={(ev) => {
+              {props.review.body.slice(0, 250)}...
+              <br /><a
+                style={{color: 'blue'}}
+                onClick={(ev) => {
                 ev.preventDefault();
                 let p = ev.target.parentElement;
                 p.removeChild(p.children[0]);
@@ -321,8 +325,6 @@ let ReviewTile = (props) => {
               }}>Show More</a>
             </p>
       }
-      { props.review.recommend ? <p>[checkmark] I recommend this product</p> : '' }
-      <p>[not working yet] Was this review helpful? <button>Yes</button> <button>No</button></p>
       {props.review.photos.map((obj, i) =>
         <img
           className='review-thumbnail'
@@ -336,6 +338,8 @@ let ReviewTile = (props) => {
           }}
         />)
       }
+      { props.review.recommend ? <p>[checkmark] I recommend this product</p> : '' }
+      <p>[not working yet] Was this review helpful? <button>Yes</button> <button>No</button></p>
     </div>
   )
 };
