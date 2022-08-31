@@ -4,12 +4,10 @@ import Filter from './Filter.jsx';
 const _V = require('../Utility/V.jsx');
 
 let ListOfQA = (props) => {
-  const topFourQuestions = _V.topXItems(4, props.chosenProduct);
-
-  // if there are questions in the list
-  //  display the list of QAs and question submit
-  // else
-  //  display question submit
+  const filteredQuestions = props.chosenProduct.filter((question) =>
+    question.question_helpfulness > 0
+  );
+  const topFourQuestions = _V.topXItems(4, filteredQuestions);
   return (
     <div id="qa-ListOfQA">
     {/*

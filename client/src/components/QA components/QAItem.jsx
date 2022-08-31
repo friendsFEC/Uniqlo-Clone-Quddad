@@ -1,4 +1,7 @@
 import React from 'react';
+import Question from './QAItem/Question.jsx';
+import Answer from './QAItem/Answer.jsx';
+
 const _V = require('../Utility/V.jsx')
 
 // The questions and their corresponding answers within this list will be displayed
@@ -18,40 +21,9 @@ let QAItem = (props) => {
   return (
     <div id="qa-QAItem">
       <h2>Q:</h2>
-      <h3>{questionAnswer.question_body}</h3>
+      <Question question_body={questionAnswer.question_body} question_helpfulness={questionAnswer.question_helpfulness} />
       <h2>A:</h2>
-      {/* {
-        Object.keys(answers).map((answerKeys) => {
-          let answer = answers[answerKeys];
-          // answerKeys:
-          // answerer_key (string)
-          // body (string)
-          // date (string)
-          // helpfulness (number)
-          //
-          console.log(answer);
-          return (<p key={answer.id}>{answer.body} and helpfulness is </p>);
-        })
-      } */}
-      {
-        topTwoAnswers.map((answer) => {
-          if (!answer) {
-            return;
-          }
-          // answerKeys:
-          // answerer_name (string)
-          // body (string)
-          // date (string)
-          // helpfulness (number)
-          //
-          console.log('answer ', answer);
-          return (
-          <div key={answer.id}>
-            <p>{answer.body}</p>
-            <p><small>By {answer.answerer_name}, {answer.date}</small></p>
-          </div>);
-        })
-      }
+      <Answer topTwoAnswers={topTwoAnswers} />
     </div>
   )
 }
