@@ -9,6 +9,15 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
   const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
   const [isOpen, setIsOpen] = useState(false);
 
+  // console.log(relatedStyles)
+  // const getDefaultPhoto = () => {
+  //   for (let i = 0; i < relatedStyles.length; i++) {
+  //     for (let j = 0; j < relatedStyles.length; j++) {
+  //       console.log(relatedStyles[i].results[j])
+  //     }
+  //   }
+  // }
+
   const createRPCard = () => {
       return (
       <div>
@@ -20,8 +29,8 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
           <AiOutlineStar/>
           </button>
           <Modal open={isOpen} product = {product} currentInfo = {currentInfo}/>
+          <img src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto}/>
           <p>{product.category}</p>
-          {/* <p>{props.RPStyles.length > 0 ? props.RPStyles[index][0].photos[0].thumbnail_url : "No photo"}</p> */}
           <p>{product.name}</p>
           <p>{product.default_price}</p>
           </div>
