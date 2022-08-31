@@ -8,6 +8,7 @@ class Filter extends React.Component {
   render() {
     return (
       <div id="qa-filter">
+        <p>HAVE A QUESTION? SEARCH FOR ANSWERS...</p>
       </div>
     )
   }
