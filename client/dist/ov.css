@@ -27,19 +27,20 @@
 .ov-imageBox {
   position: relative;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   display: flex;
   flex-flow: column;
 
 }
 
 .ov-infoBox {
-  display: grid;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
   border-style: solid;
   width: 500px;
-  row-gap: 2em;
-  padding-left: 20px;
+  padding-left: 30px;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .ov-descriptionBlock {
@@ -96,7 +97,7 @@
   position: absolute;
   top: 0px;
   left: -50px;
-  height: 30vh;
+  height: 25vh;
 }
 
 .ov-btn {
@@ -112,13 +113,38 @@
 }
 
 .ov-thumbnail {
-  border-style: solid;
-  border-top: 0cm;
-  border-right: 0cm;
-  border-left: 0cm;
+
+}
+
+.ov-thumbnail--active {
+  border: 2px solid black;
+  opacity: 1;
+
+}
+
+.ov-StarWrapper {
+  display: flex;
+  align-items: center;
+
 }
 
 .ov-thumbnail--image{
-  height: 40px;
-  width: 40px;
+  opacity: 0.80;
+  height: 30px;
+  width: 30px;
+}
+
+.ov-thumbnail--image:hover{
+  opacity: 1;
+}
+
+.ov-title--reviews {
+  padding-left: 5px;
+  font-size: x-small;
+  text-decoration: underline;
+}
+
+.ov-title--reviews:hover {
+  color: gray;
+  cursor: pointer;
 }
