@@ -1,5 +1,5 @@
 import React from 'react';
-import App from '../App.jsx';
+import App from '../src/components/App.jsx';
 import {render, screen} from '@testing-library/react';
 
 describe('example tests', () => {
