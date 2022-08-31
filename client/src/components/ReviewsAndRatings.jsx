@@ -8,7 +8,7 @@ const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews';
 
 let ReviewsAndRatings = (props) => {
   /* hooks */
-  const [productID, setProductID] = useState(props.product_id || 65631);
+  const [productID, setProductID] = useState(props.productId || 65631);
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [average, setAverage] = useState(0);
