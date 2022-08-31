@@ -49,6 +49,42 @@ const RelatedAndComparison = () => {
       .catch(err => console.log(err))
   }, [])
 
+  // useEffect(() => {
+  //   const infoPromises = [];
+
+  //   relatedIDs.forEach(id => {
+  //     let one = `/products/${id}`
+
+  //     const Axios = axios.create({
+  //       baseURL: `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/`,
+  //       headers: {
+  //         'Authorization': config.API_KEY
+  //       }
+  //     })
+
+  //     const getRelatedInfo = () => {
+  //       return Axios.get(one, {
+  //         transformResponse: [(data) => {
+  //           data = JSON.parse(data);
+  //           let { id, name, category, default_price, features } = data;
+  //           return { id, name, category, default_price, features };
+  //         }]
+  //       })
+  //     }
+  //     infoPromises.push(getRelatedInfo());
+  //   })
+
+    // Promise.all(infoPromises)
+    // .then(res => {
+    //   const relatedInfo = [];
+    //   res.forEach(res =>
+    //     relatedInfo.push(res.data)
+    //   )
+    //   setRelatedInfo(relatedInfo);
+    // })
+  //   .catch(err => console.log(err))
+  // }, [relatedIDs]) // renders when relatedIDs changes
+
   useEffect(() => {
     const infoPromises = [];
     const stylePromises = [];
@@ -83,18 +119,27 @@ const RelatedAndComparison = () => {
     })
 
     Promise.all(infoPromises)
-    // .then(res => setRelatedInfo(res))
-    .then(res => console.log(res))
+    .then(res => {
+      const relatedInfo = [];
+      res.forEach(res =>
+        relatedInfo.push(res.data)
+      )
+      setRelatedInfo(relatedInfo);
+    })
     .catch(err => console.log(err))
 
     Promise.all(stylePromises)
-    // .then(res => setRelatedStyles(res))
-    .then(res => console.log(res))
+    .then(res => {
+      const relatedStyles = [];
+      res.forEach(res =>
+        relatedStyles.push(res.data)
+      )
+      setRelatedStyles(relatedStyles);
+    })
     .catch(err => console.log(err))
-  })
+  }, [relatedIDs])
 
-    return (<div>LOADING</div>)
-
+  return (<div>LOADING</div>)
 }
 
 export default RelatedAndComparison;
