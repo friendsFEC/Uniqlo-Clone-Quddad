@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import ProductImage from './overview/ProductImage.jsx';
 import ProductInfo from './overview/ProductInfo.jsx';
+import PriceTag from './overview/PriceTag.jsx';
 import axios from 'axios';
 import config from '../../../config.js';
 
@@ -13,12 +14,12 @@ const Overview = () => {
   const [rating, setRating] = useState(0);
   const [currStyle, setCurrStyle] = useState(0);
 
-  const productId = 65631
+  const productId = 65633;
 
   useEffect(() => {
-    let one =`/products/${productId}`;
-    let two = `/products/${productId}/styles`;
-    let three = '/reviews/meta';
+    const one =`/products/${productId}`;
+    const two = `/products/${productId}/styles`;
+    const three = '/reviews/meta';
 
     const Axios = axios.create({
       baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
@@ -102,7 +103,21 @@ const Overview = () => {
         <div className="ov-main">
           <div className="ov-wrapper">
             <ProductImage photosData={styles[currStyle].photos}/>
-            <ProductInfo product={product} rating={rating}/>
+            <div className="ov-infoBox">
+              <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
+              <div className="ov-title ov-title--Price">
+                <PriceTag product={currStyle}/>
+              </div>
+              <div>
+                [style selector]
+              </div>
+              <div>
+                [drop down menu for size selection]
+              </div>
+              <div>
+                [add to card button]
+              </div>
+            </div>
           </div>
           <div className="ov-descriptionBlock">
             <h3>{product.slogan}</h3>
