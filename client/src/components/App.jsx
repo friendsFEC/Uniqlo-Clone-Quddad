@@ -28,8 +28,8 @@ let ProductIdSlider = (props) => {
 
   return (
     <div style={{textAlign: 'center'}}>
-      <select onChange={({target}) => props.setProductId(target.value)}>
-        {products ? products.map((product, i) => 
+      <select onChange={({target}) => props.setProductId(parseInt(target.value))}>
+        {products ? products.map((product, i) =>
         <option key={i} value={product.id}>{product.name}</option>
         ) : null}
       </select>
@@ -43,7 +43,7 @@ let App = (props) => {
     <div>
       <ProductIdSlider setProductId={setProductId} />
       <Overview productId={productId}/>
-      <RelatedAndComparison productId={productId}/>
+      <RelatedAndComparison productID={productId}/>
       <QuestionsAndAnswers productId={productId}/>
       <ReviewsAndRatings productId={productId}/>
     </div>

@@ -6,13 +6,11 @@ import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
 
-const RelatedAndComparison = () => {
+const RelatedAndComparison = ({productID}) => {
   const [currentInfo, setCurrentInfo] = useState([]);
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedInfo, setRelatedInfo] = useState([]);
   const [relatedStyles, setRelatedStyles] = useState([]);
-
-  const productID = 65631;
 
   useEffect(() => {
     let one = `/products/${productID}`
@@ -47,7 +45,7 @@ const RelatedAndComparison = () => {
         setRelatedIDs(relatedIDs);
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [productID])
 
   useEffect(() => {
     const infoPromises = [];
@@ -103,7 +101,7 @@ const RelatedAndComparison = () => {
     .catch(err => console.log(err))
   }, [relatedIDs])
 
-  if (relatedInfo.length > 0 && relatedStyles.length > 0) {
+  if (relatedStyles.length > 0) {
     return (
     <div>
       <RelatedProducts
@@ -115,7 +113,15 @@ const RelatedAndComparison = () => {
     </div>
     )
   } else {
-    return <div>LOADING</div>
+    return (
+      <div>
+        LOADING
+      {/* {console.log(currentInfo, 'CURRENT INFO')}
+      {console.log(relatedIDs, 'RELATED IDS')}
+      {console.log(relatedInfo, 'RELATED INFO')}
+      {console.log(relatedStyles, 'RELATED STYLES')} */}
+      </div>
+    )
   }
 }
 
