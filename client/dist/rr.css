@@ -118,6 +118,9 @@
   font-size: 0.9rem;
   font-weight: bold;
 }
+.rr .product-breakdown .characteristics-description {
+  width: 80%;
+}
 .rr .product-breakdown .characteristics-description p {
   display:inline-block;
   width: 33%;
@@ -125,13 +128,13 @@
   font-weight: normal;
   font-size: 0.8rem;
 }
-.rr .product-breakdown .characteristics-description span.rr-left {
+.rr .product-breakdown .characteristics-description p.rr-left {
   text-align: left;
 }
-.rr .product-breakdown .characteristics-description span.rr-middle {
+.rr .product-breakdown .characteristics-description p.rr-middle {
   text-align: center;
 }
-.rr .product-breakdown .characteristics-description span.rr-right {
+.rr .product-breakdown .characteristics-description p.rr-right {
   text-align: right;
 }
 .rr .bold {
