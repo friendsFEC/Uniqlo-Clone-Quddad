@@ -182,7 +182,7 @@ let ReviewsAndRatings = (props) => {
 
 
   return (
-    <div className="rr">
+    <div className="rr" id="rr">
       <h1>Ratings & Reviews Section</h1>
       <p className="testing">
         <em onClick={() => console.log(reviews)}>This part is just for testing, I'll remove it

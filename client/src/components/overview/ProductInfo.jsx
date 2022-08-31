@@ -9,7 +9,6 @@ const ProductInfo = ({ product, rating }) => {
       <div className="ov-infoBox">
         <div className="ov-infoBox_reviewbox">
           <StarRating rating={rating}/>
-          [go to reviews link]
         </div>
         <div className="ov-title">
           <p className="ov-title ov-title--Category">{product.category}</p>
