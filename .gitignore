@@ -7,3 +7,4 @@ client/dist/bundle.js.map
 
 # config files
 config.js
+client/src/components/overview/tests
