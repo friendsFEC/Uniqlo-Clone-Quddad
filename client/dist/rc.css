@@ -1,16 +1,7 @@
 .rc-title {
   font-size: 22px;
-  margin-left: 25px;
-}
-
-.rc-title1style {
-  color: green
-}
-
-.rc-title2style {
-  color: blue;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .rc-main {
@@ -18,5 +9,41 @@
   display: inline-block;
   height: 375px;
   width: 250px;
-  margin-left: 25px;
+  margin-left: 10px;
+}
+
+.rc-small-titles {
+  margin-left: 10px;
+}
+
+.rc-rp-button {
+  margin-left: 208px;
+  margin-top: 10px;
+  font-size: 25px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.rc-modal-style {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #FFF;
+  padding: 50px;
+  z-Index: 1000;
+  border: 1px solid black;
+  height: 250px;
+  width: 400px;
+}
+
+.rc-rp-photos {
+  border-radius: 8px;
+  margin-top: 5px;
+  height: 225px;
+  width: 225px;
+}
+
+.rc-rp-name {
+  font-weight: bold;
 }
