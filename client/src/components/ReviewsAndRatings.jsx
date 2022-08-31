@@ -8,7 +8,7 @@ const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews';
 
 let ReviewsAndRatings = (props) => {
   /* hooks */
-  const [productID, setProductID] = useState(props.product_id || 65631);
+  const [productID, setProductID] = useState(props.productId || 65631);
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [average, setAverage] = useState(0);
@@ -260,7 +260,7 @@ let ReviewList = (props) => {
     <div
       className="review-list"
       onScroll={({target}) => {
-			if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 5) {
+			if ((target.scrollTop + target.clientHeight) === target.scrollHeight) {
         retrieveReviews();
 			}}}
     >
@@ -419,12 +419,12 @@ let ProductBreakDown = (props) => {
 };
 let CharacteristicsWidget = (props) => {
   let text = {
+    Fit: {left: 'Too tight', middle: 'Perfect', right: 'Too loose'},
+    Comfort: {left: 'Uncomfortable', middle: 'Average', right: 'Comfortable'},
+    Length: {left: 'Too short', middle: 'Perfect', right: 'Too long'},
+    Quality: {left: 'Poor', middle: 'Average', right: 'Great'},
     Size: {left: 'Too small', middle: 'Just right', right: 'Too large'},
-    Width: {left: 'Too narrow', middle: 'Perfect', right: 'Too wide'},
-    Comfort: {left: 'Uncomfortable', middle: 'Ok', right: 'Perfect'},
-    Quality: {left: 'Poor', middle: 'What I expected', right: 'Perfect'},
-    Length: {left: 'Runs short', middle: 'Perfect', right: 'Runs long'},
-    Fit: {left: 'Runs tight', middle: 'Perfect', right: 'Runs long'},
+    Width: {left: 'Too thin', middle: 'Just right', right: 'Too wide'},
   }
   //console.log(props.name);
   return (
@@ -450,7 +450,7 @@ let SortOptions = (props) => (
       <option value="helpful">helpfulness</option>
       <option value="newest">newest</option>
     </select>
-    Search Reviews:<input type="search" value={props.search} onChange={({target}) => {
+    Search Reviews:<input type="text" value={props.search} onChange={({target}) => {
       props.setSearch(target.value);
     }}/>
   </div>
