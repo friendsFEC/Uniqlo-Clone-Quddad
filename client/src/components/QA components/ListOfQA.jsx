@@ -8,8 +8,12 @@ let ListOfQA = (props) => {
     question.question_helpfulness > 0
   );
   const topFourQuestions = _V.topXItems(4, filteredQuestions);
+
+
   return (
     <div id="qa-ListOfQA">
+
+    <Filter />
     {/*
     1. display questions
     2. display answers */}

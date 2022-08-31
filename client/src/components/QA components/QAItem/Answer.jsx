@@ -1,11 +1,13 @@
 import React from 'react';
 
 let Answer = (props) => {
+  let answers = props.topTwoAnswers;
+
 
   return (
     <div id="qa-QAItem-Answer">
       {
-        props.topTwoAnswers.map((answer) => {
+        answers.map((answer) => {
           if (!answer) {
             return;
           }

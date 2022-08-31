@@ -53,15 +53,12 @@ class QuestionsAndAnswers extends React.Component {
 
 
   render() {
-    const _QAitem = this.state.product.results;
     const isQuestionFilled = (this.state.product.length > 0) ? true : false;
-    // const isQuestionFilled = false;
 
     if (isQuestionFilled) {
       return (
         <div id="qa">
           <p>QUESTIONS & ANSWERS</p>
-          <Filter />
           {<ListOfQA chosenProduct={this.state.product} isQuestionFilled={isQuestionFilled} />}
           <QAEntry />
         </div>
@@ -70,7 +67,6 @@ class QuestionsAndAnswers extends React.Component {
       return (
         <div id="qa">
           <p>QUESTIONS & ANSWERS</p>
-          <Filter />
           <QAEntry />
         </div>
       )
