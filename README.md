@@ -18,6 +18,18 @@ For now, CSS files should go in `client/dist`, and all the front-end javascript
 edits should be made in `client/src`. In the future, we'll be able to put CSS
 files in `client/src` and have webpack bundle them :)
 
+### Running and Creating Tests
+
+We are using `jest` and the React testing library. You can contribute tests
+by placing `<your test name>.test.js` inside `client/src/components/tests`.
+
+Run tests using `npm test`
+
+Some links for the testing technology:
+* (Jest)[https://jestjs.io/docs/getting-started]
+* (React Testing Library)[https://testing-library.com/docs/react-testing-library/intro/]
+* (NPM docs)[https://www.npmjs.com/package/@testing-library/react]
+
 ### Frequently Used Git commands
 
 

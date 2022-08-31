@@ -426,7 +426,7 @@ let CharacteristicsWidget = (props) => {
     Size: {left: 'Too small', middle: 'Just right', right: 'Too large'},
     Width: {left: 'Too thin', middle: 'Just right', right: 'Too wide'},
   }
-  console.log(props.name);
+  //console.log(props.name);
   return (
     <div className='characteristics'>
       {props.name}
