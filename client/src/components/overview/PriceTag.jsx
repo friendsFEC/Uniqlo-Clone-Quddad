@@ -2,15 +2,14 @@ import React from 'react';
 
 
 const PriceTag = ({ product }) => {
-  // if current style sale is null
-    // price with price class
-  // else
-    // price with sale class
-    // sale price with price class
-    console.log(product)
+
   return (
     <div>
-       [price]
+       <span className=
+       {product.sale_price === null ? ".ov-title_price" : "ov-title_price--onsale "}>
+        ${product.original_price}
+       </span>
+       {product.sale_price && <span className= ".ov-title_price">${product.sale_price}</span>}
     </div>
   )
 }

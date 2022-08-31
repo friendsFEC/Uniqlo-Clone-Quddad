@@ -106,7 +106,7 @@ const Overview = () => {
             <div className="ov-infoBox">
               <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
               <div className="ov-title ov-title--Price">
-                <PriceTag product={currStyle}/>
+                <PriceTag product={styles[2]}/>
               </div>
               <div>
                 [style selector]

@@ -155,5 +155,6 @@
 
 .ov-title_price--onsale {
   color: red;
-  text-decoration: overline;
+  text-decoration: line-through;
+  padding-right: 5px;
 }
