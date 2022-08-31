@@ -6,6 +6,7 @@ import axios from 'axios';
 import config from '../../../config.js';
 
 
+
 const Overview = () => {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
@@ -25,6 +26,17 @@ const Overview = () => {
         'Authorization': config.API_KEY
       }
     });
+
+    // // gets all the products from the api
+    // const reqAllProducts = () => {
+    //   return Axios.get('products/', {
+    //     transformResponse: [(data) => {
+    //       data = JSON.parse(data);
+    //       let { id, name } = data;
+    //       return { id , name };
+    //     }]
+    //   })
+    // }
 
     // gets the producct general info from API and return name, description etc as response data
     const reqProduct = () => {
@@ -80,6 +92,10 @@ const Overview = () => {
         .catch(errors => console.log(errors));
 
   }, []);
+
+    const selectStyle = (idx) => {
+      setCurrStyle(idx);
+    }
 
     if (styles.length > 0) {
       return (

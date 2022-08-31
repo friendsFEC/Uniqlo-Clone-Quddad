@@ -1,13 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-const MainImageCarousel = ({ photosData, changeImage, selected }) => {
+const MainImageCarousel = ({ photosData, dispatch, selected }) => {
   const [current, setCurrent] = useState(selected);
 
   useEffect(()=> setCurrent(selected), [selected]);
 
-  const handleClick = (e, index) => {
-    changeImage(e, index);
+  const handleClick = (index) => {
+    dispatch({type: 'changeImage', idx: index})
     setCurrent(index);
   }
 
@@ -15,7 +15,7 @@ const MainImageCarousel = ({ photosData, changeImage, selected }) => {
     <div className="ov-imageBox_thumbnail">
     {photosData.map((photo, index) => {
       return (
-        <div className={current === index ? 'ov-thumbnail--active' : 'ov-thumbnail'} key={index} onClick={(e)=> handleClick(e,index)}>
+        <div className={current === index ? 'ov-thumbnail--active' : 'ov-thumbnail'} key={index} onClick={()=> handleClick(index)}>
           <img className="ov-thumbnail--image"src={photo.thumbnail_url}/>
         </div>
       )
