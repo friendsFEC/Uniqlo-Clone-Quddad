@@ -7,9 +7,22 @@ import config from '../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
 
 const RelatedAndComparison = () => {
+  const [currentInfo, setCurrentInfo] = useState([]);
   const [RPInfo, setRPInfo] = useState([]);
   const [RPStyles, setRPStyles] = useState([]);
   const [DPStyles, setDPStyles] = useState([]);
+  const [notDPStyles, setNotDPStyles] = useState([]);
+
+  const getCurrentInfo = () => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631`, {
+      headers: {
+        Authorization: config.API_KEY,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => setCurrentInfo(res.data))
+    .catch(err => console.log(err))
+  }
 
   const getRelatedInfo = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
@@ -43,14 +56,18 @@ const RelatedAndComparison = () => {
         .then(() => setRPStyles(styleStorage))
         .then(() => {
           const defaultProducts = [];
+          const notDefaultProducts = [];
           for (let i = 0; i < styleStorage.length; i++) {
             for (let j = 0; j < styleStorage.length; j++) {
               if (styleStorage[i][j]["default?"]) {
-                defaultProducts.push(styleStorage[i][j])
+                defaultProducts.push(styleStorage[i][j]);
+              } else {
+                notDefaultProducts.push(styleStorage[i][j]);
               }
             }
           }
-          setDPStyles(defaultProducts)
+          setDPStyles(defaultProducts);
+          setNotDPStyles(notDefaultProducts);
         })
         .catch(err => console.log(err))
       })
@@ -62,9 +79,13 @@ const RelatedAndComparison = () => {
     getRelatedInfo()
   }, [])
 
+  useEffect(() => {
+    getCurrentInfo()
+  }, [])
+
   return (
     <div>
-    <RelatedProducts RPInfo = {RPInfo} RPStyles = {RPStyles} DPStyles = {DPStyles}/>
+    <RelatedProducts currentInfo = {currentInfo} RPInfo = {RPInfo} RPStyles = {RPStyles} DPStyles = {DPStyles} notDPStyles = {notDPStyles}/>
     <YourOutfit />
     </div>
   )
