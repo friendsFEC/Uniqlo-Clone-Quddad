@@ -29,18 +29,14 @@ const RelatedAndComparison = () => {
       return Axios.get(one, {
         transformResponse: [(data) => {
           data = JSON.parse(data);
-          return data;
+          let { id, name, category, default_price, features } = data;
+          return { id, name, category, default_price, features };
         }]
       })
     }
 
     const getRelatedIDs = () => {
-      return Axios.get(two, {
-        transformResponse: [(data) => {
-          data = JSON.parse(data);
-          return data;
-        }]
-      })
+      return Axios.get(two, (data) => {return data})
     }
 
     Promise.all([getCurrentInfo(), getRelatedIDs()])
@@ -54,7 +50,9 @@ const RelatedAndComparison = () => {
   }, [])
 
   useEffect(() => {
-    relatedIDs.map(id => {
+    const promises = [];
+
+    relatedIDs.forEach(id => {
       let one = `/products/${id}`
       let two = `/products/${id}/styles`
 
@@ -69,10 +67,12 @@ const RelatedAndComparison = () => {
         return Axios.get(one, {
           transformResponse: [(data) => {
             data = JSON.parse(data);
-            return data;
+            let { id, name, category, default_price, features } = data;
+            return { id, name, category, default_price, features };
           }]
         })
       }
+      promises.push(getRelatedInfo());
 
       const getRelatedStyles = () => {
         return Axios.get(two, {
@@ -82,11 +82,13 @@ const RelatedAndComparison = () => {
           }]
         })
       }
+      promises.push(getRelatedInfo());
 
-      Promise.all([getRelatedInfo, getRelatedStyles])
-      .then((...responses) => {
-        console.log(responses)
-      })
+    })
+
+    Promise.all(promises)
+    .then((...responses) => {
+      console.log(responses)
     })
   })
 
