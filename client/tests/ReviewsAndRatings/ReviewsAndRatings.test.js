@@ -15,11 +15,12 @@ describe('Reviews and Ratings Tests', () => {
     expect(true).toEqual(true);
     expect(container.getElementsByClassName('star').length).toEqual(5)
   });
-  it('should load 2 reviews', () => {
+  it('should load 2 reviews', async () => {
     // not sure if this simulates waiting for page to load
-    setTimeout(() =>
-      expect(container.getElementsByClassName('review-tile').length).toBeGreaterTHan(0),
-      1000
-    );
+    let loaded = 0;
+    new Promise(() => setTimeout(() => 
+      loaded = container.getElementsByClassName('review-tile').length,
+      2000
+    )).then(expect(loaded).toBeGreaterThan(0))
   });
 });
