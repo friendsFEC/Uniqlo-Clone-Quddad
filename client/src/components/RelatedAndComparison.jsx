@@ -9,8 +9,8 @@ import { AiOutlineStar } from 'react-icons/ai';
 const RelatedAndComparison = () => {
   const [currentInfo, setCurrentInfo] = useState([]);
   const [relatedIDs, setRelatedIDs] = useState([]);
-  // const [RPInfo, setRPInfo] = useState([]);
-  // const [RPStyles, setRPStyles] = useState([]);
+  const [relatedInfo, setRelatedInfo] = useState([]);
+  const [relatedStyles, setRelatedStyles] = useState([]);
 
   const productID = 65631;
 
@@ -40,17 +40,18 @@ const RelatedAndComparison = () => {
     }
 
     Promise.all([getCurrentInfo(), getRelatedIDs()])
-      .then((...responses) => {
-        const currentInfo = responses[0][0].data;
-        const relatedIDs = responses[0][1].data;
+      .then((...res) => {
+        const currentInfo = res[0][0].data;
+        const relatedIDs = res[0][1].data;
         setCurrentInfo(currentInfo);
         setRelatedIDs(relatedIDs);
       })
-      .catch(errors => console.log(errors))
+      .catch(err => console.log(err))
   }, [])
 
   useEffect(() => {
-    const promises = [];
+    const infoPromises = [];
+    const stylePromises = [];
 
     relatedIDs.forEach(id => {
       let one = `/products/${id}`
@@ -72,99 +73,26 @@ const RelatedAndComparison = () => {
           }]
         })
       }
-      promises.push(getRelatedInfo());
+      infoPromises.push(getRelatedInfo());
 
       const getRelatedStyles = () => {
-        return Axios.get(two, {
-          transformResponse: [(data) => {
-            data = JSON.parse(data);
-            return data;
-          }]
-        })
+        return Axios.get(two, (data) => {return data})
       }
-      promises.push(getRelatedInfo());
+      stylePromises.push(getRelatedStyles());
 
     })
 
-    Promise.all(promises)
-    .then((...responses) => {
-      console.log(responses)
-    })
+    Promise.all(infoPromises)
+    // .then(res => setRelatedInfo(res))
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+    Promise.all(stylePromises)
+    // .then(res => setRelatedStyles(res))
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
   })
 
-  // const getCurrentInfo = () => {
-  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631`, {
-  //     headers: {
-  //       Authorization: config.API_KEY,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(res => setCurrentInfo(res.data))
-  //   .catch(err => console.log(err))
-  // }
-
-  // // refactor using axios.all or promises
-  // const getRelatedInfo = () => {
-  //   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65631/related', {
-  //     headers: {
-  //       Authorization: config.API_KEY,
-  //       'Content-Type': 'application/json'
-  //     }
-  //   })
-  //   .then(res => {
-  //     const dataStorage = [];
-  //     const styleStorage = [];
-
-  //     //Gets Related Product Info by ID
-  //     res.data.forEach(id => {
-  //       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/${id}`, {
-  //         headers: {
-  //           Authorization: config.API_KEY,
-  //           'Content-Type': 'application/json'
-  //         }
-  //       })
-  //       .then(res => dataStorage.push(res.data))
-  //       .then(() => setRPInfo(dataStorage))
-  //       .catch(err => console.log(err))
-  //     })
-
-  //     // Gets style information for each related product by ID
-  //     res.data.forEach(id => {
-  //       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/${id}/styles`, {
-  //         headers: {
-  //             Authorization: config.API_KEY,
-  //             'Content-Type': 'application/json'
-  //         }
-  //       })
-  //       .then(res => styleStorage.push(res.data.results))
-  //       // .then(res => console.log(res.data))
-  //       .then(() => setRPStyles(styleStorage))
-  //       .catch(err => console.log(err))
-  //     })
-  //   })
-  //   .catch(err => console.log(err))
-  // }
-
-
-  // useEffect(() => {
-  //   getRelatedInfo()
-  // }, [])
-
-  // useEffect(() => {
-  //   getCurrentInfo()
-  // }, [])
-
-  //   return (
-  //     <div>
-  //     <RelatedProducts
-  //       currentInfo = {currentInfo}
-  //       RPInfo = {RPInfo}
-  //       RPStyles = {RPStyles}
-  //     />
-  //     <YourOutfit />
-  //     </div>
-  //   )
-  // } else {
     return (<div>LOADING</div>)
 
 }
