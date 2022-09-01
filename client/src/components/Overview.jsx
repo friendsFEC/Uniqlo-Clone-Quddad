@@ -94,7 +94,7 @@ const Overview = ({ productId }) => {
                 <PriceTag product={styles[currStyle]}/>
               </div>
               <div>
-                <StyleGrid changeStyle={setCurrStyle} styleData={styles}/>
+                <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
               </div>
               <div>
                 [drop down menu for size selection]
