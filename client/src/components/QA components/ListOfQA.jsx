@@ -6,6 +6,12 @@ const _V = require('../Utility/V.jsx');
 class ListOfQA extends React.Component {
   constructor(props) {
     super(props);
+
+    this.searchQuestions = this.searchQuestions.bind(this);
+  }
+
+  searchQuestions(event) {
+    console.log(event.target.value);
   }
 
   render() {
@@ -17,7 +23,7 @@ class ListOfQA extends React.Component {
     return (
       <div id="qa-ListOfQA">
 
-      <Filter />
+      <Filter searchQuestions={this.searchQuestions}/>
       {/*
       1. display questions
       2. display answers */}
