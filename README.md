@@ -26,9 +26,9 @@ by placing `<your test name>.test.js` inside `client/src/components/tests`.
 Run tests using `npm test`
 
 Some links for the testing technology:
-* (Jest)[https://jestjs.io/docs/getting-started]
-* (React Testing Library)[https://testing-library.com/docs/react-testing-library/intro/]
-* (NPM docs)[https://www.npmjs.com/package/@testing-library/react]
+* [Jest](https://jestjs.io/docs/getting-started)
+* [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+* [NPM docs](https://www.npmjs.com/package/@testing-library/react)
 
 ### Frequently Used Git commands
 
