@@ -8,7 +8,13 @@ const MainImageCarousel = ({ photosData, dispatch, selected }) => {
   const downButton = useRef(null);
   const carouselY = useRef(null);
 
-  useEffect(()=> setCurrent(selected), [selected]);
+  useEffect(()=> {
+    setCurrent(selected)
+  }, [selected]);
+
+  useEffect(() => {
+    carouselY.current.scrollTo(0, 0);
+  }, [photosData])
 
   const handleClick = (index) => {
     dispatch({type: 'changeImage', idx: index})
