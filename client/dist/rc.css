@@ -98,3 +98,23 @@
   padding-left: 10px;
   border-radius: 8px;
 }
+
+/* .rc-rp-prev {
+  align-self: flex-start;
+  position: absolute;
+}
+
+.rc-rp-next {
+  position: absolute;
+  align-self: flex-end;
+} */
+
+.rc-rp-sale-price {
+  color: red;
+  text-decoration: line-through;
+  padding-right: 5px;
+}
+
+.rc-rp-og-price {
+  color: black;
+}
