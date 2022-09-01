@@ -9,7 +9,7 @@ const Modal = ({ open, onClose, children, product, currentInfo}) => {
     <div className = "rc-modal-style">
       <table>
         <thead>
-          <tr>
+          <tr className = "rc-modal-title">
             <th colSpan="3">Comparing:</th>
           </tr>
           <tr>
