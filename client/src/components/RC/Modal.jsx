@@ -8,8 +8,8 @@ const Modal = ({ open, onClose, product, currentInfo}) => {
     <div className = "rc-modal-style">
       <table>
         <thead>
-          <tr className = "rc-modal-title">
-            <th colSpan="3">Comparing:</th>
+          <tr>
+            <th colSpan="3" className = "rc-modal-title">Comparing:</th>
           </tr>
           <tr>
             <th>{currentInfo.name}</th>

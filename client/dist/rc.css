@@ -5,6 +5,7 @@
 
 .rc-main {
   border: 1px solid black;
+  border-radius: 8px;
   display: inline-block;
   height: 375px;
   width: 250px;
@@ -17,7 +18,7 @@
 }
 
 .rc-small-titles {
-  margin-left: 10px;
+  text-align: left;
 }
 
 .rc-rp-button {
@@ -41,6 +42,15 @@
   width: 400px;
 }
 
+.rc-modal-title {
+  text-align: left;
+}
+
+.rc-modal-style table, th, td {
+  border: 0.1px solid;
+  padding: 5px;
+}
+
 .rc-card-photos {
   border-radius: 8px;
   margin-top: 5px;
@@ -54,6 +64,7 @@
 
 .rc-yo-main {
   border: 1px solid black;
+  border-radius: 8px;
   display: inline-block;
   height: 375px;
   width: 250px;
@@ -81,4 +92,5 @@
 
 .rc-yo-card {
   padding-left: 10px;
+  border-radius: 8px;
 }

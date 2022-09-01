@@ -17,7 +17,7 @@ const YourOutfit = ( {currentInfo, currentStyle} ) => {
 
   return (
     <div>
-      <h3 className = "rc-title">Your Outfit:</h3>
+      <h3 className = "rc-title">Your Outfit</h3>
         <div className = "rc-yo-main">
           <div id ="rc-yo-add-button-div">
             <button className = "rc-yo-add-button" onClick = {() => {
