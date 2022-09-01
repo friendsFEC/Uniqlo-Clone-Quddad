@@ -9,7 +9,7 @@
 }
 .ov-wrapper {
   display: flex;
-  width: 80%;
+  width: 80vw;
   justify-content: center;
 }
 
@@ -27,7 +27,7 @@
 .ov-imageBox {
   position: relative;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   display: flex;
   flex-flow: column;
 
@@ -57,14 +57,28 @@
  width: 450px;
 }
 
+.ov-imageBox_mainImage--extended {
+  width: 800px;
+}
+
+.ov-MainImageBox {
+  overflow: hidden;
+}
+
 .ov-imageBox_slide {
   position: absolute;
   opacity: 0;
-  transition: border ease-in-out 0.5s;
+  transition: opacity ease-in-out 1s;
 }
 
 .ov-imageBox_activeSlide {
   opacity: 1;
+}
+
+
+
+.ov-imageBox_mainImage:hover{
+  transform: scale(1.5);
 }
 
 .ov-imageBox_prev {
@@ -161,6 +175,10 @@
   border-radius: 10px;
 }
 
+.ov--style--active {
+  border: solid black;
+}
+
 .ov-thumbnail--image:hover{
   border: 2px solid black;
 }
@@ -190,5 +208,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  column-gap: 6px;
+  gap: 6px;
 }
+

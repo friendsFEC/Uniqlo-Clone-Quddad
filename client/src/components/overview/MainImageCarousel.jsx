@@ -9,6 +9,11 @@ const MainImageCarousel = ({ photosData, dispatch, selected }) => {
   const carouselY = useRef(null);
 
   useEffect(()=> {
+    if (current < selected) {
+      scrollDown();
+    } else {
+      scrollUp();
+    }
     setCurrent(selected)
   }, [selected]);
 
