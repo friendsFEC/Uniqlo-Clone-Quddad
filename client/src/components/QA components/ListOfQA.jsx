@@ -26,11 +26,11 @@ class ListOfQA extends React.Component {
     searchedStr = searchedStr || '';
     let results = [];
     results = questions.filter((question) => {
-      console.log(question.question_body.search(searchedStr));
+      // console.log(question.question_body.search(searchedStr));
       return question.question_body.search(searchedStr) > -1;
     }
     )
-    console.log(results);
+    // console.log(results);
 
     return results;
   }
