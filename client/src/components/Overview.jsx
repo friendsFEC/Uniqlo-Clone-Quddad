@@ -90,7 +90,7 @@ const Overview = ({ productId }) => {
         })
         .catch(errors => console.log(errors));
 
-  }, []);
+  }, [productId]);
 
     const selectStyle = (idx) => {
       setCurrStyle(idx);

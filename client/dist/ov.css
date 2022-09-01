@@ -93,11 +93,11 @@
 .ov-imageBox_thumbnail {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   position: absolute;
   top: 0px;
   left: -50px;
-  height: 25vh;
+  height: 300px;
+  overflow: hidden;
 }
 
 .ov-btn {
@@ -113,7 +113,7 @@
 }
 
 .ov-thumbnail {
-
+  margin: 10px;
 }
 
 .ov-thumbnail--active {

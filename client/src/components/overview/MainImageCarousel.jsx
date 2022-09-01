@@ -15,7 +15,7 @@ const MainImageCarousel = ({ photosData, dispatch, selected }) => {
     <div className="ov-imageBox_thumbnail">
     {photosData.map((photo, index) => {
       return (
-        <div className={current === index ? 'ov-thumbnail--active' : 'ov-thumbnail'} key={index} onClick={()=> handleClick(index)}>
+        <div className={current === index ? 'ov-thumbnail ov-thumbnail--active' : 'ov-thumbnail'} key={index} onClick={()=> handleClick(index)}>
           <img className="ov-thumbnail--image"src={photo.thumbnail_url}/>
         </div>
       )
