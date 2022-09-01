@@ -60,7 +60,7 @@
 .ov-imageBox_slide {
   position: absolute;
   opacity: 0;
-  transition: opacity ease-in-out 0.5s;
+  transition: border ease-in-out 0.5s;
 }
 
 .ov-imageBox_activeSlide {
@@ -132,12 +132,13 @@
 }
 
 .ov-thumbnail {
-  margin: 10px;
+  padding: 5px;
 }
 
 .ov-thumbnail--active {
-  border: 2px solid black;
+  border: 1px solid gray;
   opacity: 1;
+  padding: 3px;
 
 }
 
@@ -148,13 +149,14 @@
 }
 
 .ov-thumbnail--image{
+  border: 2px solid transparent;
   opacity: 0.80;
   height: 30px;
   width: 30px;
 }
 
 .ov-thumbnail--image:hover{
-  opacity: 1;
+  border: 2px solid black;
 }
 
 .ov-title--reviews {
