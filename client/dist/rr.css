@@ -4,6 +4,7 @@
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
+  /*font-family: 'Helvetica Neue';*/
 }
 .rr .review-grid {
   border: solid 1px black;
@@ -101,10 +102,10 @@
 }
 .rr .write-review {
   position: fixed;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
   border: solid 1px black;
   background-color: white;
   opacity: 1;
