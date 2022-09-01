@@ -19,27 +19,28 @@
   }
 
   .ov-imageBox_mainImage {
-    height: 300px;
-    width: 200px;
+    height: 200px;
+    width: 150px;
   }
 }
 
 .ov-imageBox {
   position: relative;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   display: flex;
   flex-flow: column;
 
 }
 
 .ov-infoBox {
-  display: grid;
-  align-items: center;
+  display: flex;
+  align-items: flex-start;
   border-style: solid;
   width: 500px;
-  row-gap: 2em;
-  padding-left: 20px;
+  padding-left: 30px;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .ov-descriptionBlock {
@@ -52,14 +53,14 @@
 }
 
 .ov-imageBox_mainImage {
- height: 700px;
- width: 600px;
+ height: 500px;
+ width: 450px;
 }
 
 .ov-imageBox_slide {
   position: absolute;
   opacity: 0;
-  transition: opacity ease-in-out 0.5s;
+  transition: border ease-in-out 0.5s;
 }
 
 .ov-imageBox_activeSlide {
@@ -89,15 +90,34 @@
   position: absolute;
 }
 
-.ov-imageBox_thumbnail {
+.ov-carousel_wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   top: 0px;
   left: -50px;
-  height: 30vh;
+  height: 300px;
+  /* position: absolute;
+  top: 10px;
+  left: -20px;
+  height: 350px; */
 }
+
+.ov-imageBox_thumbnail {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 25px;
+  height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.ov-imageBox_thumbnail::-webkit-scrollbar{ display: none}
+
 
 .ov-btn {
   border-radius: 3px;
@@ -108,17 +128,67 @@
 }
 
 .ov-btn:hover {
-  opacity: 1;
+  background-color: gray;
 }
 
 .ov-thumbnail {
-  border-style: solid;
-  border-top: 0cm;
-  border-right: 0cm;
-  border-left: 0cm;
+  padding: 5px;
+}
+
+.ov-thumbnail--active {
+  border: 1px solid gray;
+  opacity: 1;
+  padding: 3px;
+
+}
+
+.ov-StarWrapper {
+  display: flex;
+  align-items: center;
+
 }
 
 .ov-thumbnail--image{
-  height: 40px;
-  width: 40px;
+  border: 2px solid transparent;
+  opacity: 0.80;
+  height: 30px;
+  width: 30px;
+}
+
+.ov--style {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+}
+
+.ov-thumbnail--image:hover{
+  border: 2px solid black;
+}
+
+.ov-title--reviews {
+  padding-left: 5px;
+  font-size: x-small;
+  text-decoration: underline;
+}
+
+.ov-title--reviews:hover {
+  color: gray;
+  cursor: pointer;
+}
+
+.ov-title_price {
+  color:black
+}
+
+.ov-title_price--onsale {
+  color: red;
+  text-decoration: line-through;
+  padding-right: 5px;
+}
+
+.ov-styleGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 6px;
 }
