@@ -21,11 +21,6 @@ const MainImageCarousel = ({ photosData, dispatch, selected }) => {
     carouselY.current.scrollTo(0, 0);
   }, [photosData])
 
-  const handleClick = (index) => {
-    dispatch({type: 'changeImage', idx: index})
-    setCurrent(index);
-  }
-
   const showNav = () => {
     upButton.current.style.opacity = 0.80;
     downButton.current.style.opacity = 0.80;
@@ -64,7 +59,7 @@ const MainImageCarousel = ({ photosData, dispatch, selected }) => {
       <div className="ov-imageBox-inside" >
         {photosData.map((photo, index) => {
           return (
-            <div className={current === index ? 'ov-thumbnail ov-thumbnail--active' : 'ov-thumbnail'} key={index} onClick={()=> handleClick(index)}>
+            <div className={current === index ? 'ov-thumbnail ov-thumbnail--active' : 'ov-thumbnail'} key={index} onClick={()=> dispatch({type: 'changeImage', idx: index})}>
               <img className="ov-thumbnail--image"src={photo.thumbnail_url}/>
             </div>
           )

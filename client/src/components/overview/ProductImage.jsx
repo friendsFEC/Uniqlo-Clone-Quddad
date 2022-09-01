@@ -8,21 +8,22 @@ const ProductImage = ({ photosData }) => {
 
   //reducer function for button functionality
   const selectImage = (count, action) => {
+    //action -> {type: 'changeImage'}
     switch(action.type) {
       case 'next':
         if (count < length) {
           return count = count + 1;
         }
-        case 'prev':
-          if (count !== 0) {
-            return count = count - 1;
-          }
-          case 'changeImage':
-            return count = action.idx
-            default:
-              return count;
-            }
-          }
+      case 'prev':
+        if (count !== 0) {
+          return count = count - 1;
+        }
+      case 'changeImage':
+        return count = action.idx
+        default:
+          return count;
+      }
+  }
 
   const [count, dispatch] = useReducer(selectImage, 0);
 
