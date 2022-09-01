@@ -457,14 +457,14 @@ let PercentWidget = (props) => (
     }>
     {props.stars} stars <div className='rating-bar'>
       <div className='inner-bar' style={{width: `${props.percent.toFixed(2)}%`}}></div>
-    </div>
+    </div> ({props.count})
   </div>
 );
 
 let RatingBreakDown = (props) => {
   //let keys = props.meta ? (props.meta.ratings ? Object.keys(props.meta.ratings).reverse() : []) : [];
-  let keys = [1, 2, 3, 4, 5];
-  //console.log(props.meta);
+  let keys = [5, 4, 3, 2, 1];
+  console.log(props.meta);
   if (props.reviews.length) {
     return (
       <div className="rating-breakdown">
@@ -481,10 +481,12 @@ let RatingBreakDown = (props) => {
             stars={i}
             key={i}
             percent={parseInt(props.meta.ratings[i] || 0) / props.total * 100}
+            count={props.meta.ratings[i]}
             toggleFilter={props.toggleFilter}
             ratingFilter={props.ratingFilter}
           />
         ) : ''}
+        {props.ratingFilter.length ? <p>Filtering reviews for these ratings: {props.ratingFilter.map(star => `${star} Stars`).join(', ')}</p> : ''}
       </div>
     )
   } else {
