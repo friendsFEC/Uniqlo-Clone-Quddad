@@ -22,12 +22,16 @@
 }
 
 .rc-rp-button {
-  margin-left: 208px;
+  margin-left: 220px;
   margin-top: 10px;
   font-size: 25px;
   padding: 0;
   border: none;
   background: none;
+}
+
+.rc-rp-details {
+  margin-left: 10px;
 }
 
 .rc-modal-style {

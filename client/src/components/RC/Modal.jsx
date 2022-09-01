@@ -4,6 +4,9 @@ const Modal = ({ open, onClose, product, currentInfo}) => {
   if (!open) return null
   const notApplicable = "Not Applicable"
 
+  console.log(currentInfo)
+  console.log(product)
+
   return (
     <div className = "rc-modal-style">
       <table>
