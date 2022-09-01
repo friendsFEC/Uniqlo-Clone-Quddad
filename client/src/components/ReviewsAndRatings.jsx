@@ -177,20 +177,6 @@ let ReviewsAndRatings = (props) => {
   }, [meta]);
   useEffect(() => setAverage(calculateAverage()), [total]);
 
-  /* for testing, safe to delete after component integration */
-  useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/${productID}`, {
-      headers: {
-        Authorization: config.API_KEY,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }
-    })
-      .then(response => response.data)
-      .then(data => document.getElementById('rr-product-name').textContent = data.name)
-      .catch(err => console.log('Error getting product information'))
-  }, [productID]);
-
   /* render when reviews change */
   useEffect(() => {
     let loadedReviews = Array.from(document.getElementsByClassName('review-tile'));
