@@ -30,16 +30,19 @@ class ListOfQA extends React.Component {
       const questionBody = question.question_body;
       return questionBody.match(regExpConst) !== null;
     })
-
     return results;
   }
 
   render() {
+    // filter out the questions that are NOT helpful
     const filteredQuestions = this.state.chosenProduct.filter((question) =>
       question.question_helpfulness > 0
     );
+
+    // display the first 4 questions
     const topFourQuestions = _V.topXItems(4, filteredQuestions);
 
+    // rendering DOM
     return (
       <div id="qa-ListOfQA">
 
