@@ -468,7 +468,7 @@ let RatingBreakDown = (props) => {
     approval = Math.round(Number(props.meta.recommended.true || 0) * 100 / (Number(props.meta.recommended.true || 0) + Number(props.meta.recommended.false || 0)));
   }
   let keys = [5, 4, 3, 2, 1];
-  console.log(props.meta);
+  //console.log(props.meta);
   if (props.reviews.length) {
     return (
       <div className="rating-breakdown">
@@ -605,7 +605,7 @@ let WriteReview = (props) => {
       <h2>Overall rating (mandatory)</h2>
       <p>[interactive stars with highlight-on-hover will go here] 1 - poor, 2 - fair, 3 - average, 4 - good, 5 - great </p>
       <h2>Do you recommend this product? (mandatory)</h2>
-      <p><input type="radio" name="recommend" value="true" /> Yes</p>
+      <p><input type="radio" checked name="recommend" value="true" /> Yes</p>
       <p><input type="radio" name="recommend" value="false" /> No</p>
       <h2>Characteristics (mandatory)</h2>
       <table>
