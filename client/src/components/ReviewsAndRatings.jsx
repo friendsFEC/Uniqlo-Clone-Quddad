@@ -338,7 +338,11 @@ let ReviewTile = (props) => {
           }}
         />)
       }
-      { props.review.recommend ? <p>[checkmark] I recommend this product</p> : '' }
+      { props.review.recommend ?
+          <p>
+            <img className="checkmark" src='./img/rr/checkmark.svg' />
+            I recommend this product
+          </p> : '' }
       <p>[not working yet] Was this review helpful? <button>Yes</button> <button>No</button></p>
     </div>
   )
@@ -453,7 +457,7 @@ let SortOptions = (props) => (
       <option value="helpful">helpfulness</option>
       <option value="newest">newest</option>
     </select>
-    Search Reviews:<input type="text" value={props.search} onChange={({target}) => {
+    Search Reviews:<input type="search" value={props.search} onChange={({target}) => {
       props.setSearch(target.value);
     }}/>
   </div>

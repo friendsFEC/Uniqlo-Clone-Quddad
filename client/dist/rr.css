@@ -36,6 +36,11 @@
   width: 8rem;
   height: 6rem;
 }
+.rr img.checkmark {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+}
 .rr img.image-modal {
   position: fixed;
   top: 0;
