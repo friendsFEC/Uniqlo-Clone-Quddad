@@ -8,13 +8,11 @@ import config from '../../../config.js';
 
 
 
-const Overview = () => {
+const Overview = ({ productId }) => {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
   const [currStyle, setCurrStyle] = useState(0);
-
-  const productId = 65633;
 
   useEffect(() => {
     const one =`/products/${productId}`;
