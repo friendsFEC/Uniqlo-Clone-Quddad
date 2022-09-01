@@ -90,14 +90,40 @@
   position: absolute;
 }
 
+.ov-carousel_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  left: -50px;
+  height: 350px;
+  /* position: absolute;
+  top: 10px;
+  left: -20px;
+  height: 350px; */
+}
+
 .ov-imageBox_thumbnail {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0px;
-  left: -50px;
+  top: 20px;
   height: 300px;
   overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.ov-imageBox_thumbnail::-webkit-scrollbar{ display: none}
+
+.ov-carousel_button {
+  opacity: 0;
+}
+
+.ov-carousel_wrapper:hover + .ov-carousel_button {
+  opacity: 1;
 }
 
 .ov-btn {

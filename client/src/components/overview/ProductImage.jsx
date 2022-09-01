@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from 'react';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import MainImageCarousel from './MainImageCarousel.jsx';
 
 
@@ -30,8 +30,8 @@ const ProductImage = ({ photosData }) => {
   return (
     <div className="ov-imageBox">
       <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count}/>
-      {count > 0 && <AiOutlineArrowLeft className="ov-imageBox_prev ov-btn" onClick={() => dispatch({type:'prev'})}/>}
-      {count < length - 1 && <AiOutlineArrowRight className="ov-imageBox_next ov-btn" onClick={() => dispatch({type: 'next'})}/>}
+      {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({type:'prev'})}/>}
+      {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({type: 'next'})}/>}
       {photosData.map((photo, index) => {
         return (
           <div key={index} className={index === count ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}>
