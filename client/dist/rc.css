@@ -1,7 +1,6 @@
 .rc-title {
   font-size: 22px;
-  padding-left: 10%;
-  padding-right: 10%;
+  margin-left: 700px;
 }
 
 .rc-main {
@@ -10,6 +9,11 @@
   height: 375px;
   width: 250px;
   margin-left: 10px;
+  margin-right: 30px;
+}
+
+.rc-card-layout {
+  margin-left: 690px;
 }
 
 .rc-small-titles {
@@ -46,4 +50,30 @@
 
 .rc-rp-name {
   font-weight: bold;
+}
+
+.rc-yo-main {
+  border: 1px solid black;
+  display: inline-block;
+  height: 375px;
+  width: 250px;
+  margin-left: 700px;
+}
+
+.rc-yo-remove-button {
+  margin-left: 208px;
+  margin-top: 10px;
+  font-size: 25px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.rc-yo-add-button {
+  font-size: 20px;
+  text-align: center;
+  padding: 125px 0;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 50px;
 }

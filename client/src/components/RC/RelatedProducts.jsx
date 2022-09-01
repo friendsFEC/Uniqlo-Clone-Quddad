@@ -33,7 +33,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
           onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
           <AiOutlineStar/>
           </button>
-          <Modal open={isOpen} product = {product} currentInfo = {currentInfo}/>
+          <Modal open={isOpen} currentInfo = {currentInfo} product = {product}/>
           <img className = "rc-rp-photos" src = {relatedStyles[index] ? relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto : null}/>
           <p className = "rc-rp-category">{product.category}</p>
           <p className = "rc-rp-name">{product.name}</p>
@@ -48,7 +48,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
   return (
     <div>
       <h3 className = "rc-title"> Related Products </h3>
-      {createRPCard()}
+      <div className = "rc-card-layout">{createRPCard()}</div>
     </div>
   )
 }

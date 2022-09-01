@@ -112,6 +112,7 @@ const RelatedAndComparison = ({productID}) => {
         relatedInfo = {relatedInfo}
         relatedStyles = {relatedStyles}
       />
+      < YourOutfit />
     </div>
     )
   } else {
