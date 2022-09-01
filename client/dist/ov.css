@@ -118,13 +118,6 @@
 
 .ov-imageBox_thumbnail::-webkit-scrollbar{ display: none}
 
-.ov-carousel_button {
-  opacity: 0;
-}
-
-.ov-carousel_wrapper:hover + .ov-carousel_button {
-  opacity: 1;
-}
 
 .ov-btn {
   border-radius: 3px;
