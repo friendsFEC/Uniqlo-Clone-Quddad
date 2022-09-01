@@ -98,7 +98,7 @@
   position: absolute;
   top: 0px;
   left: -50px;
-  height: 350px;
+  height: 300px;
   /* position: absolute;
   top: 10px;
   left: -20px;
@@ -110,7 +110,7 @@
   flex-direction: column;
   position: absolute;
   top: 20px;
-  height: 300px;
+  height: 250px;
   overflow: hidden;
   overflow-y: scroll;
   scrollbar-width: none;
