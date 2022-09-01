@@ -34,10 +34,10 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
           <AiOutlineStar/>
           </button>
           <Modal open={isOpen} currentInfo = {currentInfo} product = {product}/>
-          <img className = "rc-rp-photos" src = {relatedStyles[index] ? relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto : null}/>
-          <p className = "rc-rp-category">{product.category}</p>
-          <p className = "rc-rp-name">{product.name}</p>
-          <p className = "rc-rp-price">${Math.round(product.default_price)}</p>
+          <img className = "rc-card-photos" src = {relatedStyles[index] ? relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto : null}/>
+          <p>{product.category}</p>
+          <p className = "rc-card-name">{product.name}</p>
+          <p>${Math.round(product.default_price)}</p>
           </div>
         </div>
       })}

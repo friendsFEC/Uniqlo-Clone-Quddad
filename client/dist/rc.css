@@ -41,14 +41,14 @@
   width: 400px;
 }
 
-.rc-rp-photos {
+.rc-card-photos {
   border-radius: 8px;
   margin-top: 5px;
   height: 225px;
   width: 225px;
 }
 
-.rc-rp-name {
+.rc-card-name {
   font-weight: bold;
 }
 
@@ -72,10 +72,11 @@
 .rc-yo-add-button {
   font-size: 20px;
   text-align: center;
-  padding: 125px 0;
+  padding: 75px 0;
   border: 1px solid black;
   border-radius: 10px;
-  margin-left: 50px;
+  margin-left: 47px;
+  margin-top: 85px;
 }
 
 .rc-yo-card {
