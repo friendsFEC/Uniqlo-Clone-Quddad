@@ -5,6 +5,7 @@ import ProductInfo from './overview/ProductInfo.jsx';
 import PriceTag from './overview/PriceTag.jsx';
 import axios from 'axios';
 import config from '../../../config.js';
+import StyleGrid from './overview/StyleGrid.jsx'
 
 
 
@@ -81,9 +82,6 @@ const Overview = ({ productId }) => {
 
   }, [productId]);
 
-    const selectStyle = (idx) => {
-      setCurrStyle(idx);
-    }
 
     if (styles.length > 0) {
       return (
@@ -96,7 +94,7 @@ const Overview = ({ productId }) => {
                 <PriceTag product={styles[currStyle]}/>
               </div>
               <div>
-                [style selector]
+                <StyleGrid changeStyle={setCurrStyle} styleData={styles}/>
               </div>
               <div>
                 [drop down menu for size selection]
