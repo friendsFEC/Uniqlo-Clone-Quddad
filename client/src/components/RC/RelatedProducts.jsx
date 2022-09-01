@@ -43,6 +43,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
       <div>
         < GrFormPrevious className = ".rc-rp-prev" onClick = {prevCard}/>
         {relatedInfo.map((product, index) => {
+          if (relatedStyles[index]) {
           return (
           <div className = "rc-main" key = {index}>
             <div className = "rc-small-titles">
@@ -52,7 +53,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
               </button>
               <Modal open={isOpen} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
               <div className = "rc-rp-details">
-                <img className = "rc-card-photos" src = {relatedStyles[index] ? relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto : null}/>
+                <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto}/>
                 <p>{product.category}</p>
                 <p className = "rc-card-name">{product.name}</p>
                 <p><span className = {relatedStyles[index].results[0].sale_price === null ? "rc-rp-og-price" : "rc-rp-sale-price"}>
@@ -81,7 +82,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
         //   </div>
         // </div>)}
         //   </div>
-          )
+          )}
         })}
          < GrFormNext className = ".rc-rp-next" onClick = {nextCard}/>
      </div>
