@@ -8,13 +8,15 @@ import { AiOutlineStar } from 'react-icons/ai';
 
 const RelatedAndComparison = ({productID}) => {
   const [currentInfo, setCurrentInfo] = useState([]);
+  const [currentStyle, setCurrentStyle] = useState([]);
   const [relatedIDs, setRelatedIDs] = useState([]);
   const [relatedInfo, setRelatedInfo] = useState([]);
   const [relatedStyles, setRelatedStyles] = useState([]);
 
   useEffect(() => {
     let one = `/products/${productID}`
-    let two = `/products/${productID}/related`
+    let two = `/products/${productID}/styles`
+    let three = `/products/${productID}/related`
 
     const Axios = axios.create({
       baseURL: `https://app-hrsei-api.herokuapp.com/api/fec2/rfp/`,
@@ -33,16 +35,23 @@ const RelatedAndComparison = ({productID}) => {
       })
     }
 
-    const getRelatedIDs = () => {
+    const getCurrentStyle = () => {
       return Axios.get(two, (data) => {return data})
     }
 
+    const getRelatedIDs = () => {
+      return Axios.get(three, (data) => {return data})
+    }
 
-    Promise.all([getCurrentInfo(), getRelatedIDs()])
+
+
+    Promise.all([getCurrentInfo(), getCurrentStyle(), getRelatedIDs()])
       .then((...res) => {
         const currentInfo = res[0][0].data;
-        const relatedIDs = res[0][1].data;
+        const currentStyle = res[0][1].data;
+        const relatedIDs = res[0][2].data;
         setCurrentInfo(currentInfo);
+        setCurrentStyle(currentStyle);
         setRelatedIDs(relatedIDs);
       })
       .catch(err => console.log(err))
@@ -112,7 +121,10 @@ const RelatedAndComparison = ({productID}) => {
         relatedInfo = {relatedInfo}
         relatedStyles = {relatedStyles}
       />
-      < YourOutfit />
+      < YourOutfit
+        currentInfo = {currentInfo}
+        currentStyle = {currentStyle}
+      />
     </div>
     )
   } else {
