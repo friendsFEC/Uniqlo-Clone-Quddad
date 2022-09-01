@@ -37,6 +37,7 @@ const RelatedAndComparison = ({productID}) => {
       return Axios.get(two, (data) => {return data})
     }
 
+
     Promise.all([getCurrentInfo(), getRelatedIDs()])
       .then((...res) => {
         const currentInfo = res[0][0].data;
@@ -80,6 +81,7 @@ const RelatedAndComparison = ({productID}) => {
 
     })
 
+
     Promise.all(infoPromises)
     .then(res => {
       const relatedInfo = [];
@@ -103,7 +105,7 @@ const RelatedAndComparison = ({productID}) => {
 
   if (relatedStyles.length > 0) {
     return (
-    <div>
+      <div>
       <RelatedProducts
         currentInfo = {currentInfo}
         relatedIDs = {relatedIDs}
