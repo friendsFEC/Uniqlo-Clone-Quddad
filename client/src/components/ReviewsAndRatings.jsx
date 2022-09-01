@@ -463,6 +463,10 @@ let PercentWidget = (props) => (
 
 let RatingBreakDown = (props) => {
   //let keys = props.meta ? (props.meta.ratings ? Object.keys(props.meta.ratings).reverse() : []) : [];
+  let approval;
+  if (props.meta.recommended) {
+    approval = Math.round(Number(props.meta.recommended.true || 0) * 100 / (Number(props.meta.recommended.true || 0) + Number(props.meta.recommended.false || 0)));
+  }
   let keys = [5, 4, 3, 2, 1];
   console.log(props.meta);
   if (props.reviews.length) {
@@ -470,12 +474,7 @@ let RatingBreakDown = (props) => {
       <div className="rating-breakdown">
         <h2>Rating Breakdown</h2>
         <h1>{props.average.toFixed(1)}<sup><StarRating rating={props.average} /></sup></h1>
-        <p>{
-          props.meta.recommended ?
-            Math.round(Number(props.meta.recommended.true) * 100 / (Number(props.meta.recommended.true) + Number(props.meta.recommended.false)))
-            : 0}
-          % of reviews recommended this product
-        </p>
+        <p>{approval}% of reviews recommended this product</p>
         {props.meta.ratings ? keys.map(i =>
           <PercentWidget
             stars={i}
