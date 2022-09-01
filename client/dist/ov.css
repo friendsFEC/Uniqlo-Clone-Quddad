@@ -128,7 +128,7 @@
 }
 
 .ov-btn:hover {
-  opacity: 1;
+  background-color: gray;
 }
 
 .ov-thumbnail {
