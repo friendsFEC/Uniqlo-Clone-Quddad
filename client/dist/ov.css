@@ -76,7 +76,6 @@
 }
 
 
-
 .ov-imageBox_mainImage:hover{
   transform: scale(1.5);
 }
@@ -176,7 +175,7 @@
 }
 
 .ov--style--active {
-  border: solid black;
+  border: 2px solid black;
 }
 
 .ov-thumbnail--image:hover{
@@ -208,6 +207,5 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  gap: 6px;
 }
 

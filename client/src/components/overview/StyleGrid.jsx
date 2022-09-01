@@ -7,7 +7,7 @@ const StyleGrid = ({ styleData, changeStyle, active }) => {
     <div className="ov-styleGrid">
       {styleData.map((style, index) => {
         return (
-          <div onClick={()=>changeStyle(index)} key={index}>
+          <div className="ov-thumbnail" onClick={()=>changeStyle(index)} key={index}>
 
             <img className={active === index ? "ov-thumbnail--image ov--style ov--style--active" : "ov-thumbnail--image ov--style"}src={style.photos[0].thumbnail_url}/>
           </div>
