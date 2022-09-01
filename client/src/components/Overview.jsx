@@ -26,17 +26,6 @@ const Overview = ({ productId }) => {
       }
     });
 
-    // // gets all the products from the api
-    // const reqAllProducts = () => {
-    //   return Axios.get('products/', {
-    //     transformResponse: [(data) => {
-    //       data = JSON.parse(data);
-    //       let { id, name } = data;
-    //       return { id , name };
-    //     }]
-    //   })
-    // }
-
     // gets the producct general info from API and return name, description etc as response data
     const reqProduct = () => {
       return Axios.get(one, {
