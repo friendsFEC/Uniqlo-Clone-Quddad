@@ -25,12 +25,11 @@ class ListOfQA extends React.Component {
   filterQuestions(searchedStr, questions) {
     searchedStr = searchedStr || '';
     let results = [];
+    const regExpConst = new RegExp(`${searchedStr}`, 'gi');
     results = questions.filter((question) => {
-      // console.log(question.question_body.search(searchedStr));
-      return question.question_body.search(searchedStr) > -1;
-    }
-    )
-    // console.log(results);
+      const questionBody = question.question_body;
+      return questionBody.match(regExpConst) !== null;
+    })
 
     return results;
   }
