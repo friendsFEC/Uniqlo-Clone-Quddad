@@ -117,11 +117,7 @@ const RelatedAndComparison = ({productID}) => {
   } else {
     return (
       <div>
-        LOADING
-      {/* {console.log(currentInfo, 'CURRENT INFO')}
-      {console.log(relatedIDs, 'RELATED IDS')}
-      {console.log(relatedInfo, 'RELATED INFO')}
-      {console.log(relatedStyles, 'RELATED STYLES')} */}
+        This section is still loading...
       </div>
     )
   }
