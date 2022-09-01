@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Modal = ({ open, onClose, children, product, currentInfo}) => {
+const Modal = ({ open, onClose, product, currentInfo}) => {
   if (!open) return null
   const notApplicable = "Not Applicable"
   // issue here:
   // features are different for each product, so I am comparing everything to current product's features
+  console.log(product)
   return (
     <div className = "rc-modal-style">
       <table>

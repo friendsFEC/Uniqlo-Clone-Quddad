@@ -27,7 +27,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
       return (
       <div>
       {relatedInfo.map((product, index) => {
-        return <div className = "rc-main" key = {product.id}>
+        return <div className = "rc-main" key = {index}>
           <div className = "rc-small-titles">
           <button className = "rc-rp-button"
           onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
