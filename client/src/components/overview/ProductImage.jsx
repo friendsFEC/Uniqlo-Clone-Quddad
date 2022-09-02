@@ -28,25 +28,30 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
 
   const [count, dispatch] = useReducer(selectImage, 0);
 
-  // const handleClick = () => {
-  //   image.current.style.width = '800px';
-  //   toggleView(!extended);
-  // }
+  const handleClick = () => {
+    console.log(image.current.style.width);
+    toggleView(!extended);
+    image.current.style.cursor = 'zoom-out';
+    image.current.style.width = '600px';
+    console.log(image.current.style.width)
+  }
+
 
   return (
-    <div className={extended ? "ov-imageBox ov-imageBox--extended ov-imageBox" : "ov-imageBox"}>
+    <div className={extended ? "ov-imageBox ov-imageBox--extended" : "ov-imageBox"}>
       <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count}/>
       {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({type:'prev'})}/>}
       {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({type: 'next'})}/>}
-      <div className="ov-imageBox ov-MainImageBox">
+      <div className={extended ? "ov-imageBox ov-imageBox--extended" : "ov-imageBox"}>
         {photosData.map((photo, index) => {
           return (
             <div key={index}
-              ref={image}
               className={index === count ? 'ov-imageBox_activeSlide' :'ov-imageBox_slide'}
-              onClick={() => toggleView(!extended)}
+              onClick={handleClick}
               >
-              <img className={extended ? "ov-imageBox_mainImage ov-img--extended" :"ov-imageBox_mainImage"} src={photo.url}/>
+              <img ref={image}
+              className={extended ? "ov-img--extended" :"ov-imageBox_mainImage"}
+                src={photo.url}/>
             </div>
           )
         })}
@@ -55,5 +60,18 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
   )
 }
 
+//becoming an exceptionally good software engineer
+
+// class name
+//className={extended ? "ov-img--extended" :"ov-imageBox_mainImage"}
+
+//inline styling
+/*
+style={{
+height: '500px',
+width: '450px',
+cursor: 'zoom-in'
+}}
+*/
 
 export default ProductImage;
