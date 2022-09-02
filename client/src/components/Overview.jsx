@@ -114,5 +114,4 @@ function Overview({ productId }) {
     }
 }
 
-
 export default Overview;
