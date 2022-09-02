@@ -17,18 +17,35 @@ const YourOutfit = ( {currentInfo, currentStyle} ) => {
 
   return (
     <div>
-      <h3 className = "rc-title">Your Outfit</h3>
-        <div className = "rc-yo-main">
-          <div id ="rc-yo-add-button-div">
-            <button className = "rc-yo-add-button" onClick = {() => {
-              setIsOpen(true);
-              removeDiv();
-            }}>Add to Your Outfit</button>
+      <h3 className = "rc-title"> Your Outfit</h3>
+        <div className = "rc-yo-container">
+          <div className = "rc-yo-card">
+            <div id = "rc-yo-add-button-div">
+              <button className = "rc-yo-add-button" onClick = {() => {
+                setIsOpen(true);
+                removeDiv();
+              }}>Add to Your Outfit</button>
+            </div>
+            <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle} />
           </div>
-        <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle}/>
-      </div>
+        </div>
     </div>
   )
 }
 
 export default YourOutfit;
+
+/*
+    {/* //   <div className = "rc-yo-container">
+    //   <h3 className = "rc-title">Your Outfit</h3>
+    //     <div className = "rc-yo-card">
+    //       <div id ="rc-yo-add-button-div">
+    //         <button className = "rc-yo-add-button" onClick = {() => {
+    //           setIsOpen(true);
+    //           removeDiv();
+    //         }}>Add to Your Outfit</button>
+    //     <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle}/>
+    //       </div>
+    //    </div>
+    // </div>
+*/

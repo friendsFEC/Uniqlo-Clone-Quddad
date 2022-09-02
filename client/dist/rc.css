@@ -1,30 +1,49 @@
-.rc-rp-list {
-  /* border: 1px solid darkblue; */
+.rc-rp-main {
+  display: flex;
+  justify-content: left;
+}
+
+.rc-yo-main {
+  display: flex;
+  justify-content: left;
+}
+
+.rc-rp-container {
+  border: 1px solid darkblue;
+  margin-left: 690px;
   width: 1120px;
   height: 390px;
-  /* height: 1000ox; */
   display: flex;
   overflow: scroll;
+  align-items: center;
+}
+
+.rc-yo-container {
+  border: 1px solid darkblue;
+  margin-left: 690px;
+  width: 1120px;
+  height: 390px;
+  display: flex;
 }
 
 .rc-title {
   font-size: 22px;
   margin-left: 700px;
+  display: flex;
 }
 
 .rc-card {
   border: 1px solid black;
   border-radius: 8px;
   display: inline-flex;
-  flex-wrap: nowrap;
   height: 375px;
   width: 250px;
   margin-left: 30px;
 }
 
-.rc-card-layout {
+/* .rc-card-layout {
   margin-left: 690px;
-}
+} */
 
 .rc-small-titles {
   text-align: left;
@@ -57,6 +76,7 @@
 
 .rc-modal-title {
   text-align: left;
+  display: flex;
 }
 
 .rc-modal-style table, th, td {
@@ -75,10 +95,10 @@
   font-weight: bold;
 }
 
-.rc-yo-main {
+.rc-yo-card {
   border: 1px solid black;
   border-radius: 8px;
-  display: inline-block;
+  display: flex;
   height: 375px;
   width: 250px;
   margin-left: 700px;
@@ -108,15 +128,17 @@
   border-radius: 8px;
 }
 
-/* .rc-rp-prev {
-  align-self: flex-start;
+.rc-rp-prev {
   position: absolute;
+  align-self: flex-start;
+  font-size: 30px;
 }
 
 .rc-rp-next {
   position: absolute;
   align-self: flex-end;
-} */
+  font-size: 30px;
+}
 
 .rc-rp-sale-price {
   color: red;
