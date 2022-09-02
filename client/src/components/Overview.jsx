@@ -14,7 +14,7 @@ const Overview = ({ productId }) => {
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
   const [currStyle, setCurrStyle] = useState(0);
-  const [extended, setView] = useState(false);
+  const [extended, toggleView] = useState(false);
 
   useEffect(() => {
     const one =`/products/${productId}`;
@@ -88,8 +88,9 @@ const Overview = ({ productId }) => {
       return (
         <div className="ov-main">
           <div className="ov-wrapper">
-            <ProductImage photosData={styles[currStyle].photos}/>
-          {extended ? null : <div className="ov-infoBox">
+            <ProductImage photosData={styles[currStyle].photos}
+              toggleView={toggleView} extended={extended}/>
+            {extended ? null : <div className="ov-infoBox">
               <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
               <div className="ov-title ov-title--Price">
                 <PriceTag product={styles[currStyle]}/>

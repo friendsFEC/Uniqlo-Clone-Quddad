@@ -25,12 +25,14 @@
 }
 
 .ov-imageBox {
+  display: flex;
   position: relative;
   justify-content: center;
-  align-items: center;
-  display: flex;
   flex-flow: column;
+}
 
+.ov-imageBox--extended{
+  width: 100%
 }
 
 .ov-infoBox {
@@ -54,6 +56,7 @@
 .ov-imageBox_mainImage {
  height: 500px;
  width: 450px;
+ cursor: zoom-in;
 }
 
 .ov-imageBox_mainImage--extended {
@@ -74,10 +77,6 @@
   opacity: 1;
 }
 
-
-.ov-imageBox_mainImage:hover{
-  transform: scale(1.5);
-}
 
 .ov-imageBox_prev {
   align-self: flex-start;
@@ -224,3 +223,9 @@
   z-index: 4;
   color: black;
 }
+
+.ov-img--extended {
+  cursor: zoom-out;
+  width: 800px;
+}
+
