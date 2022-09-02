@@ -90,7 +90,7 @@ const Overview = ({ productId }) => {
           <div className="ov-wrapper">
             <ProductImage photosData={styles[currStyle].photos}
               toggleView={toggleView} extended={extended}/>
-            {extended ? null : <div className="ov-infoBox">
+            <div className={extended ? "noDisplay" : "ov-infoBox"}>
               <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
               <div className="ov-title ov-title--Price">
                 <PriceTag product={styles[currStyle]}/>
@@ -104,7 +104,7 @@ const Overview = ({ productId }) => {
               <div>
                 [add to card button]
               </div>
-            </div>}
+            </div>
           </div>
           <div className="ov-descriptionBlock">
             <h3>{product.slogan}</h3>

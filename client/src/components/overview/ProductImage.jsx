@@ -28,14 +28,20 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
 
   const [count, dispatch] = useReducer(selectImage, 0);
 
+
+// handler to extend the image
   const handleClick = () => {
     console.log(image.current.style.width);
     toggleView(!extended);
-    image.current.style.cursor = 'zoom-out';
-    image.current.style.width = image.current.style.width === '600px' ? '450px' : '600px';
+    image.current.style.cursor = image.current.style.cursor === 'zoom-out' ? 'zoom-in' : 'zoom-out';
+    // image.current.style.width = image.current.style.width === '600px' ? '450px' : '600px';
+    // image.current.style.transition = 'width ease-out 2s';
+    iamge.current.style.transform= 'scaleX(2)';
     console.log(image.current.style.width)
   }
 
+// returns side carousel component and the Main image in a map function
+// all images are there and their opacity changes
 
   return (
     <div className={extended ? "ov-imageBox ov-imageBox--extended" : "ov-imageBox"}>
