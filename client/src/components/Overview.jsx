@@ -1,15 +1,12 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ProductImage from './overview/ProductImage.jsx';
 import ProductInfo from './overview/ProductInfo.jsx';
 import PriceTag from './overview/PriceTag.jsx';
-import axios from 'axios';
 import config from '../../../config.js';
-import StyleGrid from './overview/StyleGrid.jsx'
+import StyleGrid from './overview/StyleGrid.jsx';
 
-
-
-const Overview = ({ productId }) => {
+function Overview({ productId }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
@@ -17,15 +14,15 @@ const Overview = ({ productId }) => {
   const [extended, toggleView] = useState(false);
 
   useEffect(() => {
-    const one =`/products/${productId}`;
+    const one = `/products/${productId}`;
     const two = `/products/${productId}/styles`;
     const three = '/reviews/meta';
 
     const Axios = axios.create({
       baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
       headers: {
-        'Authorization': config.API_KEY
-      }
+        Authorization: config.API_KEY,
+      },
     });
 
     // gets the producct general info from API and return name, description etc as response data
