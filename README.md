@@ -54,3 +54,9 @@ Some links for the testing technology:
 6. If test code works (browse to `http://localhost:3000`) Remember to check the web console for errors!
   - No errors -> Approve the request
   - Errors? -> Add comments requesting any changes.
+
+### Running the Linter
+
+The AirBnB style guide has been applied to the project. You can run the linter against
+the whole project by running `npm run lint`, or lint an individual file using
+`npx eslint --ext .jsx clint/src/<path to your file>`
