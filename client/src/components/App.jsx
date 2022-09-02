@@ -41,11 +41,11 @@ let App = (props) => {
   let [productId, setProductId] = useState(65631);
   return (
     <div>
-      <ProductIdSlider setProductId={setProductId} />
-      <Overview productId={productId}/>
+      <ProductIdSlider      setProductId={setProductId} />
+      <Overview             productId={productId}/>
       <RelatedAndComparison productID={productId}/>
-      <QuestionsAndAnswers productId={productId}/>
-      <ReviewsAndRatings productId={productId} setProductId={setProductId}/>
+      <QuestionsAndAnswers  productId={productId}/>
+      <ReviewsAndRatings    productId={productId} setProductId={setProductId}/>
     </div>
   )
 }
