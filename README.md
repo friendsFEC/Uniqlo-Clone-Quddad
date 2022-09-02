@@ -57,6 +57,9 @@ Some links for the testing technology:
 
 ### Running the Linter
 
-The AirBnB style guide has been applied to the project. You can run the linter against
-the whole project by running `npm run lint`, or lint an individual file using
+The AirBnB style guide has been installed. You can run the linter against
+the whole project by running `npm run lint` (this will lint everyone's work,
+and may generate more output than you can action).
+
+You can alos lint an individual file using
 `npx eslint --ext .jsx clint/src/<path to your file>`
