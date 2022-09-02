@@ -38,6 +38,7 @@ let ReviewsAndRatings = (props) => {
     //console.log('calcd average:', average);
     return average;
   };
+
   const calculateTotal = () => {
     let total = 0;
     //console.log('calc total, meta.ratings:', meta.ratings);
@@ -49,7 +50,7 @@ let ReviewsAndRatings = (props) => {
     }
     //console.log('calcd total:', total);
     return total;
-  }
+  };
 
   const getReviewsMeta = () => (
     axios.get(serverURL + '/meta', {
@@ -264,7 +265,7 @@ let ReviewsAndRatings = (props) => {
           total={total}
           reportReview={reportReview}
         />
-        <WriteReview />
+        <WriteReview characteristics={meta.characteristics}/>
       </div>
     </div>
   )
@@ -593,6 +594,18 @@ let WriteReview = (props) => {
     }
   }
   let keys = Object.keys(characteristics);
+  let parseForm = () => {
+    let review = {}
+    let reviewItems = ['rating', 'recommend', 'summary', 'body', 'photos', 'email', 'reviewer_name'];
+    review.date = new Date();
+    review.characteristics = {}; // [...keys]
+    reviewItems.map(key => review[key] = document.getElementsByName(`rr-review-${key}`)[0].value);
+    keys.map(key => {
+      let target = document.getElementsByName(`rr-review-${key}`)[0];
+      review.characteristics[key] = target ? target.value : '';
+    });
+    console.log(review);
+  }
   return (
     <div className="hidden write-review">
       <div className='close'
@@ -603,38 +616,43 @@ let WriteReview = (props) => {
       </div>
       <h1>Write Review</h1>
       <h2>Overall rating (mandatory)</h2>
-      <p>[interactive stars with highlight-on-hover will go here] 1 - poor, 2 - fair, 3 - average, 4 - good, 5 - great </p>
+      <p name='rr-review-rating' value='5'>[interactive stars with highlight-on-hover will go here] 1 - poor, 2 - fair, 3 - average, 4 - good, 5 - great </p>
       <h2>Do you recommend this product? (mandatory)</h2>
-      <p><input type="radio" defaultChecked name="recommend" value="true" /> Yes</p>
-      <p><input type="radio" name="recommend" value="false" /> No</p>
+      <p><input type="radio" defaultChecked name="rr-review-recommend" value="true" /> Yes</p>
+      <p><input type="radio" name="rr-review-recommend" value="false" /> No</p>
       <h2>Characteristics (mandatory)</h2>
       <table>
         <tbody>
         {
-          keys.map((k, i) => 
+          keys.map((k, i) => {
+            return props.characteristics && props.characteristics.hasOwnProperty(k) ?
+             (
             <tr key={i}>
               <td><strong>{k}</strong></td>
               {[1, 2, 3, 4, 5].map(field => 
-                <td key={field}>{characteristics[k][field]} <input type='radio' name={k} value={field} /></td>
+                <td key={field}>{characteristics[k][field]} <input type='radio' name={`rr-review-${k}`} value={field} /></td>
               )}
             </tr>
-          )
+            ) : null
+          })
         }
         </tbody>
       </table>
       <h2>Review Summary (mandatory)</h2>
       <p>[limit to 60 characters]</p>
-      <input type="text" name="review-summary" placeholder="Example: Best purchase ever!" />
+      <input type="text" name="rr-review-summary" placeholder="Example: Best purchase ever!" />
       <h2>Review body (mandatory)</h2>
       <p>[minimum 50, max 1000 characters]</p>
-      <textarea rows="24" cols="80" name="review-body" ></textarea>
+      <textarea rows="24" cols="80" name="rr-review-body" ></textarea>
+      <h2>What is your nickname (mandatory)</h2>
+      <input type="text" name='rr-review-reviewer_name' placeholder='Example: jackson11!' />
       <h2>Upload your photos</h2>
-      <p>[this is gonna be tricky]</p>
+      <p name='rr-review-photos' value={null}>[this is gonna be tricky]</p>
       <h2>Your email (mandatory)</h2>
       <p>[up to 60 characters]</p>
-      <input type="email" placeholder="Example: jackson11@email.com" />
+      <input type="email" name="rr-review-email" placeholder="Example: jackson11@email.com" />
       <p>For authentication reasonse, you will not be emailed.</p>
-      <button>Submit Review</button>
+      <button onClick={parseForm}>Submit Review</button>
       <p>[check that for blank mandatory fields, review body [50, 1000] in length, proper email format, and valid images selected]</p>
     </div>
   )

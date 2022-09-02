@@ -5,6 +5,7 @@
   margin-left: 5%;
   margin-right: 5%;
   /*font-family: 'Helvetica Neue';*/
+  font-family: 'Helvetica Neue', 'Arial', 'Liberation Sans';
 }
 .rr .review-grid {
   border: solid 1px black;
@@ -197,6 +198,9 @@
   border: 1px solid #333;
   border-radius: 0.2rem;
   font-variant: small-caps;
+}
+.rr .highlight {
+  background-color: red;
 }
 .rr button:hover {
   color: #1c71d8;
