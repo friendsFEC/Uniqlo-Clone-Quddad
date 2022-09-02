@@ -12,20 +12,6 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
   const [isOpen, setIsOpen] = useState(false);
   const [current, setCurrent] = useState(0);
 
-  // const getDefaultPhoto = () => {
-  //   const photos = [];
-  //   for (let i = 0; i < relatedStyles.length; i++) {
-  //     for (let j = 0; j < relatedStyles.length; j++) {
-  //       if (relatedStyles[i].results[j]["default?"]) {
-  //         photos.push(relatedStyles[i].results[j].photos[0].thumbnail_url);
-  //       }
-  //       // if all defaults are false, do something
-  //       // how to check if all defaults are false
-  //     }
-  //   }
-  //   console.log(photos)
-  // }
-
   //have all images rendered first. flexbox, hide overflow
 
   const prevCard = () => {
@@ -36,16 +22,33 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
     setCurrent(current === relatedInfo.length - 1 ? 0 : current + 1)
   }
 
-  console.log(relatedStyles)
+  // this code: onClick renders one card and shuffles through all cards
+  //   <div>
+  //   {index === current && (          <div className = "rc-main" key = {index}>
+  //   <div className = "rc-small-titles">
+  //     <button className = "rc-rp-button"
+  //       onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
+  //       <AiOutlineStar/>
+  //     </button>
+  //     <Modal open={isOpen} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
+  //     <div className = "rc-rp-details">
+  //       <img className = "rc-card-photos" src = {relatedStyles[index] ? relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto : null}/>
+  //       <p>{product.category}</p>
+  //       <p className = "rc-card-name">{product.name}</p>
+  //       <p>${Math.round(product.default_price)}</p>
+  //     </div>
+  //   </div>
+  // </div>)}
+  //   </div>
 
   const createRPCard = () => {
       return (
-      <div>
-        < GrFormPrevious className = ".rc-rp-prev" onClick = {prevCard}/>
+      <div className = "rc-rp-list">
+        < GrFormPrevious className = "rc-rp-prev" onClick = {prevCard}/>
         {relatedInfo.map((product, index) => {
           if (relatedStyles[index]) {
           return (
-          <div className = "rc-main" key = {index}>
+          <div className = "rc-card" key = {index}>
             <div className = "rc-small-titles">
               <button className = "rc-rp-button"
                 onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
@@ -64,27 +67,9 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
               </div>
             </div>
           </div>
-        // this code: onClick renders one card and shuffles through all cards
-        //   <div>
-        //   {index === current && (          <div className = "rc-main" key = {index}>
-        //   <div className = "rc-small-titles">
-        //     <button className = "rc-rp-button"
-        //       onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
-        //       <AiOutlineStar/>
-        //     </button>
-        //     <Modal open={isOpen} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
-        //     <div className = "rc-rp-details">
-        //       <img className = "rc-card-photos" src = {relatedStyles[index] ? relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto : null}/>
-        //       <p>{product.category}</p>
-        //       <p className = "rc-card-name">{product.name}</p>
-        //       <p>${Math.round(product.default_price)}</p>
-        //     </div>
-        //   </div>
-        // </div>)}
-        //   </div>
           )}
         })}
-         < GrFormNext className = ".rc-rp-next" onClick = {nextCard}/>
+         < GrFormNext className = "rc-rp-next" onClick = {nextCard}/>
      </div>
     )
   }
