@@ -32,7 +32,7 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
     console.log(image.current.style.width);
     toggleView(!extended);
     image.current.style.cursor = 'zoom-out';
-    image.current.style.width = '600px';
+    image.current.style.width = image.current.style.width === '600px' ? '450px' : '600px';
     console.log(image.current.style.width)
   }
 
