@@ -12,7 +12,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
 
   const createRPCard = () => {
       return (
-      <div className = "rc-rp-container">
+      <div>
         < GrFormPrevious className = "rc-rp-prev"/>
         {relatedInfo.map((product, index) => {
           if (relatedStyles[index]) {

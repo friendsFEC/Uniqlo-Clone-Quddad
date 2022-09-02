@@ -1,49 +1,40 @@
-.rc-rp-main {
-  display: flex;
-  justify-content: left;
-}
-
-.rc-yo-main {
-  display: flex;
-  justify-content: left;
-}
-
 .rc-rp-container {
-  border: 1px solid darkblue;
-  margin-left: 690px;
-  width: 1120px;
-  height: 390px;
+  border: 1px solid blue;
   display: flex;
-  overflow: scroll;
-  align-items: center;
-}
+  /* overflow: scroll; */
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 27%;
+  margin-right: 27%;
+  height: 35%;
+  width: 48%;
+  /* width: 1250px; */
+  /* height: 445px; */
 
-.rc-yo-container {
-  border: 1px solid darkblue;
-  margin-left: 690px;
-  width: 1120px;
-  height: 390px;
-  display: flex;
-}
-
-.rc-title {
-  font-size: 22px;
-  margin-left: 700px;
-  display: flex;
 }
 
 .rc-card {
   border: 1px solid black;
-  border-radius: 8px;
   display: inline-flex;
+  border-radius: 8px;
   height: 375px;
   width: 250px;
   margin-left: 30px;
 }
 
-/* .rc-card-layout {
-  margin-left: 690px;
-} */
+.rc-yo-container {
+  border: 1px solid black;
+  display: flex;
+  margin-left: 27%;
+  margin-right: 27%;
+  height: 35%;
+  width: 48%;
+}
+
+.rc-title {
+  font-size: 22px;
+}
+
 
 .rc-small-titles {
   text-align: left;
@@ -129,15 +120,15 @@
 }
 
 .rc-rp-prev {
-  position: absolute;
-  align-self: flex-start;
   font-size: 30px;
+  align-self: flex-start;
+  position: relative;
 }
 
 .rc-rp-next {
-  position: absolute;
-  align-self: flex-end;
   font-size: 30px;
+  align-self: center;
+  position: relative;
 }
 
 .rc-rp-sale-price {

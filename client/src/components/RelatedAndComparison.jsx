@@ -115,7 +115,7 @@ const RelatedAndComparison = ({productID}) => {
   if (relatedStyles.length > 0) {
     return (
       <div>
-        <div className = "rc-rp-main">
+        <div className = "rc-rp-container">
           <RelatedProducts
             currentInfo = {currentInfo}
             relatedIDs = {relatedIDs}
@@ -123,13 +123,13 @@ const RelatedAndComparison = ({productID}) => {
             relatedStyles = {relatedStyles}
           />
         </div>
-        <div className = "rc-yo-main">
+        <div className = "rc-yo-container">
           < YourOutfit
             currentInfo = {currentInfo}
             currentStyle = {currentStyle}
           />
         </div>
-    </div>
+      </div>
     )
   } else {
     return (
