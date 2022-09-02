@@ -6,5 +6,16 @@
 }
 
 #qa {
-  text-align: center;
+  text-align: left;
+  border: solid;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: small;
+}
+
+#qa-filter {
+  font-weight: bold;
+  padding-left: 1rem;
+
+  border: solid;
 }
