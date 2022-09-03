@@ -15,7 +15,6 @@ function QAItem(props) {
   const answers = _V.objectToArrayFunction(questionAnswer.answers);
   const filteredAnswers = answers.filter((answer) => answer.helpfulness > 0);
   const topTwoAnswers = _V.topXItems(2, filteredAnswers);
-  // console.log(topTwoAnswers);
 
   return (
     <div id="qa-QAItem">

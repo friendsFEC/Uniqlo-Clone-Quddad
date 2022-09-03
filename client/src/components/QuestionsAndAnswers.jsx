@@ -20,41 +20,45 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.state = {
+    //   product: example.results,
+    //   product_id: '65632',
+    // };
     this.state = {
-      product: example.results,
+      product: [],
       product_id: '65632',
     };
+
+    this.updateData = this.updateData.bind(this);
   }
+
+
 
   componentDidMount() {
     const chosenProductId = `/?product_id=${this.state.product_id}`;
     // Make a request for a user with a given ID
 
     // Make a request for a user with a given ID
-    const get_product_url = qaURL + chosenProductId;
-    const result = Axios.get(get_product_url, {
+    const getProductURL = qaURL + chosenProductId;
+    // get the product
+
+    Axios.get(getProductURL, {
       transformResponse: [(data) => {
         data = JSON.parse(data);
-        console.log(data);
+        this.updateData(data);
       }],
     });
-    // axios.get('/user?ID=12345')
-    //   .then(function (response) {
-    //     // handle success
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log(error);
-    //   })
-    //   .then(function () {
-    //     // always executed
-    //   });
+  }
+
+  updateData(data) {
+    const dataResults = data.results;
+    this.setState({
+      product: dataResults,
+    });
   }
 
   render() {
     const isQuestionFilled = (this.state.product.length > 0);
-
     if (isQuestionFilled) {
       return (
         <div id="qa">
