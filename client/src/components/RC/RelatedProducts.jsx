@@ -1,12 +1,14 @@
+/* eslint-disable */
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Modal from './Modal.jsx'
-import config from '../../../../config.js'
+import Modal from './Modal.jsx';
+import Stars from './Stars.jsx';
+import config from '../../../../config.js';
 import { AiOutlineStar } from 'react-icons/ai';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
-const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles }) => {
+const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings }) => {
   const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProductID, setSelectedProductID] = useState(0);
@@ -43,6 +45,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
                 </span>
                 {relatedStyles[index].results[0].sale_price && <span className ="rc-rp-og-price">${relatedStyles[index].results[0].sale_price}</span>}
                 </p>
+                <Stars index = {index} relatedAverageRatings = {relatedAverageRatings} />
               </div>
             </div>
           </div>

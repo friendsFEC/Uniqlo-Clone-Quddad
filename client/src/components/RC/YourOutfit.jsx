@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useState, useEffect } from 'react';
 import YOCard from './YOCard.jsx'
