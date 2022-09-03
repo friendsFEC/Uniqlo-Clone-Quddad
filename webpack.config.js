@@ -34,6 +34,9 @@ module.exports = {
       }
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   devServer: {
     static: {
       directory: DIST_DIR,
