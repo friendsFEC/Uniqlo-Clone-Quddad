@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductImage from './overview/ProductImage.jsx';
 import ProductInfo from './overview/ProductInfo.jsx';
 import PriceTag from './overview/PriceTag.jsx';
+import SizeAndQuantity from './overview/SizeAndQuantity.jsx';
 import config from '../../../config.js';
 import StyleGrid from './overview/StyleGrid.jsx';
 
@@ -80,7 +81,6 @@ function Overview({ productId }) {
 
   }, [productId]);
 
-
     if (styles.length > 0) {
       return (
         <div className="ov-main">
@@ -96,7 +96,7 @@ function Overview({ productId }) {
                 <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
               </div>
               <div>
-                [drop down menu for size selection]
+                <SizeAndQuantity style={styles[currStyle]}/>
               </div>
               <div>
                 [add to card button]

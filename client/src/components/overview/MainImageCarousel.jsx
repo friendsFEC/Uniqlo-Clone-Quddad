@@ -7,6 +7,7 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
   const downButton = useRef(null);
   const carouselY = useRef(null);
 
+  // carousel buttons scrolls the carousel up
   const scrollUp = () => {
     carouselY.current.scrollBy({
       top: -35,
@@ -14,6 +15,7 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
     });
   };
 
+  // carousel button scrolls the carousel down
   const scrollDown = () => {
     carouselY.current.scrollBy({
       top: 35,
@@ -21,15 +23,18 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
     });
   };
 
+  // once the selected image changes, carousel moves up or down with the image
   useEffect(() => {
-    if (current < selected) {
-      scrollDown();
-    } else {
-      scrollUp();
-    }
+    // if (current < selected) {
+    //   scrollDown();
+    // } else {
+    //   scrollUp();
+    // }
+    carouselY.current.scrollTo(0, selected * 30);
     setCurrent(selected);
-  }, [selected, current]);
+  }, [selected]);
 
+  // scrolls the carousel all the way to top if style is changed
   useEffect(() => {
     carouselY.current.scrollTo(0, 0);
   }, [photosData]);
