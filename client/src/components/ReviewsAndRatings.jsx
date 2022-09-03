@@ -148,7 +148,7 @@ function ReviewsAndRatings(props) {
           total={total}
           reportReview={reportReview}
         />
-        <WriteReview characteristics={meta.characteristics} />
+        <WriteReview characteristics={meta} />
       </div>
     </div>
   );

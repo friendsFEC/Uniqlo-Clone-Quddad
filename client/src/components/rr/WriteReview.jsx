@@ -102,7 +102,7 @@ function WriteReview({ characteristics }) {
         <tbody>
           {keys.map((k) => (
             characteristics && Object.hasOwn(characteristics, k) ? (
-              <tr key={charData[k]}>
+              <tr key={k}>
                 <td><strong>{k}</strong></td>
                 {[1, 2, 3, 4, 5].map((field) => (
                   <td key={field}>
