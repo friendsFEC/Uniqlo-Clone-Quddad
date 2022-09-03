@@ -5,7 +5,7 @@ import _, { map } from 'underscore';
 import React from 'react';
 
 const SizeAndQuantity = ({style}) => {
-  console.log(style);
+  // console.log(style);
   //drop down for size
     // if size doesn't exist, it doesn't show - (maybe show it crossed?)
 

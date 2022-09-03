@@ -30,14 +30,14 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
 
 
 // handler to extend the image
+// working process
+
   const handleClick = () => {
-    console.log(image.current.style.width);
     toggleView(!extended);
     image.current.style.cursor = image.current.style.cursor === 'zoom-out' ? 'zoom-in' : 'zoom-out';
     // image.current.style.width = image.current.style.width === '600px' ? '450px' : '600px';
-    // image.current.style.transition = 'width ease-out 2s';
-    iamge.current.style.transform= 'scaleX(2)';
-    console.log(image.current.style.width)
+    image.current.style.transition = 'width ease-in-out 2s';
+    // image.current.style.transform= 'scaleX(2)';
   }
 
 // returns side carousel component and the Main image in a map function
