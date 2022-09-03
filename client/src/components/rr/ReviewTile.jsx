@@ -45,10 +45,10 @@ export default function ReviewTile(props) {
               }}>Show More</a>
             </p>
       }
-      {review.photos.map((obj, i) =>
+      {review.photos.map((obj) =>
         <img
           className='review-thumbnail'
-          key={i}
+          key={obj.id}
           src={obj.url}
           onClick={({target}) => {
             target.classList.toggle('hidden');

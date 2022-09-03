@@ -35,7 +35,7 @@ ProductBreakDown.propTypes = {
           5: PropTypes.string,
         },
       ),
-      characteristics: PropTypes.arrayOf(
+      characteristics: PropTypes.shape(
         {
           Fit: PropTypes.shape(
             {
@@ -89,7 +89,12 @@ ProductBreakDown.propTypes = {
         reviewer_name: PropTypes.string,
         helpfulness: PropTypes.number,
         photos: PropTypes.arrayOf(
-          PropTypes.string,
+          PropTypes.shape(
+            {
+              id: PropTypes.number,
+              url: PropTypes.string,
+            },
+          ),
         ),
       },
     ),

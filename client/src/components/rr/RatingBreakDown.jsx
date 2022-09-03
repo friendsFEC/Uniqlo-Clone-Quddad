@@ -2,20 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StarRating from './StarRating';
 
-const PercentWidget = (props) => (
-  <div
-    className={
-      props.ratingFilter.indexOf(props.stars) > -1 ?
-        'rating-filter selected' : 'rating-filter'
-    }
-    onClick={()=>
-      props.toggleFilter(props.stars)
-    }>
-    {props.stars} stars <div className='rating-bar'>
-      <div className='inner-bar' style={{width: `${props.percent.toFixed(2)}%`}}></div>
-    </div> ({props.count})
-  </div>
-);
+function PercentWidget({ ratingFilter, stars, count, percent, toggleFilter }) {
+  return (
+    <div
+      className={ ratingFilter.indexOf(stars) > -1 ? 'rating-filter selected' : 'rating-filter' }
+      onClick={()=>
+        toggleFilter(stars)
+      }>
+      {stars} stars <div className='rating-bar'>
+        <div className='inner-bar' style={{width: `${percent.toFixed(2)}%`}}></div>
+      </div> ({count})
+    </div>
+  )
+}
 
 let RatingBreakDown = (props) => {
   //let keys = props.meta ? (props.meta.ratings ? Object.keys(props.meta.ratings).reverse() : []) : [];

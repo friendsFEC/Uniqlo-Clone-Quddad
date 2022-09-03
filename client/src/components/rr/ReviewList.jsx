@@ -40,7 +40,7 @@ export default function ReviewList({
       { reviews.length ? reviews.map(
         (review) => (
           <ReviewTile
-            key={review.id}
+            key={review.review_id}
             review={review}
             search={search}
             searchFilter={searchFilter}
@@ -89,7 +89,12 @@ ReviewList.propTypes = {
         reviewer_name: PropTypes.string,
         helpfulness: PropTypes.number,
         photos: PropTypes.arrayOf(
-          PropTypes.string,
+          PropTypes.shape(
+            {
+              id: PropTypes.number,
+              url: PropTypes.string,
+            },
+          ),
         ),
       },
     ),
