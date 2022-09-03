@@ -9,21 +9,31 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles }) => {
   const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedProductID, setSelectedProductID] = useState(0);
+
+  // IDEA FOR ARROWS:
+  // change classname based on ternary
+  // if at the front of the grid, hide left arrow
+  // if at the end of the grid, hide right arrow
+
+  // IDEA for MODAL:
+  // onclick of star --> get ID of selected product
+  // in the modal component, render only modal matches if selected product ID?
 
   const createRPCard = () => {
       return (
-      <div>
-        < GrFormPrevious className = "rc-rp-prev"/>
+      <div className = "rc-rp-container">
+        {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
         {relatedInfo.map((product, index) => {
           if (relatedStyles[index]) {
           return (
-          <div className = "rc-card" key = {index}>
+          <div className = "rc-rp-card" key = {index}>
             <div className = "rc-small-titles">
               <button className = "rc-rp-button"
-                onClick = {() => isOpen ? setIsOpen(false) : setIsOpen(true)}>
+                onClick = {() => isOpen ? setIsOpen(false) : (setIsOpen(true),  setSelectedProductID(product.id))}>
                 <AiOutlineStar/>
               </button>
-              <Modal open={isOpen} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
+              <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
               <div className = "rc-rp-details">
                 <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto}/>
                 <p>{product.category}</p>
@@ -38,7 +48,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles 
           </div>
           )}
         })}
-         < GrFormNext className = "rc-rp-next"/>
+         {/* < GrFormNext className = "rc-rp-arrow"/> */}
      </div>
     )
   }

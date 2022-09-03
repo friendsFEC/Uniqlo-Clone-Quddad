@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-// import { AiOutlineCloseCircle } from 'react-icons/ai';
 import YOCard from './YOCard.jsx'
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const YourOutfit = ( {currentInfo, currentStyle} ) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +19,7 @@ const YourOutfit = ( {currentInfo, currentStyle} ) => {
     <div>
       <h3 className = "rc-title"> Your Outfit</h3>
         <div className = "rc-yo-container">
+        {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
           <div className = "rc-yo-card">
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
@@ -28,6 +29,7 @@ const YourOutfit = ( {currentInfo, currentStyle} ) => {
             </div>
             <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle} />
           </div>
+          {/* < GrFormNext className = "rc-rp-arrow"/> */}
         </div>
     </div>
   )

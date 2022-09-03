@@ -1,40 +1,41 @@
 .rc-rp-container {
-  border: 1px solid blue;
-  display: flex;
-  /* overflow: scroll; */
-  align-items: flex-start;
-  justify-content: flex-start;
+  display: grid;
+  grid-auto-flow: column;
+  overflow: scroll;
+  grid-template-rows: 1fr;
   margin-left: 27%;
   margin-right: 27%;
-  height: 35%;
-  width: 48%;
-  /* width: 1250px; */
-  /* height: 445px; */
-
+  gap: 30px;
 }
 
-.rc-card {
+.rc-rp-card {
   border: 1px solid black;
-  display: inline-flex;
   border-radius: 8px;
   height: 375px;
   width: 250px;
-  margin-left: 30px;
 }
 
 .rc-yo-container {
-  border: 1px solid black;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 1fr;
   margin-left: 27%;
   margin-right: 27%;
-  height: 35%;
-  width: 48%;
+  overflow: scroll;
+}
+
+.rc-yo-card {
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 375px;
+  width: 250px;
+  margin: 0px;
 }
 
 .rc-title {
   font-size: 22px;
+  margin-left: 27%;
 }
-
 
 .rc-small-titles {
   text-align: left;
@@ -55,14 +56,15 @@
 
 .rc-modal-style {
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 50%;
   background-color: #FFF;
   padding: 50px;
   z-Index: 1000;
   border: 1px solid black;
-  height: 250px;
-  width: 400px;
+  height: 310px;
+  width: 310px;
+  overflow: auto;
 }
 
 .rc-modal-title {
@@ -72,7 +74,7 @@
 
 .rc-modal-style table, th, td {
   border: 0.1px solid;
-  padding: 5px;
+  padding: 7px;
 }
 
 .rc-card-photos {
@@ -84,15 +86,6 @@
 
 .rc-card-name {
   font-weight: bold;
-}
-
-.rc-yo-card {
-  border: 1px solid black;
-  border-radius: 8px;
-  display: flex;
-  height: 375px;
-  width: 250px;
-  margin-left: 700px;
 }
 
 .rc-yo-remove-button {
@@ -114,21 +107,9 @@
   margin-top: 85px;
 }
 
-.rc-yo-card {
-  padding-left: 10px;
-  border-radius: 8px;
-}
-
-.rc-rp-prev {
-  font-size: 30px;
-  align-self: flex-start;
-  position: relative;
-}
-
-.rc-rp-next {
+.rc-rp-arrow {
   font-size: 30px;
   align-self: center;
-  position: relative;
 }
 
 .rc-rp-sale-price {
