@@ -6,7 +6,7 @@ import {formatDate} from './utility';
 export default function ReviewTile(props) {
   let {
     review, search, searchFilter, ratingFilter, helpfulReviews,
-    setHelpful, reportReview,
+    setHelpful, reportReview, helpful,
   } = props;
   let hidden = false
   if (search.length > 2) {
