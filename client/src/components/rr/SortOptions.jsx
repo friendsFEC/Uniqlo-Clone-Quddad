@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function SortOptions({
+function SortOptions({
   total, setSort, search, setSearch,
 }) {
   const displayTotal = !Number.isNaN(total) ? total : 0;
@@ -33,3 +33,5 @@ SortOptions.propTypes = {
   search: PropTypes.string.isRequired,
   setSearch: PropTypes.func.isRequired,
 };
+
+export default SortOptions;
