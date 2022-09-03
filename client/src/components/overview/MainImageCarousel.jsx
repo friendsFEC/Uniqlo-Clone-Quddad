@@ -25,11 +25,6 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
 
   // once the selected image changes, carousel moves up or down with the image
   useEffect(() => {
-    // if (current < selected) {
-    //   scrollDown();
-    // } else {
-    //   scrollUp();
-    // }
     carouselY.current.scrollTo(0, selected * 30);
     setCurrent(selected);
   }, [selected]);
