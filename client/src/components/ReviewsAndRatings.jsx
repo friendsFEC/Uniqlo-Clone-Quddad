@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 import {
   calculateAverage,
   calculateTotal,
-  debounce,
-  formatDate,
+  positionArrowWidgets,
+  setAverage,
 } from './rr/utility';
 
 import {
@@ -21,12 +21,20 @@ import SortOptions from './rr/SortOptions';
 
 function ReviewsAndRatings(props) {
   /* hooks */
-  // const [productID, setProductID] = useState(props.productId || 65631);
   const { productID } = props;
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
-  const [average, setAverage] = useState(0);
   const [total, setTotal] = useState(0);
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'setAverage':
+        return { average: calculateAverage(meta, total) };
+      default:
+        return state;
+    }
+  }
+  const initialState = { average: 0 };
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [sort, setSort] = useState('relevant');
   const [more, setMore] = useState(true);
   const [search, setSearch] = useState('');
@@ -53,20 +61,6 @@ function ReviewsAndRatings(props) {
     }
   };
 
-  const positionArrowWidgets = () => {
-    if (meta.characteristics) {
-      Object.keys(meta.characteristics).forEach((char, i) => {
-        const arrow = document.getElementsByClassName('characteristics-arrow')[i];
-        if (arrow) {
-          const bar = arrow.parentElement;
-          const value = Number(meta.characteristics[char].value);
-          const left = ((bar.offsetWidth * value) / 5) - arrow.width;
-          arrow.style.paddingLeft = left;
-        }
-      });
-    }
-  };
-
   window.addEventListener('resize', positionArrowWidgets);
 
   /* render once product id changes */
@@ -81,15 +75,15 @@ function ReviewsAndRatings(props) {
   useEffect(() => {
     /* non responsive rendering (doesn't fix if page resizes) */
     setTotal(calculateTotal(meta));
-    positionArrowWidgets();
+    positionArrowWidgets(meta);
   }, [meta]);
-  useEffect(() => setAverage(calculateAverage(meta, total)), [total]);
+  useEffect(() => dispatch(setAverage), [total]);
 
   /* render when reviews change */
   useEffect(() => {
-    let loadedReviews = Array.from(document.getElementsByClassName('review-tile'));
-    let targetWidget = document.getElementById('rr-no-reviews-showing');
-    let hiddenReviews = loadedReviews.filter((rev) => rev.classList.contains('hidden'));
+    const loadedReviews = Array.from(document.getElementsByClassName('review-tile'));
+    const targetWidget = document.getElementById('rr-no-reviews-showing');
+    const hiddenReviews = loadedReviews.filter((rev) => rev.classList.contains('hidden'));
     if (targetWidget) {
       if (hiddenReviews.length === reviews.length) {
         targetWidget.classList.contains('hidden') ? targetWidget.classList.toggle('hidden') : null;
@@ -124,7 +118,7 @@ function ReviewsAndRatings(props) {
         />
         <RatingBreakDown
           meta={meta}
-          average={average}
+          average={state.average}
           toggleFilter={toggleFilter}
           ratingFilter={ratingFilter}
           total={total}
