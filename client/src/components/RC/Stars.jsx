@@ -3,9 +3,10 @@
 import React from 'react';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
 
-const Stars = ({index, relatedAverageRatings}) => {
+const Stars = ({index, currentRating, relatedAverageRatings, currentInfo}) => {
   let totalStars = 5;
-  let rating = relatedAverageRatings[index];
+  let rating = relatedAverageRatings[index] || currentRating
+
 
   return (
     <div className = "rc-star-wrapper">

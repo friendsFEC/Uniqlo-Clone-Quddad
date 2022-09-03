@@ -45,7 +45,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
                 </span>
                 {relatedStyles[index].results[0].sale_price && <span className ="rc-rp-og-price">${relatedStyles[index].results[0].sale_price}</span>}
                 </p>
-                <Stars index = {index} relatedAverageRatings = {relatedAverageRatings} />
+                <Stars index = {index} currentInfo = {currentInfo} relatedAverageRatings = {relatedAverageRatings} />
               </div>
             </div>
           </div>

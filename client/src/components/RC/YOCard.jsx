@@ -3,7 +3,7 @@ import React from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import Stars from './Stars.jsx'
 
-const YOCard = ({open, currentInfo, currentStyle}) => {
+const YOCard = ({open, currentInfo, currentStyle, currentRating, relatedAverageRatings}) => {
   if (!open) return null
 
   const removeDiv = () => {
@@ -24,7 +24,7 @@ const YOCard = ({open, currentInfo, currentStyle}) => {
         <p>{currentInfo.category}</p>
         <p className = "rc-card-name">{currentInfo.name}</p>
         <p>{currentInfo.default_price}</p>
-        < Stars />
+        < Stars currentRating = {currentRating} relatedAverageRatings = {relatedAverageRatings}/>
       </div>
     </div>
   )
