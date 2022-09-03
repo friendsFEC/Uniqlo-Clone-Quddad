@@ -14,6 +14,7 @@ function ProductBreakDown({ meta, reviews }) {
           <CharacteristicsWidget
             key={`characteristic-${char}`}
             name={char}
+            value={Number(meta.characteristics[char].value)}
           />
         )) }
       </div>
@@ -101,7 +102,7 @@ ProductBreakDown.propTypes = {
   ).isRequired,
 };
 
-function CharacteristicsWidget({ name }) {
+function CharacteristicsWidget({ name, value }) {
   const text = {
     Fit: { left: 'Too tight', middle: 'Perfect', right: 'Too loose' },
     Comfort: { left: 'Uncomfortable', middle: 'Average', right: 'Comfortable' },
@@ -127,6 +128,7 @@ function CharacteristicsWidget({ name }) {
 
 CharacteristicsWidget.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 export default ProductBreakDown;

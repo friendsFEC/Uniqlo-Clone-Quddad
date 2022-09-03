@@ -34,24 +34,46 @@
   display: inline-block;
   width: 100%;
 }
-.rr img.review-thumbnail {
+.rr .review-thumbnail img {
   width: 8rem;
   height: 6rem;
+  display: inline;
+}
+.rr .review-thumbnail,
+.rr .review-thumbnail div {
+  display: inline;
+}
+.rr .review-thumbnail div,
+.rr .image-modal div {
+  background-color: #ccc;
+}
+.rr .image-modal div {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+.rr .image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.rr .image-modal img {
+  width: auto;
+  height: 100%;
+  margin: auto;
+  vertical-align: middle;
+
 }
 .rr img.checkmark {
   width: 1.5rem;
   height: 1.5rem;
   vertical-align: middle;
-}
-.rr img.image-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  transition-property: opacity;
-  transition-duration: 0.5s;
-  transition-timing-function: linear;
 }
 .rr img.star {
   height: 1rem;

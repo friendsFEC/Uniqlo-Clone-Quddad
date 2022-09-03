@@ -46,18 +46,38 @@ function ReviewTile({
         </p>
       )}
       {review.photos.map((obj) => (
-        <img
-          className="review-thumbnail"
-          alt="a look at the product"
+        <div
           key={obj.id}
-          src={obj.url}
+          className="review-thumbnail"
           onClick={({ target }) => {
-            target.classList.toggle('hidden');
-            target.classList.toggle('image-modal');
-            target.classList.toggle('review-thumbnail');
-            setTimeout(() => target.classList.toggle('hidden'), 200);
+            let div = target
+            while (true) {
+              const isThumbnail = div.classList.contains('review-thumbnail');
+              const isModal = div.classList.contains('image-modal');
+              if (!isThumbnail && !isModal) {
+                div = div.parentElement;
+              } else {
+                break;
+              }
+            }
+            div.classList.toggle('hidden');
+            div.classList.toggle('image-modal');
+            div.classList.toggle('review-thumbnail');
+            // hide the write review button if its currently floating
+            const btn = document.getElementById('rr-write-review-btn');
+            if (btn.classList.contains('float')) {
+              btn.classList.remove('float');
+            }
+            setTimeout(() => div.classList.toggle('hidden'), 200);
           }}
-        />
+        >
+          <div>
+            <img
+              alt="a look at the product"
+              src={obj.url}
+            />
+          </div>
+        </div>
       ))}
       {review.recommend ? (
         <p>
