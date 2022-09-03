@@ -70,7 +70,7 @@ function ReviewsAndRatings(props) {
     getReviewsMeta(productID)
       .then((data) => setMeta(data))
       .then(() => {
-        getReviews(productID, 1, 5).then((data) => setReviews(data.results));
+        getReviews(productID, 1, 6).then((data) => setReviews(data.results));
       });
   }, [productID]); // effect runs on product id change
 
