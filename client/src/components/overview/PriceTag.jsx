@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function PriceTag({ product }) {
   return (
@@ -14,4 +15,7 @@ function PriceTag({ product }) {
   );
 }
 
+PriceTag.propTypes = {
+  product: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 export default PriceTag;

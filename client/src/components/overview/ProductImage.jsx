@@ -54,10 +54,10 @@ function ProductImage({ photosData, extended, toggleView }) {
       <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
         {photosData.map((photo, index) => (
           <div
-            key={photo}
+            key={photo.url}
             role="button"
             tabIndex="0"
-            onKeyPress=""
+            onKeyPress={handleClick}
             className={index === count ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}
             onClick={handleClick}
           >
