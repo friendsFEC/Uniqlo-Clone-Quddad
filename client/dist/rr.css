@@ -65,8 +65,9 @@
 }
 .rr .image-modal img {
   width: auto;
-  height: 100%;
-  margin: auto;
+  height: 90%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   vertical-align: middle;
 
 }
@@ -83,28 +84,32 @@
   background: #ccc;
 }
 #rr-write-review-btn {
-  top: 1080;
-  /*left: 0;*/
   display: inline-block;
-  /*box-sizing: content-box;*/
+  top: 1080;
+  left: 100;
   width: 80%;
 }
 #rr-write-review-btn.float {
   position: fixed;
   text-align: center;
   font-size: 1.05rem;
-  transition-property: top font-size;
+  transition-property: top left font-size;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
   background-color: #ccc;
 }
 .rr .write-review {
   overflow-y: scroll;
+  background-image: radial-gradient(#eee, #ccc);
 }
 .rr .write-review .close {
   text-align: right;
   /*display: inline-block;*/
   width: auto;
+}
+.rr .write-review .star {
+  width: 3rem;
+  height: 3rem;
 }
 .rr .sort-options select {
   border: none;

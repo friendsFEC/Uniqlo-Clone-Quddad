@@ -15,7 +15,7 @@ function PercentWidget({
       <div className="rating-bar">
         <div className="inner-bar" style={{ width: `${percent.toFixed(2)}%` }} />
       </div>
-      {`(${count})`}
+      {`(${count || 0})`}
     </div>
   );
 }
@@ -26,8 +26,11 @@ PercentWidget.propTypes = {
   ).isRequired,
   stars: PropTypes.number.isRequired,
   percent: PropTypes.number.isRequired,
-  count: PropTypes.string.isRequired,
   toggleFilter: PropTypes.func.isRequired,
+};
+
+PercentWidget.defaultProps = {
+  count: 0,
 };
 
 function RatingBreakDown({
