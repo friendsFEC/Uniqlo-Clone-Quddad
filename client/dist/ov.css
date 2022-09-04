@@ -17,6 +17,13 @@
   position: relative;
 }
 
+.ov-wrapper--extended {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: 60vh;
+}
+
 @media (max-width: 900px) {
   .ov-wrapper {
     flex-direction: column;
@@ -37,15 +44,14 @@
 }
 
 .ov-imageBox--extended{
-  width: 85%;
-  align-items: center;
-
+  height: 60vh;
+  width: 70vh;
 }
 
 .ov-img--extended {
   cursor: zoom-out;
-  height: 500px;
-  width: 60vw;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .ov-infoBox {

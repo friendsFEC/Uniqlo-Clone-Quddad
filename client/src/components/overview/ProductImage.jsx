@@ -51,7 +51,8 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
       <div className={extended ? "ov-imageBox ov-imageBox--extended" : "ov-imageBox"}>
         {photosData.map((photo, index) => {
           return (
-            <div key={index}
+            <div
+              key={index}
               className={index === count ? 'ov-imageBox_activeSlide' :'ov-imageBox_slide'}
               onClick={handleClick}
               >
@@ -66,18 +67,10 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
   )
 }
 
-//becoming an exceptionally good software engineer
+//becoming an exceptionally good software engineer $250.000
 
 // class name
 //className={extended ? "ov-img--extended" :"ov-imageBox_mainImage"}
 
-//inline styling
-/*
-style={{
-height: '500px',
-width: '450px',
-cursor: 'zoom-in'
-}}
-*/
 
 export default ProductImage;

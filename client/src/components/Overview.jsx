@@ -84,7 +84,7 @@ function Overview({ productId }) {
     if (styles.length > 0) {
       return (
         <div className="ov-main">
-          <div className="ov-wrapper">
+          <div className={extended ? "ov-wrapper--extended" : "ov-wrapper"}>
             <ProductImage photosData={styles[currStyle].photos}
               toggleView={toggleView} extended={extended}/>
             <div className={extended ? "noDisplay" : "ov-infoBox"}>
