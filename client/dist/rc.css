@@ -1,22 +1,108 @@
-.rc-title {
-  font-size: 22px;
-  padding-left: 10%;
-  padding-right: 10%;
+.rc-rp-container {
+  display: grid;
+  grid-auto-flow: column;
+  overflow: scroll;
+  grid-template-rows: 1fr;
+  margin-left: 27%;
+  margin-right: 29%;
+  gap: 30px;
 }
 
-.rc-main {
+.rc-rp-card {
   border: 1px solid black;
-  display: inline-block;
-  height: 375px;
+  border-radius: 8px;
+  height: 400px;
   width: 250px;
-  margin-left: 10px;
+}
+
+.rc-yo-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 1fr;
+  margin-left: 27%;
+  margin-right: 29%;
+  height: 430px;
+  overflow: scroll;
+}
+
+.rc-yo-card {
+  border: 1px solid black;
+  border-radius: 8px;
+  height: 400px;
+  width: 250px;
+  margin: 0px;
+}
+
+.rc-yo-new-card {
+  border-radius: 8px;
+  height: 400px;
+  width: 250px;
+  margin: 0px;
+}
+
+.rc-title {
+  font-size: 22px;
+  margin-left: 27%;
 }
 
 .rc-small-titles {
-  margin-left: 10px;
+  text-align: left;
 }
 
 .rc-rp-button {
+  margin-left: 220px;
+  margin-top: 10px;
+  font-size: 25px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.rc-rp-details {
+  margin-left: 10px;
+  line-height: 0.95;
+}
+
+.rc-yo-card-details {
+  margin-left: 10px;
+  line-height: 0.95;
+}
+
+.rc-modal-style {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  background-color: #FFF;
+  padding: 50px;
+  z-Index: 1000;
+  border: 1px solid black;
+  height: 310px;
+  width: 310px;
+  overflow: scroll;
+}
+
+.rc-modal-title {
+  text-align: left;
+  display: flex;
+}
+
+.rc-modal-style table, th, td {
+  border: 0.1px solid;
+  padding: 7px;
+}
+
+.rc-card-photos {
+  border-radius: 8px;
+  margin-top: 5px;
+  height: 225px;
+  width: 225px;
+}
+
+.rc-card-name {
+  font-weight: bold;
+}
+
+.rc-yo-remove-button {
   margin-left: 208px;
   margin-top: 10px;
   font-size: 25px;
@@ -25,25 +111,40 @@
   background: none;
 }
 
-.rc-modal-style {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  background-color: #FFF;
-  padding: 50px;
-  z-Index: 1000;
+.rc-yo-add-button {
+  font-size: 20px;
+  text-align: center;
+  padding: 75px 0;
   border: 1px solid black;
-  height: 250px;
-  width: 400px;
+  border-radius: 10px;
+  margin-left: 47px;
+  margin-top: 85px;
 }
 
-.rc-rp-photos {
-  border-radius: 8px;
-  margin-top: 5px;
-  height: 225px;
-  width: 225px;
+.rc-rp-arrow {
+  font-size: 30px;
+  align-self: center;
 }
 
-.rc-rp-name {
-  font-weight: bold;
+.rc-rp-sale-price {
+  color: red;
+  text-decoration: line-through;
+  padding-right: 5px;
+}
+
+.rc-rp-og-price {
+  color: black;
+}
+
+.rc-star-wrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.rc-star {
+  position: relative;
+}
+
+.rc-star-active {
+  position: absolute;
 }

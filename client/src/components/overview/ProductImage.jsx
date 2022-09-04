@@ -1,47 +1,77 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useRef } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import MainImageCarousel from './MainImageCarousel.jsx';
 
-
-const ProductImage = ({ photosData }) => {
-  const [activeThumbNail, setActive] = useState(false);
+function ProductImage({ photosData, extended, toggleView }) {
   const length = photosData.length;
+  const image = useRef(null);
 
-  //reducer function for button functionality
+  // reducer function for button functionality
   const selectImage = (count, action) => {
-    switch(action.type) {
+    // action -> {type: 'changeImage'}
+    switch (action.type) {
       case 'next':
         if (count < length) {
-          return count = count + 1;
+          count += 1;
+          return count;
         }
-        case 'prev':
-          if (count !== 0) {
-            return count = count - 1;
-          }
-          case 'changeImage':
-            return count = action.idx
-            default:
-              return count;
-            }
-          }
+        break;
+      case 'prev':
+        if (count !== 0) {
+          count -= 1;
+          return count;
+        }
+        break;
+      case 'changeImage':
+        count = action.idx;
+        return count;
+      default:
+        return count;
+    }
+  };
 
   const [count, dispatch] = useReducer(selectImage, 0);
 
-  return (
-    <div className="ov-imageBox">
-      <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count}/>
-      {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({type:'prev'})}/>}
-      {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({type: 'next'})}/>}
-      {photosData.map((photo, index) => {
-        return (
-          <div key={index} className={index === count ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}>
-            <img className="ov-imageBox_mainImage"src={photo.url}/>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
+  // handler to extend the image
+  // working process
 
+  const handleClick = () => {
+    toggleView(!extended);
+    image.current.style.cursor = image.current.style.cursor === 'zoom-out' ? 'zoom-in' : 'zoom-out';
+    // image.current.style.width = image.current.style.width === '600px' ? '450px' : '600px';
+    image.current.style.transition = 'width ease-in-out 2s';
+    // image.current.style.transform= 'scaleX(2)';
+  }
+
+// returns side carousel component and the Main image in a map function
+// all images are there and their opacity changes
+
+  return (
+    <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
+      <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count} />
+      {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({ type: 'prev' })} />}
+      {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({ type: 'next' })} />}
+      <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
+        {photosData.map((photo, index) => (
+          <div
+            key={photo.url}
+            role="button"
+            tabIndex="0"
+            onKeyPress={handleClick}
+            className={index === count ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}
+            onClick={handleClick}
+          >
+            <img
+              ref={image}
+              className={extended ? 'ov-img--extended' : 'ov-imageBox_mainImage'}
+              src={photo.url}
+              alt="productImage"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default ProductImage;
