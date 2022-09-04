@@ -42,10 +42,10 @@ let App = (props) => {
   return (
     <div>
       {/* <ProductIdSlider      setProductId={setProductId} /> */}
-      {/* <Overview             productId={productId}/> */}
-      {/* <RelatedAndComparison productID={productId}/> */}
+      <Overview             productId={productId}/>
+      <RelatedAndComparison productID={productId}/>
       <QuestionsAndAnswers  productId={productId}/>
-      {/* <ReviewsAndRatings    productId={productId} setProductId={setProductId}/> */}
+      <ReviewsAndRatings    productId={productId} setProductId={setProductId}/>
     </div>
   )
 }

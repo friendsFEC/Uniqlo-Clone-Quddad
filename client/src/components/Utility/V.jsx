@@ -1,5 +1,5 @@
 const axios = require('axios');
-// const config = require('../../config.js');
+const config = require('../../../../config.js');
 
 
 module.exports.objectToArrayFunction = (obj) => {
@@ -22,12 +22,20 @@ module.exports.topXItems = (numberOfItems, array) => {
   return resultArr;
 };
 
-// const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
-// const qaURL = `${baseURL}/qa/questions`;
+module.exports.Axios = axios.create({
+  baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions',
+  headers: {
+    Authorization: config.API_KEY,
+  },
+});
 
-// module.exports.Axios = axios.create({
-//   baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
-//   headers: {
-//     Authorization: config.API_KEY,
-//   },
+// module.exports.Axios2 = () => {
+//   console.log('hello');
+// };
+
+// Axios.get(getProductURL, {
+//   transformResponse: [(data) => {
+//     const parsedData = JSON.parse(data) || null;
+//     this.updateData(parsedData);
+//   }],
 // });

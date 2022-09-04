@@ -6,9 +6,7 @@ import QAEntry from './QA components/QAEntry.jsx';
 import example from './QA components/example.jsx';
 import config from '../../../config.js'
 
-
-const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp';
-const qaURL = `${baseURL}/qa/questions`;
+const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions';
 const Axios = axios.create({
   baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
   headers: {
@@ -32,20 +30,19 @@ class QuestionsAndAnswers extends React.Component {
     this.updateData = this.updateData.bind(this);
   }
 
-
-
   componentDidMount() {
-    const chosenProductId = `/?product_id=${this.state.product_id}`;
+    const { product_id } = this.state;
+    const chosenProductId = `/?product_id=${product_id}`;
     // Make a request for a user with a given ID
 
     // Make a request for a user with a given ID
-    const getProductURL = qaURL + chosenProductId;
+    const getProductURL = baseURL + chosenProductId;
     // get the product
 
     Axios.get(getProductURL, {
       transformResponse: [(data) => {
-        data = JSON.parse(data);
-        this.updateData(data);
+        const parsedData = JSON.parse(data) || null;
+        this.updateData(parsedData);
       }],
     });
   }
@@ -58,12 +55,13 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   render() {
-    const isQuestionFilled = (this.state.product.length > 0);
+    const { product } = this.state;
+    const isQuestionFilled = (product.length > 0);
     if (isQuestionFilled) {
       return (
         <div id="qa">
           <p>QUESTIONS & ANSWERS</p>
-          <ListOfQA chosenProduct={this.state.product} isQuestionFilled={isQuestionFilled} />
+          <ListOfQA chosenProduct={product} isQuestionFilled={isQuestionFilled} />
           <QAEntry />
         </div>
       );
