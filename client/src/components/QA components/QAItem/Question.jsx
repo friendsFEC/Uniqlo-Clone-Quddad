@@ -7,6 +7,7 @@ function Question(props) {
   const { question_id, question_body, question_helpfulness } = props;
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
+  const [isReported, setIsReported] = useState(false);
 
   // update/increment the helpfulness of a question
   const handleHelpfulness = () => {
@@ -29,6 +30,27 @@ function Question(props) {
     });
   };
 
+  const handleReport = () => {
+    setIsReported((isReported) => {
+      if (!isHelpfulClicked) {
+        const link = `/${question_id}/report`;
+        _V.Axios.put(link)
+          .then(() => {
+            // do nothing
+            console.log('Reported');
+          })
+          .catch(() => {
+            console.warn('Report PUT not working');
+          });
+        // setIsHelpfulClicked(true);
+        isReported = true;
+      }
+
+      // if successful, increment the questionHelpfulness
+      return isReported;
+    });
+  };
+
   return (
     <div id="qa-QAItem-Question">
       <h3>
@@ -44,6 +66,14 @@ function Question(props) {
         {' '}
         {/* { question_helpfulness } */}
         { questionHelpfulness }
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          handleReport();
+        }}
+      >
+        Report
       </button>
       <h3>
         Add an answer
