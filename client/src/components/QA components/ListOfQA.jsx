@@ -8,7 +8,7 @@ class ListOfQA extends React.Component {
     super(props);
     this.state = {
       chosenProduct: this.props.chosenProduct
-    }
+    };
 
     this.searchQuestions   = this.searchQuestions.bind(this);
     this.filteredQuestions = this.filterQuestions.bind(this);
@@ -16,7 +16,7 @@ class ListOfQA extends React.Component {
 
   searchQuestions(event) {
     const searchedQuestions = event.target.value;
-    const newChosenProduct  = this.filterQuestions(searchedQuestions, this.props.chosenProduct);
+    const newChosenProduct = this.filterQuestions(searchedQuestions, this.props.chosenProduct);
     this.setState({
       chosenProduct: newChosenProduct
     })
