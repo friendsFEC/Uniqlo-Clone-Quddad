@@ -6,17 +6,8 @@ import Stars from './Stars.jsx'
 const YOCard = ({open, currentInfo, currentStyle, currentRating, relatedAverageRatings}) => {
   if (!open) return null
 
-  const removeDiv = () => {
-    const getDiv = document.getElementById("rc-yo-card-div")
-    if (getDiv.style.display === "none") {
-      getDiv.style.display = "block";
-    } else {
-      getDiv.style.display = "none";
-    }
-  }
-
   return (
-    <div id = "rc-yo-card-div" className = "rc-yo-card">
+    <div className = "rc-yo-new-card">
       {/* onClick of the X: remove card and replace it back with the ADD TO OUTFIT */}
       <div className = "rc-yo-card-details">
         <button className = "rc-yo-remove-button" onClick = {() => removeDiv()}><AiOutlineCloseCircle/></button>

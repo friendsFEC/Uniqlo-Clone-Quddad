@@ -16,6 +16,13 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
     }
   }
 
+  // set a count of your outfit cards
+  // when click on add to your outfit, increment
+  // when click on X, decrement
+  // for each count, render out a card
+  // useReducer here?
+
+
   return (
     <div>
       <h3 className = "rc-title"> Your Outfit</h3>
