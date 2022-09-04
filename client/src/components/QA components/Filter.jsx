@@ -8,12 +8,15 @@ class Filter extends React.Component {
   render() {
     return (
       <div id="qa-filter">
-        <input type='text' id='qa-filter-input'
-        name='qa-filter-name'
-        placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
-        onChange={this.props.searchQuestions}/>
+        <input
+          type="text"
+          id="qa-filter-input"
+          name="qa-filter-name"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+          onChange={this.props.searchQuestions}
+        />
       </div>
-    )
+    );
   }
 }
 
