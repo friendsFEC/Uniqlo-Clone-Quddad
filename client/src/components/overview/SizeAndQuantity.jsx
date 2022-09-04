@@ -5,15 +5,7 @@ import _, { map } from 'underscore';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-<<<<<<< HEAD
-function SizeAndQuantity({
-  style
-}: {
-  style: object;
-}) {
-=======
 function SizeAndQuantity({ style }) {
->>>>>>> extends
   // console.log(style);
   // drop down for size
   // if size doesn't exist, it doesn't show - (maybe show it crossed?)
