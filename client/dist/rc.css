@@ -4,14 +4,14 @@
   overflow: scroll;
   grid-template-rows: 1fr;
   margin-left: 27%;
-  margin-right: 27%;
+  margin-right: 29%;
   gap: 30px;
 }
 
 .rc-rp-card {
   border: 1px solid black;
   border-radius: 8px;
-  height: 375px;
+  height: 400px;
   width: 250px;
 }
 
@@ -20,14 +20,22 @@
   grid-auto-flow: column;
   grid-template-rows: 1fr;
   margin-left: 27%;
-  margin-right: 27%;
+  margin-right: 29%;
+  height: 430px;
   overflow: scroll;
 }
 
 .rc-yo-card {
   border: 1px solid black;
   border-radius: 8px;
-  height: 375px;
+  height: 400px;
+  width: 250px;
+  margin: 0px;
+}
+
+.rc-yo-new-card {
+  border-radius: 8px;
+  height: 400px;
   width: 250px;
   margin: 0px;
 }
@@ -52,6 +60,12 @@
 
 .rc-rp-details {
   margin-left: 10px;
+  line-height: 0.95;
+}
+
+.rc-yo-card-details {
+  margin-left: 10px;
+  line-height: 0.95;
 }
 
 .rc-modal-style {
@@ -64,7 +78,7 @@
   border: 1px solid black;
   height: 310px;
   width: 310px;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .rc-modal-title {
@@ -120,4 +134,17 @@
 
 .rc-rp-og-price {
   color: black;
+}
+
+.rc-star-wrapper {
+  display: inline-flex;
+  position: relative;
+}
+
+.rc-star {
+  position: relative;
+}
+
+.rc-star-active {
+  position: absolute;
 }
