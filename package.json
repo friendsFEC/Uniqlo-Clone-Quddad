@@ -34,7 +34,8 @@
     "axios": "^0.27.2",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

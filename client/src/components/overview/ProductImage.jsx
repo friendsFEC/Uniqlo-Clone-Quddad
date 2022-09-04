@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useRef } from 'react';
+import React, { useReducer, useRef } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import MainImageCarousel from './MainImageCarousel.jsx';
 
@@ -66,11 +66,5 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
     </div>
   )
 }
-
-//becoming an exceptionally good software engineer $250.000
-
-// class name
-//className={extended ? "ov-img--extended" :"ov-imageBox_mainImage"}
-
 
 export default ProductImage;
