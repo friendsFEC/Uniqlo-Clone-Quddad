@@ -59,23 +59,21 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
       </div>
       <div className="ov-imageBox_thumbnail" ref={carouselY}>
         <div className="ov-imageBox-inside">
-          {photosData.map((photo, index) => {
-            return (
-              <div
-                className={current === index ? 'ov-thumbnail ov-thumbnail--active' : 'ov-thumbnail'}
-                key={index}
-                onClick={()=> dispatch({type: 'changeImage', idx: index})}
-                onKeyPress={()=> dispatch({type: 'changeImage', idx: index})}
-                role="button"
-                tabIndex={0}
-              >
-                <img
-                  alt=""
-                  className="ov-thumbnail--image"
-                  src={photo.thumbnail_url}/>
-              </div>
-            )
-          })}
+          {photosData.map((photo, index) => (
+            <div
+              className={current === index ? 'ov-thumbnail ov-thumbnail--active' : 'ov-thumbnail'}
+              key={index}
+              onClick={()=> dispatch({type: 'changeImage', idx: index})}
+              onKeyPress={()=> dispatch({type: 'changeImage', idx: index})}
+              role="button"
+              tabIndex={0}
+            >
+              <img
+                alt=""
+                className="ov-thumbnail--image"
+                src={photo.thumbnail_url}/>
+            </div>
+          ))}
         </div>
       </div>
       <div

@@ -2,35 +2,38 @@ import React, { useReducer, useRef } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import MainImageCarousel from './MainImageCarousel.jsx';
 
-
-const ProductImage = ({ photosData, extended, toggleView }) => {
+function ProductImage({ photosData, extended, toggleView }) {
   const length = photosData.length;
   const image = useRef(null);
 
-  //reducer function for button functionality
+  // reducer function for button functionality
   const selectImage = (count, action) => {
-    //action -> {type: 'changeImage'}
-    switch(action.type) {
+    // action -> {type: 'changeImage'}
+    switch (action.type) {
       case 'next':
         if (count < length) {
-          return count = count + 1;
+          count += 1;
+          return count;
         }
+        break;
       case 'prev':
         if (count !== 0) {
-          return count = count - 1;
-        }
-      case 'changeImage':
-        return count = action.idx
-        default:
+          count -= 1;
           return count;
-      }
-  }
+        }
+        break;
+      case 'changeImage':
+        count = action.idx;
+        return count;
+      default:
+        return count;
+    }
+  };
 
   const [count, dispatch] = useReducer(selectImage, 0);
 
-
-// handler to extend the image
-// working process
+  // handler to extend the image
+  // working process
 
   const handleClick = () => {
     toggleView(!extended);
@@ -44,27 +47,31 @@ const ProductImage = ({ photosData, extended, toggleView }) => {
 // all images are there and their opacity changes
 
   return (
-    <div className={extended ? "ov-imageBox ov-imageBox--extended" : "ov-imageBox"}>
-      <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count}/>
-      {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({type:'prev'})}/>}
-      {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({type: 'next'})}/>}
-      <div className={extended ? "ov-imageBox ov-imageBox--extended" : "ov-imageBox"}>
-        {photosData.map((photo, index) => {
-          return (
-            <div
-              key={index}
-              className={index === count ? 'ov-imageBox_activeSlide' :'ov-imageBox_slide'}
-              onClick={handleClick}
-              >
-              <img ref={image}
-              className={extended ? "ov-img--extended" :"ov-imageBox_mainImage"}
-                src={photo.url}/>
-            </div>
-          )
-        })}
+    <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
+      <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count} />
+      {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({ type: 'prev' })} />}
+      {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({ type: 'next' })} />}
+      <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
+        {photosData.map((photo, index) => (
+          <div
+            key={photo}
+            role="button"
+            tabIndex="0"
+            onKeyPress=""
+            className={index === count ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}
+            onClick={handleClick}
+          >
+            <img
+              ref={image}
+              className={extended ? 'ov-img--extended' : 'ov-imageBox_mainImage'}
+              src={photo.url}
+              alt="productImage"
+            />
+          </div>
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default ProductImage;
