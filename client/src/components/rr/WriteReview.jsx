@@ -88,7 +88,6 @@ function WriteReview({ characteristics, productID }) {
 			}
 			// review.recommend defaults to true
 			keys.forEach((key) => {
-				console.log(key, review.characteristics[key]);
 				if (Object.hasOwn(characteristics, key)) {
 					if (review.characteristics[key] === undefined) {
 						makeChanges.push(`Choose a value for the ${key} characteristic!`);
@@ -102,6 +101,10 @@ function WriteReview({ characteristics, productID }) {
 			if (!emailRegex.test(review.email)) {
 				makeChanges.push('Please format your email address properly!');
 			}
+      // validate photos are proper format
+      const inputs = Array.from(document.getElementsByClassName('photo-upload'));
+      const uploads = inputs.map((input) => input.files[0] ).filter((file) => file !== undefined);
+      console.log(uploads);
 			return makeChanges;
 		}
 		setFixes(validateData())
@@ -162,6 +165,7 @@ function WriteReview({ characteristics, productID }) {
                   <td key={field}>
                     {charData[k][field]}
                     <input
+                      key={field}
                       type="radio"
                       name={`rr-review-${k}`}
                       value={field}
@@ -184,6 +188,7 @@ function WriteReview({ characteristics, productID }) {
       <h2>Upload your photos</h2>
       {[0, 1, 2, 3, 4].map((i) => (
         <input
+          key={i}
           type="file"
           name="rr-review-photos"
           className={i === 0 ? 'photo-upload first-photo' : 'hidden photo-upload'}

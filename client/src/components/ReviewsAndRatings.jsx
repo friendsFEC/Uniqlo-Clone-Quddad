@@ -97,8 +97,6 @@ function ReviewsAndRatings(props) {
     }
   }, [ratingFilter, reviews, search]);
 
-  useEffect(() => {console.log('more:', more)}, [more]);
-
   /* render when sort changes */
   useEffect(() => {
     getReviews(productID, 1, reviews.length || 2, sort).then((data) => {
