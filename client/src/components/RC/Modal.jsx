@@ -1,8 +1,9 @@
-import React from 'react'
+/* eslint-disable */
+import React from 'react';
 
 const Modal = ({ open, onClose, selectedProductID, productID, product, currentInfo}) => {
-  if (!open) return null
-  const notApplicable = "Not Applicable"
+  if (!open) return null;
+  const notApplicable = "Not Applicable";
 
   if (selectedProductID === product.id) {
     return (
@@ -31,15 +32,15 @@ const Modal = ({ open, onClose, selectedProductID, productID, product, currentIn
               <td>{notApplicable}</td>
               <td>{feature.feature}</td>
               <td>{feature.value}</td>
-            </tr>
+            </tr>;
           })}
         </tbody>
       </table>
     </div>
-   )
+   );
   } else {
-    return null
+    return null;
   }
-}
+};
 
 export default Modal;
