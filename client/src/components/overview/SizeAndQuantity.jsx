@@ -3,28 +3,36 @@
 // 65632 has out of stuck > sku key will say 'null'
 import _, { map } from 'underscore';
 import React from 'react';
+import PropTypes from 'prop-types';
 
+<<<<<<< HEAD
 function SizeAndQuantity({
   style
 }: {
   style: object;
 }) {
+=======
+function SizeAndQuantity({ style }) {
+>>>>>>> extends
   // console.log(style);
-  //drop down for size
-    // if size doesn't exist, it doesn't show - (maybe show it crossed?)
+  // drop down for size
+  // if size doesn't exist, it doesn't show - (maybe show it crossed?)
 
-  //quantity is - if no size selected 1 if size selected
+  // quantity is - if no size selected 1 if size selected
   if (style.skus.null) {
     return null;
-  } else {
-    return (
-      <div>
-        <select>
-          trying
-        </select>
-      </div>
-    )
   }
+  return (
+    <div>
+      <select>
+        trying
+      </select>
+    </div>
+  );
 }
+
+SizeAndQuantity.propTypes = {
+  style: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
 
 export default SizeAndQuantity;
