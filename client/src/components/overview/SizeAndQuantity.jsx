@@ -1,10 +1,14 @@
-//currentstyle.skus > each key is sku id and each sku is an object
+// currentstyle.skus > each key is sku id and each sku is an object
 // goes xs s m l xl xxl
-//65632 has out of stuck > sku key will say 'null'
+// 65632 has out of stuck > sku key will say 'null'
 import _, { map } from 'underscore';
 import React from 'react';
 
-const SizeAndQuantity = ({style}) => {
+function SizeAndQuantity({
+  style
+}: {
+  style: object;
+}) {
   // console.log(style);
   //drop down for size
     // if size doesn't exist, it doesn't show - (maybe show it crossed?)
