@@ -27,91 +27,96 @@ function Overview({ productId }) {
     });
 
     // gets the producct general info from API and return name, description etc as response data
-    const reqProduct = () => {
-      return Axios.get(one, {
+    const reqProduct = () => (
+      Axios.get(one, {
         transformResponse: [(data) => {
-          data = JSON.parse(data);
-          let { id, name, category, description, slogan } = data;
-          return { id, name, category, description, slogan };
-        }]
+          const newData = JSON.parse(data);
+          const {
+            id, name, category, description, slogan,
+          } = newData;
+          return {
+            id, name, category, description, slogan,
+          };
+        }],
       })
-    };
+    );
 
-    //gets styles of a product from api and returns the styles in an array as response data
-    const reqStyle = () => {
-      return Axios.get(two, {
+    // gets styles of a product from api and returns the styles in an array as response data
+    const reqStyle = () => (
+      Axios.get(two, {
         transformResponse: [(data) => {
-          data = JSON.parse(data);
-          return data.results;
-        }]
+          const newData = JSON.parse(data);
+          return newData.results;
+        }],
       })
-    };
+    );
 
-    //gets ratings from api and returns average rating as response data
-    const reqReview = () => {
-      return Axios.get(three, {
+    // gets ratings from api and returns average rating as response data
+    const reqReview = () => (
+      Axios.get(three, {
         params: {
-          product_id: productId
+          product_id: productId,
         },
         transformResponse: [(data) => {
-          data = JSON.parse(data);
-          let ratings = data.ratings;
-          let totalPeople = Object.values(ratings).reduce((prev, curr) => (
+          const newData = JSON.parse(data);
+          const { ratings } = newData;
+          const totalPeople = Object.values(ratings).reduce((prev, curr) => (
             Number(prev) + Number(curr)), 0);
-          let totalRating = Object.keys(ratings).reduce((prevKey, currKey) => {
-            return (prevKey + currKey * ratings[currKey]);
-          }, 0)
-          let avg = totalRating / totalPeople;
+          const totalRating = Object.keys(ratings).reduce((prevKey, currKey) => (
+            (prevKey + currKey * ratings[currKey])
+          ), 0);
+          const avg = totalRating / totalPeople;
           return avg;
-        }]
+        }],
       })
-    }
+    );
 
     // making concurrent requests
     Promise.all([reqProduct(), reqStyle(), reqReview()])
       .then((...responses) => {
-          const productInfo = responses[0][0].data;
-          const styles = responses[0][1].data;
-          const averageRating = responses[0][2].data;
-          setProduct(productInfo);
-          setStyles(styles);
-          setRating(averageRating)
-        })
-        .catch(errors => console.log(errors));
-
+        const productInfo = responses[0][0].data;
+        const styles = responses[0][1].data;
+        const averageRating = responses[0][2].data;
+        setProduct(productInfo);
+        setStyles(styles);
+        setRating(averageRating);
+      })
+      .catch((errors) => console.log(errors));
   }, [productId]);
 
-    if (styles.length > 0) {
-      return (
-        <div className="ov-main">
-          <div className={extended ? "ov-wrapper--extended" : "ov-wrapper"}>
-            <ProductImage photosData={styles[currStyle].photos}
-              toggleView={toggleView} extended={extended}/>
-            <div className={extended ? "noDisplay" : "ov-infoBox"}>
-              <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
-              <div className="ov-title ov-title--Price">
-                <PriceTag product={styles[currStyle]}/>
-              </div>
-              <div>
-                <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
-              </div>
-              <div>
-                <SizeAndQuantity style={styles[currStyle]}/>
-              </div>
-              <div>
-                [add to card button]
-              </div>
+  if (styles.length > 0) {
+    return (
+      <div className="ov-main">
+        <div className={extended ? 'ov-wrapper--extended' : 'ov-wrapper'}>
+          <ProductImage
+            photosData={styles[currStyle].photos}
+            toggleView={toggleView}
+            extended={extended}
+          />
+          <div className={extended ? 'noDisplay' : 'ov-infoBox'}>
+            <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
+            <div className="ov-title ov-title--Price">
+              <PriceTag product={styles[currStyle]} />
+            </div>
+            <div>
+              <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
+            </div>
+            <div>
+              <SizeAndQuantity style={styles[currStyle]} />
+            </div>
+            <div>
+              [add to card button]
             </div>
           </div>
-          <div className="ov-descriptionBlock">
-            <h3>{product.slogan}</h3>
-            <p>{product.description}</p>
-          </div>
         </div>
-      )
-    } else {
-      return  <div className="ov-imageBox">LOADING...</div>
-    }
+        <div className="ov-descriptionBlock">
+          <h3>{product.slogan}</h3>
+          <p>{product.description}</p>
+        </div>
+      </div>
+    );
+  }
+  return <div className="ov-imageBox">LOADING...</div>;
 }
 
 export default Overview;
