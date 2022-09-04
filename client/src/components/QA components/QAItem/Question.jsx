@@ -2,25 +2,25 @@ import React, { useState, useEffect } from 'react';
 
 const _V = require('../../Utility/V.jsx');
 
-let isHelpfulClicked = false;
-
 function Question(props) {
   // declare variables
   const { question_id, question_body, question_helpfulness } = props;
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness);
+  const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
 
   // update/increment the helpfulness of a question
-  const handleHelpfulness = (e) => {
+  const handleHelpfulness = () => {
     setQuestionHelpfulness((questionHelpfulness) => {
       if (!isHelpfulClicked) {
         const link = `/${question_id}/helpful`;
         _V.Axios.put(link)
           .then(() => {
+            setIsHelpfulClicked(true);
           })
           .catch(() => {
-            console.warn('Put NO works');
+            questionHelpfulness -= 1;
           });
-        isHelpfulClicked = true;
+        // setIsHelpfulClicked(true);
         questionHelpfulness += 1;
       }
 
@@ -38,6 +38,7 @@ function Question(props) {
       <h3>
         | Helpful?
       </h3>
+      {/* <button type="button" onClick={() => setQuestionHelpfulness(questionHelpfulness)}> */}
       <button type="button" onClick={() => handleHelpfulness()}>
         Yes
         {' '}
