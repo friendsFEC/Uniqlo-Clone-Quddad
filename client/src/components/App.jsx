@@ -1,54 +1,61 @@
-import React, {useState, useEffect} from 'react'
-import QuestionsAndAnswers from './QuestionsAndAnswers.jsx';
-import RelatedAndComparison from './RelatedAndComparison.jsx';
-import Overview from './Overview.jsx';
-import ReviewsAndRatings from './ReviewsAndRatings.jsx';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
-import config from '../../../config.js';
+import QuestionsAndAnswers from './QuestionsAndAnswers';
+import RelatedAndComparison from './RelatedAndComparison';
+import Overview from './Overview';
+import ReviewsAndRatings from './ReviewsAndRatings';
+import config from '../../../config';
+import { logError } from './rr/utility';
 
 const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products';
 
-
-let ProductIdSlider = (props) => {
-  let [products, setProducts] = useState([]);
-  useEffect(() =>
-    axios.get(serverURL, {
-      headers: {
-        Authorization: config.API_KEY,
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+function ProductIdSlider({ setProductId }) {
+  const [products, setProducts] = useState([]);
+  useEffect(
+    () => axios.get(
+      serverURL,
+      {
+        headers: {
+          Authorization: config.API_KEY,
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        params: { count: 1000 },
       },
-      params: { count: 1000 }
-    })
-    .then(res => res.data)
-    .then(data => setProducts(data))
-    .catch(err => console.log('Error getting list of products on index.jsx:', err)),
-    []
+    )
+      .then((res) => res.data)
+      .then((data) => setProducts(data))
+      .catch((err) => logError('Error getting list of products on index.jsx:', err)),
+    [],
   );
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <select onChange={({target}) => props.setProductId(parseInt(target.value))}>
-        {products ? products.map((product, i) =>
-        <option key={i} value={product.id}>{product.name}</option>
-        ) : null}
+    <div style={{ textAlign: 'center' }}>
+      <select onChange={({ target }) => setProductId(Number(target.value))}>
+        {products ? products.map((product) => (
+          <option key={product.id} value={product.id}>{product.name}</option>
+        )) : null }
       </select>
     </div>
-  )
+  );
 }
 
-let App = (props) => {
-  let [productId, setProductId] = useState(65631);
+ProductIdSlider.propTypes = {
+  setProductId: PropTypes.func.isRequired,
+};
+
+function App() {
+  const [productId, setProductId] = useState(65631);
   return (
     <div>
-      {/* <ProductIdSlider      setProductId={setProductId} /> */}
-      <Overview             productId={productId}/>
-      <RelatedAndComparison productID={productId}/>
-      <QuestionsAndAnswers  productId={productId}/>
-      <ReviewsAndRatings    productId={productId} setProductId={setProductId}/>
+      <ProductIdSlider setProductId={setProductId} />
+      <Overview productId={productId} />
+      <RelatedAndComparison productID={productId} />
+      <QuestionsAndAnswers productId={productId} />
+      <ReviewsAndRatings productID={productId} />
     </div>
-  )
+  );
 }
 
 export default App;
-
