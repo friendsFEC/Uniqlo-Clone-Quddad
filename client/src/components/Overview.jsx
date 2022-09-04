@@ -102,7 +102,7 @@ function Overview({ productId }) {
               <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
             </div>
             <div>
-              <SizeAndQuantity style={styles[currStyle]} />
+              <SizeAndQuantity sizes={styles[currStyle].skus} />
             </div>
             <div>
               [add to card button]
