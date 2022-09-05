@@ -6,6 +6,10 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRatings} ) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [infoStorage, setInfoStorage] = useState([]);
+
+  // when press "add to your outfit", add the current info to added info
+  const addedInfo = [];
 
   const removeDiv = () => {
     const getDiv = document.getElementById("rc-yo-add-button-div")
@@ -16,25 +20,40 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
     }
   }
 
-  // for YO Card persisting:
-  // have a state that is an array of objects of currentInfos
-  // render out currentInfos each time
-
-
   return (
     <div>
       <h3 className = "rc-title"> Your Outfit</h3>
         <div className = "rc-yo-container">
         {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
+
+
           <div className = "rc-yo-card">
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
                 removeDiv();
+                addedInfo.push(currentInfo);
+                setInfoStorage(addedInfo);
               }}>Add to Your Outfit</button>
             </div>
             <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle} currentRating = {currentRating} relatedAverageRatings = {relatedAverageRatings} />
           </div>
+
+
+
+          {isOpen ?
+          <div className = "rc-yo-card">
+            <div id = "rc-yo-add-button-div">
+              <button className = "rc-yo-add-button" onClick = {() => {
+              }}>Add to Your Outfit</button>
+            </div>
+          </div> : null}
+
+
+
+
+
+
           {/* < GrFormNext className = "rc-rp-arrow"/> */}
         </div>
     </div>
