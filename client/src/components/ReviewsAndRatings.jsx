@@ -68,7 +68,7 @@ function ReviewsAndRatings(props) {
     const btnDiv = document.getElementById('rr-write-review-btn');
     const revList = document.getElementsByClassName('review-list')[0];
 
-    if (btn) {
+    if (btnDiv) {
       if ((revList.offsetTop - revList.offsetHeight) < window.scrollY) {
         btnDiv.classList.remove('float');
       }
