@@ -9,6 +9,7 @@ import AddToCart from './AddToCart.jsx';
 
 export default function SizeAndQuantity({ sizes }) {
   const [sizeId, setSizeId] = useState('noSize');
+  const [count, setCount] = useState(1);
   let quantity = 0;
 
   const changeSize = (option) => {
@@ -32,20 +33,20 @@ export default function SizeAndQuantity({ sizes }) {
     <div>
       <div>
         <select onChange={({ target }) => changeSize(target)}>
-          <option value="noSize" defaultValue>Select Size</option>
+          {sizeId === 'noSize' && <option value="noSize">Select Size</option>}
           {_.map(sizes, (property, id) => (
             property.size && <option key={id} value={id}>{property.size}</option>
           ))}
         </select>
         {/* -- end of size selector */}
-        <select>
+        <select onChange={({ target }) => setCount(target.value)}>
           {sizeId === 'noSize' ? <option>-</option> : _.range(1, quantity).map((num) => (
             <option key={num} value={num}>{num}</option>
           ))}
         </select>
         {/* --end of quantity selector */}
       </div>
-      <AddToCart/>
+      <AddToCart count={count} sizeId={sizeId} />
     </div>
   );
 }

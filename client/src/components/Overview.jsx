@@ -75,10 +75,10 @@ function Overview({ productId }) {
     Promise.all([reqProduct(), reqStyle(), reqReview()])
       .then((...responses) => {
         const productInfo = responses[0][0].data;
-        const styles = responses[0][1].data;
+        const stylesInfo = responses[0][1].data;
         const averageRating = responses[0][2].data;
         setProduct(productInfo);
-        setStyles(styles);
+        setStyles(stylesInfo);
         setRating(averageRating);
       })
       .catch((errors) => console.log(errors));
