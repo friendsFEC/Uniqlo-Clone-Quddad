@@ -65,8 +65,10 @@
 }
 
 .rr .sort-options {
-  padding: 1rem 1.4rem;
-  text-align: center;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  padding-left: 2rem;
+  /*text-align: center;*/
 }
 
 .rr .review-grid {
@@ -158,7 +160,17 @@
   transition-property: top left font-size;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
-  background-color: #ccc;
+  /*background-color: #ccc;*/
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 1rem 1rem;
+}
+#rr-write-review-btn.float button {
+  background-color: #000;
+  color: #fff;
+  font-size: 1.6rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .rr .write-review {
   overflow-y: scroll;
@@ -227,6 +239,7 @@
 .rr .rating-filter span {
   display: inline-block;
   width: auto;
+  padding-left: 0.5rem;
 }
 .rr .rating-filter .rating-bar {
   width: 70%;
@@ -330,13 +343,17 @@
 }
 .rr button {
 	cursor: pointer;
-  padding: 0.15rem 0.3rem;
+  padding: 0.7rem 1.5rem;
   font-size: 1rem;
-  background-color: #eee;
-  color: #333;
+  /*background-color: #eee;*/
+  background-color: #fff;
+  color: #000;
+  /*color: #333;*/
+  color: #000;
   font-weight: 400;
-  border: 1px solid #333;
-  border-radius: 0.2rem;
+  /*border: 1px solid #333;*/
+  border: 1px solid #000;
+  /*border-radius: 0.2rem;*/
   font-variant: small-caps;
   transition-property: box-shadow;
   transition-duration: 0.3s;
@@ -347,4 +364,5 @@
 }
 .rr button:hover {
   box-shadow: 1px 2px 4px #333;
+  b
 }

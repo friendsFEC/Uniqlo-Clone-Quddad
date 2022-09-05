@@ -34,7 +34,7 @@ export default function ReviewList({
         const btnDiv = document.getElementById('rr-write-review-btn');
         if (btnDiv) {
           btnDiv.classList.add('float');
-          btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight * 2;
+          btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight;
           btnDiv.style.left = target.offsetLeft;
           btnDiv.style.width = target.offsetWidth;
           if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
@@ -43,9 +43,9 @@ export default function ReviewList({
             btnDiv.style.width = '';
           } else if (target.scrollTop === 0) {
             btnDiv.classList.remove('float');
+          } else {
+            retrieveReviews();
           }
-        } else {
-          retrieveReviews();
         }
       }}
     >
@@ -80,7 +80,7 @@ export default function ReviewList({
           type="button"
           onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
         >
-          Add a review
+          Add a Review
         </button>
       </div>
     </div>

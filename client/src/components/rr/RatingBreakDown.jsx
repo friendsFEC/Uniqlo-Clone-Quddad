@@ -14,7 +14,7 @@ function PercentWidget({
       <div className="rating-bar">
         <div className="inner-bar" style={{ width: `${percent.toFixed(2)}%` }} />
       </div>
-      <span>{`(${count || 0})`}</span>
+      <span>{`${count || 0}`}</span>
     </div>
   );
 }
