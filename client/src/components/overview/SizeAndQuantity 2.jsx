@@ -17,3 +17,4 @@ export default function SizeAndQuantity({style}) {
     </div>
   );
 }
+Footer
