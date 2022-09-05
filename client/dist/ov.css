@@ -240,5 +240,13 @@
   color: black;
 }
 
+.ov-alert {
+  display: flex;
+  align-items: center;
+  background-color: #badbcc;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
 
 

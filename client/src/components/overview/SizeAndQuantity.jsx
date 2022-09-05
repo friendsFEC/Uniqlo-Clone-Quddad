@@ -9,7 +9,7 @@ import AddToCart from './AddToCart.jsx';
 
 export default function SizeAndQuantity({ sizes }) {
   const [sizeId, setSizeId] = useState('noSize');
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState('1');
   let quantity = 0;
 
   const changeSize = (option) => {
