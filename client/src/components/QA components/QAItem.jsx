@@ -19,7 +19,7 @@ function QAItem(props) {
         question_helpfulness={questionAnswer.question_helpfulness}
       />
       <h2>A:</h2>
-      <Answer topTwoAnswers={topTwoAnswers} />
+      {/* <Answer topTwoAnswers={topTwoAnswers} /> */}
       <Answer filteredAnswers={filteredAnswers} />
 
     </div>

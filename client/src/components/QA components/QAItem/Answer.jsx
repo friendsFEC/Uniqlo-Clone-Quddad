@@ -1,19 +1,16 @@
-import React from 'react';
-import dateFormat from 'dateFormat';
+import React, { useState } from 'react';
+import dateFormat from 'dateformat';
 
 function Answer(props) {
-  const { topTwoAnswers } = props;
+  // const { topTwoAnswers } = props;
   const { filteredAnswers } = props;
-  // console.log(props);
-
   const answers = filteredAnswers;
-  console.log(answers);
-
-  const topTwoItemRange = answers.length > 2 ? 2 : 0;
+  // console.log(answers);
+  const [maxRange, setMaxRange] = useState(answers.length > 2 ? 2 : answers.length)
   return (
     <div id="qa-QAItem-Answer">
       {
-        answers.slice(0, topTwoItemRange).map((answer) => {
+        answers.slice(0, maxRange).map((answer) => {
           if (!answer) {
             return;
           }
@@ -29,7 +26,7 @@ function Answer(props) {
           const formattedDate = dateFormat(date, 'dddd, mmmm dS, yyyy');
           return (
             <div key={id}>
-              <p>{body}</p>
+              <p>>{id} {body}</p>
               <p>
                 <small>
                   By
@@ -44,6 +41,7 @@ function Answer(props) {
           );
         })
       }
+      <h3 type='button' onClick={() => {setMaxRange(answers.length)}} >LOAD MORE ANSWERS</h3>
     </div>
   );
 }
