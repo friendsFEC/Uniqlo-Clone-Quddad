@@ -104,9 +104,6 @@ function Overview({ productId }) {
             <div>
               <SizeAndQuantity sizes={styles[currStyle].skus} />
             </div>
-            <div>
-              [add to card button]
-            </div>
           </div>
         </div>
         <div className="ov-descriptionBlock">

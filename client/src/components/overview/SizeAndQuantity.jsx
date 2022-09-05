@@ -1,13 +1,13 @@
-// currentstyle.skus > each key is sku id and each sku is an object
-// goes xs s m l xl xxl
-// 65632 has out of stuck > sku key will say 'null'
 import _ from 'underscore';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import AddToCart from './AddToCart.jsx';
+
+// becoming an exceptionally good software engineer $250000
 
 // sizes is an object of skus passed from Overview
 
-function SizeAndQuantity({ sizes }) {
+export default function SizeAndQuantity({ sizes }) {
   const [sizeId, setSizeId] = useState('noSize');
   let quantity = 0;
 
@@ -16,36 +16,41 @@ function SizeAndQuantity({ sizes }) {
     setSizeId(newId);
   };
 
-  if (sizeId !== 'noSize') {
+  // sets the number of quantity according to business requirements
+  if (sizeId !== 'noSize' && sizes[sizeId]) {
     quantity = sizes[sizeId].quantity > 15 ? 16 : sizes[sizeId].quantity + 1;
   } else {
     quantity = 0;
   }
 
-  // quantity is - if no size selected 1 if size selected
+  // renders out of stuck if selected style doesn't have sizes available
   if (sizes.null) {
     return <p>OUT OF STOCK</p>;
   }
 
   return (
     <div>
-      <select onChange={({ target }) => changeSize(target)}>
-        <option value="noSize">Select Size</option>
-        {_.map(sizes, (property, id) => (
-          <option value={id}>{property.size}</option>
-        ))}
-      </select>
-      <select>
-        {sizeId === 'noSize' ? <option>-</option> : _.range(1, quantity).map((num) => (
-          <option value={num}>{num}</option>
-        ))}
-      </select>
+      <div>
+        <select onChange={({ target }) => changeSize(target)}>
+          <option value="noSize" defaultValue>Select Size</option>
+          {_.map(sizes, (property, id) => (
+            property.size && <option key={id} value={id}>{property.size}</option>
+          ))}
+        </select>
+        {/* -- end of size selector */}
+        <select>
+          {sizeId === 'noSize' ? <option>-</option> : _.range(1, quantity).map((num) => (
+            <option key={num} value={num}>{num}</option>
+          ))}
+        </select>
+        {/* --end of quantity selector */}
+      </div>
+      <AddToCart/>
     </div>
   );
 }
 
+// Prop validation
 SizeAndQuantity.propTypes = {
   sizes: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
-
-export default SizeAndQuantity;
