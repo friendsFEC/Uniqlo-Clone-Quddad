@@ -4,73 +4,53 @@ import Filter from './Filter.jsx';
 
 const _V = require('../Utility/V.jsx');
 
-// function ListOfQA(props) {
-//   const [chosenProduct, setChosenProduct] = useState(props.chosenProduct);
-
-//   const searchQuestions = (event) => {
-//     let searchedQuestionsStr = event.target.value;
-//     searchedQuestionsStr = searchedQuestionsStr.length >= 3 ? searchedQuestionsStr : '';
-//     const { chosenProduct } = this.props;
-//     const newChosenProduct = filterQuestions(searchedQuestionsStr, chosenProduct);
-//     this.setState({
-//       chosenProduct: newChosenProduct,
-//     });
-//   };
-
-//   const filterQuestions = (searchedStr, questions) => {
-//     searchedStr = searchedStr || '';
-//     // if (searchedStr.length < 3) {
-//     //   return;
-//     // }
-//     let results = [];
-//     const regExpConst = new RegExp(`${searchedStr}`, 'gi');
-//     results = questions.filter((question) => {
-//       const questionBody = question.question_body;
-//       return questionBody.match(regExpConst) !== null;
-//     });
-//     return results;
-//   };
-
-//   // filter out the questions that are NOT helpful
-//   const filteredQuestions = chosenProduct.filter((question) => question.question_helpfulness > 0);
-
-//   // display the first 4 questions
-//   const [maxRange, setMaxRange] = useState(filteredQuestions.length > 4 ?
-//     4 : filteredQuestions.length);
-//   const topFourQuestions = _V.topXItems(4, filteredQuestions);
-
-//   return (
-//     <div id="qa-ListOfQA">
-
-//       <Filter searchQuestions={this.searchQuestions} />
-//       {/*
-//     1. display questions
-//     2. display answers */}
-//       {topFourQuestions.map((item) => <QAItem key={item.question_id} questionAnswer={item} />)}
-//     </div>
-//   );
-// }
-
 class ListOfQA extends React.Component {
   constructor(props) {
     super(props);
+    const { chosenProduct } = this.props;
+    const filteredQuestions = chosenProduct
+      .filter((question) => question.question_helpfulness > 0);
+
+    const currentMaxRange = filteredQuestions.length > 2
+      ? 2 : filteredQuestions.length;
     this.state = {
-      chosenProduct: {},
-      maxRange: 0,
+      chosenProduct: filteredQuestions,
+      maxRange: currentMaxRange,
+      buttonText: 'More Answered Questions',
     };
 
     this.searchQuestions = this.searchQuestions.bind(this);
     this.filterQuestions = this.filterQuestions.bind(this);
-    this.setMaxRange = this.setMaxRange(this);
+    this.setMaxRange = this.setMaxRange.bind(this);
+    this.questionComponentUpdate = this.questionComponentUpdate.bind(this);
   }
 
   setMaxRange(number) {
-    if(!number) {
-      return;
+    // if (!number) {
+    //   return;
+    // }
+    // this.setState({
+    //   maxRange: number,
+    // });
+  }
+
+  // Clicking the button will cause up to 2 additional questions to
+  // appear. The list should expand, and the questions should show in
+  // order below the previously loaded questions.
+  questionComponentUpdate() {
+    const { buttonText } = this.state;
+    const { chosenProduct } = this.state;
+    if (buttonText === 'More Answered Questions') {
+      this.setState({
+        maxRange: chosenProduct.length > 4 ? 4 : chosenProduct.length,
+        buttonText: 'COLLAPSE QUESTIONS',
+      });
+    } else if (buttonText === 'COLLAPSE QUESTIONS') {
+      this.setState({
+        maxRange: chosenProduct.length > 2 ? 2 : chosenProduct.length,
+        buttonText: 'More Answered Questions',
+      });
     }
-    this.setState({
-      maxRange: number,
-    });
   }
 
   searchQuestions(event) {
@@ -98,19 +78,10 @@ class ListOfQA extends React.Component {
   }
 
   render() {
-    // filter out the questions that are NOT helpful
-    const filteredQuestions = this.state.chosenProduct.filter((question) =>
-      question.question_helpfulness > 0);
+    const { chosenProduct } = this.state;
+    const { maxRange } = this.state;
+    const { buttonText } = this.state;
 
-    // display the first 4 questions
-    // const [maxRange, setMaxRange] = useState(filteredQuestions.length > 4
-    //   ? 4 : filteredQuestions.length);
-    this.setMaxRange(filteredQuestions.length > 4
-      ? 4 : filteredQuestions.length);
-    // const topFourQuestions = _V.topXItems(4, filteredQuestions);
-    const { maxRange } = this.props;
-
-    // rendering DOM
     return (
       <div id="qa-ListOfQA">
 
@@ -120,8 +91,20 @@ class ListOfQA extends React.Component {
       2. display answers */}
         {/* {topFourQuestions.map((item) =>
           <QAItem key={item.question_id} questionAnswer={item} />)} */}
-        {filteredQuestions.slice(0, maxRange).map((item) =>
-          <QAItem key={item.question_id} questionAnswer={item} />)}
+        {chosenProduct.slice(0, maxRange).map((item) => <QAItem key={item.question_id} questionAnswer={item} />)}
+
+        {chosenProduct.length > 2
+          ? (
+            <h2
+              type="button"
+              onClick={() => {
+                this.questionComponentUpdate();
+              }}
+            >
+              {buttonText}
+            </h2>
+          )
+          : <h2 />}
       </div>
     );
   }
