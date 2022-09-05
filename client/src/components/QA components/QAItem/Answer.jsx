@@ -7,6 +7,21 @@ function Answer(props) {
   const answers = filteredAnswers;
   // console.log(answers);
   const [maxRange, setMaxRange] = useState(answers.length > 2 ? 2 : answers.length)
+  const [buttonText, setButtonText] = useState('LOAD MORE ANSWERS');
+
+  let answerComponentUpdate = () => {
+    // expand the answer list
+    // change 'LOAD MORE ANSWERS' to 'COLLAPSE ANSWERS'
+    if(buttonText === 'LOAD MORE ANSWERS') {
+      console.log(buttonText);
+      setMaxRange(answers.length);
+      setButtonText('COLLAPSE ANSWERS');
+    } else if (buttonText === 'COLLAPSE ANSWERS') {
+      setMaxRange(answers.length > 2 ? 2 : answers.length );
+      setButtonText('LOAD MORE ANSWERS');
+    }
+  }
+
   return (
     <div id="qa-QAItem-Answer">
       {
@@ -41,7 +56,12 @@ function Answer(props) {
           );
         })
       }
-      <h3 type='button' onClick={() => {setMaxRange(answers.length)}} >LOAD MORE ANSWERS</h3>
+
+      {answers.length > 2 ?
+        <h3 type='button' onClick={() => {answerComponentUpdate()}} >{buttonText}</h3>
+        :
+        <h3></h3>
+      }
     </div>
   );
 }

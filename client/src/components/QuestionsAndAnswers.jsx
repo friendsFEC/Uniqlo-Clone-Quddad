@@ -1,27 +1,17 @@
 import React from 'react';
-import axios from 'axios';
-import Filter from './QA components/Filter.jsx';
 import ListOfQA from './QA components/ListOfQA.jsx';
 import QAEntry from './QA components/QAEntry.jsx';
-import example from './QA components/example.jsx';
-import config from '../../../config.js'
+// import example from './QA components/example.jsx';
+
+const _V = require('./Utility/V.jsx');
 
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions';
-const Axios = axios.create({
-  baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/',
-  headers: {
-    Authorization: config.API_KEY,
-  },
-});
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   product: example.results,
-    //   product_id: '65632',
-    // };
+
     this.state = {
       product: [],
       product_id: '65632',
@@ -39,7 +29,7 @@ class QuestionsAndAnswers extends React.Component {
     const getProductURL = baseURL + chosenProductId;
     // get the product
 
-    Axios.get(getProductURL, {
+    _V.Axios.get(getProductURL, {
       transformResponse: [(data) => {
         const parsedData = JSON.parse(data) || null;
         this.updateData(parsedData);
