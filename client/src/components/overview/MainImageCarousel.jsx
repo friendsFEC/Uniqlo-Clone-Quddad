@@ -71,7 +71,8 @@ export default function MainImageCarousel({ photosData, dispatch, selected }) {
               <img
                 alt=""
                 className="ov-thumbnail--image"
-                src={photo.thumbnail_url}/>
+                src={photo.thumbnail_url}
+              />
             </div>
           ))}
         </div>

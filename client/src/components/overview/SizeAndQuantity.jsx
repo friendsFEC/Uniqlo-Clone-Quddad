@@ -1,9 +1,7 @@
 import _ from 'underscore';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AddToCart from './AddToCart.jsx';
-
-// becoming an exceptionally good software engineer $250000
+import AddToCart from './AddToCart';
 
 // sizes is an object of skus passed from Overview
 

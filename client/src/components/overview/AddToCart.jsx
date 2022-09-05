@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from 'axios';
-import Alert from './Alert.jsx';
+import Alert from './Alert';
 import config from '../../../../config';
 
 export default function AddToCart({ sizeId, count }) {
@@ -13,9 +13,6 @@ export default function AddToCart({ sizeId, count }) {
       Authorization: config.API_KEY,
     },
   });
-
-  // Axios.post('/cart', { sku_id: sizeId })
-  // function req() { return Axios.post('/cart', { sku_id: sizeId }); }
 
   const handleClick = () => {
     const promises = [];

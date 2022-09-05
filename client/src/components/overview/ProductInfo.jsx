@@ -1,11 +1,11 @@
 import React from 'react';
-import StarRating from './StarRating.jsx';
+import StarRating from './StarRating';
 
 export default function ProductInfo({ product, rating }) {
   return (
     <div>
       <div className="ov-infoBox_reviewbox">
-        <StarRating rating={rating}/>
+        <StarRating rating={rating} />
       </div>
       <div className="ov-title">
         <p className="ov-title ov-title--Category">{product.category}</p>

@@ -1,6 +1,6 @@
 import React, { useReducer, useRef } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import MainImageCarousel from './MainImageCarousel.jsx';
+import MainImageCarousel from './MainImageCarousel';
 
 export default function ProductImage({ photosData, extended, toggleView }) {
   const { length } = photosData;

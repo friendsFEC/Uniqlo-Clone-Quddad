@@ -32,7 +32,15 @@ export default function StarRating({ rating }) {
           </div>
         );
       })}
-      <span className="ov-title--reviews"onClick={scrollToReviews}>Read All Reviews</span>
+      <span
+        className="ov-title--reviews"
+        onClick={scrollToReviews}
+        tabIndex="0"
+        onKeyPress={scrollToReviews}
+        role="button"
+      >
+        Read All Reviews
+      </span>
     </div>
   );
 }

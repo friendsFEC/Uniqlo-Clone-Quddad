@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductImage from './overview/ProductImage.jsx';
-import ProductInfo from './overview/ProductInfo.jsx';
-import PriceTag from './overview/PriceTag.jsx';
-import SizeAndQuantity from './overview/SizeAndQuantity.jsx';
-import config from '../../../config.js';
-import StyleGrid from './overview/StyleGrid.jsx';
+import ProductImage from './overview/ProductImage';
+import ProductInfo from './overview/ProductInfo';
+import PriceTag from './overview/PriceTag';
+import SizeAndQuantity from './overview/SizeAndQuantity';
+import config from '../../../config';
+import StyleGrid from './overview/StyleGrid';
 
-function Overview({ productId }) {
+export default function Overview({ productId }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
@@ -115,5 +115,3 @@ function Overview({ productId }) {
   }
   return <div className="ov-imageBox">LOADING...</div>;
 }
-
-export default Overview;
