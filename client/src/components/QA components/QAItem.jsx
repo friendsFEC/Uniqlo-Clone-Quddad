@@ -20,6 +20,8 @@ function QAItem(props) {
       />
       <h2>A:</h2>
       <Answer topTwoAnswers={topTwoAnswers} />
+      <Answer filteredAnswers={filteredAnswers} />
+
     </div>
   );
 }

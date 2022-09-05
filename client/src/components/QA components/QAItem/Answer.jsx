@@ -3,11 +3,17 @@ import dateFormat from 'dateFormat';
 
 function Answer(props) {
   const { topTwoAnswers } = props;
-  const answers = topTwoAnswers;
+  const { filteredAnswers } = props;
+  // console.log(props);
+
+  const answers = filteredAnswers;
+  console.log(answers);
+
+  const topTwoItemRange = answers.length > 2 ? 2 : 0;
   return (
     <div id="qa-QAItem-Answer">
       {
-        answers.map((answer) => {
+        answers.slice(0, topTwoItemRange).map((answer) => {
           if (!answer) {
             return;
           }
@@ -17,7 +23,9 @@ function Answer(props) {
           // date (string)
           // helpfulness (number)
           //
-          const { id, body, answerer_name, date } = answer;
+          const {
+            id, body, answerer_name, date,
+          } = answer;
           const formattedDate = dateFormat(date, 'dddd, mmmm dS, yyyy');
           return (
             <div key={id}>
