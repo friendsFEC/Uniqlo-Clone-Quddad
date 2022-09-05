@@ -12,7 +12,7 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
   const addedInfo = [];
 
   const removeDiv = () => {
-    const getDiv = document.getElementById("rc-yo-add-button-div")
+    const getDiv = document.getElementsByClassName("rc-yo-card")
     if (getDiv.style.display === "none") {
       getDiv.style.display = "block";
     } else {
@@ -45,7 +45,7 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
           <div className = "rc-yo-card">
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
-              }}>Add to Your Outfit</button>
+              alert("Error: This product is already apart of Your Outfit!")}}>Add to Your Outfit</button>
             </div>
           </div> : null}
 

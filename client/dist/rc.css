@@ -86,6 +86,10 @@
   display: flex;
 }
 
+/* .rc-modal-product-name{
+  position: relative;
+} */
+
 .rc-modal-style table, th, td {
   border: 0.1px solid;
   padding: 7px;

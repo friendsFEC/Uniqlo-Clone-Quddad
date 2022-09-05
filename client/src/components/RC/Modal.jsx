@@ -13,9 +13,9 @@ const Modal = ({ open, onClose, selectedProductID, productID, product, currentIn
             <th colSpan="3" className = "rc-modal-title">Comparing:</th>
           </tr>
           <tr>
-            <th>{currentInfo.name}</th>
+            <th className = "rc-modal-product-name">{currentInfo.name}</th>
             <th>Details:</th>
-            <th>{product.name}</th>
+            <th className = "rc-modal-product-name">{product.name}</th>
           </tr>
         </thead>
         <tbody>
