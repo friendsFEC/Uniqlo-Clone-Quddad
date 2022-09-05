@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import React from 'react';
 import dateFormat from 'dateformat';
 
 function Answer(props) {

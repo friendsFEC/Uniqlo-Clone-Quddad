@@ -6,13 +6,21 @@ import { debounce, logError } from './utility';
 export default function ReviewList({
   productID, reviews, total, more, count, sort, getReviews, setReviews,
   search, searchFilter, ratingFilter, helpful, setHelpful,
-  helpfulReviews, reportReview,
+  helpfulReviews, reportReview, setMore
 }) {
   /* initial rendering and changes to product id */
   // infinite scroll, not working correctly
   let retrieveReviews = () => {
     if (more) {
       getReviews(productID, (reviews.length / count) + 1, count, sort)
+        .then((data) => {
+          if (data.results.length === 0) {
+            setMore(false);
+          } else {
+            setMore(true);
+          }
+          return data;
+        })
         .then((data) => setReviews(reviews.concat(data.results)))
         .catch((err) => logError('Error retrieving reviews from infinite scroll', err));
     }
@@ -23,17 +31,21 @@ export default function ReviewList({
     <div
       className="review-list"
       onScroll={({ target }) => {
-        const btn = document.getElementById('rr-write-review-btn');
-        btn.classList.add('float');
-        btn.style.top = window.innerHeight - btn.offsetHeight * 2;
-        btn.style.left = target.offsetLeft;
-        btn.style.width = target.offsetWidth;
-        if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
-          retrieveReviews();
-          btn.classList.remove('float');
-          btn.style.width = '';
-        } else if (target.scrollTop === 0) {
-          btn.classList.remove('float');
+        const btnDiv = document.getElementById('rr-write-review-btn');
+        if (btnDiv) {
+          btnDiv.classList.add('float');
+          btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight;
+          btnDiv.style.left = target.offsetLeft;
+          btnDiv.style.width = target.offsetWidth;
+          if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
+            retrieveReviews();
+            btnDiv.classList.remove('float');
+            btnDiv.style.width = '';
+          } else if (target.scrollTop === 0) {
+            btnDiv.classList.remove('float');
+          } else {
+            retrieveReviews();
+          }
         }
       }}
     >
@@ -68,7 +80,7 @@ export default function ReviewList({
           type="button"
           onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
         >
-          Add a review
+          Add a Review
         </button>
       </div>
     </div>
@@ -112,4 +124,5 @@ ReviewList.propTypes = {
   setHelpful: PropTypes.func.isRequired,
   helpfulReviews: PropTypes.node.isRequired,
   reportReview: PropTypes.func.isRequired,
+  setMore: PropTypes.func.isRequired,
 };

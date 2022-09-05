@@ -10,12 +10,11 @@ function PercentWidget({
       className={ratingFilter.includes(stars) ? 'rating-filter selected' : 'rating-filter'}
       onClick={() => toggleFilter(stars)}
     >
-      {stars}
-      stars
+      <span>{`${stars} stars`}</span>
       <div className="rating-bar">
         <div className="inner-bar" style={{ width: `${percent.toFixed(2)}%` }} />
       </div>
-      {`(${count})`}
+      <span>{`${count || 0}`}</span>
     </div>
   );
 }
@@ -26,8 +25,11 @@ PercentWidget.propTypes = {
   ).isRequired,
   stars: PropTypes.number.isRequired,
   percent: PropTypes.number.isRequired,
-  count: PropTypes.string.isRequired,
   toggleFilter: PropTypes.func.isRequired,
+};
+
+PercentWidget.defaultProps = {
+  count: 0,
 };
 
 function RatingBreakDown({
