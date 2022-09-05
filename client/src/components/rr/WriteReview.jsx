@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { submitReview } from './api';
 import StarRating from './StarRating';
+import config from '../../../../config';
+import { postImage } from './api';
+import { debounce } from './utility';
+
+// https://api.cloudinary.com/v1_1/${cloudName}/upload
 
 function WriteReview({ characteristics, productID }) {
   const charData = {
@@ -59,6 +64,7 @@ function WriteReview({ characteristics, productID }) {
   const [fixes, setFixes] = useState([]);
   const [overallRating, setOverallRating] = useState(0);
 	const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  let imageUploads = [];
   const parseForm = () => {
     const review = {};
     const reviewItems = [
@@ -75,11 +81,12 @@ function WriteReview({ characteristics, productID }) {
 			if (targets.length) {
 				targets.forEach(radioBtn => {
 					if (radioBtn.checked) {
-						review.characteristics[key] = radioBtn.value;
+						review.characteristics[characteristics[key].id] = Number(radioBtn.value);
 					}
 				});
 			}
     });
+    review.recommend = JSON.parse(review.recommend);
     // validate the data
 		const validateData = () => {
 			let makeChanges = [];
@@ -89,7 +96,7 @@ function WriteReview({ characteristics, productID }) {
 			// review.recommend defaults to true
 			keys.forEach((key) => {
 				if (Object.hasOwn(characteristics, key)) {
-					if (review.characteristics[key] === undefined) {
+					if (review.characteristics[characteristics[key].id] === undefined) {
 						makeChanges.push(`Choose a value for the ${key} characteristic!`);
 					}
 				}
@@ -103,13 +110,25 @@ function WriteReview({ characteristics, productID }) {
 			}
       // validate photos are proper format
       const inputs = Array.from(document.getElementsByClassName('photo-upload'));
-      const uploads = inputs.map((input) => input.files[0] ).filter((file) => file !== undefined);
-      console.log(uploads);
+      imageUploads = inputs.map((input) => input.files[0] ).filter((file) => file !== undefined);
 			return makeChanges;
 		}
 		setFixes(validateData())
-		console.log(review);
+    if (fixes.length === 0) {
+      Promise.all(imageUploads.map((img) => postImage(img)))
+        .then((resArray) => resArray.map((res) => res.data.url))
+        .then((photoURLs) => {
+          review.photos = photoURLs;
+        }).then(() => submitReview(review))
+          .then((res) => {
+            document.getElementsByClassName('write-review')[0].classList.toggle('hidden');
+            let btn = document.getElementById('rr-write-review-btn');
+            btn.parentElement.removeChild(btn);
+          })
+          .catch((err) => console.log(err));
+    }
   };
+
   return (
     <div className="hidden write-review">
       <div
@@ -137,7 +156,7 @@ function WriteReview({ characteristics, productID }) {
       >
           <p>
             <StarRating rating={overallRating} />
-            {`${overallRating}: ${ratingMap[overallRating]}`}
+            {overallRating !== 0 ? `${overallRating}: ${ratingMap[overallRating]}` : null}
           </p>
       </div>
       <h2>Do you recommend this product? (mandatory)</h2>
@@ -146,7 +165,7 @@ function WriteReview({ characteristics, productID }) {
           type="radio"
           defaultChecked
           name="rr-review-recommend"
-          value="true"
+          value={true}
         />
         Yes
       </p>
@@ -215,7 +234,7 @@ function WriteReview({ characteristics, productID }) {
         <div>
           <h2>Please fix the following before submitting!</h2>
           <ul>
-            {fixes.map((fix) => <li>{fix}</li>)}
+            {fixes.map((fix, i) => <li key={i}>{fix}</li>)}
           </ul>
         </div>
       ) : null }

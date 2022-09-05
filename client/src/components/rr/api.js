@@ -3,6 +3,19 @@ import config from '../../../../config';
 import { logError } from './utility';
 
 const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/reviews';
+const imageServerURL = `https://api.cloudinary.com/v1_1/${config.CLOUD_NAME}/image/upload`;
+
+export const postImage = (file) => {
+  let formData = new FormData();
+  formData.append('upload_preset', config.UPLOAD_PRESET);
+  formData.append('file', file);
+  formData.append('api_key', config.CLOUDINARY_API_KEY);
+  return axios({
+    method: 'post',
+    url: imageServerURL,
+    data: formData,
+  })
+};
 
 export const getReviewsMeta = (productID) => (
   axios.get(`${serverURL}/meta`, {
@@ -62,11 +75,13 @@ export const markHelpful = (reviewID) => axios.put(
   .then((res) => res)
   .catch((err) => logError('Error marking review as helpful:', err));
 export const submitReview = (data) => (
-  axios.post(serverURL, 
-    {
+  axios({
+      url: serverURL, 
+      method: 'post',
       headers: {
         Authorization: config.API_KEY,
         'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
       },
       data: data,
     },

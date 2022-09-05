@@ -32,16 +32,20 @@ export default function ReviewList({
       className="review-list"
       onScroll={({ target }) => {
         const btnDiv = document.getElementById('rr-write-review-btn');
-        btnDiv.classList.add('float');
-        btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight * 2;
-        btnDiv.style.left = target.offsetLeft;
-        btnDiv.style.width = target.offsetWidth;
-        if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
+        if (btnDiv) {
+          btnDiv.classList.add('float');
+          btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight * 2;
+          btnDiv.style.left = target.offsetLeft;
+          btnDiv.style.width = target.offsetWidth;
+          if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
+            retrieveReviews();
+            btnDiv.classList.remove('float');
+            btnDiv.style.width = '';
+          } else if (target.scrollTop === 0) {
+            btnDiv.classList.remove('float');
+          }
+        } else {
           retrieveReviews();
-          btnDiv.classList.remove('float');
-          btnDiv.style.width = '';
-        } else if (target.scrollTop === 0) {
-          btnDiv.classList.remove('float');
         }
       }}
     >
