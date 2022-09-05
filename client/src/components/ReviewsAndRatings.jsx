@@ -64,6 +64,16 @@ function ReviewsAndRatings(props) {
   };
 
   window.addEventListener('resize', positionArrowWidgets);
+  window.addEventListener('scroll', () => {
+    const btnDiv = document.getElementById('rr-write-review-btn');
+    const revList = document.getElementsByClassName('review-list')[0];
+
+    if (btnDiv) {
+      if ((revList.offsetTop - revList.offsetHeight) < window.scrollY) {
+        btnDiv.classList.remove('float');
+      }
+    }
+  });
 
   /* render once product id changes */
   useEffect(() => {
@@ -100,18 +110,13 @@ function ReviewsAndRatings(props) {
   /* render when sort changes */
   useEffect(() => {
     getReviews(productID, 1, reviews.length || 2, sort).then((data) => {
-      if (data.results.length === 0) {
-        setMore(false);
-      } else {
-        setMore(true);
-      }
       setReviews(data.results);
     });
-  }, [sort, productID, reviews.length]);
+  }, [sort, productID]);
 
   return (
     <div className="rr" id="rr">
-      <h1>Ratings & Reviews Section</h1>
+      <h1>Ratings & Reviews</h1>
       <div className="review-grid">
         <SortOptions
           setSort={setSort}
@@ -133,6 +138,7 @@ function ReviewsAndRatings(props) {
         />
         <ReviewList
           more={more}
+          setMore={setMore}
           search={search}
           reviews={reviews}
           searchFilter={searchFilter}
@@ -148,7 +154,10 @@ function ReviewsAndRatings(props) {
           total={total}
           reportReview={reportReview}
         />
-        <WriteReview characteristics={meta} />
+        <WriteReview
+          characteristics={meta.characteristics}
+          productID={productID}
+        />
       </div>
     </div>
   );

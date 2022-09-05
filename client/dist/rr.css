@@ -1,30 +1,108 @@
 /* Ratings & Reviews CSS file */
 
+/* RESET */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+.rr div, .rr span, .rr h1, .rr h2, .rr h3,
+.rr h4, .rr h5, .rr h6, .rr p, .rr blockquote, .rr pre,
+.rr a, .rr abbr, .rr acronym, .rr address, .rr cite, .rr code,
+.rr del, .rr dfn, .rr em, .rr img, .rr ins, .rr kbd, .rr q, .rr s, .rr samp,
+.rr small, .rr strike, .rr strong, .rr sub, .rr sup, .rr tt, .rr var,
+.rr b, .rr u, .rr i, .rr center,
+.rr dl, .rr dt, .rr dd, .rr ol, .rr ul, .rr li,
+.rr fieldset, .rr form, .rr label, .rr legend,
+.rr table, .rr caption, .rr tbody, .rr tfoot, .rr thead, .rr tr, .rr th, .rr td,
+.rr article, .rr aside, .rr canvas, .rr details, .rr embed, 
+.rr figure, .rr figcaption, .rr footer, .rr header, .rr hgroup, 
+.rr menu, .rr nav, .rr output, .rr ruby, .rr section, .rr summary,
+.rr time, .rr mark, .rr audio, .rr video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+.rr ol, .rr ul {
+	list-style: none;
+}
+.rr blockquote, .rr q {
+	quotes: none;
+}
+.rr blockquote:before, .rr blockquote:after,
+.rr q:before, .rr q:after {
+  content: none;
+  content: none;
+}
+.rr table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* end reset */
+
+/* begin custom CSS */
+
+/* General styling */
+
 .rr {
+	line-height: 1;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
-  /*font-family: 'Helvetica Neue';*/
   font-family: 'Helvetica Neue', 'Arial', 'Liberation Sans';
 }
+
+/* Grid and General Padding */
+
+.rr .review-tile,
+.rr .product-breakdown,
+.rr .rating-breakdown {
+  padding: 2rem 2rem;
+}
+
+.rr .sort-options {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  padding-left: 2rem;
+  /*text-align: center;*/
+}
+
 .rr .review-grid {
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /*grid-template-columns: 1fr 1fr 1fr 1fr;*/
 }
 .rr .review-list {
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   grid-column: 2/5;
   grid-row: 2/6;
   overflow-y: scroll;
   height: 40rem;
 }
 .rr .review-tile {
-  border: solid 1px black;
+  /*border: solid 1px black;*/
+  border-bottom: solid 1px #000;
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.5s;
   transition-timing-function: ease-in;
+}
+.rr .review-tile blockquote,
+.rr .review-tile p {
+  padding-bottom: 1.4rem;
+}
+.rr .review-tile p button {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: none;
+  font-variant: normal;
+  text-decoration: underline;
+  box-shadow: none;
 }
 .rr .review-tile .star-rating {
   width: 20%;
@@ -33,17 +111,19 @@
   text-align: right;
   display: inline-block;
   width: 100%;
+  padding-bottom: 0.7rem;
 }
 .rr .review-thumbnail img {
   width: 8rem;
   height: 6rem;
   display: inline;
+  padding-bottom: 1.4rem;
 }
 .rr .review-thumbnail,
 .rr .review-thumbnail div {
   display: inline;
 }
-.rr .review-thumbnail div,
+/*.rr .review-thumbnail div,*/
 .rr .image-modal div {
   background-color: #ccc;
 }
@@ -65,14 +145,16 @@
 }
 .rr .image-modal img {
   width: auto;
-  height: 100%;
-  margin: auto;
+  height: 90%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   vertical-align: middle;
 
 }
 .rr img.checkmark {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  padding-right: 0.7rem;
   vertical-align: middle;
 }
 .rr img.star {
@@ -83,28 +165,42 @@
   background: #ccc;
 }
 #rr-write-review-btn {
-  top: 1080;
-  /*left: 0;*/
   display: inline-block;
-  /*box-sizing: content-box;*/
-  width: 80%;
+  top: 1080;
+  left: 100;
+  /*width: 80%;*/
 }
 #rr-write-review-btn.float {
   position: fixed;
   text-align: center;
   font-size: 1.05rem;
-  transition-property: top font-size;
+  transition-property: top left font-size;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
-  background-color: #ccc;
+  /*background-color: #ccc;*/
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 1rem 1rem;
+}
+#rr-write-review-btn.float button {
+  background-color: #000;
+  color: #fff;
+  font-size: 1.6rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 .rr .write-review {
   overflow-y: scroll;
+  background-image: radial-gradient(#eee, #ccc);
 }
 .rr .write-review .close {
   text-align: right;
   /*display: inline-block;*/
   width: auto;
+}
+.rr .write-review .star {
+  width: 3rem;
+  height: 3rem;
 }
 .rr .sort-options select {
   border: none;
@@ -114,12 +210,12 @@
   font-size: 1rem;
 }
 .rr .sort-options {
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   grid-column: 2/5;
   grid-row: 1;
 }
 .rr .rating-breakdown {
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   grid-column: 1/2;
   grid-row: 1/4;
 }
@@ -129,18 +225,38 @@
   left: 5%;
   width: 90%;
   height: 90%;
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   background-color: white;
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.15s;
   transition-timing-function: ease-in;
 }
+.rr .rating-filter:first-of-type {
+  margin-top: 0.7rem;
+}
+.rr .rating-filter {
+  margin-bottom: 0.7rem;
+}
 .rr .rating-filter:hover {
+	cursor: pointer;
   background-color: #57e389;
   transition-property: background-color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
+}
+.rr .rating-breakdown,
+.rr .product-breakdown {
+  min-width: 16rem;
+  max-width: 24rem;
+  transition-property: min-width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
+.rr .rating-filter span {
+  display: inline-block;
+  width: auto;
+  padding-left: 0.5rem;
 }
 .rr .rating-filter .rating-bar {
   width: 70%;
@@ -158,12 +274,11 @@
   background-color: #57e389;
 }
 .rr .product-breakdown {
-  border: solid 1px black;
+  /*border: solid 1px black;*/
   grid-column: 1/2;
   grid-row: 4/6;
 }
 .rr .product-breakdown .characteristics-bar {
-  width: 80%;
   background-color: #deddda;
   height: 0.5rem;
   vertical-align: middle;
@@ -176,14 +291,19 @@
   width: 2rem;
   vertical-align: middle;
 }
-.rr .product-breakdown .characteristics {
+.rr .characteristics:first-of-type {
+  margin-top: 0.7rem;
+}
+.rr .characteristics {
   font-size: 0.9rem;
   font-weight: bold;
+  margin-bottom: 0.7rem;
 }
-.rr .product-breakdown .characteristics-description {
-  width: 80%;
+.rr .characteristics span {
+  line-height: 1.4rem;
 }
-.rr .product-breakdown .characteristics-description p {
+.rr .characteristics-description p {
+  margin-top: 0.4rem;
   display:inline-block;
   width: 33%;
   /*font-style: 'italic';*/
@@ -206,7 +326,37 @@
   border: dotted 2px red;
 }
 
-/* hide elements */
+/* Typography */
+.rr h1, .rr h2, .rr h3, .rr h4, .rr h5, .rr h6,
+.rr p, .rr button, .rr li, .rr table {
+  color: #000;
+}
+.rr p {
+  line-height: 1.4rem;
+}
+.rr h1 {
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 5rem;
+}
+.rr h2 {
+  font-weight: bold;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+}
+.rr h3 {
+  font-weight: bold;
+  font-size: 1.4rem;
+  padding-bottom: 0.7rem;
+}
+.rr sup {
+  font-size: 0.75rem;
+  vertical-align: baseline;
+  top: -0.5rem;
+  position: relative;
+}
+
+/* State Specific Styles */
 .rr .hidden {
   position: fixed;
   z-index: -100;
@@ -214,17 +364,27 @@
   opacity: 0;
 }
 .rr button {
-  padding: 0.15rem 0.3rem;
+	cursor: pointer;
+  padding: 0.7rem 1.5rem;
   font-size: 1rem;
-  background-color: white;
-  border: 1px solid #333;
-  border-radius: 0.2rem;
+  /*background-color: #eee;*/
+  background-color: #fff;
+  color: #000;
+  /*color: #333;*/
+  color: #000;
+  font-weight: 400;
+  /*border: 1px solid #333;*/
+  border: 1px solid #000;
+  /*border-radius: 0.2rem;*/
   font-variant: small-caps;
+  transition-property: box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }
 .rr .highlight {
   background-color: red;
 }
 .rr button:hover {
-  color: #1c71d8;
-  background-color: #deddda;
+  box-shadow: 1px 2px 4px #333;
+  b
 }
