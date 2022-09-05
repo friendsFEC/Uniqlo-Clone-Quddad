@@ -3,7 +3,6 @@ import React from 'react';
 
 const Modal = ({ open, onClose, selectedProductID, productID, product, currentInfo}) => {
   if (!open) return null;
-  const notApplicable = "Not Applicable";
 
   // const allFeatures = [];
   // allFeatures.push(currentInfo.features);
@@ -18,6 +17,7 @@ const Modal = ({ open, onClose, selectedProductID, productID, product, currentIn
   //   console.log(item, 'ITEM')
   //   console.log(item.feature, 'ITEM[FEATURE]')
   // })
+
 
 
   if (selectedProductID === product.id) {
@@ -36,18 +36,35 @@ const Modal = ({ open, onClose, selectedProductID, productID, product, currentIn
         </thead>
         <tbody>
           {currentInfo.features.map((feature, index) => {
+            if (product.features[index] && product.features[index].feature === feature.feature) {
+              return <tr key = {index}>
+                <td>{feature.value || 'N/A'}</td>
+                <td>{feature.feature}</td>
+                <td>{product.features[index].value || 'N/A'}</td>
+              </tr>
+            } else {
             return <tr key = {index}>
-              <td>{feature.value || notApplicable}</td>
-              <td>{feature.feature}</td>
-              <td>{notApplicable}</td>
+            <td>{feature.value || 'N/A'}</td>
+            <td>{feature.feature}</td>
+            <td>{'N/A'}</td>
             </tr>
+            }
           })}
           {product.features.map((feature, index) => {
+            if (currentInfo.features[index] && currentInfo.features[index].feature === feature.feature) {
+              // return <tr key = {index}>
+              //   <td>{currentInfo.features[index].value || 'N/A'}</td>
+              //   <td>{feature.feature}</td>
+              //   <td>{feature.value || 'N/A'}</td>
+              // </tr>
+              return null
+            } else {
             return <tr key = {index}>
-              <td>{notApplicable}</td>
+              <td>{'N/A'}</td>
               <td>{feature.feature}</td>
-              <td>{feature.value || notApplicable}</td>
+              <td>{feature.value || 'N/A'}</td>
             </tr>;
+            }
           })}
         </tbody>
       </table>
