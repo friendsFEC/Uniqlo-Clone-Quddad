@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GrFormDown, GrFormUp } from 'react-icons/gr';
 
-function MainImageCarousel({ photosData, dispatch, selected }) {
+export default function MainImageCarousel({ photosData, dispatch, selected }) {
   const [current, setCurrent] = useState(selected);
   const upButton = useRef(null);
   const downButton = useRef(null);
@@ -71,7 +71,8 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
               <img
                 alt=""
                 className="ov-thumbnail--image"
-                src={photo.thumbnail_url}/>
+                src={photo.thumbnail_url}
+              />
             </div>
           ))}
         </div>
@@ -90,5 +91,3 @@ function MainImageCarousel({ photosData, dispatch, selected }) {
     </div>
   );
 }
-
-export default MainImageCarousel;
