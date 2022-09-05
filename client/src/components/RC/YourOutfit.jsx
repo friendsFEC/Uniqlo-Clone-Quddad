@@ -16,11 +16,9 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
     }
   }
 
-  // set a count of your outfit cards
-  // when click on add to your outfit, increment
-  // when click on X, decrement
-  // for each count, render out a card
-  // useReducer here?
+  // for YO Card persisting:
+  // have a state that is an array of objects of currentInfos
+  // render out currentInfos each time
 
 
   return (

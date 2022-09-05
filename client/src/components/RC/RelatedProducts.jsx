@@ -13,15 +13,6 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProductID, setSelectedProductID] = useState(0);
 
-  // IDEA FOR ARROWS:
-  // change classname based on ternary
-  // if at the front of the grid, hide left arrow
-  // if at the end of the grid, hide right arrow
-
-  // IDEA for MODAL:
-  // onclick of star --> get ID of selected product
-  // in the modal component, render only modal matches if selected product ID?
-
   const createRPCard = () => {
       return (
       <div className = "rc-rp-container">
@@ -37,7 +28,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
               </button>
               <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
               <div className = "rc-rp-details">
-                <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto}/>
+                <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => console.log('hi')}/>
                 <p>{product.category}</p>
                 <p className = "rc-card-name">{product.name}</p>
                 <p><span className = {relatedStyles[index].results[0].sale_price === null ? "rc-rp-og-price" : "rc-rp-sale-price"}>
@@ -65,3 +56,8 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
 }
 
 export default RelatedProducts;
+
+  // IDEA FOR ARROWS:
+  // change classname based on ternary
+  // if at the front of the grid, hide left arrow
+  // if at the end of the grid, hide right arrow
