@@ -68,8 +68,10 @@ function ReviewsAndRatings(props) {
     const btnDiv = document.getElementById('rr-write-review-btn');
     const revList = document.getElementsByClassName('review-list')[0];
 
-    if ((revList.offsetTop - revList.offsetHeight) < window.scrollY) {
-      btnDiv.classList.remove('float');
+    if (btn) {
+      if ((revList.offsetTop - revList.offsetHeight) < window.scrollY) {
+        btnDiv.classList.remove('float');
+      }
     }
   });
 
