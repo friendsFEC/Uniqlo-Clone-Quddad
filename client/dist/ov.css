@@ -1,3 +1,6 @@
+.noDisplay {
+  display: none;
+}
 
 .ov-main {
   display: flex;
@@ -9,8 +12,17 @@
 }
 .ov-wrapper {
   display: flex;
-  width: 80%;
+  width: 80vw;
   justify-content: center;
+  position: relative;
+}
+
+.ov-wrapper--extended {
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+  height: 60vh;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {
@@ -21,22 +33,31 @@
   .ov-imageBox_mainImage {
     height: 200px;
     width: 150px;
+    transition: width 0.3s ease-out;
   }
 }
 
 .ov-imageBox {
-  position: relative;
-  justify-content: center;
-  align-items: start;
   display: flex;
+  justify-content: center;
   flex-flow: column;
+  position: relative;
+}
 
+.ov-imageBox--extended{
+  height: 60vh;
+  width: 70vh;
+}
+
+.ov-img--extended {
+  cursor: zoom-out;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .ov-infoBox {
   display: flex;
   align-items: flex-start;
-  border-style: solid;
   width: 500px;
   padding-left: 30px;
   flex-direction: column;
@@ -55,17 +76,23 @@
 .ov-imageBox_mainImage {
  height: 500px;
  width: 450px;
+ cursor: zoom-in;
+}
+
+.ov-innerImageBox {
+  overflow: hidden;
 }
 
 .ov-imageBox_slide {
   position: absolute;
   opacity: 0;
-  transition: border ease-in-out 0.5s;
+  transition: opacity ease-in-out 0.5s;
 }
 
 .ov-imageBox_activeSlide {
   opacity: 1;
 }
+
 
 .ov-imageBox_prev {
   align-self: flex-start;
@@ -135,6 +162,10 @@
   padding: 5px;
 }
 
+.ov-checkDiv {
+  position: relative;
+}
+
 .ov-thumbnail--active {
   border: 1px solid gray;
   opacity: 1;
@@ -156,9 +187,14 @@
 }
 
 .ov--style {
+  opacity: 1;
   height: 50px;
   width: 50px;
-  border-radius: 10px;
+  border-radius: 50%;
+}
+
+.ov--style--active {
+  border: 2px solid black;
 }
 
 .ov-thumbnail--image:hover{
@@ -190,5 +226,19 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  column-gap: 6px;
 }
+
+.ov-check {
+  position: absolute;
+  top: 5;
+  left: 47;
+  color: transparent;
+}
+
+.ov-check--active {
+  z-index: 4;
+  color: black;
+}
+
+
+
