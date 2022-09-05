@@ -41,9 +41,9 @@ export default function ReviewList({
             retrieveReviews();
             btnDiv.classList.remove('float');
             btnDiv.style.width = '';
-          } else if (target.scrollTop === 0) {
+          }/* else if (target.scrollTop === 0) {
             btnDiv.classList.remove('float');
-          } else {
+          } */else {
             retrieveReviews();
           }
         }

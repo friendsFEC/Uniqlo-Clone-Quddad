@@ -37,7 +37,7 @@ function Question(props) {
         _V.Axios.put(link)
           .then(() => {
             // do nothing
-            console.log('Reported');
+            console.warn('Reported');
           })
           .catch(() => {
             console.warn('Report PUT not working');
