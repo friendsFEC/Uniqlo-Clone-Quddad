@@ -10,12 +10,11 @@ function PercentWidget({
       className={ratingFilter.includes(stars) ? 'rating-filter selected' : 'rating-filter'}
       onClick={() => toggleFilter(stars)}
     >
-      {stars}
-      stars
+      <span>{`${stars} stars`}</span>
       <div className="rating-bar">
         <div className="inner-bar" style={{ width: `${percent.toFixed(2)}%` }} />
       </div>
-      {`(${count || 0})`}
+      <span>{`(${count || 0})`}</span>
     </div>
   );
 }

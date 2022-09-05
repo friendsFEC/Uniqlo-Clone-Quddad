@@ -28,8 +28,8 @@ function ReviewTile({
         </div>
       </div>
       <p className="bold">{review.summary}</p>
-      {(review.body.length <= 250) ? <p>{review.body}</p> : (
-        <p>
+      {(review.body.length <= 250) ? <blockquote>{review.body}</blockquote> : (
+        <blockquote>
           {`${review.body.slice(0, 250)}...`}
           <br />
           <button
@@ -43,7 +43,7 @@ function ReviewTile({
           >
             Show More
           </button>
-        </p>
+        </blockquote>
       )}
       {review.photos.map((obj) => (
         <div

@@ -106,7 +106,7 @@ function ReviewsAndRatings(props) {
 
   return (
     <div className="rr" id="rr">
-      <h1>Ratings & Reviews Section</h1>
+      <h1>Ratings & Reviews</h1>
       <div className="review-grid">
         <SortOptions
           setSort={setSort}

@@ -113,7 +113,7 @@ function CharacteristicsWidget({ name, value }) {
   };
   return (
     <div className="characteristics">
-      {name}
+      <span>{name}</span>
       <div className="characteristics-bar">
         <img alt="" className="characteristics-arrow" src="./img/rr/arrow.svg" />
       </div>
