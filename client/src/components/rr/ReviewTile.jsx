@@ -27,7 +27,7 @@ function ReviewTile({
           {`${review.reviewer_name}, ${formatDate(review.date)}`}
         </div>
       </div>
-      <p className="bold">{review.summary}</p>
+      <h3>{review.summary}</h3>
       {(review.body.length <= 250) ? <blockquote>{review.body}</blockquote> : (
         <blockquote>
           {`${review.body.slice(0, 250)}...`}
@@ -112,7 +112,7 @@ function ReviewTile({
           {`(${review.helpfulness})`}
           {/* BRD mentions a 'No' button, but the API doesn't retain or allow posts */}
           {/* to this value, deferring to mockup */}
-          <span
+          <button
             className="report"
             onClick={({ target }) => {
               reportReview(review.review_id);
@@ -120,7 +120,7 @@ function ReviewTile({
             }}
           >
             Report
-          </span>
+          </button>
         </p>
       )}
     </div>
