@@ -52,7 +52,7 @@ export default function ProductImage({ photosData, extended, toggleView }) {
       {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({ type: 'prev' })} />}
       {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({ type: 'next' })} />}
       {/* --end of buttons */}
-      <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
+      <div className={extended ? 'ov-sliderContainer ov-sliderContainer--extended' : 'ov-sliderContainer'}>
         {photosData.map((photo, index) => (
           <div
             key={photo.url}
