@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductImage from './overview/ProductImage.jsx';
-import ProductInfo from './overview/ProductInfo.jsx';
-import PriceTag from './overview/PriceTag.jsx';
-import SizeAndQuantity from './overview/SizeAndQuantity.jsx';
-import config from '../../../config.js';
-import StyleGrid from './overview/StyleGrid.jsx';
+import ProductImage from './overview/ProductImage';
+import ProductInfo from './overview/ProductInfo';
+import PriceTag from './overview/PriceTag';
+import SizeAndQuantity from './overview/SizeAndQuantity';
+import config from '../../../config';
+import StyleGrid from './overview/StyleGrid';
 
-function Overview({ productId }) {
+export default function Overview({ productId }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
   const [rating, setRating] = useState(0);
@@ -75,10 +75,10 @@ function Overview({ productId }) {
     Promise.all([reqProduct(), reqStyle(), reqReview()])
       .then((...responses) => {
         const productInfo = responses[0][0].data;
-        const styles = responses[0][1].data;
+        const stylesInfo = responses[0][1].data;
         const averageRating = responses[0][2].data;
         setProduct(productInfo);
-        setStyles(styles);
+        setStyles(stylesInfo);
         setRating(averageRating);
       })
       .catch((errors) => console.log(errors));
@@ -102,10 +102,7 @@ function Overview({ productId }) {
               <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
             </div>
             <div>
-              <SizeAndQuantity style={styles[currStyle]} />
-            </div>
-            <div>
-              [add to card button]
+              <SizeAndQuantity sizes={styles[currStyle].skus} />
             </div>
           </div>
         </div>
@@ -118,5 +115,3 @@ function Overview({ productId }) {
   }
   return <div className="ov-imageBox">LOADING...</div>;
 }
-
-export default Overview;
