@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QAItem from './QAItem.jsx';
 import Filter from './Filter.jsx';
+import AddQuestions from './AddQuestions.jsx';
 
 const _V = require('../Utility/V.jsx');
 
@@ -21,17 +22,7 @@ class ListOfQA extends React.Component {
 
     this.searchQuestions = this.searchQuestions.bind(this);
     this.filterQuestions = this.filterQuestions.bind(this);
-    this.setMaxRange = this.setMaxRange.bind(this);
     this.questionComponentUpdate = this.questionComponentUpdate.bind(this);
-  }
-
-  setMaxRange(number) {
-    // if (!number) {
-    //   return;
-    // }
-    // this.setState({
-    //   maxRange: number,
-    // });
   }
 
   // Clicking the button will cause up to 2 additional questions to
@@ -40,15 +31,17 @@ class ListOfQA extends React.Component {
   questionComponentUpdate() {
     const { buttonText } = this.state;
     const { chosenProduct } = this.state;
-    if (buttonText === 'More Answered Questions') {
+    const text1 = 'More Answered Questions';
+    const text2 = 'Less Answered Questions';
+    if (buttonText === text1) {
       this.setState({
         maxRange: chosenProduct.length > 4 ? 4 : chosenProduct.length,
-        buttonText: 'COLLAPSE QUESTIONS',
+        buttonText: text2,
       });
-    } else if (buttonText === 'COLLAPSE QUESTIONS') {
+    } else if (buttonText === text2) {
       this.setState({
         maxRange: chosenProduct.length > 2 ? 2 : chosenProduct.length,
-        buttonText: 'More Answered Questions',
+        buttonText: text1,
       });
     }
   }
@@ -89,22 +82,28 @@ class ListOfQA extends React.Component {
         {/*
       1. display questions
       2. display answers */}
-        {/* {topFourQuestions.map((item) =>
-          <QAItem key={item.question_id} questionAnswer={item} />)} */}
-        {chosenProduct.slice(0, maxRange).map((item) => <QAItem key={item.question_id} questionAnswer={item} />)}
+        <div id="qa-ListOfQA--scrollListOfQuestion">
+          {chosenProduct.slice(0, maxRange).map((item) => <QAItem key={item.question_id} questionAnswer={item} />)}
+        </div>
+        <div id="qa-ListOfQA--ListExpandButton--AddAQuestionButton">
+          {chosenProduct.length > 2
+            ? (
+              <h2
+                type="button"
+                onClick={() => {
+                  this.questionComponentUpdate();
+                }}
+              >
+                {buttonText}
+              </h2>
+            )
+            : <p />}
+          <h2>
+            Add a Question
+          </h2>
+          <AddQuestions />
+        </div>
 
-        {chosenProduct.length > 2
-          ? (
-            <h2
-              type="button"
-              onClick={() => {
-                this.questionComponentUpdate();
-              }}
-            >
-              {buttonText}
-            </h2>
-          )
-          : <h2 />}
       </div>
     );
   }
