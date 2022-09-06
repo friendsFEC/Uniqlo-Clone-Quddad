@@ -45,12 +45,14 @@ class QuestionsAndAnswers extends React.Component {
 
   render() {
     const { product } = this.state;
+    const questionList = product;
+    console.log('this.state ', this.state);
     const isQuestionFilled = (product.length > 0);
     if (isQuestionFilled) {
       return (
         <div id="qa">
           <p>QUESTIONS & ANSWERS</p>
-          <ListOfQA chosenProduct={product} isQuestionFilled={isQuestionFilled} />
+          <ListOfQA chosenProduct={questionList} isQuestionFilled={isQuestionFilled} />
           <QAEntry />
         </div>
       );

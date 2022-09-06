@@ -26,14 +26,16 @@ function Modal({open, children, onClose}) {
     return null;
   }
 
-  return (
+  return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLE} />
       <div style={MODAL_STYLES}>
-        <button type="button" onClick={onClose}>Close Modal</button>
         {children}
+        <br />
+        <button type="button" onClick={onClose}>Close Modal</button>
       </div>
-    </>
+    </>,
+    document.getElementById('portal'),
   );
 }
 

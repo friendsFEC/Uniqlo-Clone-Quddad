@@ -8,6 +8,7 @@ const _V = require('../Utility/V.jsx');
 class ListOfQA extends React.Component {
   constructor(props) {
     super(props);
+    console.log('props ', props);
     const { chosenProduct } = this.props;
     const filteredQuestions = chosenProduct
       .filter((question) => question.question_helpfulness > 0);
@@ -98,9 +99,6 @@ class ListOfQA extends React.Component {
               </h2>
             )
             : <p />}
-          <h2>
-            Add a Question
-          </h2>
           <AddQuestions />
         </div>
 
