@@ -23,6 +23,7 @@
   margin-right: 29%;
   height: 430px;
   overflow: scroll;
+  gap: 30px;
 }
 
 .rc-yo-card {
@@ -30,14 +31,6 @@
   border-radius: 8px;
   height: 400px;
   width: 250px;
-  margin: 0px;
-}
-
-.rc-yo-new-card {
-  border-radius: 8px;
-  height: 400px;
-  width: 250px;
-  margin: 0px;
 }
 
 .rc-title {
