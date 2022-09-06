@@ -4,18 +4,21 @@ import { useState, useEffect } from 'react';
 import YOCard from './YOCard.jsx'
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
-const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRatings} ) => {
+const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
+  const [isReadyToAdd, setIsReadyToAdd] = useState(false);
   const [infoStorage, setInfoStorage] = useState([]);
-  // const [styleStorage, setStyleStorage] = useState([]);
+  const [styleStorage, setStyleStorage] = useState([]);
+  const [ratingStorage, setRatingStorage] = useState([]);
 
-  // when press "add to your outfit", add the current info to added info
-  const addedInfo = [];
+  const addedInfos = [];
+  const addedStyles = [];
+  const addedRatings = [];
+
 
   const removeDiv = () => {
-    // const getDiv = document.getElementsByClassName("rc-yo-card")
-    // const getDiv = document.getElementById("rc-yo-add-button-div")
-    const getDiv = document.getElementById("test")
+    const getDiv = document.getElementById("rc-removable-div")
     if (getDiv.style.display === "none") {
       getDiv.style.display = "block";
     } else {
@@ -23,10 +26,28 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
     }
   }
 
-  // in YOCard, do I need to now pass in the mapped product's information? probably yes. so currentInfo would need to be product's current info, etc.
-  // how would we do this? --> keep track of all "added information" in state of this component
-  // so this state would be updated as we cycle through products and add them to your outfit by clicking on the button
-  // then we render your outfit based on this state
+  const changeState = () => {
+    setIsOpen(false);
+    setIsClosed(true);
+  }
+
+  const addInfo = () => {
+    let info = addedInfos.slice();
+    info.push(currentInfo);
+    setInfoStorage(info);
+
+    let style = addedStyles.slice();
+    style.push(currentStyle);
+    setStyleStorage(style);
+
+    let rating = addedRatings.slice();
+    rating.push(currentRating);
+    setRatingStorage(rating);
+  }
+
+  // useEffect(() => {
+  //   setIsReadyToAdd(true);
+  // }, [productID])
 
   return (
     <div>
@@ -34,24 +55,25 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
       <div className = "rc-yo-container">
         {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
 
-        <div id = "test">
+        <div id = "rc-removable-div">
           <div className = "rc-yo-card">
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
                 removeDiv();
-                addedInfo.push(currentInfo);
-                setInfoStorage(addedInfo);
+                addInfo();
               }}>Add to Your Outfit</button>
             </div>
-            {/* <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle} currentRating = {currentRating} relatedAverageRatings = {relatedAverageRatings} /> */}
-
           </div>
         </div>
 
+        {console.log(infoStorage, 'INFO STORAGE DURING RENDER')}
+        {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')}
+        {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')}
+
         {infoStorage.map((product, index) => {
           return (<div key = {index}>
-            <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle} currentRating = {currentRating} relatedAverageRatings = {relatedAverageRatings}/>
+            <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} changeState = {changeState}/>
             </div>
           )
         })}
@@ -60,9 +82,22 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
         <div className = "rc-yo-card">
           <div id = "rc-yo-add-button-div">
             <button className = "rc-yo-add-button" onClick = {() => {
-            alert("This product is already apart of Your Outfit!")}}>Add to Your Outfit</button>
+            isReadyToAdd ? null
+            : alert("This product is already apart of Your Outfit!")}}>Add to Your Outfit</button>
           </div>
         </div> : null}
+
+        {isClosed ?
+                <div id = "rc-removable-div">
+                <div className = "rc-yo-card">
+                  <div id = "rc-yo-add-button-div">
+                    <button className = "rc-yo-add-button" onClick = {() => {
+                      removeDiv();
+                    }}>REMOVED</button>
+                  </div>
+                </div>
+              </div>
+        : null}
 
       {/* < GrFormNext className = "rc-rp-arrow"/> */}
       </div>

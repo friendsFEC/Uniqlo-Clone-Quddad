@@ -184,10 +184,10 @@ const RelatedAndComparison = ({productID}) => {
         </div>
         <div>
           < YourOutfit
+            productID = {productID}
             currentInfo = {currentInfo}
             currentStyle = {currentStyle}
             currentRating = {currentRating}
-            relatedAverageRatings = {relatedAverageRatings}
           />
         </div>
       </div>
