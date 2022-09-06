@@ -94,6 +94,7 @@
 .rr .review-tile blockquote,
 .rr .review-tile p {
   padding-bottom: 1.4rem;
+  overflow-wrap: break-word;
 }
 .rr .review-tile p button {
   display: inline;
@@ -410,4 +411,7 @@
 .rr button:hover {
   box-shadow: 1px 2px 4px #333;
   b
+}
+.rr #rr-no-reviews-showing {
+  padding-bottom: 1.4rem;
 }

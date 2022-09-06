@@ -41,10 +41,10 @@ export default function ReviewList({
             retrieveReviews();
             btnDiv.classList.remove('float');
             btnDiv.style.width = '';
-          }/* else if (target.scrollTop === 0) {
-            btnDiv.classList.remove('float');
-          } */else {
-            retrieveReviews();
+            if (btnDiv.previousElementSibling.tagName !== 'BUTTON') {
+              btnDiv.style.textAlign = 'center';
+              btnDiv.style.width = '100%';
+            }
           }
         }
       }}

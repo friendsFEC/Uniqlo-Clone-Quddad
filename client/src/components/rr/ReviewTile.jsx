@@ -38,7 +38,7 @@ function ReviewTile({
               ev.preventDefault();
               const p = ev.target.parentElement;
               p.removeChild(p.children[0]);
-              p.textContent += review.body.slice(250);
+              p.textContent = p.textContent.replace(/\.\.\.Show More/, '') + review.body.slice(250);
             }}
           >
             Show More
