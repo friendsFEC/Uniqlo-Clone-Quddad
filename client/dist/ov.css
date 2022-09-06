@@ -58,13 +58,15 @@
    overflow: hidden;
  }
 
- .ov-imageBox_slide {
+ .ov-imageBox_slideItem {
    position: absolute;
+   top: 0;
+   left: 0;
    opacity: 0;
    transition: opacity ease-in-out 0.5s;
  }
 
- .ov-imageBox_activeSlide {
+ .ov-imageBox_activeItem {
    opacity: 1;
    display: flex;
    justify-content: center;
@@ -72,18 +74,24 @@
 
 
  .ov-imageBox_prev {
-   align-self: flex-start;
    position: absolute;
+   top: 50%;
  }
 
  .ov-imageBox_next {
    position: absolute;
-   align-self: flex-end;
+   top: 50%;
+   right: 0;
  }
 
  .ov-sliderContainer {
   grid-column-start: 2;
-  grid-column-end: 6;
+  grid-column-end: span 6;
+  position: relative;
+ }
+
+ .ov-sliderContainer--extended {
+
  }
 
  .ov-btn {
@@ -98,9 +106,6 @@
   background-color: gray;
 }
 
-.ov-sliderContainer--extended {
-
-}
 
  /* --CAROUSEL CSS-- */
 
