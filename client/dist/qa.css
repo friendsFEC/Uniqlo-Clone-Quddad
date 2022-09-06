@@ -19,3 +19,13 @@
 
   border: solid;
 }
+
+#qa-ListOfQA--scrollListOfQuestion {
+  overflow-y: scroll;
+  /* height: 75vh; */
+}
+
+#qa-QAItem-Answer{
+  overflow-y: scroll;
+  /* height: 30vh; */
+}

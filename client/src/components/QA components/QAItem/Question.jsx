@@ -54,6 +54,8 @@ function Question(props) {
   return (
     <div id="qa-QAItem-Question">
       <h3>
+        Question:
+        {' '}
         { question_body }
         {' '}
       </h3>
