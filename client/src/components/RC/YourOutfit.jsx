@@ -6,7 +6,6 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isClosed, setIsClosed] = useState(false);
   const [isReadyToAdd, setIsReadyToAdd] = useState(true);
   const [infoStorage, setInfoStorage] = useState([]);
   const [styleStorage, setStyleStorage] = useState([]);
@@ -21,12 +20,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     }
   }
 
-  const changeState = () => {
-    setIsOpen(false);
-    setIsClosed(true);
-  }
-
-  const addInfo = () => {
+  const addProduct = () => {
     let info = infoStorage.slice();
     info.push(currentInfo);
     setInfoStorage(info);
@@ -40,21 +34,35 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     setRatingStorage(rating);
   }
 
+  const removeProduct = (e, product) => {
+    e.preventDefault();
+    let info = infoStorage.slice();
+    let filteredInfo = info.filter(obj => {
+      if (obj.id !== product.id) {return obj};
+    });
+    setInfoStorage(filteredInfo);
+
+    let style = styleStorage.slice();
+    let filteredStyle = style.filter(obj => {
+      if (Number(obj.product_id) !== product.id) {return obj};
+    })
+    console.log(filteredStyle, 'FILTERED STYLE')
+    setStyleStorage(filteredStyle);
+
+    // let rating = ratingStorage.slice();
+    // let filteredRating = rating.filter(obj => {
+    //   if (obj.id !== product.id) {return obj};
+    // })
+    // for (let i = 0; i < rating.length; i++)
+    // setRatingStorage(filteredRating);
+  }
+
   useEffect(
     () => {
       setIsReadyToAdd(true)
     },
     [productID]
   )
-
-  // ideas:
-  // for the onclick of add to your outfit:
-  // will search through infostorage
-  // if present --> alert
-  // if not --> add outfit
-
-  // want to set isReadyToAdd flag which will turn true when we change currentProduct
-  // can this be done using useEffect?
 
   return (
     <div>
@@ -69,19 +77,19 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
                 setIsOpen(true);
                 setIsReadyToAdd(false);
                 removeDiv();
-                addInfo();
+                addProduct();
               }}>Add to Your Outfit</button>
             </div>
           </div>
         </div>
 
         {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')} */}
-        {/* {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')}
-        {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
+        {/* {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')} */}
+        {/* {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
 
         {infoStorage.map((product, index) => {
           return (<div key = {index}>
-            <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} changeState = {changeState}/>
+            <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} product = {product} removeProduct = {removeProduct} index = {index}/>
             </div>
           )
         })}
@@ -89,26 +97,12 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         {isOpen ?
         <div className = "rc-yo-card">
           <div id = "rc-yo-add-button-div">
-            {/* <button className = "rc-yo-add-button" onClick = {() => {addInfo()}}>
-              Add to Your Outfit</button> */}
             <button className = "rc-yo-add-button" onClick = {() => {
-            isReadyToAdd ? (addInfo(), setIsReadyToAdd(false))
+            isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
             : alert("This product is already a part of Your Outfit!")}}>
               Add to Your Outfit</button>
           </div>
         </div> : null}
-
-        {isClosed ?
-        <div id = "rc-removable-div">
-          <div className = "rc-yo-card">
-            <div id = "rc-yo-add-button-div">
-              <button className = "rc-yo-add-button" onClick = {() => {
-                removeDiv();
-              }}>REMOVED</button>
-            </div>
-          </div>
-        </div>
-        : null}
 
       {/* < GrFormNext className = "rc-rp-arrow"/> */}
       </div>
