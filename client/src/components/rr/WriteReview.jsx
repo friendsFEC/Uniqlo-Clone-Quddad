@@ -169,7 +169,7 @@ function WriteReview({ characteristics, productID }) {
     cardsDiv.style.left = left;
   }, [currentCard])
 
-  useEffect(() => {
+  const positionCards = () => {
     const container = document.getElementsByClassName('rr-container')[0];
     const cards = document.getElementById('rr-form-cards');
     const header = document.getElementById('rr-form-title');
@@ -180,7 +180,13 @@ function WriteReview({ characteristics, productID }) {
     Array.from(cards.children).map((child) => {
       child.style.width = container.offsetWidth;
     });
+    cards.style.left = 0;
+  };
+
+  useEffect(() => {
+    positionCards();
   }, [])
+  window.addEventListener('resize', positionCards);
 
   return (
     <div className="hidden write-review">
