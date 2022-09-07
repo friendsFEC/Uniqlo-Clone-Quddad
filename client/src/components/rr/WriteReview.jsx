@@ -5,6 +5,8 @@ import StarRating from './StarRating';
 import config from '../../../../config';
 import { postImage } from './api';
 import { debounce } from './utility';
+import { AiFillCloseSquare } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 
 // https://api.cloudinary.com/v1_1/${cloudName}/upload
 
@@ -144,117 +146,188 @@ function WriteReview({ characteristics, productID }) {
     // console.log('loaded after run', loaded);
   }, [fixes]);
 
+  const [cards, setCards] = useState(['rr-form-first', 'rr-form-second', 'rr-form-third', 'rr-form-fourth', 'rr-form-fifth', 'rr-form-sixth', 'rr-form-last']);
+  // recommend, characteristics, overall, nickname+email, summary + body, photos (done)
+  const [currentCard, setCurrentCard] = useState('rr-form-first');
+  const nextCard = () => {
+    const target = cards.reduce((index, card, i) => card === currentCard ? i : index, -1) + 1;
+    setCurrentCard(cards[target]);
+  }
+  const previousCard = () => {
+    let target = cards.reduce((index, card, i) => card === currentCard ? i : index, -1) - 1;
+    target = target < 0 ? 0 : target;
+    setCurrentCard(cards[target]);
+  }
+  useEffect(() => {
+    console.log(currentCard);
+    const container = document.getElementsByClassName('rr-container')[0];
+    const cardsDiv = document.getElementById('rr-form-cards');
+    let target = cards.reduce((index, card, i) => card === currentCard ? i : index, -1);
+    // const left = Number(cardsDiv.style.left.replace(/px/, '')) - (loaded ? container.offsetWidth : 0);
+    const left = container.offsetWidth * (-target);
+    console.log('left:', left)
+    cardsDiv.style.left = left;
+  }, [currentCard])
+
+  useEffect(() => {
+    const container = document.getElementsByClassName('rr-container')[0];
+    const cards = document.getElementById('rr-form-cards');
+    const header = document.getElementById('rr-form-title');
+    const footer = document.getElementById('rr-form-footer');
+    console.log(cards.children);
+    console.log(container);
+    cards.style.width = container.offsetWidth * cards.childElementCount;
+    Array.from(cards.children).map((child) => {
+      child.style.width = container.offsetWidth;
+    });
+  }, [])
+
   return (
     <div className="hidden write-review">
       <div className="rr-wrapper">
         <div className="rr-container">
           <div
             className="close"
-            style={{ color: 'blue', textDecoration: 'underline' }}
             onClick={() => {
               document.getElementsByClassName('write-review')[0].classList.toggle('hidden');
             }}
           >
-            Cancel Review (close)
+            <IconContext.Provider value={{ size: '2rem' }} >
+              <AiFillCloseSquare />
+            </IconContext.Provider>
           </div>
-          <h1>Write Your Review</h1>
-          <h2>Overall rating (mandatory)</h2>
-            <div
-            onClick={({ target }) => {
-              // console.log(target);
-              let value = 0;
-              let current = target;
-              while (current !== null) {
-                value += 1;
-                current = current.previousSibling;
-              }
-              setOverallRating(value);
-            }}
-          >
-              <p>
-                <StarRating rating={overallRating} />
-                {overallRating !== 0 ? `${overallRating}: ${ratingMap[overallRating]}` : null}
-              </p>
+          <div id="rr-form-title">
+            <h1>Write Your Review</h1>
           </div>
-          <h2>Do you recommend this product? (mandatory)</h2>
-          <p>
-            <input
-              type="radio"
-              defaultChecked
-              name="rr-review-recommend"
-              value={true}
-            />
-            Yes
-          </p>
-          <p>
-            <input type="radio" name="rr-review-recommend" value="false" />
-            No
-          </p>
-          <h2>Characteristics (mandatory)</h2>
-          <table>
-            <tbody>
-              {keys.map((k) => (
-                characteristics && Object.hasOwn(characteristics, k) ? (
-                  <tr key={k}>
-                    <td><strong>{k}</strong></td>
-                    {[1, 2, 3, 4, 5].map((field) => (
-                      <td key={field}>
-                        {charData[k][field]}
-                        <input
-                          key={field}
-                          type="radio"
-                          name={`rr-review-${k}`}
-                          value={field}
-                        />
-                      </td>
-                    ))}
-                  </tr>
-                ) : null
-              ))}
-            </tbody>
-          </table>
-          <h2>Review Summary</h2>
-          <p>[limit to 60 characters]</p>
-          <input maxLength="60" type="text" name="rr-review-summary" placeholder="Example: Best purchase ever!" />
-          <h2>Review body (mandatory)</h2>
-          <p>[minimum 50, max 1000 characters]</p>
-          <textarea minLength="50" maxLength="1000" rows="24" cols="80" name="rr-review-body" />
-          <h2>What is your nickname (mandatory)</h2>
-          <input type="text" name="rr-review-name" placeholder="Example: jackson11!" />
-          <h2>Upload your photos</h2>
-          {[0, 1, 2, 3, 4].map((i) => (
-            <input
-              key={i}
-              type="file"
-              name="rr-review-photos"
-              className={i === 0 ? 'photo-upload first-photo' : 'hidden photo-upload'}
-              onChange={({ target }) => {
-                // get all upload inputs that have a file
-                let uploads = Array.from(document.getElementsByClassName('photo-upload'));
-                const fileCount = uploads.reduce((cnt, input) => cnt + input.files.length, 0);
-                // reveal (1) additional button
-                //let uploads = uploads.filter((input) => !input.classList.contains('first-photo'));
-                uploads[fileCount].classList.toggle('hidden');
-              }}
-            />
-          ))}
-          <h2>Your email (mandatory)</h2>
-          <p>[up to 60 characters]</p>
-          <input type="email" maxLength="60" name="rr-review-email" placeholder="Example: jackson11@email.com" />
-          <p>For authentication reasonse, you will not be emailed.</p>
-          <button type="button" onClick={parseForm}>Submit Review</button>
-          <p>
-            [check that for blank mandatory fields, review body [50, 1000] in length,
-            proper email format, and valid images selected]
-          </p>
-          { fixes.length ? (
-            <div>
-              <h2>Please fix the following before submitting!</h2>
-              <ul>
-                {fixes.map((fix, i) => <li key={i}>{fix}</li>)}
-              </ul>
+          <div id="rr-form-cards">
+            <div id="rr-form-first">
+              <div className="rr-form-container">
+                <h1>Do you recommend this product? (mandatory)</h1>
+                <p>
+                  <input
+                    type="radio"
+                    defaultChecked
+                    name="rr-review-recommend"
+                    value={true}
+                  />
+                  Yes
+                </p>
+                <p>
+                  <input type="radio" name="rr-review-recommend" value="false" />
+                  No
+                </p>
+              </div>
             </div>
-          ) : null }
+            <div id="rr-form-second">
+              <div className="rr-form-container">
+                <h1>Characteristics (mandatory)</h1>
+                {keys.map((k) => (
+                  characteristics && Object.hasOwn(characteristics, k) ? (
+                    <div key={k}>
+                      <p><strong>{k}</strong></p>
+                      {[1, 2, 3, 4, 5].map((field) => (
+                        <span key={field}>
+                          {charData[k][field]}
+                          <input
+                            key={field}
+                            type="radio"
+                            name={`rr-review-${k}`}
+                            value={field}
+                          />
+                        </span>
+                      ))}
+                    </div>
+                  ) : null
+                ))}
+              </div>
+            </div>
+            <div id="rr-form-third">
+              <div className="rr-form-container">
+                <h2>Overall rating (mandatory)</h2>
+                <div
+                  onClick={({ target }) => {
+                    // console.log(target);
+                    let value = 0;
+                    let current = target;
+                    while (current !== null) {
+                      value += 1;
+                      current = current.previousSibling;
+                    }
+                    setOverallRating(value);
+                  }}
+                >
+                  <p>
+                    <StarRating rating={overallRating} />
+                    {overallRating !== 0 ? `${overallRating}: ${ratingMap[overallRating]}` : null}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div id="rr-form-fourth">
+              <div className="rr-form-container">
+                <h2>What is your nickname (mandatory)</h2>
+                <input type="text" name="rr-review-name" placeholder="Example: jackson11!" />
+                <h2>Your email (mandatory)</h2>
+                <p>[up to 60 characters]</p>
+                <input type="email" maxLength="60" name="rr-review-email" placeholder="Example: jackson11@email.com" />
+                <p>For authentication reasonse, you will not be emailed.</p>
+              </div>
+            </div>
+            <div id="rr-form-fifth">
+              <div className="rr-form-container">
+                <h2>Review Summary</h2>
+                <p>[limit to 60 characters]</p>
+                <input maxLength="60" type="text" name="rr-review-summary" placeholder="Example: Best purchase ever!" />
+                <h2>Review body (mandatory)</h2>
+                <p>[minimum 50, max 1000 characters]</p>
+                <textarea minLength="50" maxLength="1000" rows="24" cols="80" name="rr-review-body" />
+              </div>
+            </div>
+            <div id="rr-form-sixth">
+              <div className="rr-form-container">
+              <h2>Upload your photos</h2>
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <input
+                    key={i}
+                    type="file"
+                    name="rr-review-photos"
+                    className={i === 0 ? 'photo-upload first-photo' : 'hidden photo-upload'}
+                    onChange={({ target }) => {
+                      // get all upload inputs that have a file
+                      let uploads = Array.from(document.getElementsByClassName('photo-upload'));
+                      const fileCount = uploads.reduce((cnt, input) => cnt + input.files.length, 0);
+                      // reveal (1) additional button
+                      //let uploads = uploads.filter((input) => !input.classList.contains('first-photo'));
+                      uploads[fileCount].classList.toggle('hidden');
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <div id="rr-form-last">
+              <div className="rr-form-container">
+                <p>
+                  [check that for blank mandatory fields, review body [50, 1000] in length,
+                  proper email format, and valid images selected]
+                </p>
+                { fixes.length ? (
+                  <div>
+                    <h2>Please fix the following before submitting!</h2>
+                    <ul>
+                      {fixes.map((fix, i) => <li key={i}>{fix}</li>)}
+                    </ul>
+                  </div>
+                ) : null }
+              </div>
+            </div>
+          </div>
+          <div id="rr-form-footer">
+            <button type="button" onClick={previousCard}>Previous Section</button>
+            {currentCard === 'rr-form-last' ?
+                (<button type="button" style={{backgroundColor: '#000', color: '#fff'}} onClick={parseForm}>Submit Review</button>)
+              : (<button type="button" onClick={nextCard}>I'm done with this section</button>)
+            }
+          </div>
         </div>
       </div>
     </div>

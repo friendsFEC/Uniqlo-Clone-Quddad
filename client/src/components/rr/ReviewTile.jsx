@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StarRating from './StarRating';
 import { formatDate } from './utility';
+import { AiFillCheckCircle } from 'react-icons/ai';
 
 function ReviewTile({
   review, search, searchFilter, ratingFilter, helpfulReviews,
@@ -60,6 +61,13 @@ function ReviewTile({
                 break;
               }
             }
+            div.classList.toggle('image-modal');
+            div.classList.toggle('review-thumbnail');
+            const btn = document.getElementById('rr-write-review-btn');
+            if (btn.classList.contains('float')) {
+              btn.classList.remove('float');
+            }
+            /*
             div.classList.toggle('hidden');
             div.classList.toggle('image-modal');
             div.classList.toggle('review-thumbnail');
@@ -69,6 +77,7 @@ function ReviewTile({
               btn.classList.remove('float');
             }
             setTimeout(() => div.classList.toggle('hidden'), 200);
+            */
           }}
         >
           <div>
@@ -80,12 +89,14 @@ function ReviewTile({
         </div>
       ))}
       {review.recommend ? (
-        <p>
+        <p className="rr-checkmark">
+          {/*
           <img
             alt="recommended product"
             className="checkmark"
             src="./img/rr/checkmark.svg"
-          />
+          />*/}
+          <AiFillCheckCircle />
           I recommend this product
         </p>
       ) : ''}

@@ -63,7 +63,7 @@ function ReviewsAndRatings(props) {
     }
   };
 
-  window.addEventListener('resize', positionArrowWidgets);
+  window.addEventListener('resize', () => positionArrowWidgets(meta));
   window.addEventListener('scroll', () => {
     const btnDiv = document.getElementById('rr-write-review-btn');
     const revList = document.getElementsByClassName('review-list')[0];

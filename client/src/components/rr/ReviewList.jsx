@@ -31,23 +31,24 @@ export default function ReviewList({
     <div
       className="review-list"
       onScroll={({ target }) => {
-        const btnDiv = document.getElementById('rr-write-review-btn');
-        const scrolledToBottom = Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10;
-        if (btnDiv) {
-          btnDiv.classList.add('float');
-          btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight;
-          btnDiv.style.left = target.offsetLeft;
-          btnDiv.style.width = target.offsetWidth;
+        const btn = document.getElementById('rr-write-review-btn');
+        if (btn) {
+          const scrolledToBottom = Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < (btn.offsetHeight * 1.5);
+          btn.classList.add('float');
+          // btnDiv.style.top = /*window.innerHeight*/document.getElementsByClassName('review-list')[0].offsetHeight - btnDiv.offsetHeight;
+          let listDiv = document.getElementsByClassName('review-list')[0];
+          btn.style.top = listDiv.offsetTop + listDiv.offsetHeight - window.scrollY - btn.offsetHeight;
+          btn.style.left = target.offsetLeft;
+          btn.style.width = target.offsetWidth;
           if (scrolledToBottom) {
             retrieveReviews();
-            btnDiv.classList.remove('float');
-            btnDiv.style.width = '';
-            if (btnDiv.previousElementSibling.tagName !== 'BUTTON') {
-              btnDiv.style.textAlign = 'center';
-              btnDiv.style.width = '100%';
+            btn.classList.remove('float');
+            btn.style.width = '';
+            if (btn.previousElementSibling.tagName !== 'BUTTON') {
+              btn.style.width = '100%';
             }
           }
-        } else if (scrolledToBottom) {
+        } else if (Math.abs(((target.scrollTop + target.clientHeight) - target.scrollHeight) < 5)) {
           retrieveReviews();
         }
       }}
@@ -78,14 +79,13 @@ export default function ReviewList({
           More Reviews
         </button> // add infinite scroll later on
       ) : null }
-      <div id="rr-write-review-btn">
         <button
+          id="rr-write-review-btn"
           type="button"
           onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
         >
           Add a Review
         </button>
-      </div>
     </div>
   );
 }
