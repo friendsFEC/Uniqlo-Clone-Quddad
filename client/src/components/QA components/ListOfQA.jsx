@@ -99,7 +99,6 @@ class ListOfQA extends React.Component {
               </h2>
             )
             : <p />}
-          <AddQuestions />
         </div>
 
       </div>

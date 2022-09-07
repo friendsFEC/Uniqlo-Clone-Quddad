@@ -2,6 +2,7 @@ import React from 'react';
 import ListOfQA from './QA components/ListOfQA.jsx';
 import QAEntry from './QA components/QAEntry.jsx';
 // import example from './QA components/example.jsx';
+import AddQuestions from './QA components/AddQuestions.jsx';
 
 const _V = require('./Utility/V.jsx');
 
@@ -46,13 +47,13 @@ class QuestionsAndAnswers extends React.Component {
   render() {
     const { product } = this.state;
     const questionList = product;
-    console.log('this.state ', this.state);
     const isQuestionFilled = (product.length > 0);
     if (isQuestionFilled) {
       return (
         <div id="qa">
           <p>QUESTIONS & ANSWERS</p>
-          <ListOfQA chosenProduct={questionList} isQuestionFilled={isQuestionFilled} />
+          {/* <ListOfQA chosenProduct={questionList} isQuestionFilled={isQuestionFilled} /> */}
+          <AddQuestions />
           <QAEntry />
         </div>
       );

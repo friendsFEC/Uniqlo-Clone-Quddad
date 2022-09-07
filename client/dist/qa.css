@@ -25,6 +25,11 @@
   /* height: 75vh; */
 }
 
+#qa-addQuestion--question{
+  /* height:200px;
+  font-size:14pt; */
+}
+
 #qa-QAItem-Answer{
   overflow-y: scroll;
   /* height: 30vh; */

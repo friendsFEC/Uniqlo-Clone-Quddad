@@ -7,7 +7,8 @@ function AddQuestions(props) {
     <div>
       <button className="qa-astext" type="button" onClick={() => setIsOpen(true)}><h2>Add a Question +</h2></button>
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        {/* Hello James. Add a Question here */}
+        <h2>Ask your question</h2>
+        <h3>About the PRODUCT NAME here</h3>
       </Modal>
     </div>
   );
