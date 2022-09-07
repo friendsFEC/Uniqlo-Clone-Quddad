@@ -45,13 +45,18 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     setRatingStorage(rating);
   }
 
-  // useEffect(() => {
-  //   setIsReadyToAdd(true);
-  // }, [productID])
+  const handleAdd = () => {
+
+  }
+
+  // for the onclick of add to your outfit:
+  // will search through infostorage
+  // if present --> alert
+  // if not --> add outfit
 
   return (
     <div>
-      <h3 className = "rc-title"> Your Outfit</h3>
+      <h3 className = "rc-title"> Your Outfit </h3>
       <div className = "rc-yo-container">
         {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
 
@@ -82,21 +87,22 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         <div className = "rc-yo-card">
           <div id = "rc-yo-add-button-div">
             <button className = "rc-yo-add-button" onClick = {() => {
-            isReadyToAdd ? null
-            : alert("This product is already apart of Your Outfit!")}}>Add to Your Outfit</button>
+            isReadyToAdd ? console.log('working')
+            : alert("This product is already a part of Your Outfit!")}}>
+              Add to Your Outfit</button>
           </div>
         </div> : null}
 
         {isClosed ?
-                <div id = "rc-removable-div">
-                <div className = "rc-yo-card">
-                  <div id = "rc-yo-add-button-div">
-                    <button className = "rc-yo-add-button" onClick = {() => {
-                      removeDiv();
-                    }}>REMOVED</button>
-                  </div>
-                </div>
-              </div>
+        <div id = "rc-removable-div">
+          <div className = "rc-yo-card">
+            <div id = "rc-yo-add-button-div">
+              <button className = "rc-yo-add-button" onClick = {() => {
+                removeDiv();
+              }}>REMOVED</button>
+            </div>
+          </div>
+        </div>
         : null}
 
       {/* < GrFormNext className = "rc-rp-arrow"/> */}

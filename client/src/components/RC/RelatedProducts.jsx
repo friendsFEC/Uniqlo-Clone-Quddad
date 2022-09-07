@@ -8,7 +8,7 @@ import config from '../../../../config.js';
 import { AiOutlineStar } from 'react-icons/ai';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
-const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings }) => {
+const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings, setProductId }) => {
   const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProductID, setSelectedProductID] = useState(0);
@@ -28,7 +28,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
               </button>
               <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
               <div className = "rc-rp-details">
-                <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => console.log('hi')}/>
+                <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => setProductId(product.id)}/>
                 <p>{product.category}</p>
                 <p className = "rc-card-name">{product.name}</p>
                 <p><span className = {relatedStyles[index].results[0].sale_price === null ? "rc-rp-og-price" : "rc-rp-sale-price"}>
@@ -49,7 +49,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
 
   return (
     <div>
-      <h3 className = "rc-title"> Related Products </h3>
+      <h3 className = "rc-title"> People Also Viewed </h3>
       <div>{createRPCard()}</div>
     </div>
   )

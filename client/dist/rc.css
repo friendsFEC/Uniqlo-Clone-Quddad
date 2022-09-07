@@ -3,8 +3,8 @@
   grid-auto-flow: column;
   overflow: scroll;
   grid-template-rows: 1fr;
-  margin-left: 27%;
-  margin-right: 29%;
+  /* margin-left: 27%;
+  margin-right: 29%; */
   gap: 30px;
 }
 
@@ -19,8 +19,8 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  margin-left: 27%;
-  margin-right: 29%;
+  /* margin-left: 27%;
+  margin-right: 29%; */
   height: 430px;
   overflow: scroll;
   gap: 30px;
@@ -35,7 +35,7 @@
 
 .rc-title {
   font-size: 22px;
-  margin-left: 27%;
+  /* margin-left: 27%; */
 }
 
 .rc-small-titles {

@@ -51,7 +51,7 @@ function App() {
     <div>
       <ProductIdSlider setProductId={setProductId} />
       <Overview productId={productId} />
-      <RelatedAndComparison productID={productId} />
+      <RelatedAndComparison productID={productId} setProductId={setProductId} />
       <QuestionsAndAnswers productId={productId} />
       <ReviewsAndRatings productID={productId} />
     </div>

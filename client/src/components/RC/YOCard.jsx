@@ -6,6 +6,8 @@ import Stars from './Stars.jsx'
 const YOCard = ({open, currentInfo, currentStyle, currentRating, relatedAverageRatings, changeState}) => {
   if (!open) return null
 
+  // maybe onClick should remove from infoStorage since infoStorage is what renders YOCards
+
   return (
       <div className = "rc-yo-card">
         <div className = "rc-yo-card-details">
