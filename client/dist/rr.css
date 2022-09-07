@@ -478,6 +478,11 @@
 .rr #rr-form-title {
   text-align: center;
 }
+.rr #rr-form-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 .rr #rr-form-footer button {
   width: 50%;
 }
@@ -492,16 +497,19 @@
   text-align: justify;
   padding: 0 20%;
 }
+.rr #rr-form-second .rr-form-container {
+  padding: 0;
+}
 .rr #rr-form-second .rr-form-container > div {
   display: flex;
   width: 100%;
   /*flex-direction: column;*/
 }
-.rr #rr-form-second .rr-form-container > div > *{
+.rr #rr-form-second .rr-form-container > div > span {
   display: flex;
   flex-direction: column;
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 .rr #rr-form-second .rr-form-container > div span {
   display: inline-block;
