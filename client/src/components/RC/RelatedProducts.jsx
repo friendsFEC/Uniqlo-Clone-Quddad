@@ -5,7 +5,7 @@ import axios from 'axios';
 import Modal from './Modal.jsx';
 import Stars from './Stars.jsx';
 import config from '../../../../config.js';
-import { AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineStar, AiOutlineHeart } from 'react-icons/ai';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings, setProductId }) => {
@@ -49,15 +49,14 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
   const createRPCard = () => {
       return (
         <div className = "rc-slide-container" onMouseEnter = {showArrows} onMouseLeave = {hideArrows} >
-          <div className = "rc-rp-arrow" onClick={scrollLeft} ref={leftArrow} style={{ opacity: 0, transition: 'opacity ease-in-out 0.2s' }}> < GrFormPrevious /> </div>
+          <div className = "rc-rp-arrow" onClick={scrollLeft} ref={leftArrow} style={{ opacity: 0, transition: 'opacity ease-in-out 0.2s' }}>< GrFormPrevious /></div>
           <div className = "rc-rp-container" ref = {listRef}>
             {relatedInfo.map((product, index) => {
               if (relatedStyles[index]) {
                 return (
                   <div className = "rc-rp-card" key = {index}>
-                    <div className = "rc-small-titles">
                       <button className = "rc-rp-button" onClick = {() => isOpen ? setIsOpen(false) : (setIsOpen(true),  setSelectedProductID(product.id))}>
-                        <AiOutlineStar/>
+                        <AiOutlineHeart/>
                       </button>
                       <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
                       <div className = "rc-rp-details">
@@ -70,14 +69,14 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
                         {relatedStyles[index].results[0].sale_price && <span className ="rc-rp-og-price">${relatedStyles[index].results[0].sale_price}</span>}
                         </p>
                         <Stars index = {index} currentInfo = {currentInfo} relatedAverageRatings = {relatedAverageRatings} />
-                    </div>
+                     </div>
                   </div>
-          </div>
                 )}
               })}
-              <div className = "rc-rp-arrow" onClick={scrollRight} ref={rightArrow}style={{ opacity: 0, transition: 'opacity ease-in-out 0.2s' }}/><GrFormNext /></div>
         </div>
-    )
+        <div className = "rc-rp-arrow" onClick={scrollRight} ref={rightArrow} style={{ opacity: 0, transition: 'opacity ease-in-out 0.2s' }}>< GrFormNext /></div>
+        </div>
+        )
   }
 
   return (

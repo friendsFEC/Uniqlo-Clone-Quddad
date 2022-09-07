@@ -17,10 +17,10 @@ const Stars = ({index, currentRating, relatedAverageRatings, currentInfo}) => {
         return (
           <div className = "rc-star" key = {i}>
             <div style = {{width: showRatingWithPrecision ? `${(activeStars % 1) * 100}%` : "0%", overflow: "hidden", position: "absolute"}} className = "rc-star-active">
-              <AiFillStar />
+            <img alt="" key={i} className="star" src="./img/rr/star-full.svg" />
             </div>
             <div>
-              {showEmptyStar ? <AiOutlineStar /> : <AiFillStar />}
+              {showEmptyStar ? <img alt="" key={i} className="star" src="./img/rr/star-empty.svg" /> : <img alt="" key={i} className="star" src="./img/rr/star-full.svg" />}
             </div>
           </div>
         )
