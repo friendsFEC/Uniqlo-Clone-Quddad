@@ -21,7 +21,7 @@ const OVERLAY_STYLE = {
   zIndex: 1000,
 };
 
-function Modal({ open, children, onClose }) {
+function AddAnswersModal({ open, children, onClose }) {
   if (!open) {
     return null;
   }
@@ -32,32 +32,20 @@ function Modal({ open, children, onClose }) {
       <div style={MODAL_STYLES}>
         {children}
         <br />
-        Question:
+        Answer:
         <input
           type="text"
-          id="qa-addQuestion--question"
+          id="qa-addAnswer--answer"
           name="name"
           required
           minLength="10"
           maxLength="1000"
           size="10"
-          placeholder="Example: Does the product come with XXS size..."
         />
         <br />
         <input
           type="text"
-          id="qa-addQuestion--username"
-          name="name"
-          required
-          minLength="3"
-          maxLength="60"
-          size="10"
-          placeholder="Example: jackson11!"
-        />
-        <br />
-        <input
-          type="email"
-          id="qa-addQuestion--username"
+          id="qa-addAnswer--username"
           name="name"
           required
           minLength="3"
@@ -67,6 +55,19 @@ function Modal({ open, children, onClose }) {
         />
         <br />
         <p>For privacy reasons, do not use your full name or email address</p>
+        <br />
+        <input
+          type="email"
+          id="qa-addQuestion--email"
+          name="name"
+          required
+          minLength="3"
+          maxLength="60"
+          size="10"
+          placeholder="Example: jack@email.com"
+        />
+        <br />
+        <p>For authentication reasons, you will not be emailed</p>
         <br />
         <input
           type="text"
@@ -79,8 +80,6 @@ function Modal({ open, children, onClose }) {
           placeholder="Why did you like the product or not?"
         />
         <br />
-        <p>For authentication reasons, you will not be emailed</p>
-        <br />
         <button type="submit">Submit</button>
         <button type="button" onClick={onClose}>Close Modal</button>
       </div>
@@ -89,4 +88,4 @@ function Modal({ open, children, onClose }) {
   );
 }
 
-export default Modal;
+export default AddAnswersModal;

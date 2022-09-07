@@ -52,7 +52,7 @@ class QuestionsAndAnswers extends React.Component {
       return (
         <div id="qa">
           <p>QUESTIONS & ANSWERS</p>
-          {/* <ListOfQA chosenProduct={questionList} isQuestionFilled={isQuestionFilled} /> */}
+          <ListOfQA chosenProduct={questionList} isQuestionFilled={isQuestionFilled} />
           <AddQuestions />
           <QAEntry />
         </div>

@@ -42,3 +42,13 @@
   padding:0;
   cursor: pointer;
 }
+
+.qa-QAItem-Question{
+  display: flex;
+  background-color: antiquewhite;
+}
+
+.rightHandSide{
+  align-items: stretch;
+  background-color: aquamarine;
+}
