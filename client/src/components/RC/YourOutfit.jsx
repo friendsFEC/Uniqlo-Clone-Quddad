@@ -7,7 +7,7 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
-  const [isReadyToAdd, setIsReadyToAdd] = useState(false);
+  const [isReadyToAdd, setIsReadyToAdd] = useState(true);
   const [infoStorage, setInfoStorage] = useState([]);
   const [styleStorage, setStyleStorage] = useState([]);
   const [ratingStorage, setRatingStorage] = useState([]);
@@ -40,12 +40,12 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     setRatingStorage(rating);
   }
 
-  // useEffect(
-  //   () => {
-  //     setIsReadyToAdd(true)
-  //   },
-  //   [productID]
-  // )
+  useEffect(
+    () => {
+      setIsReadyToAdd(true)
+    },
+    [productID]
+  )
 
   // ideas:
   // for the onclick of add to your outfit:
@@ -67,6 +67,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
+                setIsReadyToAdd(false);
                 removeDiv();
                 addInfo();
               }}>Add to Your Outfit</button>
@@ -88,12 +89,12 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         {isOpen ?
         <div className = "rc-yo-card">
           <div id = "rc-yo-add-button-div">
-            <button className = "rc-yo-add-button" onClick = {() => {addInfo()}}>
-              Add to Your Outfit</button>
-            {/* <button className = "rc-yo-add-button" onClick = {() => {
-            isReadyToAdd ? console.log('working')
-            : alert("This product is already a part of Your Outfit!")}}>
+            {/* <button className = "rc-yo-add-button" onClick = {() => {addInfo()}}>
               Add to Your Outfit</button> */}
+            <button className = "rc-yo-add-button" onClick = {() => {
+            isReadyToAdd ? (addInfo(), setIsReadyToAdd(false))
+            : alert("This product is already a part of Your Outfit!")}}>
+              Add to Your Outfit</button>
           </div>
         </div> : null}
 
