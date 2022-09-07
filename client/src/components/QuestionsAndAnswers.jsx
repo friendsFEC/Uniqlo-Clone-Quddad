@@ -11,10 +11,9 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       product: [],
-      product_id: '65632',
+      product_id: '65634',
     };
 
     this.updateData = this.updateData.bind(this);
