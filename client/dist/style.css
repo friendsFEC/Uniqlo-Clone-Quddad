@@ -1,0 +1,45 @@
+/*
+Star all the same [done]
+buttons
+width of outlines
+color?
+brand name
+light mode dark mode
+font
+font size
+titles
+
+*/
+
+/*
+  elements flush to the outlined div
+  anything with borders 1px;
+  big button (for adding to cart) red 52px
+  no button but yes click - underline , when hovered, underline goes away
+  Add to outfit same height but different color
+  small button (for more questions etc.) 32 px - bold black text 600 font weight - on white background
+  dropdown box height 44 px, border 1 px
+  Title -h3 -24 -weight 400
+  Price 32px -weight 400
+  Text
+  No scroll bars except reviews section - questions???s
+*/
+
+
+
+.star {
+  width: 1em;
+}
+
+body {
+  font-family: 'Helvetica Neue', 'Arial', 'Liberation Sans';
+}
+
+#border1 {
+  border: 1px solid;
+  margin: 8%;
+}
+
+
+
+

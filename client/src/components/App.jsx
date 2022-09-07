@@ -49,11 +49,15 @@ function App() {
   const [productId, setProductId] = useState(65631);
   return (
     <div>
-      <ProductIdSlider setProductId={setProductId} />
-      <Overview productId={productId} />
-      <RelatedAndComparison productID={productId} setProductId={setProductId} />
-      <QuestionsAndAnswers productId={productId} />
-      <ReviewsAndRatings productID={productId} />
+      <div id="border1">
+        <div id="border2">
+          <ProductIdSlider setProductId={setProductId} />
+          <Overview productId={productId} />
+          <RelatedAndComparison productID={productId} setProductId={setProductId} />
+          <QuestionsAndAnswers productId={productId} />
+          <ReviewsAndRatings productID={productId} />
+        </div>
+      </div>
     </div>
   );
 }
