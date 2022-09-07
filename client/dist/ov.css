@@ -4,14 +4,25 @@
 
 @media (max-width: 900px) {
   .ov-wrapper {
-    flex-direction: column;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 4fr;
   }
 
-  .ov-imageBox_mainImage {
-    height: 200px;
-    width: 150px;
-    transition: width 0.3s ease-out;
+  .ov-sliderContainer {
+    grid-column-start: 2;
+    grid-row-start: 1;
   }
+
+  .ov-carousel_wrapper{
+    grid-column-start: 1;
+  }
+
+  .ov-infoBox{
+    grid-column-start:1 ;
+    grid-column-end: span2;
+    grid-row-start: 2;
+  }
+
 }
 
 .ov-main {
@@ -40,8 +51,6 @@
 }
 
 .ov-imageBox--extended{
-  height: 60vh;
-  width: 100%;
 }
 
 .ov-img--extended {
@@ -99,7 +108,8 @@
  }
 
  .ov-sliderContainer--extended {
-
+  grid-column-start: 3;
+  grid-column-end: 20;
  }
 
  .ov-btn {
