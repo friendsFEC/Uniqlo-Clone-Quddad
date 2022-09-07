@@ -1,10 +1,18 @@
+.rc-slide-container {
+  display: grid;
+  grid-auto-flow: column;
+  overflow: scroll;
+  grid-template-rows: 1fr;
+  max-width: 100rem;
+  gap: 30px;
+}
+
 .rc-rp-container {
   display: grid;
   grid-auto-flow: column;
   overflow: scroll;
   grid-template-rows: 1fr;
-  /* margin-left: 27%;
-  margin-right: 29%; */
+  max-width: 100rem;
   gap: 30px;
 }
 
@@ -93,6 +101,7 @@
   margin-top: 5px;
   height: 225px;
   width: 225px;
+  cursor: pointer;
 }
 
 .rc-card-name {
@@ -106,6 +115,7 @@
   padding: 0;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .rc-yo-add-button {
@@ -116,6 +126,7 @@
   border-radius: 10px;
   margin-left: 47px;
   margin-top: 85px;
+  cursor: pointer;
 }
 
 .rc-rp-arrow {

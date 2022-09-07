@@ -49,10 +49,14 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
 
   }
 
+  // ideas:
   // for the onclick of add to your outfit:
   // will search through infostorage
   // if present --> alert
   // if not --> add outfit
+
+  // want to set isReadyToAdd flag which will turn true when we change currentProduct
+  // can this be done using useEffect?
 
   return (
     <div>
@@ -72,9 +76,9 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
           </div>
         </div>
 
-        {console.log(infoStorage, 'INFO STORAGE DURING RENDER')}
+        {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')}
         {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')}
-        {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')}
+        {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
 
         {infoStorage.map((product, index) => {
           return (<div key = {index}>
