@@ -12,11 +12,6 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
   const [styleStorage, setStyleStorage] = useState([]);
   const [ratingStorage, setRatingStorage] = useState([]);
 
-  const addedInfos = [];
-  const addedStyles = [];
-  const addedRatings = [];
-
-
   const removeDiv = () => {
     const getDiv = document.getElementById("rc-removable-div")
     if (getDiv.style.display === "none") {
@@ -32,22 +27,25 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
   }
 
   const addInfo = () => {
-    let info = addedInfos.slice();
+    let info = infoStorage.slice();
     info.push(currentInfo);
     setInfoStorage(info);
 
-    let style = addedStyles.slice();
+    let style = styleStorage.slice();
     style.push(currentStyle);
     setStyleStorage(style);
 
-    let rating = addedRatings.slice();
+    let rating = ratingStorage.slice();
     rating.push(currentRating);
     setRatingStorage(rating);
   }
 
-  const handleAdd = () => {
-
-  }
+  // useEffect(
+  //   () => {
+  //     setIsReadyToAdd(true)
+  //   },
+  //   [productID]
+  // )
 
   // ideas:
   // for the onclick of add to your outfit:
@@ -76,8 +74,8 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
           </div>
         </div>
 
-        {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')}
-        {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')}
+        {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')} */}
+        {/* {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')}
         {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
 
         {infoStorage.map((product, index) => {
@@ -90,10 +88,12 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         {isOpen ?
         <div className = "rc-yo-card">
           <div id = "rc-yo-add-button-div">
-            <button className = "rc-yo-add-button" onClick = {() => {
+            <button className = "rc-yo-add-button" onClick = {() => {addInfo()}}>
+              Add to Your Outfit</button>
+            {/* <button className = "rc-yo-add-button" onClick = {() => {
             isReadyToAdd ? console.log('working')
             : alert("This product is already a part of Your Outfit!")}}>
-              Add to Your Outfit</button>
+              Add to Your Outfit</button> */}
           </div>
         </div> : null}
 

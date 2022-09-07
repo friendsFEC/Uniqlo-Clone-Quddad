@@ -5,7 +5,7 @@ import axios from 'axios';
 import Modal from './Modal.jsx';
 import Stars from './Stars.jsx';
 import config from '../../../../config.js';
-import { AiOutlineStar, AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings, setProductId }) => {
@@ -20,7 +20,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
     if (listRef.current) {
      listRef.current.scrollBy({
       top: 0,
-      left: -30,
+      left: -200,
       behavior: 'smooth'
      })
     }
@@ -30,7 +30,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
     if (listRef.current) {
      listRef.current.scrollBy({
       top: 0,
-      left: 30,
+      left: 200,
       behavior: 'smooth'
      })
     }
@@ -56,7 +56,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
                 return (
                   <div className = "rc-rp-card" key = {index}>
                       <button className = "rc-rp-button" onClick = {() => isOpen ? setIsOpen(false) : (setIsOpen(true),  setSelectedProductID(product.id))}>
-                        <AiOutlineHeart/>
+                      <img alt="" className="star" src="./img/rr/star-empty.svg" />
                       </button>
                       <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
                       <div className = "rc-rp-details">
