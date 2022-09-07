@@ -32,12 +32,13 @@ export default function ReviewList({
       className="review-list"
       onScroll={({ target }) => {
         const btnDiv = document.getElementById('rr-write-review-btn');
+        const scrolledToBottom = Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10;
         if (btnDiv) {
           btnDiv.classList.add('float');
           btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight;
           btnDiv.style.left = target.offsetLeft;
           btnDiv.style.width = target.offsetWidth;
-          if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
+          if (scrolledToBottom) {
             retrieveReviews();
             btnDiv.classList.remove('float');
             btnDiv.style.width = '';
@@ -46,6 +47,8 @@ export default function ReviewList({
               btnDiv.style.width = '100%';
             }
           }
+        } else if (scrolledToBottom) {
+          retrieveReviews();
         }
       }}
     >

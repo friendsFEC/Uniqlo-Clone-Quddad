@@ -22,8 +22,9 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+	/*font-size: 100%;*/
+  font-size: 14px;
+	/*font: inherit;*/
 	vertical-align: baseline;
 }
 .rr ol, .rr ul {
@@ -50,9 +51,10 @@
 
 .rr {
 	line-height: 1;
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  /*width: 100%;*/
+  width: 100%;
+  /*margin-left: 5%;
+  margin-right: 5%;*/
   font-family: 'Helvetica Neue', 'Arial', 'Liberation Sans';
 }
 
@@ -61,7 +63,10 @@
 .rr .review-tile,
 .rr .product-breakdown,
 .rr .rating-breakdown {
-  padding: 2rem 2rem;
+  padding: 2rem 0rem;
+}
+.rr .review-list {
+  margin-left: 2rem;
 }
 
 .rr .sort-options {
@@ -96,7 +101,8 @@
   padding-bottom: 1.4rem;
   overflow-wrap: break-word;
 }
-.rr .review-tile p button {
+.rr .review-tile p button,
+.rr .review-tile blockquote button {
   display: inline;
   padding: 0;
   padding-left: 0.7rem;
@@ -132,7 +138,7 @@
 }
 /*.rr .review-thumbnail div,*/
 .rr .image-modal div {
-  background-color: #ccc;
+  background-color: rgba(51, 51, 51, 0.4);
 }
 .rr .image-modal div {
   width: 100%;
@@ -180,7 +186,7 @@
 #rr-write-review-btn.float {
   position: fixed;
   text-align: center;
-  font-size: 1.05rem;
+  /*font-size: 1.05rem;*/
   transition-property: top left font-size;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
@@ -192,13 +198,17 @@
 #rr-write-review-btn.float button {
   background-color: #000;
   color: #fff;
-  font-size: 1.6rem;
+  /*font-size: 1.6rem;*/
   width: 100%;
   box-sizing: border-box;
 }
-.rr .write-review {
-  overflow-y: scroll;
-  background-image: radial-gradient(#eee, #ccc);
+.rr .rr-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.4);
 }
 .rr .write-review .close {
   text-align: right;
@@ -214,7 +224,7 @@
   background-color: white;
   text-decoration: underline;
   font-variant: small-caps;
-  font-size: 1rem;
+  /*font-size: 1rem;*/
   margin-left: 0.3rem;
   margin-right: 1.4rem;
 }
@@ -224,14 +234,14 @@
   border-radius: 0;
   border: 1px solid #000;
   height: 1.4rem;
-  font-size: 1rem;
+  /*font-size: 1rem;*/
 }
 .rr .sort-options option {
   border: none;
   background-color: white;
   text-decoration: underline;
   font-variant: small-caps;
-  font-size: 1rem;
+  /*font-size: 1rem;*/
 }
 .rr .sort-options {
   /*border: solid 1px black;*/
@@ -243,12 +253,13 @@
   grid-column: 1/2;
   grid-row: 1/4;
 }
-.rr .write-review {
-  position: fixed;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  height: 90%;
+.rr .write-review .rr-wrapper .rr-container  {
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  overflow-y: scroll;
   /*border: solid 1px black;*/
   background-color: white;
   opacity: 1;
@@ -304,7 +315,7 @@
 }
 .rr .product-breakdown .characteristics-bar {
   background-color: #deddda;
-  height: 0.5rem;
+  height: 0.2rem;
   vertical-align: middle;
 }
 .rr .product-breakdown img.characteristics-arrow {
@@ -319,7 +330,7 @@
   margin-top: 0.7rem;
 }
 .rr .characteristics {
-  font-size: 0.9rem;
+  /*font-size: 0.9rem;*/
   font-weight: bold;
   margin-bottom: 0.7rem;
 }
@@ -332,7 +343,7 @@
   width: 33%;
   /*font-style: 'italic';*/
   font-weight: normal;
-  font-size: 0.8rem;
+  /*font-size: 0.8rem;*/
 }
 .rr .product-breakdown .characteristics-description p.rr-left {
   text-align: left;
@@ -359,18 +370,20 @@
   line-height: 1.4rem;
 }
 .rr h1 {
-  font-weight: bold;
-  font-size: 2rem;
-  line-height: 5rem;
+  font-weight: 600;
+  /*font-size: 2rem;*/
+  font-size: 24px;
+  /*line-height: 5rem;*/
 }
 .rr h2 {
-  font-weight: bold;
-  font-size: 1.8rem;
-  line-height: 1.8rem;
+  font-weight: 600;
+  font-size: 14px;
+  /*font-size: 1.8rem;*/
+  /*line-height: 1.8rem;*/
 }
 .rr h3 {
-  font-weight: bold;
-  font-size: 1.4rem;
+  font-weight: 600;
+  /*font-size: 1.4rem;*/
   padding-bottom: 0.7rem;
 }
 .rr sup {
@@ -390,7 +403,7 @@
 .rr button {
 	cursor: pointer;
   padding: 0.7rem 1.5rem;
-  font-size: 1rem;
+  /*font-size: 1rem;*/
   /*background-color: #eee;*/
   background-color: #fff;
   color: #000;
@@ -410,7 +423,6 @@
 }
 .rr button:hover {
   box-shadow: 1px 2px 4px #333;
-  b
 }
 .rr #rr-no-reviews-showing {
   padding-bottom: 1.4rem;
