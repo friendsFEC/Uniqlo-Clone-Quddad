@@ -35,6 +35,7 @@
   overflow: hidden;
   overflow-x: scroll;
   scrollbar-width: none;
+  margin-bottom: 50px;
 }
 
 .rc-yo-container::-webkit-scrollbar{ display: none }

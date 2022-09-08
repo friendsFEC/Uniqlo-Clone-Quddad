@@ -50,6 +50,7 @@ function ProductIdSlider({ setProductId, productId }) {
   );
 }
 
+
 ProductIdSlider.propTypes = {
   setProductId: PropTypes.func.isRequired,
   productId: PropTypes.number.isRequired,
