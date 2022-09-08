@@ -20,6 +20,8 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     }
   }
 
+  // ratings don't match up yet
+
   const addProduct = () => {
     let info = infoStorage.slice();
     info.push(currentInfo);
