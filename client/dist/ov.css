@@ -9,6 +9,11 @@
   height: max-content;
 }
 
+.ov-title{
+  font-size: 24px;
+  font-weight: 400;
+}
+
 .ov-wrapper {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
@@ -36,7 +41,7 @@
 }
 
 .ov-imageBox_mainImage {
-  height: 500px;
+  height: 40rem;
   width: 100%;
   cursor: zoom-in;
  }
@@ -78,7 +83,7 @@
  }
 
  .ov-sliderContainer {
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-column-end: 12;
   position: relative;
  }
@@ -104,6 +109,8 @@
  /* --CAROUSEL CSS-- */
 
  .ov-carousel_wrapper {
+  position:relative;
+  left: -7px;
   grid-column-start: 1;
   justify-content: center;
   height: 350px;
