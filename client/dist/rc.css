@@ -46,8 +46,14 @@
   width: 260px;
 }
 
+.rc-yo-empty-add-card {
+  height: 470px;
+  width: 260px;
+}
+
 .rc-title {
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 400;
   /* margin-left: 27%; */
 }
 
@@ -126,10 +132,11 @@
 
 .rc-yo-add-button {
   font-size: 18px;
+  height: 52px;
   text-align: center;
-  padding: 60px 10px;
-  background-color: red;
-  color: white;
+  background-color: white;
+  color: black;
+  font-weight: bold;
   border: 1px solid black;
   margin-left: 52px;
   margin-top: 140px;

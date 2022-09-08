@@ -71,7 +71,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
       <h3 className = "rc-title"> Your Outfit </h3>
       <div className = "rc-yo-container">
         <div id = "rc-removable-div">
-          <div className = "rc-yo-card">
+          <div className = "rc-yo-empty-add-card">
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
@@ -91,7 +91,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         })}
 
         {isOpen ?
-        <div className = "rc-yo-card">
+        <div className = "rc-yo-empty-add-card">
           <div id = "rc-yo-add-button-div">
             <button className = "rc-yo-add-button" onClick = {() => {
             isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
