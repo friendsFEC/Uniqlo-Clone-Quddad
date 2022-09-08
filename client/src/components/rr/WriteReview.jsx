@@ -252,8 +252,8 @@ function WriteReview({ characteristics, productID, setSubmittedReview }) {
                     <div key={k}>
                       <p><strong>{k}</strong></p>
                       {[1, 2, 3, 4, 5].map((field) => (
-                        <div className="rr-radio-container">
-                          <div key={field} className="rr-radio-btn">
+                        <div key={field} className="rr-radio-container">
+                          <div className="rr-radio-btn">
                             <input
                               key={field}
                               type="radio"
