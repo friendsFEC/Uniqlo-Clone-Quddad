@@ -532,6 +532,11 @@
   transition-timing-function: ease;
 }
 .rr #rr-form-cards input[type="radio"]:checked {
+  height: 24px;
+  width: 96rem;
   box-shadow: 1px 2px 4px;
   border-width: 2px;
+}
+.rr .rr-form-container label {
+  position: absolute
 }

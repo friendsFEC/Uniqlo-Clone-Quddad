@@ -159,13 +159,13 @@ function WriteReview({ characteristics, productID }) {
     setCurrentCard(cards[target]);
   }
   useEffect(() => {
-    console.log(currentCard);
+    //console.log(currentCard);
     const container = document.getElementsByClassName('rr-container')[0];
     const cardsDiv = document.getElementById('rr-form-cards');
     let target = cards.reduce((index, card, i) => card === currentCard ? i : index, -1);
     // const left = Number(cardsDiv.style.left.replace(/px/, '')) - (loaded ? container.offsetWidth : 0);
     const left = container.offsetWidth * (-target);
-    console.log('left:', left)
+    //console.log('left:', left)
     cardsDiv.style.left = left;
   }, [currentCard])
 
@@ -174,8 +174,8 @@ function WriteReview({ characteristics, productID }) {
     const cards = document.getElementById('rr-form-cards');
     const header = document.getElementById('rr-form-title');
     const footer = document.getElementById('rr-form-footer');
-    console.log(cards.children);
-    console.log(container);
+    //console.log(cards.children);
+    //console.log(container);
     cards.style.width = container.offsetWidth * cards.childElementCount;
     Array.from(cards.children).map((child) => {
       child.style.width = container.offsetWidth;
@@ -209,15 +209,17 @@ function WriteReview({ characteristics, productID }) {
             <div id="rr-form-first">
               <div className="rr-form-container">
                 <h1>Do you recommend this product? (mandatory)</h1>
-                  <input
-                    type="radio"
-                    defaultChecked
-                    name="rr-review-recommend"
-                    value={true}
-                    textcontent="Yes"
-                  />
-                  <input type="radio" name="rr-review-recommend" value="false" />
-                  No
+                <label htmlFor="rr-review-recommend-true">No</label>
+                <input
+                type="radio"
+                defaultChecked
+                  name="rr-review-recommend"
+                  id="rr-review-recommend-true"
+                  value={true}
+                  textcontent="Yes"
+                />
+                <label htmlFor="rr-review-recommend-false">No</label>
+                <input type="radio" id="rr-review-recommend-false" name="rr-review-recommend" value="false" />
               </div>
             </div>
             <div id="rr-form-second">
