@@ -42,6 +42,7 @@ function ReviewsAndRatings(props) {
   const [search, setSearch] = useState('');
   const [ratingFilter, setRatingFilter] = useState([]);
   const [helpfulReviews, setHelpfulReviews] = useState([]);
+  const [submittedReview, setSubmittedReview] = useState(false);
   const count = 2;
 
   const searchFilter = (review) => {
@@ -82,6 +83,7 @@ function ReviewsAndRatings(props) {
       .then(() => {
         getReviews(productID, 1, 6).then((data) => setReviews(data.results));
       });
+    setSubmittedReview(false);
   }, [productID]); // effect runs on product id change
 
   useEffect(() => {
@@ -153,10 +155,12 @@ function ReviewsAndRatings(props) {
           helpfulReviews={helpfulReviews}
           total={total}
           reportReview={reportReview}
+          submittedReview={submittedReview}
         />
         <WriteReview
           characteristics={meta.characteristics}
           productID={productID}
+          setSubmittedReview={setSubmittedReview}
         />
       </div>
     </div>

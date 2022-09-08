@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReviewTile from './ReviewTile';
 import { debounce, positionRadioLabels, logError } from './utility';
 
+const WriteReviewButton = () => (
+  <button
+    id="rr-write-review-btn"
+    type="button"
+    onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
+  >
+    Add a Review
+  </button>
+)
+
 export default function ReviewList({
   productID, reviews, total, more, count, sort, getReviews, setReviews,
   search, searchFilter, ratingFilter, helpful, setHelpful,
-  helpfulReviews, reportReview, setMore
+  helpfulReviews, reportReview, setMore, submittedReview
 }) {
   /* initial rendering and changes to product id */
   // infinite scroll, not working correctly
@@ -79,16 +89,7 @@ export default function ReviewList({
           More Reviews
         </button> // add infinite scroll later on
       ) : null }
-        <button
-          id="rr-write-review-btn"
-          type="button"
-          onClick={() => {
-            positionRadioLabels();
-            document.getElementsByClassName('write-review')[0].classList.toggle('hidden');
-          }}
-        >
-          Add a Review
-        </button>
+      {!submittedReview ? <WriteReviewButton /> : null}
     </div>
   );
 }

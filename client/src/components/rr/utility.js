@@ -63,17 +63,4 @@ export const positionArrowWidgets = ({ characteristics }) => {
   }
 };
 
-export const positionRadioLabels = () => {
-  const labels = document.querySelectorAll('.rr-form-container input[type="radio"] ~ label');
-  labels.forEach((lbl) => {
-    const radio = lbl.previousElementSibling;
-    console.log('label offsetwidth:', lbl.offsetWidth);
-    radio.style.width = lbl.offsetWidth * 2;
-    radio.style.height = lbl.offsetHeight * 2;
-    lbl.style.left = -((lbl.offsetWidth + radio.offsetWidth) / 2);
-    lbl.style.top = -((lbl.offsetHeight + radio.offsetHeight) / 2);
-    console.log(lbl.style.left);
-  });
-};
-
 export const setAverage = { type: 'setAverage' };

@@ -10,7 +10,7 @@ import { IconContext } from 'react-icons';
 
 // https://api.cloudinary.com/v1_1/${cloudName}/upload
 
-function WriteReview({ characteristics, productID }) {
+function WriteReview({ characteristics, productID, setSubmittedReview }) {
   const charData = {
     Size: {
       1: 'A size too small',
@@ -70,6 +70,7 @@ function WriteReview({ characteristics, productID }) {
   const [parsedReview, setParsedReview] = useState({});
   let [loaded, setLoaded] = useState(false); // keep from posting when page loads
   const [reviewSent, setReviewSent] = useState(false);
+  const [userClickedSend, setUserClickedSend] = useState(false);
   const parseForm = () => {
     const review = {};
     const reviewItems = [
@@ -97,7 +98,7 @@ function WriteReview({ characteristics, productID }) {
 		const validateData = () => {
 			let makeChanges = [];
 			if (review.rating === 0) {
-				makeChanges.push('Select an overall rating!');
+        makeChanges.push('Select an overall rating!');
 			}
 			// review.recommend defaults to true
 			keys.forEach((key) => {
@@ -111,6 +112,9 @@ function WriteReview({ characteristics, productID }) {
 			if (review.body.length < 50) {
 				makeChanges.push('Please adjust the length of your review body message!');
 			}
+      if (review.name === '') {
+        makeChanges.push('Remember to add a nickname!');
+      }
 			if (!emailRegex.test(review.email)) {
 				makeChanges.push('Please format your email address properly!');
 			}
@@ -121,10 +125,14 @@ function WriteReview({ characteristics, productID }) {
 			return makeChanges;
 		}
 		setFixes(validateData())
+    /* need to clear form fields after successful submit */
   };
   useEffect(() => {
+    positionCards();
+  }, [productID]);
+  useEffect(() => {
     // console.log('post hook is running\n, loaded:', loaded);
-    if (fixes.length === 0 && loaded) {
+    if (fixes.length === 0 && loaded && userClickedSend) {
       // console.log(`no fixes and page has loaded ${loaded} times`);
       Promise.all(imageUploads.map((img) => postImage(img)))
         .then((resArray) => resArray.map((res) => res.data.url))
@@ -137,10 +145,12 @@ function WriteReview({ characteristics, productID }) {
           })
           .then((res) => {
             document.getElementsByClassName('write-review')[0].classList.toggle('hidden');
+            /*
             let btn = document.getElementById('rr-write-review-btn');
             btn.parentElement.removeChild(btn);
+            */
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.warn(err));
     }
     setLoaded(true);
     // console.log('loaded after run', loaded);
@@ -151,11 +161,15 @@ function WriteReview({ characteristics, productID }) {
   const [currentCard, setCurrentCard] = useState('rr-form-first');
   const nextCard = () => {
     const target = cards.reduce((index, card, i) => card === currentCard ? i : index, -1) + 1;
+    if (cards[target] === 'rr-form-last') {
+      parseForm();
+    }
     setCurrentCard(cards[target]);
   }
   const previousCard = () => {
     let target = cards.reduce((index, card, i) => card === currentCard ? i : index, -1) - 1;
     target = target < 0 ? 0 : target;
+    setUserClickedSend(false);
     setCurrentCard(cards[target]);
   }
   useEffect(() => {
@@ -195,6 +209,8 @@ function WriteReview({ characteristics, productID }) {
           <div
             className="close"
             onClick={() => {
+              positionCards();
+              setCurrentCard('rr-form-first')
               document.getElementsByClassName('write-review')[0].classList.toggle('hidden');
             }}
           >
@@ -209,17 +225,23 @@ function WriteReview({ characteristics, productID }) {
             <div id="rr-form-first">
               <div className="rr-form-container">
                 <h1>Do you recommend this product? (mandatory)</h1>
-                <input
-                type="radio"
-                defaultChecked
-                  name="rr-review-recommend"
-                  id="rr-review-recommend-true"
-                  value={true}
-                  textcontent="Yes"
-                />
-                <label htmlFor="rr-review-recommend-true">Yes</label>
-                <input type="radio" id="rr-review-recommend-false" name="rr-review-recommend" value="false" />
-                <label htmlFor="rr-review-recommend-false">No</label>
+                <div className="rr-radio-container">
+                  <div className="rr-radio-btn">
+                    <input
+                    type="radio"
+                    defaultChecked
+                      name="rr-review-recommend"
+                      id="rr-review-recommend-true"
+                      value={true}
+                      textcontent="Yes"
+                    />
+                    <label htmlFor="rr-review-recommend-true">Yes</label>
+                  </div>
+                  <div className="rr-radio-btn">
+                    <input type="radio" id="rr-review-recommend-false" name="rr-review-recommend" value="false" />
+                    <label htmlFor="rr-review-recommend-false">No</label>
+                  </div>
+                </div>
               </div>
             </div>
             <div id="rr-form-second">
@@ -230,18 +252,20 @@ function WriteReview({ characteristics, productID }) {
                     <div key={k}>
                       <p><strong>{k}</strong></p>
                       {[1, 2, 3, 4, 5].map((field) => (
-                        <span key={field}>
-                          <input
-                            key={field}
-                            type="radio"
-                            id={`rr-review-${k}-${field}`}
-                            name={`rr-review-${k}`}
-                            value={field}
-                          />
-                          <label htmlFor={`rr-review-${k}-${field}`}>
-                            {charData[k][field]}
-                          </label>
-                        </span>
+                        <div className="rr-radio-container">
+                          <div key={field} className="rr-radio-btn">
+                            <input
+                              key={field}
+                              type="radio"
+                              id={`rr-review-${k}-${field}`}
+                              name={`rr-review-${k}`}
+                              value={field}
+                            />
+                            <label htmlFor={`rr-review-${k}-${field}`}>
+                              {charData[k][field]}
+                            </label>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   ) : null
@@ -250,7 +274,7 @@ function WriteReview({ characteristics, productID }) {
             </div>
             <div id="rr-form-third">
               <div className="rr-form-container">
-                <h2>Overall rating (mandatory)</h2>
+                <h1>Overall rating (mandatory)</h1>
                 <div
                   onClick={({ target }) => {
                     // console.log(target);
@@ -263,65 +287,80 @@ function WriteReview({ characteristics, productID }) {
                     setOverallRating(value);
                   }}
                 >
-                  <p>
+                  <div>
                     <StarRating rating={overallRating} />
-                    {overallRating !== 0 ? `${overallRating}: ${ratingMap[overallRating]}` : null}
-                  </p>
+                    {overallRating !== 0 ? <h1>{`${overallRating}: ${ratingMap[overallRating]}`}</h1> : null}
+                  </div>
                 </div>
               </div>
             </div>
             <div id="rr-form-fourth">
               <div className="rr-form-container">
-                <h2>What is your nickname (mandatory)</h2>
+                <h1>What is your nickname (mandatory)</h1>
                 <input type="text" name="rr-review-name" placeholder="Example: jackson11!" />
-                <h2>Your email (mandatory)</h2>
-                <p>[up to 60 characters]</p>
+                <h1>Your email (mandatory)</h1>
                 <input type="email" maxLength="60" name="rr-review-email" placeholder="Example: jackson11@email.com" />
-                <p>For authentication reasonse, you will not be emailed.</p>
+                <p>For authentication reasons, you will not be emailed.</p>
               </div>
             </div>
             <div id="rr-form-fifth">
               <div className="rr-form-container">
-                <h2>Review Summary</h2>
-                <p>[limit to 60 characters]</p>
+                <h1>Review Summary</h1>
                 <input maxLength="60" type="text" name="rr-review-summary" placeholder="Example: Best purchase ever!" />
-                <h2>Review body (mandatory)</h2>
-                <p>[minimum 50, max 1000 characters]</p>
+                <h1>Review body (mandatory)</h1>
                 <textarea minLength="50" maxLength="1000" rows="24" cols="80" name="rr-review-body" />
               </div>
             </div>
             <div id="rr-form-sixth">
               <div className="rr-form-container">
-              <h2>Upload your photos</h2>
+              <h1>Upload your photos</h1>
                   {[0, 1, 2, 3, 4].map((i) => (
-                    <input
+                  <label
                     key={i}
+                    htmlFor="rr-review-photos"
+                    className={i === 0 ? 'photo-upload-container' : 'hidden photo-upload-container'}
+                    onClick={({ target }) => {
+                      target.children[0] ? target.children[0].click() : null;
+                    }}
+                  >
+                    <input
                     type="file"
                     name="rr-review-photos"
                     className={i === 0 ? 'photo-upload first-photo' : 'hidden photo-upload'}
                     onChange={({ target }) => {
                       // get all upload inputs that have a file
-                      let uploads = Array.from(document.getElementsByClassName('photo-upload'));
+                      const uploads = Array.from(document.getElementsByClassName('photo-upload'));
+                      const containers = Array.from(document.getElementsByClassName('photo-upload-container'));
                       const fileCount = uploads.reduce((cnt, input) => cnt + input.files.length, 0);
+                      console.log('file count:', fileCount, 'should reveal next button');
                       // reveal (1) additional button
                       //let uploads = uploads.filter((input) => !input.classList.contains('first-photo'));
-                      uploads[fileCount].classList.toggle('hidden');
+                      uploads[fileCount] ? uploads[fileCount].classList.toggle('hidden') : null;
+                      containers[fileCount] ? containers[fileCount].classList.toggle('hidden') : null;
+                      const parent = target.parentElement;
+                      parent.innerHTML = `Edit Upload: ${target.files[0].name}`; //target.files[0].name;
+                      parent.appendChild(target);
+                      
                     }}
-                  />
+                    />
+                    Upload Photo
+                  </label>
                 ))}
               </div>
             </div>
             <div id="rr-form-last">
               <div className="rr-form-container">
+                {/*
                 <p>
                   [check that for blank mandatory fields, review body [50, 1000] in length,
                   proper email format, and valid images selected]
                 </p>
+                */}
+                <h1>{fixes.length > 0 ? 'Please Fix the following!' : 'You\'re Ready to Submit!'}</h1>
                 { fixes.length ? (
                   <div>
-                    <h2>Please fix the following before submitting!</h2>
                     <ul>
-                      {fixes.map((fix, i) => <li key={i}>{fix}</li>)}
+                      {fixes.map((fix, i) => <li key={i} >{fix}</li>)}
                     </ul>
                   </div>
                 ) : null }
@@ -331,7 +370,14 @@ function WriteReview({ characteristics, productID }) {
           <div id="rr-form-footer">
             <button type="button" onClick={previousCard}>Previous Section</button>
             {currentCard === 'rr-form-last' ?
-                (<button type="button" style={{backgroundColor: '#000', color: '#fff'}} onClick={parseForm}>Submit Review</button>)
+                (<button type="button" style={{backgroundColor: '#000', color: '#fff'}} onClick={() => {
+                    setUserClickedSend(true);
+                    setSubmittedReview(true);
+                    parseForm();
+                  }}
+                >
+                  Submit Review
+                </button>)
               : (<button type="button" onClick={nextCard}>I'm done with this section</button>)
             }
           </div>
