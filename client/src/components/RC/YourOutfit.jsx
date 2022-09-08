@@ -20,8 +20,6 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     }
   }
 
-  // ratings don't match up yet
-
   const addProduct = () => {
     let info = infoStorage.slice();
     info.push(currentInfo);
@@ -36,7 +34,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     setRatingStorage(rating);
   }
 
-  const removeProduct = (e, product) => {
+  const removeProduct = (e, product, currentRating, index) => {
     e.preventDefault();
     let info = infoStorage.slice();
     let filteredInfo = info.filter(obj => {
@@ -48,15 +46,16 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     let filteredStyle = style.filter(obj => {
       if (Number(obj.product_id) !== product.id) {return obj};
     })
-    console.log(filteredStyle, 'FILTERED STYLE')
     setStyleStorage(filteredStyle);
 
-    // let rating = ratingStorage.slice();
-    // let filteredRating = rating.filter(obj => {
-    //   if (obj.id !== product.id) {return obj};
-    // })
-    // for (let i = 0; i < rating.length; i++)
-    // setRatingStorage(filteredRating);
+    let rating = ratingStorage.slice();
+    let filteredRatings = [];
+    for (let i = 0; i < rating.length; i++) {
+      if (i !== index) {
+        filteredRatings.push(rating[i]);
+      }
+    }
+    setRatingStorage(filteredRatings);
   }
 
   useEffect(
