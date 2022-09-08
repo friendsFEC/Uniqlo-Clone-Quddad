@@ -7,7 +7,7 @@ import YourOutfit from './RC/YourOutfit.jsx'
 import config from '../../../config.js'
 import { AiOutlineStar } from 'react-icons/ai';
 
-const RelatedAndComparison = ({productID}) => {
+const RelatedAndComparison = ({productID, setProductId}) => {
   const [currentInfo, setCurrentInfo] = useState([]);
   const [currentStyle, setCurrentStyle] = useState([]);
   const [currentRating, setCurrentRating] = useState([]);
@@ -171,8 +171,8 @@ const RelatedAndComparison = ({productID}) => {
 
   if (relatedStyles.length > 0) {
     return (
-      <div>
-        <div>
+      <div className = "rc-main">
+        <div className = "rc-rp">
           <RelatedProducts
             productID = {productID}
             currentInfo = {currentInfo}
@@ -180,14 +180,15 @@ const RelatedAndComparison = ({productID}) => {
             relatedInfo = {relatedInfo}
             relatedStyles = {relatedStyles}
             relatedAverageRatings = {relatedAverageRatings}
+            setProductId = {setProductId}
           />
         </div>
-        <div>
+        <div className = "rc-yo">
           < YourOutfit
+            productID = {productID}
             currentInfo = {currentInfo}
             currentStyle = {currentStyle}
             currentRating = {currentRating}
-            relatedAverageRatings = {relatedAverageRatings}
           />
         </div>
       </div>

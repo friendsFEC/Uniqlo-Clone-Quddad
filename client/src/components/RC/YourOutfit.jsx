@@ -4,11 +4,15 @@ import { useState, useEffect } from 'react';
 import YOCard from './YOCard.jsx'
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
-const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRatings} ) => {
+const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isReadyToAdd, setIsReadyToAdd] = useState(true);
+  const [infoStorage, setInfoStorage] = useState([]);
+  const [styleStorage, setStyleStorage] = useState([]);
+  const [ratingStorage, setRatingStorage] = useState([]);
 
   const removeDiv = () => {
-    const getDiv = document.getElementById("rc-yo-add-button-div")
+    const getDiv = document.getElementById("rc-removable-div")
     if (getDiv.style.display === "none") {
       getDiv.style.display = "block";
     } else {
@@ -16,29 +20,93 @@ const YourOutfit = ( {currentInfo, currentStyle, currentRating, relatedAverageRa
     }
   }
 
-  // set a count of your outfit cards
-  // when click on add to your outfit, increment
-  // when click on X, decrement
-  // for each count, render out a card
-  // useReducer here?
+  const addProduct = () => {
+    let info = infoStorage.slice();
+    info.push(currentInfo);
+    setInfoStorage(info);
 
+    let style = styleStorage.slice();
+    style.push(currentStyle);
+    setStyleStorage(style);
+
+    let rating = ratingStorage.slice();
+    rating.push(currentRating);
+    setRatingStorage(rating);
+  }
+
+  const removeProduct = (e, product, currentRating, index) => {
+    e.preventDefault();
+    let info = infoStorage.slice();
+    let filteredInfo = info.filter(obj => {
+      if (obj.id !== product.id) {return obj};
+    });
+    setInfoStorage(filteredInfo);
+
+    let style = styleStorage.slice();
+    let filteredStyle = style.filter(obj => {
+      if (Number(obj.product_id) !== product.id) {return obj};
+    })
+    setStyleStorage(filteredStyle);
+
+    let rating = ratingStorage.slice();
+    let filteredRatings = [];
+    for (let i = 0; i < rating.length; i++) {
+      if (i !== index) {
+        filteredRatings.push(rating[i]);
+      }
+    }
+    setRatingStorage(filteredRatings);
+  }
+
+  useEffect(
+    () => {
+      setIsReadyToAdd(true)
+    },
+    [productID]
+  )
 
   return (
     <div>
-      <h3 className = "rc-title"> Your Outfit</h3>
-        <div className = "rc-yo-container">
+      <h3 className = "rc-title"> Your Outfit </h3>
+      <div className = "rc-yo-container">
         {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
+
+        <div id = "rc-removable-div">
           <div className = "rc-yo-card">
             <div id = "rc-yo-add-button-div">
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
+                setIsReadyToAdd(false);
                 removeDiv();
+                addProduct();
               }}>Add to Your Outfit</button>
             </div>
-            <YOCard open = {isOpen} currentInfo = {currentInfo} currentStyle = {currentStyle} currentRating = {currentRating} relatedAverageRatings = {relatedAverageRatings} />
           </div>
-          {/* < GrFormNext className = "rc-rp-arrow"/> */}
         </div>
+
+        {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')} */}
+        {/* {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')} */}
+        {/* {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
+
+        {infoStorage.map((product, index) => {
+          return (<div key = {index}>
+            <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} product = {product} removeProduct = {removeProduct} index = {index}/>
+            </div>
+          )
+        })}
+
+        {isOpen ?
+        <div className = "rc-yo-card">
+          <div id = "rc-yo-add-button-div">
+            <button className = "rc-yo-add-button" onClick = {() => {
+            isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
+            : alert("This product is already a part of Your Outfit!")}}>
+              Add to Your Outfit</button>
+          </div>
+        </div> : null}
+
+      {/* < GrFormNext className = "rc-rp-arrow"/> */}
+      </div>
     </div>
   )
 }
