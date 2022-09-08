@@ -524,19 +524,39 @@
   padding: 0.7rem 1.5rem;
   background-color: #fff;
   color: #000;
+  height: 24px;
+  /*width: 72px;*/
   font-weight: 400;
   border: 1px solid #000;
   font-variant: small-caps;
-  transition-property: box-shadow;
+  transition-property: box-shadow, width;
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
 .rr #rr-form-cards input[type="radio"]:checked {
-  height: 24px;
-  width: 96rem;
+  /*height: 24px;*/
+  /*width: 96px;*/
   box-shadow: 1px 2px 4px;
   border-width: 2px;
 }
-.rr .rr-form-container label {
-  position: absolute
+.rr .rr-form-container input[type="radio"] + label {
+  position: relative;
+  font-size: 12px;
+  font-variant: small-caps;
 }
+/*
+.rr .rr-form-container input[type="radio"] + label {
+  position: relative;
+  top: -6px;
+  left: -48px;
+  height: 24px;
+  width: 96px;
+}
+.rr .rr-form-container input[type="radio"]:checked + label {
+  position: relative;
+  top: -6px;
+  left: -60px;
+  height: 24px;
+  width: 120px;
+}
+*/

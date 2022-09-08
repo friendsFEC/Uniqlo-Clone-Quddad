@@ -209,7 +209,6 @@ function WriteReview({ characteristics, productID }) {
             <div id="rr-form-first">
               <div className="rr-form-container">
                 <h1>Do you recommend this product? (mandatory)</h1>
-                <label htmlFor="rr-review-recommend-true">No</label>
                 <input
                 type="radio"
                 defaultChecked
@@ -218,8 +217,9 @@ function WriteReview({ characteristics, productID }) {
                   value={true}
                   textcontent="Yes"
                 />
-                <label htmlFor="rr-review-recommend-false">No</label>
+                <label htmlFor="rr-review-recommend-true">Yes</label>
                 <input type="radio" id="rr-review-recommend-false" name="rr-review-recommend" value="false" />
+                <label htmlFor="rr-review-recommend-false">No</label>
               </div>
             </div>
             <div id="rr-form-second">
@@ -231,13 +231,16 @@ function WriteReview({ characteristics, productID }) {
                       <p><strong>{k}</strong></p>
                       {[1, 2, 3, 4, 5].map((field) => (
                         <span key={field}>
-                          {charData[k][field]}
                           <input
                             key={field}
                             type="radio"
+                            id={`rr-review-${k}-${field}`}
                             name={`rr-review-${k}`}
                             value={field}
                           />
+                          <label htmlFor={`rr-review-${k}-${field}`}>
+                            {charData[k][field]}
+                          </label>
                         </span>
                       ))}
                     </div>

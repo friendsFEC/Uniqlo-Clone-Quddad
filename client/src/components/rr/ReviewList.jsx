@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewTile from './ReviewTile';
-import { debounce, logError } from './utility';
+import { debounce, positionRadioLabels, logError } from './utility';
 
 export default function ReviewList({
   productID, reviews, total, more, count, sort, getReviews, setReviews,
@@ -82,7 +82,10 @@ export default function ReviewList({
         <button
           id="rr-write-review-btn"
           type="button"
-          onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
+          onClick={() => {
+            positionRadioLabels();
+            document.getElementsByClassName('write-review')[0].classList.toggle('hidden');
+          }}
         >
           Add a Review
         </button>
