@@ -156,13 +156,17 @@
 }
 
 .ov-title_price {
-  color:black
+  color:red;
+  font-weight: 400;
+  font-size: 32;
 }
 
 .ov-title_price--onsale {
-  color: red;
+  color: black;
   text-decoration: line-through;
   padding-right: 5px;
+  font-weight: 400;
+  font-size: 28;
 }
 
 .ov-title--reviews:hover {
@@ -260,6 +264,30 @@
      "ov-carousel_wrapper ov-sliderContainer"
      "ov-infoBox ov-infoBox";
   }
-
 }
 
+.ov-dropdown {
+  border: solid 1px;
+  height: 44px;
+  background-color: white;
+}
+
+.ov-selectorContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.ov-addToCarBtn{
+  height: 52px;
+  background-color: red;
+  border: solid 1px black;
+  color: white;
+  width: 100%;
+}
+
+.ov-addToCartContainer{
+  grid-column: 1/3;
+}
