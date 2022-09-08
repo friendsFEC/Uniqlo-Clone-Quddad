@@ -21,8 +21,8 @@
 
 .rc-rp-card {
   background-color: #e0e0e0;
-  height: 400px;
-  width: 250px;
+  height: 470px;
+  width: 260px;
 }
 
 .rc-yo-container {
@@ -31,7 +31,6 @@
   grid-template-rows: 1fr;
   /* margin-left: 27%;
   margin-right: 29%; */
-  height: 430px;
   gap: 30px;
   overflow: hidden;
   overflow-x: scroll;
@@ -42,8 +41,8 @@
 
 .rc-yo-card {
   background-color: #e0e0e0;
-  height: 400px;
-  width: 250px;
+  height: 470px;
+  width: 260px;
 }
 
 .rc-title {
@@ -56,9 +55,10 @@
 }
 
 .rc-rp-button {
-  margin-left: 220px;
-  margin-top: 10px;
-  font-size: 25px;
+  margin-left: 230px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-size: 24px;
   padding: 0;
   border: none;
   background: none;
@@ -101,19 +101,20 @@
   padding: 7px;
 }
 
-.rc-card-photos {
+.rc-card-img {
   margin-top: 5px;
-  height: 225px;
-  width: 225px;
+  height: 290px;
+  width: 240px;
   cursor: pointer;
 }
 
 .rc-card-name {
+  margin-top: 2px;
   font-weight: bold;
 }
 
 .rc-yo-remove-button {
-  margin-left: 208px;
+  margin-left: 220px;
   margin-top: 10px;
   font-size: 25px;
   padding: 0;
@@ -123,13 +124,14 @@
 }
 
 .rc-yo-add-button {
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  padding: 75px 0;
-  background-color: #e0e0e0;
+  padding: 60px 10px;
+  background-color: red;
+  color: white;
   border: 1px solid black;
-  margin-left: 47px;
-  margin-top: 85px;
+  margin-left: 52px;
+  margin-top: 140px;
   cursor: pointer;
 }
 

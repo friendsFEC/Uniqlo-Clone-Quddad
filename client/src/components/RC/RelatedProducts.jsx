@@ -17,75 +17,30 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
   const rightArrow = useRef(null);
 
   const scrollLeft = () => {
-    let width = listRef.current.clientWidth;
-    console.log(width, 'WIDTH')
-    let numberOfCards = relatedInfo.length;
-    let avgWidth = width / numberOfCards
-    console.log(avgWidth, 'AVG DISTANCE')
     if (listRef.current) {
-      if (listRef.current.scrollLeft > (width - avgWidth)) {
-        listRef.current.scrollBy({
-          top: 0,
-          left: -250,
-          behavior: 'smooth'
-        })
-      } else {
-        listRef.current.scrollBy({
-          top: 0,
-          left: -5000,
-          behavior: 'smooth'
-        })
-      }
-    //  listRef.current.scrollBy({
-    //   top: 0,
-    //   left: -250,
-    //   behavior: 'smooth'
-    //  })
+     listRef.current.scrollBy({
+      top: 0,
+      left: -250,
+      behavior: 'smooth'
+     })
     }
   };
 
   const scrollRight = () => {
-    // console.log(listRef.current.scrollLeft, 'LEFT POSITION BEFORE UPDATE')
-    let width = listRef.current.clientWidth;
-    let numberOfCards = relatedInfo.length;
-    let avgWidth = width / numberOfCards
-    // console.log(avgWidth)
     if (listRef.current) {
-      if (listRef.current.scrollLeft > (width - avgWidth)) {
-        listRef.current.scrollBy({
-          top: 0,
-          left: 5000,
-          behavior: 'smooth'
-        })
-      } else {
-        listRef.current.scrollBy({
-          top: 0,
-          left: 250,
-          behavior: 'smooth'
-        })
-      }
-      // listRef.current.scrollBy({
-      //   top: 0,
-      //   left: 250,
-      //   behavior: 'smooth'
-      // })
-    }
-    // console.log(listRef.current.scrollLeft, 'LEFT POSITION AFTER UPDATE')
-    if (listRef.current.scrollLeft !== 0) {
-      leftArrow.current.style.opacity = 0.80
+      listRef.current.scrollBy({
+        top: 0,
+        left: 250,
+        behavior: 'smooth'
+      })
     }
   };
 
   const showArrows = () => {
-    // // if the list is scrolled all the way to the left, hide the left arrow
+    // if the list is scrolled all the way to the left, hide the left arrow
     listRef.current.scrollLeft === 0 ? leftArrow.current.style.opacity = 0 : leftArrow.current.style.opacity = 0.80;
-
-    // // if the list is scrolled all the way to the right, hide the right arrow
+    // if the list is scrolled all the way to the right, hide the right arrow
     listRef.current.scrollLeft + listRef.current.clientWidth === listRef.current.scrollWidth ? rightArrow.current.style.opacity = 0 : rightArrow.current.style.opacity = 0.80;
-
-    // leftArrow.current.style.opacity = 1;
-    // rightArrow.current.style.opacity = 1;
-
   }
 
   const hideArrows = () => {
@@ -107,7 +62,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
                       </button>
                       <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
                       <div className = "rc-rp-details">
-                        <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => setProductId(product.id)}/>
+                        <img className = "rc-card-img" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => setProductId(product.id)}/>
                         <p>{product.category}</p>
                         <p className = "rc-card-name">{product.name}</p>
                         <p><span className = {relatedStyles[index].results[0].sale_price === null ? "rc-rp-og-price" : "rc-rp-sale-price"}>
@@ -135,8 +90,3 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
 }
 
 export default RelatedProducts;
-
-  // IDEA FOR ARROWS:
-  // change classname based on ternary
-  // if at the front of the grid, hide left arrow
-  // if at the end of the grid, hide right arrow
