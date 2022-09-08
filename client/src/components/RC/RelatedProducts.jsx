@@ -17,28 +17,75 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
   const rightArrow = useRef(null);
 
   const scrollLeft = () => {
+    let width = listRef.current.clientWidth;
+    console.log(width, 'WIDTH')
+    let numberOfCards = relatedInfo.length;
+    let avgWidth = width / numberOfCards
+    console.log(avgWidth, 'AVG DISTANCE')
     if (listRef.current) {
-     listRef.current.scrollBy({
-      top: 0,
-      left: -200,
-      behavior: 'smooth'
-     })
+      if (listRef.current.scrollLeft > (width - avgWidth)) {
+        listRef.current.scrollBy({
+          top: 0,
+          left: -250,
+          behavior: 'smooth'
+        })
+      } else {
+        listRef.current.scrollBy({
+          top: 0,
+          left: -5000,
+          behavior: 'smooth'
+        })
+      }
+    //  listRef.current.scrollBy({
+    //   top: 0,
+    //   left: -250,
+    //   behavior: 'smooth'
+    //  })
     }
   };
 
   const scrollRight = () => {
+    // console.log(listRef.current.scrollLeft, 'LEFT POSITION BEFORE UPDATE')
+    let width = listRef.current.clientWidth;
+    let numberOfCards = relatedInfo.length;
+    let avgWidth = width / numberOfCards
+    // console.log(avgWidth)
     if (listRef.current) {
-     listRef.current.scrollBy({
-      top: 0,
-      left: 200,
-      behavior: 'smooth'
-     })
+      if (listRef.current.scrollLeft > (width - avgWidth)) {
+        listRef.current.scrollBy({
+          top: 0,
+          left: 5000,
+          behavior: 'smooth'
+        })
+      } else {
+        listRef.current.scrollBy({
+          top: 0,
+          left: 250,
+          behavior: 'smooth'
+        })
+      }
+      // listRef.current.scrollBy({
+      //   top: 0,
+      //   left: 250,
+      //   behavior: 'smooth'
+      // })
+    }
+    // console.log(listRef.current.scrollLeft, 'LEFT POSITION AFTER UPDATE')
+    if (listRef.current.scrollLeft !== 0) {
+      leftArrow.current.style.opacity = 0.80
     }
   };
 
   const showArrows = () => {
-    leftArrow.current.style.opacity = 0.80;
-    rightArrow.current.style.opacity = 0.80;
+    // // if the list is scrolled all the way to the left, hide the left arrow
+    listRef.current.scrollLeft === 0 ? leftArrow.current.style.opacity = 0 : leftArrow.current.style.opacity = 0.80;
+
+    // // if the list is scrolled all the way to the right, hide the right arrow
+    listRef.current.scrollLeft + listRef.current.clientWidth === listRef.current.scrollWidth ? rightArrow.current.style.opacity = 0 : rightArrow.current.style.opacity = 0.80;
+
+    // leftArrow.current.style.opacity = 1;
+    // rightArrow.current.style.opacity = 1;
+
   }
 
   const hideArrows = () => {

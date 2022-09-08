@@ -11,8 +11,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  max-width: 100rem;
-  gap: 30px;
+  gap: 38px;
   overflow: hidden;
   overflow-x: scroll;
   scrollbar-width: none;
@@ -33,9 +32,13 @@
   /* margin-left: 27%;
   margin-right: 29%; */
   height: 430px;
-  overflow: scroll;
   gap: 30px;
+  overflow: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
+
+.rc-yo-container::-webkit-scrollbar{ display: none }
 
 .rc-yo-card {
   background-color: #e0e0e0;
