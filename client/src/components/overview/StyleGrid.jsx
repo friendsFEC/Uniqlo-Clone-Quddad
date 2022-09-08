@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
+import PropTypes from 'prop-types';
 
 export default function StyleGrid({ styleData, changeStyle, active}) {
   // selecting a style changes the current style
@@ -14,7 +15,7 @@ export default function StyleGrid({ styleData, changeStyle, active}) {
           <div
             className="ov-thumbnail ov-checkDiv"
             onClick={() => changeStyle(index)}
-            key={index}
+            key={style.name}
             onKeyPress={() => changeStyle(index)}
             role="button"
             tabIndex="-1"
@@ -27,3 +28,9 @@ export default function StyleGrid({ styleData, changeStyle, active}) {
     </div>
   );
 }
+
+StyleGrid.propTypes = {
+  styleData: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  changeStyle: PropTypes.func.isRequired,
+  active: PropTypes.number.isRequired,
+};
