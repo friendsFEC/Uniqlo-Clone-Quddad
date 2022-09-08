@@ -30,7 +30,7 @@ export default function AddToCart({ sizeId, count }) {
       {!success
         && (
         <button
-          className="ov-addToCarBtn"
+          className="ov-addToCarBtn ov-title"
           type="button"
           onClick={handleClick}
         >
