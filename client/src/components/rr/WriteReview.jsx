@@ -209,19 +209,15 @@ function WriteReview({ characteristics, productID }) {
             <div id="rr-form-first">
               <div className="rr-form-container">
                 <h1>Do you recommend this product? (mandatory)</h1>
-                <p>
                   <input
                     type="radio"
                     defaultChecked
                     name="rr-review-recommend"
                     value={true}
+                    textcontent="Yes"
                   />
-                  Yes
-                </p>
-                <p>
                   <input type="radio" name="rr-review-recommend" value="false" />
                   No
-                </p>
               </div>
             </div>
             <div id="rr-form-second">
