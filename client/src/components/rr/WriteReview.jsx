@@ -332,13 +332,13 @@ function WriteReview({ characteristics, productID, setSubmittedReview }) {
                       const uploads = Array.from(document.getElementsByClassName('photo-upload'));
                       const containers = Array.from(document.getElementsByClassName('photo-upload-container'));
                       const fileCount = uploads.reduce((cnt, input) => cnt + input.files.length, 0);
-                      console.log('file count:', fileCount, 'should reveal next button');
+                      //console.log('file count:', fileCount, 'should reveal next button');
                       // reveal (1) additional button
                       //let uploads = uploads.filter((input) => !input.classList.contains('first-photo'));
                       uploads[fileCount] ? uploads[fileCount].classList.toggle('hidden') : null;
                       containers[fileCount] ? containers[fileCount].classList.toggle('hidden') : null;
                       const parent = target.parentElement;
-                      parent.innerHTML = `Edit Upload: ${target.files[0].name}`; //target.files[0].name;
+                      parent.innerHTML = `Edit Upload: ${target.files[0].name || ''}`; //target.files[0].name;
                       parent.appendChild(target);
                       
                     }}
