@@ -26,10 +26,11 @@ export default function AddToCart({ sizeId, count }) {
   };
 
   return (
-    <div>
+    <div className="ov-addToCartContainer">
       {!success
         && (
         <button
+          className="ov-addToCarBtn"
           type="button"
           onClick={handleClick}
         >

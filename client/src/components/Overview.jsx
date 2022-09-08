@@ -87,7 +87,7 @@ export default function Overview({ productId }) {
   if (styles.length > 0) {
     return (
       <div className="ov-main">
-        <div className={extended ? 'ov-wrapper--extended' : 'ov-wrapper'}>
+        <div className="ov-wrapper">
           <ProductImage
             photosData={styles[currStyle].photos}
             toggleView={toggleView}

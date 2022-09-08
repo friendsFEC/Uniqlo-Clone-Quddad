@@ -28,22 +28,20 @@ export default function SizeAndQuantity({ sizes }) {
   }
 
   return (
-    <div>
-      <div>
-        <select onChange={({ target }) => changeSize(target)}>
+    <div className="ov-selectorContainer">
+        <select className="ov-dropdown" onChange={({ target }) => changeSize(target)}>
           {sizeId === 'noSize' && <option value="noSize">Select Size</option>}
           {_.map(sizes, (property, id) => (
             property.size && <option key={id} value={id}>{property.size}</option>
           ))}
         </select>
         {/* -- end of size selector */}
-        <select onChange={({ target }) => setCount(target.value)}>
+        <select className="ov-dropdown" onChange={({ target }) => setCount(target.value)}>
           {sizeId === 'noSize' ? <option>-</option> : _.range(1, quantity).map((num) => (
             <option key={num} value={num}>{num}</option>
           ))}
         </select>
         {/* --end of quantity selector */}
-      </div>
       <AddToCart count={count} sizeId={sizeId} />
     </div>
   );
