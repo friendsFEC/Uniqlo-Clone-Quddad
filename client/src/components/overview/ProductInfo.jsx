@@ -7,9 +7,9 @@ export default function ProductInfo({ product, rating }) {
       <div className="ov-infoBox_reviewbox">
         <StarRating rating={rating} />
       </div>
-      <div className="ov-title">
-        <p className="ov-title ov-title--Category">{product.category}</p>
-        <p className="ov-title ov-title--Name">{product.name}</p>
+      <div>
+        <h3 className="ov-title">{product.name}</h3>
+        <p>{product.category}</p>
       </div>
     </div>
   );

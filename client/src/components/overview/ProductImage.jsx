@@ -49,17 +49,17 @@ export default function ProductImage({ photosData, extended, toggleView }) {
   return (
     <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
       <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count} />
-      {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({ type: 'prev' })} />}
-      {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({ type: 'next' })} />}
       {/* --end of buttons */}
-      <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
+      <div className={extended ? 'ov-sliderContainer ov-sliderContainer--extended' : 'ov-sliderContainer'}>
+        {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({ type: 'prev' })} />}
+        {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({ type: 'next' })} />}
         {photosData.map((photo, index) => (
           <div
             key={photo.url}
             role="button"
             tabIndex="0"
             onKeyPress={handleClick}
-            className={index === count ? 'ov-imageBox_activeSlide' : 'ov-imageBox_slide'}
+            className={index === count ? 'ov-imageBox_activeItem' : 'ov-imageBox_slideItem'}
             onClick={handleClick}
           >
             <img
