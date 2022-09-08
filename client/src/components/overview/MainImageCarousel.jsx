@@ -10,7 +10,7 @@ export default function MainImageCarousel({ photosData, dispatch, selected }) {
   // carousel buttons scrolls the carousel up
   const scrollUp = () => {
     carouselY.current.scrollBy({
-      top: -35,
+      top: -45,
       behaviour: 'smooth',
     });
   };
@@ -18,14 +18,14 @@ export default function MainImageCarousel({ photosData, dispatch, selected }) {
   // carousel button scrolls the carousel down
   const scrollDown = () => {
     carouselY.current.scrollBy({
-      top: 35,
+      top: 45,
       behaviour: 'smooth',
     });
   };
 
   // once the selected image changes, carousel moves up or down with the image
   useEffect(() => {
-    carouselY.current.scrollTo(0, selected * 30);
+    carouselY.current.scrollTo(0, selected * 50);
     setCurrent(selected);
   }, [selected]);
 
