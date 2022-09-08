@@ -6,9 +6,9 @@ export default function StyleGrid({ styleData, changeStyle, active}) {
   // selecting a style changes the current style
   return (
     <div>
-      <div style={{ display: 'inline-flex', 'align-items': 'center' }}>
-        <p style={{ 'font-weight': '500' }}>Style: </p>
-        <p style={{ 'padding-left': '5px' }}>{styleData[active].name}</p>
+      <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+        <p style={{ fontWeight: '500' }}>Style: </p>
+        <p style={{ paddingLeft: '5px' }}>{styleData[active].name}</p>
       </div>
       <div className="ov-styleGrid">
         {styleData.map((style, index) => (

@@ -55,14 +55,17 @@
    justify-content: center;
    height: 100%;
    width: 100%;
+   z-index: -1;
  }
 
  .ov-imageBox_activeItem {
    opacity: 1;
    display: flex;
    justify-content: center;
+   transition: opacity ease-in-out 0.5s;
    height: 100%;
    width: 100%;
+   z-index: 1;
  }
 
 
@@ -87,6 +90,7 @@
  .ov-sliderContainer--extended {
   grid-column-start: 3;
   grid-column-end: 20;
+  position: relative;
  }
 
  .ov-btn {
