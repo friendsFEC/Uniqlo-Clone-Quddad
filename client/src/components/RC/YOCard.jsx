@@ -12,7 +12,7 @@ const YOCard = ({open, currentInfo, currentStyle, currentRating, relatedAverageR
       <div className = "rc-yo-card">
         <div className = "rc-yo-card-details">
           <button className = "rc-yo-remove-button" onClick = {(e) => removeProduct(e, product, currentRating, index)}><AiOutlineCloseCircle/></button>
-          <img className = "rc-card-photos" src = {currentStyle.results ? currentStyle.results[0].photos[0].thumbnail_url : null}/>
+          <img className = "rc-card-img" src = {currentStyle.results ? currentStyle.results[0].photos[0].thumbnail_url : null}/>
           <p>{currentInfo.category}</p>
           <p className = "rc-card-name">{currentInfo.name}</p>
           <p>{currentInfo.default_price}</p>

@@ -56,6 +56,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
       }
     }
     setRatingStorage(filteredRatings);
+    setIsReadyToAdd(true);
   }
 
   useEffect(
@@ -69,8 +70,6 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     <div>
       <h3 className = "rc-title"> Your Outfit </h3>
       <div className = "rc-yo-container">
-        {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
-
         <div id = "rc-removable-div">
           <div className = "rc-yo-card">
             <div id = "rc-yo-add-button-div">
@@ -83,10 +82,6 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
             </div>
           </div>
         </div>
-
-        {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')} */}
-        {/* {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')} */}
-        {/* {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
 
         {infoStorage.map((product, index) => {
           return (<div key = {index}>
@@ -104,8 +99,6 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
               Add to Your Outfit</button>
           </div>
         </div> : null}
-
-      {/* < GrFormNext className = "rc-rp-arrow"/> */}
       </div>
     </div>
   )
