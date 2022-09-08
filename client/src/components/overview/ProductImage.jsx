@@ -37,14 +37,10 @@ export default function ProductImage({ photosData, extended, toggleView }) {
 
   // handler to extend the image
   // working process
-
   const handleClick = () => {
     toggleView(!extended);
     image.current.style.cursor = image.current.style.cursor === 'zoom-out' ? 'zoom-in' : 'zoom-out';
   };
-
-  // returns side carousel component and the Main image in a map function
-  // all images are there and their opacity changes
 
   // zoom function
   const turnOnZoom = (e) => {
@@ -84,7 +80,7 @@ export default function ProductImage({ photosData, extended, toggleView }) {
             onKeyPress={handleClick}
             onClick={handleClick}
           >
-            <div style={{position: 'relative'}}>
+            <div style={{ position: 'relative' }}>
               <img
                 ref={image}
                 className={extended ? 'ov-img--extended' : 'ov-imageBox_mainImage'}

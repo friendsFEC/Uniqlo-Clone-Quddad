@@ -90,7 +90,6 @@
  .ov-sliderContainer--extended {
   grid-column-start: 3;
   grid-column-end: 20;
-  position: relative;
  }
 
  .ov-btn {
