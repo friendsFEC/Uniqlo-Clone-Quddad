@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReviewTile from './ReviewTile';
-import { debounce, logError } from './utility';
+import { debounce, positionRadioLabels, logError } from './utility';
+
+const WriteReviewButton = () => (
+  <button
+    id="rr-write-review-btn"
+    type="button"
+    onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
+  >
+    Add a Review
+  </button>
+)
 
 export default function ReviewList({
   productID, reviews, total, more, count, sort, getReviews, setReviews,
   search, searchFilter, ratingFilter, helpful, setHelpful,
-  helpfulReviews, reportReview, setMore
+  helpfulReviews, reportReview, setMore, submittedReview
 }) {
   /* initial rendering and changes to product id */
   // infinite scroll, not working correctly
@@ -31,21 +41,25 @@ export default function ReviewList({
     <div
       className="review-list"
       onScroll={({ target }) => {
-        const btnDiv = document.getElementById('rr-write-review-btn');
-        if (btnDiv) {
-          btnDiv.classList.add('float');
-          btnDiv.style.top = window.innerHeight - btnDiv.offsetHeight;
-          btnDiv.style.left = target.offsetLeft;
-          btnDiv.style.width = target.offsetWidth;
-          if (Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < 10) {
+        const btn = document.getElementById('rr-write-review-btn');
+        if (btn) {
+          const scrolledToBottom = Math.abs((target.scrollTop + target.clientHeight) - target.scrollHeight) < (btn.offsetHeight * 1.5);
+          btn.classList.add('float');
+          // btnDiv.style.top = /*window.innerHeight*/document.getElementsByClassName('review-list')[0].offsetHeight - btnDiv.offsetHeight;
+          let listDiv = document.getElementsByClassName('review-list')[0];
+          btn.style.top = listDiv.offsetTop + listDiv.offsetHeight - window.scrollY - btn.offsetHeight;
+          btn.style.left = target.offsetLeft;
+          btn.style.width = target.offsetWidth;
+          if (scrolledToBottom) {
             retrieveReviews();
-            btnDiv.classList.remove('float');
-            btnDiv.style.width = '';
-          }/* else if (target.scrollTop === 0) {
-            btnDiv.classList.remove('float');
-          } */else {
-            retrieveReviews();
+            btn.classList.remove('float');
+            btn.style.width = '';
+            if (btn.previousElementSibling.tagName !== 'BUTTON') {
+              btn.style.width = '100%';
+            }
           }
+        } else if (Math.abs(((target.scrollTop + target.clientHeight) - target.scrollHeight) < 5)) {
+          retrieveReviews();
         }
       }}
     >
@@ -75,14 +89,7 @@ export default function ReviewList({
           More Reviews
         </button> // add infinite scroll later on
       ) : null }
-      <div id="rr-write-review-btn">
-        <button
-          type="button"
-          onClick={() => document.getElementsByClassName('write-review')[0].classList.toggle('hidden')}
-        >
-          Add a Review
-        </button>
-      </div>
+      {!submittedReview ? <WriteReviewButton /> : null}
     </div>
   );
 }
