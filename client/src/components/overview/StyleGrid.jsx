@@ -2,7 +2,7 @@ import React from 'react';
 import { IoIosCheckmarkCircle } from 'react-icons/io';
 import PropTypes from 'prop-types';
 
-export default function StyleGrid({ styleData, changeStyle, active}) {
+export default function StyleGrid({ styleData, changeStyle, active }) {
   // selecting a style changes the current style
   return (
     <div>
@@ -30,7 +30,6 @@ export default function StyleGrid({ styleData, changeStyle, active}) {
 }
 
 StyleGrid.propTypes = {
-  styleData: PropTypes.oneOfType([PropTypes.object]).isRequired,
   changeStyle: PropTypes.func.isRequired,
   active: PropTypes.number.isRequired,
 };
