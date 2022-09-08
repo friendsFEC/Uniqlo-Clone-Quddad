@@ -47,18 +47,19 @@ export default function ProductImage({ photosData, extended, toggleView }) {
     // update image size and turn on magn
     const elem = e.currentTarget;
     const { width, height } = elem.getBoundingClientRect();
-    console.log(elem);
     setSize([width, height]);
     setShowMagnifier(true);
   };
 
   const moveZoom = (e) => {
+    // turn on zoom if not turned on already
+    if (!showMagnifier) {
+      turnOnZoom(e);
+    }
     // update cursor position
     const elem = e.currentTarget;
     const { top, left } = elem.getBoundingClientRect();
-    console.log(elem);
-    // calculate cursor position on image
-    console.log(e);
+    // calculate cursor position on image relative to the image
     const x = e.pageX - left - window.pageXOffset;
     const y = e.pageY - top - window.pageYOffset;
     setXY([x, y]);
