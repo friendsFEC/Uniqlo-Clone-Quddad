@@ -34,6 +34,7 @@ function ProductIdSlider({ setProductId, productId }) {
     () => {
       const filtered = products.filter((product) => (product.id === productId))[0];
       if (filtered) document.getElementById('slider').value = filtered.id;
+      window.scrollTo(0, 0);
     },
     [productId, products],
   );
