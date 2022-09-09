@@ -64,10 +64,10 @@ function App() {
       <div id="border1">
         <div id="border2">
           <ProductIdSlider setProductId={setProductId} productId={productId} />
-          <Overview productId={productId} />
-          <RelatedAndComparison productID={productId} setProductId={setProductId} />
+          {/* <Overview productId={productId} /> */}
+          {/* <RelatedAndComparison productID={productId} setProductId={setProductId} /> */}
           <QuestionsAndAnswers product_id={productId} />
-          <ReviewsAndRatings productID={productId} />
+          {/* <ReviewsAndRatings productID={productId} /> */}
         </div>
       </div>
     </div>

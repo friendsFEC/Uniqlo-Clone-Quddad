@@ -11,6 +11,14 @@ const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions';
 function QuestionsAndAnswers({ product_id }) {
   const [product, setProduct] = useState([]);
   const [productInfo, setProductInfo] = useState({});
+  const [isQuestionFilled, setIsQuestionFilled] = useState(false);
+
+  let updateData = (productQA, productInfoPromise) => {
+    const dataResults = productQA.results;
+    setProduct(dataResults);
+    setProductInfo(productInfoPromise);
+    setIsQuestionFilled(product.length > 0);
+  };
 
   useEffect(() => {
     // get the product
@@ -42,30 +50,24 @@ function QuestionsAndAnswers({ product_id }) {
     Promise.all([getProductQA, getProductInfo])
       .then((...responses) => {
         const productQA = responses[0][0];
-        const productInfo = responses[0][1];
-        updateData(productQA, productInfo);
+        const productInfoPromise = responses[0][1];
+        // updateData(productQA, productInfoPromise);
+        setProduct(productQA.results);
+        setProductInfo(productInfoPromise);
       })
       .catch((errors) => console.warn(errors));
   }, [product_id]);
 
-  let updateData = (productQA, productInfo) => {
-    const dataResults = productQA.results;
-    setProduct(dataResults);
-    setProductInfo(productInfo);
-  };
-
-  const questionList = product;
-  const isQuestionFilled = (product.length > 0);
-  // this.getData();
-  // console.log('product_id ', product_id);
-  // console.log('product ', product);
+  useEffect(() => {
+    setIsQuestionFilled(product.length > 0);
+  }, [product, isQuestionFilled]);
 
   if (isQuestionFilled) {
     return (
       <div id="qa">
         <p className="qaTitle">QUESTIONS & ANSWERS</p>
         <ListOfQA
-          chosenProduct={questionList}
+          chosenProduct={product}
           isQuestionFilled={isQuestionFilled}
           productId={product_id}
           productInfo={productInfo}
