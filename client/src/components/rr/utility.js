@@ -55,9 +55,9 @@ export const positionArrowWidgets = ({ characteristics }) => {
       if (arrow) {
         const bar = arrow.parentElement;
         const value = Number(characteristics[char].value);
-        const left = ((bar.offsetWidth * value) / 5) - (arrow.width / 2);
+        const left = (bar.offsetWidth * (value / 5)) - (arrow.width / 2);
         arrow.style.marginLeft = left;
-        //console.log('characteristic:', char, '\nvalue:', value, '\nleft:', left);
+        // console.log('characteristic:', char, '\nvalue:', value, '\nleft:', left);
       }
     });
   }
