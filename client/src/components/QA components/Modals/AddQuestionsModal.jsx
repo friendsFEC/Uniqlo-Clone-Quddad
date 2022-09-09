@@ -84,7 +84,16 @@ function AddQuestionsModal({ open, children, onClose }) {
         <button
           type="button"
           onClick={() => {
-            onClose() ;
+            onClose();
+          }}
+        >
+          Cancel
+
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            onClose();
           }}
         >
           Submit

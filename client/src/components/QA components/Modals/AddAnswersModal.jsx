@@ -80,6 +80,7 @@ function AddAnswersModal({ open, children, onClose }) {
           placeholder="Why did you like the product or not?"
         />
         <br />
+        <button type="button" onClick={onClose}>Cancel</button>
         <button type="button" onClick={onClose}>Submit</button>
       </div>
     </>,
