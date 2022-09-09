@@ -76,7 +76,7 @@ function App() {
         <div id="border2">
           <Overview productId={productId} />
           <RelatedAndComparison productID={productId} setProductId={setProductId} />
-          <QuestionsAndAnswers productId={productId} />
+          <QuestionsAndAnswers product_id={productId} />
           <ReviewsAndRatings productID={productId} />
         </div>
       </div>

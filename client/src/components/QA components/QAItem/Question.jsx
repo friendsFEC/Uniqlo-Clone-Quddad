@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AddAnswersModal from '../Modals/AddAnswersModal.jsx';
 
 const _V = require('../../Utility/V.jsx');
 
@@ -8,6 +9,8 @@ function Question(props) {
   const [questionHelpfulness, setQuestionHelpfulness] = useState(question_helpfulness);
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
   const [isReported, setIsReported] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { productInfo } = props;
 
   // update/increment the helpfulness of a question
   const handleHelpfulness = () => {
@@ -51,35 +54,51 @@ function Question(props) {
     });
   };
 
+  useEffect(() => {
+    // retrieving product data here
+  }, []);
+
   return (
-    <div id="qa-QAItem-Question">
-      <h3>
+    <div className="qa-QAItem-Question">
+      <h3 className="qa-QAItem-Question leftHandSide">
         Question:
         {' '}
         { question_body }
         {' '}
       </h3>
-      <h3>
-        | Helpful?
-      </h3>
-      {/* <button type="button" onClick={() => setQuestionHelpfulness(questionHelpfulness)}> */}
-      <button type="button" onClick={() => handleHelpfulness()}>
-        Yes
-        {' '}
-        {/* { question_helpfulness } */}
-        { questionHelpfulness }
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          handleReport();
-        }}
-      >
-        Report
-      </button>
-      <h3>
-        Add an answer
-      </h3>
+      <div className="qa-QAItem-Question rightHandSide">
+        <h3>
+          | Helpful?
+        </h3>
+        <button type="button" onClick={() => handleHelpfulness()}>
+          Yes
+          {' '}
+          {/* { question_helpfulness } */}
+          { questionHelpfulness }
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            handleReport();
+          }}
+        >
+          Report
+        </button>
+        <button className="qa-astext" type="button" onClick={() => setIsOpen(true)}><h2>Add Answer</h2></button>
+        <AddAnswersModal
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
+          <h2>Submit your answer</h2>
+          <h3>
+            { productInfo.name }
+            :
+            {' '}
+            { question_body }
+          </h3>
+        </AddAnswersModal>
+      </div>
+
     </div>
   );
 }
