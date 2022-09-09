@@ -70,6 +70,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     <div>
       <h3 className = "rc-title"> Your Outfit </h3>
       <div className = "rc-yo-container">
+        <div className = "rc-rp-arrow" style={{opacity: 0}}>< GrFormPrevious /></div>
         <div id = "rc-removable-div">
           <div className = "rc-yo-empty-add-card">
             <div id = "rc-yo-add-button-div">
@@ -84,8 +85,9 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         </div>
 
         {infoStorage.map((product, index) => {
-          return (<div key = {index}>
-            <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} product = {product} removeProduct = {removeProduct} index = {index}/>
+          return (
+            <div key = {index}>
+                <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} product = {product} removeProduct = {removeProduct} index = {index}/>
             </div>
           )
         })}
@@ -94,11 +96,12 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
         <div className = "rc-yo-empty-add-card">
           <div id = "rc-yo-add-button-div">
             <button className = "rc-yo-add-button" onClick = {() => {
-            isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
-            : alert("This product is already a part of Your Outfit!")}}>
+              isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
+              : alert("This product is already a part of Your Outfit!")}}>
               Add to Your Outfit</button>
           </div>
         </div> : null}
+        <div className = "rc-rp-arrow" style={{opacity: 0}}>< GrFormNext /></div>
       </div>
     </div>
   )

@@ -2,7 +2,6 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  max-width: 100rem;
   gap: 30px;
 }
 
@@ -11,10 +10,11 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  gap: 38px;
+  gap: 34px;
   overflow: hidden;
   overflow-x: scroll;
   scrollbar-width: none;
+  justify-items: center;
 }
 
 .rc-rp-container::-webkit-scrollbar{ display: none }
@@ -29,13 +29,12 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  /* margin-left: 27%;
-  margin-right: 29%; */
-  gap: 30px;
+  gap: 34px;
   overflow: hidden;
   overflow-x: scroll;
   scrollbar-width: none;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
+  justify-items: center;
 }
 
 .rc-yo-container::-webkit-scrollbar{ display: none }
@@ -54,7 +53,6 @@
 .rc-title {
   font-size: 24px;
   font-weight: 400;
-  /* margin-left: 27%; */
 }
 
 .rc-small-titles {
@@ -99,10 +97,6 @@
   display: flex;
 }
 
-/* .rc-modal-product-name{
-  position: relative;
-} */
-
 .rc-modal-style table, th, td {
   border: 0.1px solid;
   padding: 7px;
@@ -138,8 +132,8 @@
   color: black;
   font-weight: bold;
   border: 1px solid black;
-  margin-left: 52px;
-  margin-top: 140px;
+  margin-left: 50px;
+  margin-top: 170px;
   cursor: pointer;
 }
 

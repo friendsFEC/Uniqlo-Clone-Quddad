@@ -20,7 +20,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
     if (listRef.current) {
      listRef.current.scrollBy({
       top: 0,
-      left: -250,
+      left: -300,
       behavior: 'smooth'
      })
     }
@@ -30,7 +30,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
     if (listRef.current) {
       listRef.current.scrollBy({
         top: 0,
-        left: 250,
+        left: 300,
         behavior: 'smooth'
       })
     }
