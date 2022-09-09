@@ -36,6 +36,9 @@ body {
 
 #border1 {
   margin: 8%;
+  width: 50%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 #slider {

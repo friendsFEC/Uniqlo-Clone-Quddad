@@ -20,6 +20,9 @@ export default function clickTracker(event) {
   let noMatch = true;
   // if there is no match, the reassign current to current.parentElement
   do {
+    if (current === null) {
+      break;
+    }
     const currentClasses = Array(current.classList);
     const classMatchFound = currentClasses.reduce((memo, className) => (
       memo ? true : classes.includes(className[0])
@@ -30,6 +33,8 @@ export default function clickTracker(event) {
       current = current.parentElement;
     }
   } while (noMatch);
+  // select product wiget was moved, creating a default value for current
+  if (current === null) current = {tagName: 'html', id: null, classList: []};
   // in api call, pass event.target (element), current (module), and time
   let element = event.target;
   element = `<${element.tagName.toLowerCase()} id=${element.id} class=${element.classList} />`;

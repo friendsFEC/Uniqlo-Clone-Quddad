@@ -1,47 +1,58 @@
 .rc-slide-container {
   display: grid;
   grid-auto-flow: column;
-  overflow: scroll;
   grid-template-rows: 1fr;
-  max-width: 100rem;
   gap: 30px;
 }
+
 
 .rc-rp-container {
   display: grid;
   grid-auto-flow: column;
-  overflow: scroll;
   grid-template-rows: 1fr;
-  max-width: 100rem;
-  gap: 30px;
+  gap: 34px;
+  overflow: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  justify-items: center;
 }
 
+.rc-rp-container::-webkit-scrollbar{ display: none }
+
 .rc-rp-card {
-  background-color: #f6f6f6;
-  height: 400px;
-  width: 250px;
+  background-color: rgb(229, 228, 226, 0.65);
+  height: 470px;
+  width: 260px;
 }
 
 .rc-yo-container {
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  /* margin-left: 27%;
-  margin-right: 29%; */
-  height: 430px;
-  overflow: scroll;
-  gap: 30px;
+  gap: 34px;
+  overflow: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  margin-bottom: 40px;
+  justify-items: center;
 }
 
+.rc-yo-container::-webkit-scrollbar{ display: none }
+
 .rc-yo-card {
-  background-color: #f6f6f6;
-  height: 400px;
-  width: 250px;
+  background-color: rgb(229, 228, 226, 0.6);
+  height: 470px;
+  width: 260px;
+}
+
+.rc-yo-empty-add-card {
+  height: 470px;
+  width: 260px;
 }
 
 .rc-title {
-  font-size: 22px;
-  /* margin-left: 27%; */
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .rc-small-titles {
@@ -49,9 +60,10 @@
 }
 
 .rc-rp-button {
-  margin-left: 220px;
-  margin-top: 10px;
-  font-size: 25px;
+  margin-left: 230px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-size: 24px;
   padding: 0;
   border: none;
   background: none;
@@ -85,28 +97,25 @@
   display: flex;
 }
 
-/* .rc-modal-product-name{
-  position: relative;
-} */
-
 .rc-modal-style table, th, td {
   border: 0.1px solid;
   padding: 7px;
 }
 
-.rc-card-photos {
+.rc-card-img {
   margin-top: 5px;
-  height: 225px;
-  width: 225px;
+  height: 290px;
+  width: 240px;
   cursor: pointer;
 }
 
 .rc-card-name {
+  margin-top: 2px;
   font-weight: bold;
 }
 
 .rc-yo-remove-button {
-  margin-left: 208px;
+  margin-left: 220px;
   margin-top: 10px;
   font-size: 25px;
   padding: 0;
@@ -116,13 +125,15 @@
 }
 
 .rc-yo-add-button {
-  font-size: 20px;
+  font-size: 18px;
+  height: 52px;
   text-align: center;
-  padding: 75px 0;
-  background-color: #f6f6f6;
+  background-color: white;
+  color: black;
+  font-weight: bold;
   border: 1px solid black;
-  margin-left: 47px;
-  margin-top: 85px;
+  margin-left: 50px;
+  margin-top: 170px;
   cursor: pointer;
 }
 
