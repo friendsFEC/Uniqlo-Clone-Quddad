@@ -148,10 +148,9 @@
 .ov-infoBox {
   grid-column-start: 14;
   grid-column-end: 20;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  row-gap: 2rem;
+  align-content: center;
 }
 
 /*--TITLE AND REVIEWS*/
@@ -163,13 +162,13 @@
 }
 
 .ov-title_price {
-  color:red;
+  color: black;
   font-weight: 400;
   font-size: 32;
 }
 
 .ov-title_price--onsale {
-  color: black;
+  color: red;
   text-decoration: line-through;
   padding-right: 5px;
   font-weight: 400;
@@ -232,8 +231,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  position: relative;
-  left: -7px;
+  row-gap: 8px;
+  justify-items: start;
 }
 
 .ov-check {
