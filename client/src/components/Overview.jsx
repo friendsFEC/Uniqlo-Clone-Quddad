@@ -99,7 +99,7 @@ export default function Overview({ productId }) {
               <PriceTag product={styles[currStyle]} />
             </div>
             <div>
-              <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle}/>
+              <StyleGrid changeStyle={setCurrStyle} styleData={styles} active={currStyle} />
             </div>
             <div>
               <SizeAndQuantity sizes={styles[currStyle].skus} />
@@ -107,7 +107,7 @@ export default function Overview({ productId }) {
           </div>
         </div>
         <div className="ov-descriptionBlock">
-          <h3>{product.slogan}</h3>
+          <h3 className="ov-title">{product.slogan}</h3>
           <p>{product.description}</p>
         </div>
       </div>

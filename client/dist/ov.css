@@ -2,11 +2,10 @@
   display: none;
 }
 
-
-
 .ov-main {
   width: 100%;
   height: max-content;
+  margin-top: 20%;
 }
 
 .ov-title{
@@ -19,14 +18,10 @@
   grid-template-columns: repeat(20, 1fr);
   column-gap: 5px;
   position: relative;
+  transition: all ease-in-out 4s;
 }
 
-.ov-wrapper--extended {
-  display: flex;
-  justify-content: center;
-  width: 90vw;
-  height: 60vh;
-}
+
 
 /* --IMAGES CSS-- */
 
@@ -38,6 +33,7 @@
   cursor: zoom-out;
   max-height: 100%;
   max-width: 100%;
+  transition: 2s;
 }
 
 .ov-imageBox_mainImage {
@@ -57,17 +53,20 @@
    opacity: 0;
    transition: opacity ease-in-out 0.5s;
    display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+   justify-content: center;
+   height: 100%;
+   width: 100%;
+   z-index: -1;
  }
 
  .ov-imageBox_activeItem {
    opacity: 1;
    display: flex;
    justify-content: center;
+   transition: opacity ease-in-out 0.5s;
    height: 100%;
-  width: 100%;
+   width: 100%;
+   z-index: 1;
  }
 
 
@@ -86,6 +85,7 @@
   grid-column-start: 2;
   grid-column-end: 12;
   position: relative;
+  transition: all ease-in-out 4s;
  }
 
  .ov-sliderContainer--extended {
@@ -148,10 +148,9 @@
 .ov-infoBox {
   grid-column-start: 14;
   grid-column-end: 20;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  row-gap: 2rem;
+  align-content: center;
 }
 
 /*--TITLE AND REVIEWS*/
@@ -163,13 +162,13 @@
 }
 
 .ov-title_price {
-  color:red;
+  color: black;
   font-weight: 400;
   font-size: 32;
 }
 
 .ov-title_price--onsale {
-  color: black;
+  color: red;
   text-decoration: line-through;
   padding-right: 5px;
   font-weight: 400;
@@ -177,7 +176,7 @@
 }
 
 .ov-title--reviews:hover {
-  color: gray;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -232,6 +231,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
+  row-gap: 8px;
+  justify-items: start;
 }
 
 .ov-check {
@@ -274,6 +275,7 @@
 }
 
 .ov-dropdown {
+  text-align: center;
   border: solid 1px;
   height: 44px;
   background-color: white;
