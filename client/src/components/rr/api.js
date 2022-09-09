@@ -75,15 +75,15 @@ export const markHelpful = (reviewID) => axios.put(
   .then((res) => res)
   .catch((err) => logError('Error marking review as helpful:', err));
 export const submitReview = (data) => (
-  axios({
-      url: serverURL, 
-      method: 'post',
+  axios.post(
+    serverURL, 
+    data,
+    {
       headers: {
         Authorization: config.API_KEY,
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
-      data: data,
     },
   )
 );

@@ -2,18 +2,22 @@
   display: none;
 }
 
+
+
 .ov-main {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding-top: 3%;
-  padding-left: 8%;
-  padding-right: 8%;
+  width: 100%;
+  height: max-content;
 }
+
+.ov-title{
+  font-size: 24px;
+  font-weight: 400;
+}
+
 .ov-wrapper {
-  display: flex;
-  width: 80vw;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  column-gap: 5px;
   position: relative;
 }
 
@@ -22,31 +26,12 @@
   justify-content: center;
   width: 90vw;
   height: 60vh;
-  overflow: hidden;
 }
 
-@media (max-width: 900px) {
-  .ov-wrapper {
-    flex-direction: column;
-  }
-
-  .ov-imageBox_mainImage {
-    height: 200px;
-    width: 150px;
-    transition: width 0.3s ease-out;
-  }
-}
+/* --IMAGES CSS-- */
 
 .ov-imageBox {
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  position: relative;
-}
-
-.ov-imageBox--extended{
-  height: 60vh;
-  width: 70vh;
+  display: contents
 }
 
 .ov-img--extended {
@@ -55,98 +40,60 @@
   max-width: 100%;
 }
 
-.ov-infoBox {
-  display: flex;
-  align-items: flex-start;
-  width: 500px;
-  padding-left: 30px;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.ov-descriptionBlock {
-  align-self: flex-end;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border-style: solid;
-  padding: 40px;
-}
-
 .ov-imageBox_mainImage {
- height: 500px;
- width: 450px;
- cursor: zoom-in;
-}
+  height: 40rem;
+  width: 100%;
+  cursor: zoom-in;
+ }
 
-.ov-innerImageBox {
-  overflow: hidden;
-}
+ .ov-innerImageBox {
+   overflow: hidden;
+ }
 
-.ov-imageBox_slide {
-  position: absolute;
-  opacity: 0;
-  transition: opacity ease-in-out 0.5s;
-}
+ .ov-imageBox_slideItem {
+   position: absolute;
+   top: 0;
+   left: 0;
+   opacity: 0;
+   transition: opacity ease-in-out 0.5s;
+   display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+ }
 
-.ov-imageBox_activeSlide {
-  opacity: 1;
-}
+ .ov-imageBox_activeItem {
+   opacity: 1;
+   display: flex;
+   justify-content: center;
+   height: 100%;
+  width: 100%;
+ }
 
 
-.ov-imageBox_prev {
-  align-self: flex-start;
-  position: absolute;
-}
+ .ov-imageBox_prev {
+   position: absolute;
+   top: 50%;
+ }
 
-.ov-imageBox_next {
-  position: absolute;
-  align-self: flex-end;
-}
+ .ov-imageBox_next {
+   position: absolute;
+   top: 50%;
+   right: 0;
+ }
 
-.ov-StarWrapper {
-  display: inline-flex;
+ .ov-sliderContainer {
+  grid-column-start: 2;
+  grid-column-end: 12;
   position: relative;
-}
+ }
 
-.ov-star {
-  position: relative;
-}
+ .ov-sliderContainer--extended {
+  grid-column-start: 3;
+  grid-column-end: 20;
+ }
 
-.ov-star--active {
-  position: absolute;
-}
-
-.ov-carousel_wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  position: absolute;
-  top: 0px;
-  left: -50px;
-  height: 300px;
-  /* position: absolute;
-  top: 10px;
-  left: -20px;
-  height: 350px; */
-}
-
-.ov-imageBox_thumbnail {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 25px;
-  height: 250px;
-  overflow: hidden;
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-
-.ov-imageBox_thumbnail::-webkit-scrollbar{ display: none}
-
-
-.ov-btn {
+ .ov-btn {
   border-radius: 3px;
   background-color: whitesmoke;
   opacity: 0.5;
@@ -158,19 +105,86 @@
   background-color: gray;
 }
 
-.ov-thumbnail {
-  padding: 5px;
+
+ /* --CAROUSEL CSS-- */
+
+ .ov-carousel_wrapper {
+  position:relative;
+  left: -7px;
+  grid-column-start: 1;
+  justify-content: center;
+  height: 350px;
+  grid-template-rows: 1fr 5fr 1 fr;
 }
 
-.ov-checkDiv {
-  position: relative;
+.ov-imageBox_thumbnail {
+  display: flex;
+  flex-direction: column;
+  max-height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.ov-imageBox_thumbnail::-webkit-scrollbar{ display: none}
+
+.ov-thumbnail {
+  padding: 5px;
+  text-align: center;
 }
 
 .ov-thumbnail--active {
   border: 1px solid gray;
   opacity: 1;
-  padding: 3px;
+  padding: 2px;
+}
 
+.ov-carousel_button {
+  text-align: center;
+}
+
+/* --info box css-- */
+
+.ov-infoBox {
+  grid-column-start: 14;
+  grid-column-end: 20;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*--TITLE AND REVIEWS*/
+
+.ov-title--reviews {
+  padding-left: 5px;
+  font-size: x-small;
+  text-decoration: underline;
+}
+
+.ov-title_price {
+  color:red;
+  font-weight: 400;
+  font-size: 32;
+}
+
+.ov-title_price--onsale {
+  color: black;
+  text-decoration: line-through;
+  padding-right: 5px;
+  font-weight: 400;
+  font-size: 28;
+}
+
+.ov-title--reviews:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.ov-StarWrapper {
+  display: inline-flex;
+  position: relative;
 }
 
 .ov-StarWrapper {
@@ -179,11 +193,24 @@
 
 }
 
+.ov-star {
+  position: relative;
+}
+
+.ov-star--active {
+  position: absolute;
+}
+
+/* --STYLE GRID CSS-- */
+
 .ov-thumbnail--image{
   border: 2px solid transparent;
-  opacity: 0.80;
-  height: 30px;
-  width: 30px;
+  height: 45px;
+  width: 45px;
+}
+
+.ov-checkDiv {
+  position: relative;
 }
 
 .ov--style {
@@ -199,27 +226,6 @@
 
 .ov-thumbnail--image:hover{
   border: 2px solid black;
-}
-
-.ov-title--reviews {
-  padding-left: 5px;
-  font-size: x-small;
-  text-decoration: underline;
-}
-
-.ov-title--reviews:hover {
-  color: gray;
-  cursor: pointer;
-}
-
-.ov-title_price {
-  color:black
-}
-
-.ov-title_price--onsale {
-  color: red;
-  text-decoration: line-through;
-  padding-right: 5px;
 }
 
 .ov-styleGrid {
@@ -240,6 +246,15 @@
   color: black;
 }
 
+/* --DESCRIPTION CSS-- */
+.ov-descriptionBlock {
+  align-self: flex-end;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/*--CUSTOM ALERT--*/
 .ov-alert {
   display: flex;
   align-items: center;
@@ -248,5 +263,38 @@
   border-radius: 0.25rem;
 }
 
+@media only screen and (max-width: 550px) {
+  .ov-wrapper {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 0.5fr 4fr;
+     grid-template-areas:
+     "ov-carousel_wrapper ov-sliderContainer"
+     "ov-infoBox ov-infoBox";
+  }
+}
 
+.ov-dropdown {
+  border: solid 1px;
+  height: 44px;
+  background-color: white;
+}
 
+.ov-selectorContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  column-gap: 5px;
+  row-gap: 5px;
+}
+
+.ov-addToCarBtn{
+  height: 52px;
+  background-color: red;
+  border: solid 1px black;
+  color: white;
+  width: 100%;
+}
+
+.ov-addToCartContainer{
+  grid-column: 1/3;
+}

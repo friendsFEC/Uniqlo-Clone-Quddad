@@ -22,8 +22,9 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+	/*font-size: 100%;*/
+  font-size: 14px;
+	/*font: inherit;*/
 	vertical-align: baseline;
 }
 .rr ol, .rr ul {
@@ -42,6 +43,7 @@
 	border-spacing: 0;
 }
 
+
 /* end reset */
 
 /* begin custom CSS */
@@ -50,9 +52,10 @@
 
 .rr {
 	line-height: 1;
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  /*width: 100%;*/
+  width: 100%;
+  /*margin-left: 5%;
+  margin-right: 5%;*/
   font-family: 'Helvetica Neue', 'Arial', 'Liberation Sans';
 }
 
@@ -61,20 +64,36 @@
 .rr .review-tile,
 .rr .product-breakdown,
 .rr .rating-breakdown {
-  padding: 2rem 2rem;
+  padding: 2rem 0rem;
+}
+.rr .review-list {
+  margin-left: 2rem;
 }
 
 .rr .sort-options {
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
   padding-left: 2rem;
+  border-bottom: 1px solid #000;
   /*text-align: center;*/
 }
 
-.rr .review-grid {
-  /*border: solid 1px black;*/
-  display: grid;
-  /*grid-template-columns: 1fr 1fr 1fr 1fr;*/
+/* media queries */
+@media screen and (min-width: 1000px) {
+  .rr .review-grid {
+    /*border: solid 1px black;*/
+    display: grid;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .rr .review-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1100px) {
+  .rr .review-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 .rr .review-list {
   /*border: solid 1px black;*/
@@ -82,6 +101,13 @@
   grid-row: 2/6;
   overflow-y: scroll;
   height: 40rem;
+}
+.rr .review-list > button {
+  display: inline-block;
+  width: 50%;
+  transition-property: width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
 }
 .rr .review-tile {
   /*border: solid 1px black;*/
@@ -91,11 +117,16 @@
   transition-duration: 0.5s;
   transition-timing-function: ease-in;
 }
+.rr .review-tile blockquote {
+  padding-top: 1.4rem;
+}
 .rr .review-tile blockquote,
 .rr .review-tile p {
   padding-bottom: 1.4rem;
+  overflow-wrap: break-word;
 }
-.rr .review-tile p button {
+.rr .review-tile p button,
+.rr .review-tile blockquote button {
   display: inline;
   padding: 0;
   padding-left: 0.7rem;
@@ -113,6 +144,7 @@
   text-align: right;
   display: inline-block;
   width: 100%;
+  font-style: italic;
   padding-bottom: 0.7rem;
 }
 .rr .review-thumbnail img {
@@ -122,16 +154,13 @@
   padding-left: 0.5rem;
   padding-bottom: 1.4rem;
 }
-.rr .review-list > button:last-of-type {
-  margin-right: 1rem;
-}
 .rr .review-thumbnail,
 .rr .review-thumbnail div {
   display: inline;
 }
 /*.rr .review-thumbnail div,*/
 .rr .image-modal div {
-  background-color: #ccc;
+  background-color: rgba(51, 51, 51, 0.4);
 }
 .rr .image-modal div {
   width: 100%;
@@ -145,9 +174,9 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  transition-property: opacity;
+  /*transition-property: opacity;
   transition-duration: 0.5s;
-  transition-timing-function: linear;
+  transition-timing-function: linear;*/
 }
 .rr .image-modal img {
   width: auto;
@@ -157,15 +186,16 @@
   vertical-align: middle;
 
 }
+/*
 .rr img.checkmark {
   width: 1.4rem;
   height: 1.4rem;
   padding-right: 0.7rem;
   vertical-align: middle;
-}
+}*/
 .rr img.star {
-  height: 1rem;
-  width: 1rem;
+  height: 12px;
+  width: 12px;
 }
 .rr .review-response {
   background: #ccc;
@@ -173,64 +203,73 @@
 #rr-write-review-btn {
   display: inline-block;
   top: 1080;
-  left: 100;
+  /*left: 100;*/
   /*width: 80%;*/
 }
 #rr-write-review-btn.float {
   position: fixed;
   text-align: center;
-  font-size: 1.05rem;
-  transition-property: top left font-size;
+  /*font-size: 1.05rem;*/
+  transition-property: top;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
   /*background-color: #ccc;*/
-  background-color: #fff;
-  box-sizing: border-box;
-  padding: 1rem 1rem;
-}
-#rr-write-review-btn.float button {
   background-color: #000;
   color: #fff;
-  font-size: 1.6rem;
-  width: 100%;
   box-sizing: border-box;
+  /*padding: 1rem 1rem;*/
 }
-.rr .write-review {
-  overflow-y: scroll;
-  background-image: radial-gradient(#eee, #ccc);
+.rr .rr-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.4);
 }
 .rr .write-review .close {
   text-align: right;
   /*display: inline-block;*/
+  margin-right: 1rem;
+  margin-top: 1rem;
   width: auto;
+}
+.rr .write-review .close svg {
+  width: 2rem;
 }
 .rr .write-review .star {
   width: 3rem;
   height: 3rem;
 }
 .rr .sort-options select {
-  border: none;
-  background-color: white;
-  text-decoration: underline;
-  font-variant: small-caps;
+  /*border: none;*/
+  border: 1px solid #000;
   font-size: 1rem;
+  height: 24px;
+  background-color: white;
+  /*text-decoration: underline;*/
+  font-variant: small-caps;
+  /*font-size: 1rem;*/
   margin-left: 0.3rem;
   margin-right: 1.4rem;
 }
-.rr input[type=search] {
+.rr input[type=search],
+.rr input[type=text],
+.rr input[type=email] {
   appearance: none;
-  margin-left: 0.3rem;
   border-radius: 0;
   border: 1px solid #000;
-  height: 1.4rem;
-  font-size: 1rem;
+  font-size: 12px;
+  height: 24px;
+  /*height: 1.4rem;*/
+  /*font-size: 1rem;*/
 }
 .rr .sort-options option {
   border: none;
   background-color: white;
   text-decoration: underline;
   font-variant: small-caps;
-  font-size: 1rem;
+  /*font-size: 1rem;*/
 }
 .rr .sort-options {
   /*border: solid 1px black;*/
@@ -242,12 +281,20 @@
   grid-column: 1/2;
   grid-row: 1/4;
 }
-.rr .write-review {
-  position: fixed;
-  top: 5%;
-  left: 5%;
-  width: 90%;
-  height: 90%;
+.rr .rating-breakdown p {
+  padding-top: 1rem;
+}
+.rr .rating-breakdown h2 {
+  padding-bottom: 1rem;
+}
+.rr .write-review .rr-wrapper .rr-container  {
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  overflow: hidden;
+  /*overflow-y: scroll;*/
   /*border: solid 1px black;*/
   background-color: white;
   opacity: 1;
@@ -263,18 +310,14 @@
 }
 .rr .rating-filter:hover {
 	cursor: pointer;
-  background-color: #57e389;
+  /*background-color: #57e389;*/
+  background-color: #eee;
   transition-property: background-color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in;
 }
 .rr .rating-breakdown,
 .rr .product-breakdown {
-  min-width: 16rem;
-  max-width: 24rem;
-  transition-property: min-width;
-  transition-duration: 0.5s;
-  transition-timing-function: ease-in;
 }
 .rr .rating-filter span {
   display: inline-block;
@@ -283,18 +326,20 @@
 }
 .rr .rating-filter .rating-bar {
   width: 70%;
-  height: 0.5rem;
+  height: 0.75rem;
   background-color: #deddda;
   display: inline-block;
   vertical-align: middle;
 }
 .rr .rating-filter .rating-bar .inner-bar {
   background-color: #33d17a;
-  height: 0.5rem;
+  /*background-color: #000;*/
+  height: 0.75rem;
   vertical-align: middle;
 }
 .rr .selected {
-  background-color: #57e389;
+  /*background-color: #57e389;*/
+  background-color: #eee;
 }
 .rr .product-breakdown {
   /*border: solid 1px black;*/
@@ -303,7 +348,7 @@
 }
 .rr .product-breakdown .characteristics-bar {
   background-color: #deddda;
-  height: 0.5rem;
+  height: 0.2rem;
   vertical-align: middle;
 }
 .rr .product-breakdown img.characteristics-arrow {
@@ -318,7 +363,7 @@
   margin-top: 0.7rem;
 }
 .rr .characteristics {
-  font-size: 0.9rem;
+  /*font-size: 0.9rem;*/
   font-weight: bold;
   margin-bottom: 0.7rem;
 }
@@ -331,7 +376,11 @@
   width: 33%;
   /*font-style: 'italic';*/
   font-weight: normal;
-  font-size: 0.8rem;
+  /*font-size: 0.8rem;*/
+}
+.rr-left, .rr-middle, .rr-right {
+  font-size: 8px;
+  font-style: italic;
 }
 .rr .product-breakdown .characteristics-description p.rr-left {
   text-align: left;
@@ -358,18 +407,20 @@
   line-height: 1.4rem;
 }
 .rr h1 {
-  font-weight: bold;
-  font-size: 2rem;
-  line-height: 5rem;
+  font-weight: 600;
+  /*font-size: 2rem;*/
+  font-size: 24px;
+  /*line-height: 5rem;*/
 }
 .rr h2 {
-  font-weight: bold;
-  font-size: 1.8rem;
-  line-height: 1.8rem;
+  font-weight: 600;
+  font-size: 14px;
+  /*font-size: 1.8rem;*/
+  /*line-height: 1.8rem;*/
 }
 .rr h3 {
-  font-weight: bold;
-  font-size: 1.4rem;
+  font-weight: 600;
+  /*font-size: 1.4rem;*/
   padding-bottom: 0.7rem;
 }
 .rr sup {
@@ -389,7 +440,7 @@
 .rr button {
 	cursor: pointer;
   padding: 0.7rem 1.5rem;
-  font-size: 1rem;
+  /*font-size: 1rem;*/
   /*background-color: #eee;*/
   background-color: #fff;
   color: #000;
@@ -404,10 +455,226 @@
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
+.rr-checkmark svg {
+  padding-right: 0.5rem;
+}
 .rr .highlight {
   background-color: red;
 }
 .rr button:hover {
   box-shadow: 1px 2px 4px #333;
-  b
+}
+.rr #rr-no-reviews-showing {
+  padding-bottom: 1.4rem;
+}
+.rr #rr-form-cards > div {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  /*width: auto;*/
+  /*display: flex;*/
+}
+.rr #rr-form-cards > div > * {
+}
+.rr #rr-form-title {
+  text-align: center;
+}
+.rr #rr-form-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.rr #rr-form-footer button {
+  width: 50%;
+}
+.rr #rr-form-cards {
+  position: relative;
+  transition-property: left;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.1, 0.1, 1.0, 0.7);
+}
+.rr #rr-form-cards .rr-form-container {
+  box-sizing: border-box;
+  /*text-align: justify;*/
+  padding: 0 20%;
+}
+.rr #rr-form-second .rr-form-container {
+  padding: 0 1rem;
+}
+.rr #rr-form-first .rr-radio-btn {
+  padding: 2rem 2rem;
+}
+.rr #rr-form-third div h1 {
+  padding-top: 2rem;
+}
+.rr #rr-form-fourth input:first-of-type + h1 {
+  padding-top: 2rem;
+}
+/*
+.rr #rr-form-second .rr-form-container > div {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  flex-direction: column;
+}
+*/
+.rr #rr-form-second .rr-form-container > div > span {
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+.rr #rr-form-second .rr-form-container > div span {
+  display: inline-block;
+}
+.rr #rr-form-cards .rr-form-container h1 {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+.rr #rr-form-cards input[type="radio"] {
+  appearance: none;
+	cursor: pointer;
+  padding: 0.7rem 1.5rem;
+  background-color: #fff;
+  color: #000;
+  height: 24px;
+  /*width: 72px;*/
+  font-weight: 400;
+  border: 1px solid #000;
+  font-variant: small-caps;
+  transition-property: box-shadow, width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+.rr #rr-form-cards input[type="radio"]:checked {
+  /*height: 24px;*/
+  /*width: 96px;*/
+  box-shadow: 1px 2px 4px;
+  border-width: 2px;
+}
+/*.rr .rr-form-radio-container input,*/
+/*
+ * div .rr-radio-btn
+ *
+ * div .rr-radio-btn label
+ *
+ */
+.rr .rr-radio-btn {
+  display: inline-block;
+}
+.rr .rr-radio-btn label {
+	cursor: pointer;
+  padding: 0.7rem 1.5rem;
+  background-color: #fff;
+  color: #000;
+  color: #000;
+  font-weight: 400;
+  border: 1px solid #000;
+  font-variant: small-caps;
+  transition-property: box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  font-variant: small-caps;
+  transition-property: box-shadow, width;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+.rr #rr-form-first,
+.rr #rr-form-second,
+.rr #rr-form-third,
+.rr #rr-form-fourth,
+.rr #rr-form-fifth,
+.rr #rr-form-sixth,
+.rr #rr-form-last {
+  /*position: relative;*/
+  height: 80%;
+  /*margin: 10% 10%;*/
+}
+.rr .rr-radio-btn input[type="radio"] {
+  display: none;
+}
+.rr .rr-form-container input[type="radio"] {
+  position: relative;
+}
+.rr .rr-radio-btn label:hover {
+  box-shadow: 1px 2px 4px #000;
+}
+.rr .rr-radio-btn input[type="radio"]:checked + label {
+  border: solid 2px #000;
+}
+.rr .rr-form-container {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+#rr-form-first .rr-form-container {
+  text-align: center;
+}
+/*
+#rr-form-first .rr-radiocontainer {
+  text-align: center;
+}
+*/
+.rr .rr-form-container .rr-radio-container {
+  padding-bottom: 3rem;
+}
+.rr #rr-form-second .rr-form-container > div {
+  width: 100%;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+.rr #rr-form-second .rr-form-container > div > * {
+  padding-right: 1rem;
+}
+#rr-form-fourth .rr-form-container {
+  text-align: center;
+}
+#rr-form-fourth input,
+#rr-form-fifth input {
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  width: 20rem;
+}
+#rr-form-fifth .rr-form-container p,
+#rr-form-fourth .rr-form-container p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+#rr-form-sixth .rr-form-container input {
+  display: none;
+}
+#rr-form-sixth .rr-form-container {
+  text-align: center;
+}
+#rr-form-sixth .rr-form-container label {
+	cursor: pointer;
+  display: inline-block;
+  max-width: 40rem;
+  padding: 0.7rem 1.5rem;
+  background-color: #fff;
+  color: #000;
+  color: #000;
+  font-weight: 400;
+  border: 1px solid #000;
+  font-variant: small-caps;
+  transition-property: box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  margin: 1rem auto;
+}
+#rr-form-sixth .rr-form-container label:hover {
+  box-shadow: 1px 2px 4px #000;
+}
+#rr-form-last .rr-form-container li {
+  color: red;
+  padding-bottom: 1rem;
+}
+@media screen and (max-width: 1100px) {
+  #rr-form-cards #rr-form-second label {
+    font-size: 10px;
+  }
 }

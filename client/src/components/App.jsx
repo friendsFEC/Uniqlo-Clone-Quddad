@@ -7,10 +7,11 @@ import Overview from './Overview';
 import ReviewsAndRatings from './ReviewsAndRatings';
 import config from '../../../config';
 import { logError } from './rr/utility';
+import clickTracker from './clickTracker';
 
 const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products';
 
-function ProductIdSlider({ setProductId }) {
+function ProductIdSlider({ setProductId, productId }) {
   const [products, setProducts] = useState([]);
   useEffect(
     () => axios.get(
@@ -30,9 +31,17 @@ function ProductIdSlider({ setProductId }) {
     [],
   );
 
+  useEffect(
+    () => {
+      const filtered = products.filter((product) => (product.id === productId))[0];
+      if (filtered) document.getElementById('slider').value = filtered.id;
+    },
+    [productId, products],
+  );
+
   return (
     <div style={{ textAlign: 'center' }}>
-      <select onChange={({ target }) => setProductId(Number(target.value))}>
+      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))}>
         {products ? products.map((product) => (
           <option key={product.id} value={product.id}>{product.name}</option>
         )) : null }
@@ -43,17 +52,24 @@ function ProductIdSlider({ setProductId }) {
 
 ProductIdSlider.propTypes = {
   setProductId: PropTypes.func.isRequired,
+  productId: PropTypes.number.isRequired,
 };
+
+window.addEventListener('click', clickTracker);
 
 function App() {
   const [productId, setProductId] = useState(65631);
   return (
     <div>
-      <ProductIdSlider setProductId={setProductId} />
-      <Overview productId={productId} />
-      <RelatedAndComparison productID={productId} />
-      <QuestionsAndAnswers productId={productId} />
-      <ReviewsAndRatings productID={productId} />
+      <div id="border1">
+        <div id="border2">
+          <ProductIdSlider setProductId={setProductId} productId={productId} />
+          <Overview productId={productId} />
+          <RelatedAndComparison productID={productId} setProductId={setProductId} />
+          <QuestionsAndAnswers productId={productId} />
+          <ReviewsAndRatings productID={productId} />
+        </div>
+      </div>
     </div>
   );
 }

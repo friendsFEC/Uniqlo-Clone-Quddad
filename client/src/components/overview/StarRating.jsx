@@ -24,10 +24,10 @@ export default function StarRating({ rating }) {
               }}
               className="ov-star--active"
             >
-              <AiFillStar />
+              <img alt="" className="star" src="./img/rr/star-full.svg" />
             </div>
             <div className="ov-star--partial">
-              {emptyStar ? <AiOutlineStar /> : <AiFillStar />}
+              {emptyStar ? <img alt="" className="star" src="./img/rr/star-empty.svg" /> : <img alt="" className="star" src="./img/rr/star-full.svg" />}
             </div>
           </div>
         );

@@ -1,16 +1,23 @@
+.rc-slide-container {
+  display: grid;
+  grid-auto-flow: column;
+  overflow: scroll;
+  grid-template-rows: 1fr;
+  max-width: 100rem;
+  gap: 30px;
+}
+
 .rc-rp-container {
   display: grid;
   grid-auto-flow: column;
   overflow: scroll;
   grid-template-rows: 1fr;
-  margin-left: 27%;
-  margin-right: 29%;
+  max-width: 100rem;
   gap: 30px;
 }
 
 .rc-rp-card {
-  border: 1px solid black;
-  border-radius: 8px;
+  background-color: #f6f6f6;
   height: 400px;
   width: 250px;
 }
@@ -19,30 +26,22 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  margin-left: 27%;
-  margin-right: 29%;
+  /* margin-left: 27%;
+  margin-right: 29%; */
   height: 430px;
   overflow: scroll;
+  gap: 30px;
 }
 
 .rc-yo-card {
-  border: 1px solid black;
-  border-radius: 8px;
+  background-color: #f6f6f6;
   height: 400px;
   width: 250px;
-  margin: 0px;
-}
-
-.rc-yo-new-card {
-  border-radius: 8px;
-  height: 400px;
-  width: 250px;
-  margin: 0px;
 }
 
 .rc-title {
   font-size: 22px;
-  margin-left: 27%;
+  /* margin-left: 27%; */
 }
 
 .rc-small-titles {
@@ -86,16 +85,20 @@
   display: flex;
 }
 
+/* .rc-modal-product-name{
+  position: relative;
+} */
+
 .rc-modal-style table, th, td {
   border: 0.1px solid;
   padding: 7px;
 }
 
 .rc-card-photos {
-  border-radius: 8px;
   margin-top: 5px;
   height: 225px;
   width: 225px;
+  cursor: pointer;
 }
 
 .rc-card-name {
@@ -109,16 +112,18 @@
   padding: 0;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .rc-yo-add-button {
   font-size: 20px;
   text-align: center;
   padding: 75px 0;
+  background-color: #f6f6f6;
   border: 1px solid black;
-  border-radius: 10px;
   margin-left: 47px;
   margin-top: 85px;
+  cursor: pointer;
 }
 
 .rc-rp-arrow {
