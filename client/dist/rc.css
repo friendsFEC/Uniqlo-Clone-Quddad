@@ -20,7 +20,7 @@
 .rc-rp-container::-webkit-scrollbar{ display: none }
 
 .rc-rp-card {
-  background-color: #e0e0e0;
+  background-color: #E5E4E2;
   height: 470px;
   width: 260px;
 }
@@ -40,7 +40,7 @@
 .rc-yo-container::-webkit-scrollbar{ display: none }
 
 .rc-yo-card {
-  background-color: #e0e0e0;
+  background-color: #E5E4E2;
   height: 470px;
   width: 260px;
 }

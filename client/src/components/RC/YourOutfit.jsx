@@ -79,7 +79,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
                 setIsReadyToAdd(false);
                 removeDiv();
                 addProduct();
-              }}>Add to Your Outfit!</button>
+              }}>Add to Your Outfit</button>
             </div>
           </div>
         </div>

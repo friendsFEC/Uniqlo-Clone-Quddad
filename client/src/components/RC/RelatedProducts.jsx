@@ -9,7 +9,7 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings, setProductId }) => {
-  const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
+  const noPhoto = "https://www.kirkstall.com/wp-content/uploads/2020/04/image-not-available-png-8.png"
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProductID, setSelectedProductID] = useState(0);
   const listRef = useRef(null);
