@@ -8,13 +8,13 @@ const _V = require('../Utility/V.jsx');
 class ListOfQA extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props ', props);
     const { chosenProduct } = this.props;
     const filteredQuestions = chosenProduct
       .filter((question) => question.question_helpfulness > 0);
 
     const currentMaxRange = filteredQuestions.length > 2
       ? 2 : filteredQuestions.length;
+
     this.state = {
       chosenProduct: filteredQuestions,
       maxRange: currentMaxRange,
@@ -29,22 +29,12 @@ class ListOfQA extends React.Component {
   // Clicking the button will cause up to 2 additional questions to
   // appear. The list should expand, and the questions should show in
   // order below the previously loaded questions.
-  questionComponentUpdate() {
-    const { buttonText } = this.state;
-    const { chosenProduct } = this.state;
-    const text1 = 'More Answered Questions';
-    const text2 = 'Less Answered Questions';
-    if (buttonText === text1) {
-      this.setState({
-        maxRange: chosenProduct.length > 4 ? 4 : chosenProduct.length,
-        buttonText: text2,
-      });
-    } else if (buttonText === text2) {
-      this.setState({
-        maxRange: chosenProduct.length > 2 ? 2 : chosenProduct.length,
-        buttonText: text1,
-      });
-    }
+
+
+
+
+  componentDidMount() {
+    // const { productId } = this.props;
   }
 
   searchQuestions(event) {
@@ -71,10 +61,30 @@ class ListOfQA extends React.Component {
     return results;
   }
 
+  questionComponentUpdate() {
+    const { buttonText } = this.state;
+    const { chosenProduct } = this.state;
+    const text1 = 'More Answered Questions';
+    const text2 = 'Less Answered Questions';
+    if (buttonText === text1) {
+      this.setState({
+        maxRange: chosenProduct.length > 4 ? 4 : chosenProduct.length,
+        buttonText: text2,
+      });
+    } else if (buttonText === text2) {
+      this.setState({
+        maxRange: chosenProduct.length > 2 ? 2 : chosenProduct.length,
+        buttonText: text1,
+      });
+    }
+  }
+
   render() {
     const { chosenProduct } = this.state;
     const { maxRange } = this.state;
     const { buttonText } = this.state;
+    const { productInfo } = this.props;
+    const productName = productInfo.name;
 
     return (
       <div id="qa-ListOfQA">
@@ -84,7 +94,14 @@ class ListOfQA extends React.Component {
       1. display questions
       2. display answers */}
         <div id="qa-ListOfQA--scrollListOfQuestion">
-          {chosenProduct.slice(0, maxRange).map((item) => <QAItem key={item.question_id} questionAnswer={item} />)}
+          {chosenProduct.slice(0, maxRange)
+            .map((item) => (
+              <QAItem
+                key={item.question_id}
+                questionAnswer={item}
+                productName={productName}
+              />
+            ))}
         </div>
         <div id="qa-ListOfQA--ListExpandButton--AddAQuestionButton">
           {chosenProduct.length > 2
@@ -100,7 +117,6 @@ class ListOfQA extends React.Component {
             )
             : <p />}
         </div>
-
       </div>
     );
   }

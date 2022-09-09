@@ -53,6 +53,10 @@ function Question(props) {
     });
   };
 
+  useEffect(() => {
+    // retrieving product data here
+  }, []);
+
   return (
     <div className="qa-QAItem-Question">
       <h3>

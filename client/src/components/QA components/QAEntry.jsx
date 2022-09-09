@@ -8,7 +8,7 @@ class QAEntry extends React.Component {
   render() {
     return (
       <div id="qa-QAEntry">
-        <p>Submit a question</p>
+        {/* <p>Submit a question</p> */}
       </div>
     )
   }
