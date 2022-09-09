@@ -80,8 +80,7 @@ function AddAnswersModal({ open, children, onClose }) {
           placeholder="Why did you like the product or not?"
         />
         <br />
-        <button type="submit">Submit</button>
-        <button type="button" onClick={onClose}>Close Modal</button>
+        <button type="button" onClick={onClose}>Submit</button>
       </div>
     </>,
     document.getElementById('portal'),

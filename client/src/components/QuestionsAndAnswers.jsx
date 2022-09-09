@@ -95,7 +95,9 @@ class QuestionsAndAnswers extends React.Component {
             productId={product_id}
             productInfo={productInfo}
           />
-          <AddQuestions />
+          <AddQuestions
+            productInfo={productInfo}
+          />
           <QAEntry />
         </div>
       );

@@ -10,6 +10,7 @@ function Question(props) {
   const [isHelpfulClicked, setIsHelpfulClicked] = useState(false);
   const [isReported, setIsReported] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { productInfo } = props;
 
   // update/increment the helpfulness of a question
   const handleHelpfulness = () => {
@@ -69,7 +70,6 @@ function Question(props) {
         <h3>
           | Helpful?
         </h3>
-        {/* <button type="button" onClick={() => setQuestionHelpfulness(questionHelpfulness)}> */}
         <button type="button" onClick={() => handleHelpfulness()}>
           Yes
           {' '}
@@ -85,10 +85,14 @@ function Question(props) {
           Report
         </button>
         <button className="qa-astext" type="button" onClick={() => setIsOpen(true)}><h2>Add Answer</h2></button>
-        <AddAnswersModal open={isOpen} onClose={() => setIsOpen(false)}>
+        <AddAnswersModal
+          open={isOpen}
+          onClose={() => setIsOpen(false)}
+        >
           <h2>Submit your answer</h2>
           <h3>
-            PRODUCT NAME:
+            { productInfo.name }
+            :
             {' '}
             { question_body }
           </h3>

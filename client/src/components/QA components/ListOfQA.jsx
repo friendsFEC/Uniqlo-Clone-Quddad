@@ -99,7 +99,7 @@ class ListOfQA extends React.Component {
               <QAItem
                 key={item.question_id}
                 questionAnswer={item}
-                productName={productName}
+                productInfo={productInfo}
               />
             ))}
         </div>

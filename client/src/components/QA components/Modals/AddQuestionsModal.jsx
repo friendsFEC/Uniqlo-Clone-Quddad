@@ -81,8 +81,15 @@ function AddQuestionsModal({ open, children, onClose }) {
         <br />
         <p>For authentication reasons, you will not be emailed</p>
         <br />
-        <button type="submit">Submit</button>
-        <button type="button" onClick={onClose}>Close Modal</button>
+        <button
+          type="button"
+          onClick={() => {
+            onClose() ;
+          }}
+        >
+          Submit
+
+        </button>
       </div>
     </>,
     document.getElementById('portal'),
