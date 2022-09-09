@@ -31,6 +31,7 @@ export default function clickTracker(event) {
     }
   } while (noMatch);
   // in api call, pass event.target (element), current (module), and time
+  if (current === null) current = {tagName: 'html', id: null, classList: []};
   let element = event.target;
   element = `<${element.tagName.toLowerCase()} id=${element.id} class=${element.classList} />`;
   const widget = `<${current.tagName.toLowerCase()} id=${current.id} class=${current.classList} />`;
