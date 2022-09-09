@@ -30,8 +30,9 @@ export default function clickTracker(event) {
       current = current.parentElement;
     }
   } while (noMatch);
-  // in api call, pass event.target (element), current (module), and time
+  // select product wiget was moved, creating a default value for current
   if (current === null) current = {tagName: 'html', id: null, classList: []};
+  // in api call, pass event.target (element), current (module), and time
   let element = event.target;
   element = `<${element.tagName.toLowerCase()} id=${element.id} class=${element.classList} />`;
   const widget = `<${current.tagName.toLowerCase()} id=${current.id} class=${current.classList} />`;
