@@ -72,15 +72,15 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
       <div className = "rc-yo-container">
         <div className = "rc-rp-arrow" style={{opacity: 0}}>< GrFormPrevious /></div>
         <div id = "rc-removable-div">
-          <div className = "rc-yo-empty-add-card">
-            <div id = "rc-yo-add-button-div">
+          <div className = "rc-yo-empty-add-card" id = "rc-yo-add-button-div" >
+            {/* <div id = "rc-yo-add-button-div"> */}
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
                 setIsReadyToAdd(false);
                 removeDiv();
                 addProduct();
               }}>Add to Your Outfit</button>
-            </div>
+            {/* </div> */}
           </div>
         </div>
 
