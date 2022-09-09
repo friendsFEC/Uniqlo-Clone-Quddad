@@ -36,6 +36,7 @@ function ProductIdSlider({ setProductId, productId }) {
     () => {
       const filtered = products.filter((product) => (product.id === productId))[0];
       if (filtered) document.getElementById('slider').value = filtered.id;
+      window.scrollTo(0, 0);
     },
     [productId, products],
   );
@@ -50,6 +51,7 @@ function ProductIdSlider({ setProductId, productId }) {
     </div>
   );
 }
+
 
 ProductIdSlider.propTypes = {
   setProductId: PropTypes.func.isRequired,
@@ -74,7 +76,7 @@ function App() {
         <div id="border2">
           <Overview productId={productId} />
           <RelatedAndComparison productID={productId} setProductId={setProductId} />
-          <QuestionsAndAnswers productId={productId} />
+          <QuestionsAndAnswers product_id={productId} />
           <ReviewsAndRatings productID={productId} />
         </div>
       </div>

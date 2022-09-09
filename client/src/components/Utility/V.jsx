@@ -1,6 +1,24 @@
 const axios = require('axios');
 const config = require('../../../../config.js');
 
+const Axios = axios.create({
+  baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions',
+  headers: {
+    Authorization: config.API_KEY,
+  },
+});
+
+// const getProductOverview = () => {
+//   let product = {};
+//   Axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65634', {
+//     transformResponse: [(data) => {
+//       const parsedData = JSON.parse(data) || null;
+//       product = parsedData;
+//     }],
+//   });
+//   return product;
+// };
+
 module.exports.objectToArrayFunction = (obj) => {
   const array = [];
   for (const key in obj) {
@@ -21,12 +39,14 @@ module.exports.topXItems = (numberOfItems, array) => {
   return resultArr;
 };
 
-module.exports.Axios = axios.create({
-  baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions',
-  headers: {
-    Authorization: config.API_KEY,
-  },
-});
+module.exports.Axios = Axios;
+
+// _V.Axios.get(getProductURL, {
+//   transformResponse: [(data) => {
+//     const parsedData = JSON.parse(data) || null;
+//     this.updateData(parsedData);
+//   }],
+// });
 
 // module.exports.Axios2 = () => {
 //   console.log('hello');

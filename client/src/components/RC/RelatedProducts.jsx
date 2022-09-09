@@ -9,7 +9,7 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles, relatedAverageRatings, setProductId }) => {
-  const noPhoto = "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"
+  const noPhoto = "https://www.kirkstall.com/wp-content/uploads/2020/04/image-not-available-png-8.png"
   const [isOpen, setIsOpen] = useState(false);
   const [selectedProductID, setSelectedProductID] = useState(0);
   const listRef = useRef(null);
@@ -20,7 +20,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
     if (listRef.current) {
      listRef.current.scrollBy({
       top: 0,
-      left: -200,
+      left: -300,
       behavior: 'smooth'
      })
     }
@@ -28,17 +28,19 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
 
   const scrollRight = () => {
     if (listRef.current) {
-     listRef.current.scrollBy({
-      top: 0,
-      left: 200,
-      behavior: 'smooth'
-     })
+      listRef.current.scrollBy({
+        top: 0,
+        left: 300,
+        behavior: 'smooth'
+      })
     }
   };
 
   const showArrows = () => {
-    leftArrow.current.style.opacity = 0.80;
-    rightArrow.current.style.opacity = 0.80;
+    // if the list is scrolled all the way to the left, hide the left arrow
+    listRef.current.scrollLeft === 0 ? leftArrow.current.style.opacity = 0 : leftArrow.current.style.opacity = 0.80;
+    // if the list is scrolled all the way to the right, hide the right arrow
+    listRef.current.scrollLeft + listRef.current.clientWidth === listRef.current.scrollWidth ? rightArrow.current.style.opacity = 0 : rightArrow.current.style.opacity = 0.80;
   }
 
   const hideArrows = () => {
@@ -60,7 +62,7 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
                       </button>
                       <Modal open={isOpen} selectedProductID = {selectedProductID} currentInfo = {currentInfo} product = {product} index = {index} relatedInfo = {relatedInfo}/>
                       <div className = "rc-rp-details">
-                        <img className = "rc-card-photos" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => setProductId(product.id)}/>
+                        <img className = "rc-card-img" src = {relatedStyles[index].results[0].photos[0].thumbnail_url || noPhoto} onClick = {() => setProductId(product.id)}/>
                         <p>{product.category}</p>
                         <p className = "rc-card-name">{product.name}</p>
                         <p><span className = {relatedStyles[index].results[0].sale_price === null ? "rc-rp-og-price" : "rc-rp-sale-price"}>
@@ -88,8 +90,3 @@ const RelatedProducts = ( { currentInfo, relatedIDs, relatedInfo, relatedStyles,
 }
 
 export default RelatedProducts;
-
-  // IDEA FOR ARROWS:
-  // change classname based on ternary
-  // if at the front of the grid, hide left arrow
-  // if at the end of the grid, hide right arrow
