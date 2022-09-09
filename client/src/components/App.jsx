@@ -60,12 +60,12 @@ function App() {
   return (
     <div>
       <div className="app-header">
-        <ProductIdSlider setProductId={setProductId} productId={productId} />
-        <GrFormNext />
-        <p style={{ fontSize: '30px', fontWeight: '600' }}>
-          Select Your Product
-        </p>
         <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '90px', width: '90px' }}/>
+        <div style={{ fontSize: '30px', fontWeight: '600', display: 'flex', flexDirection:'row', alignItems: 'center' }}>
+          Select Your Product
+          <GrFormNext />
+          <ProductIdSlider setProductId={setProductId} productId={productId} />
+        </div>
       </div>
       <div id="border1">
         <div id="border2">

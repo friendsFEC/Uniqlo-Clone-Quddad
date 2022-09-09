@@ -51,7 +51,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
   border-bottom: 1px solid black;
   position: fixed;
   top: 0;
