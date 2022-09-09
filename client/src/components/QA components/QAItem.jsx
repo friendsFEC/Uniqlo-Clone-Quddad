@@ -8,9 +8,7 @@ function QAItem(props) {
   const { questionAnswer } = props;
   const { productInfo } = props;
   const answers = _V.objectToArrayFunction(questionAnswer.answers);
-  console.log('answers ', answers);
   const filteredAnswers = answers.filter((answer) => answer.helpfulness > 0 || answer.answerer_name === 'Seller');
-  console.log('filteredAnswers', filteredAnswers);
 
   return (
     <div id="qa-QAItem">

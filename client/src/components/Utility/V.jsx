@@ -8,28 +8,16 @@ const Axios = axios.create({
   },
 });
 
-const getProductOverview = () => {
-  let product = {};
-  Axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65634', {
-    transformResponse: [(data) => {
-      const parsedData = JSON.parse(data) || null;
-      product = parsedData;
-      // console.log('parsedData ', parsedData);
-    }],
-  });
-  return product;
-};
-
-const test = getProductOverview();
-
-// _V.Axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65634`, {
-//   transformResponse: [(data) => {
-//     const parsedData = JSON.parse(data) || null;
-//     setProductInfo(parsedData);
-//   }],
-// });
-
-module.exports.getProductOverview = () => test;
+// const getProductOverview = () => {
+//   let product = {};
+//   Axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products/65634', {
+//     transformResponse: [(data) => {
+//       const parsedData = JSON.parse(data) || null;
+//       product = parsedData;
+//     }],
+//   });
+//   return product;
+// };
 
 module.exports.objectToArrayFunction = (obj) => {
   const array = [];

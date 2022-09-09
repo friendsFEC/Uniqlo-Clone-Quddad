@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ListOfQA from './QA components/ListOfQA.jsx';
 import QAEntry from './QA components/QAEntry.jsx';
 // import example from './QA components/example.jsx';
@@ -8,21 +8,11 @@ const _V = require('./Utility/V.jsx');
 
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/qa/questions';
 
-class QuestionsAndAnswers extends React.Component {
-  constructor(props) {
-    super(props);
+function QuestionsAndAnswers({ product_id }) {
+  const [product, setProduct] = useState([]);
+  const [productInfo, setProductInfo] = useState({});
 
-    this.state = {
-      product: [],
-      product_id: '65636',
-      productInfo: {},
-    };
-
-    this.setProduct = this.setProduct.bind(this);
-  }
-
-  componentDidMount() {
-    const { product_id } = this.state;
+  useEffect(() => {
     // get the product
     const chosenProductId = `/?product_id=${product_id}`;
     const getProductQAURL = baseURL + chosenProductId;
@@ -35,8 +25,6 @@ class QuestionsAndAnswers extends React.Component {
       _V.Axios.get(getProductQAURL, {
         transformResponse: [(data) => {
           const parsedData = JSON.parse(data) || null;
-          // console.log('parsedData ', parsedData);
-          // this.setState(parsedData);
           resolve(parsedData);
         }],
       });
@@ -46,68 +34,57 @@ class QuestionsAndAnswers extends React.Component {
       _V.Axios.get(getProductInfoURL, {
         transformResponse: [(data) => {
           const parsedData = JSON.parse(data) || null;
-          // console.log('parsedData ', parsedData);
-          // this.setStateInfo(parsedData);
           resolve(parsedData);
         }],
       });
     });
-    // _V.Axios.get(getProductQAURL, {
-    //   transformResponse: [(data) => {
-    //     const parsedData = JSON.parse(data) || null;
-    //     this.setState(parsedData);
-    //   }],
-    // });
 
     Promise.all([getProductQA, getProductInfo])
       .then((...responses) => {
         const productQA = responses[0][0];
         const productInfo = responses[0][1];
-        this.setProduct(productQA, productInfo);
-        // this.setStateInfo(productInfo);
+        updateData(productQA, productInfo);
       })
       .catch((errors) => console.warn(errors));
-  }
+  }, [product_id]);
 
-  setProduct(productQA, productInfo) {
+  let updateData = (productQA, productInfo) => {
     const dataResults = productQA.results;
-    this.setState({
-      product: dataResults,
-      productInfo,
-    });
-  }
+    setProduct(dataResults);
+    setProductInfo(productInfo);
+  };
 
-  render() {
-    const { product } = this.state;
-    const questionList = product;
-    const isQuestionFilled = (product.length > 0);
-    const { product_id } = this.state;
-    const { productInfo } = this.state;
+  const questionList = product;
+  const isQuestionFilled = (product.length > 0);
+  // this.getData();
+  // console.log('product_id ', product_id);
+  // console.log('product ', product);
 
-    if (isQuestionFilled) {
-      return (
-        <div id="qa">
-          <p>QUESTIONS & ANSWERS</p>
-          <ListOfQA
-            chosenProduct={questionList}
-            isQuestionFilled={isQuestionFilled}
-            productId={product_id}
-            productInfo={productInfo}
-          />
-          <AddQuestions
-            productInfo={productInfo}
-          />
-          <QAEntry />
-        </div>
-      );
-    }
+  if (isQuestionFilled) {
     return (
       <div id="qa">
         <p>QUESTIONS & ANSWERS</p>
+        <ListOfQA
+          chosenProduct={questionList}
+          isQuestionFilled={isQuestionFilled}
+          productId={product_id}
+          productInfo={productInfo}
+        />
+        <AddQuestions
+          productInfo={productInfo}
+        />
         <QAEntry />
       </div>
     );
   }
+  return (
+    <div id="qa">
+      <p>QUESTIONS & ANSWERS</p>
+      <AddQuestions
+        productInfo={productInfo}
+      />
+    </div>
+  );
 }
 
 export default QuestionsAndAnswers;
