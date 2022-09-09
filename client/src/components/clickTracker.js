@@ -32,8 +32,8 @@ export default function clickTracker(event) {
   } while (noMatch);
   // in api call, pass event.target (element), current (module), and time
   let element = event.target;
-  element = `<${element.tagName.toLowerCase()} id=${element.id} class=${element.classList} />`
-  let widget = `<${current.tagName.toLowerCase()} id=${current.id} class=${current.classList} />`
+  element = `<${element.tagName.toLowerCase()} id=${element.id} class=${element.classList} />`;
+  const widget = `<${current.tagName.toLowerCase()} id=${current.id} class=${current.classList} />`;
   // console.log({element, widget, time: captureTime});
   axios.post(
     serverURL,
