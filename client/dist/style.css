@@ -26,7 +26,6 @@ titles
 */
 
 
-
 .star {
   width: 1em;
 }
@@ -36,11 +35,33 @@ body {
 }
 
 #border1 {
-  border: 1px solid;
   margin: 8%;
   width: 50%;
   margin-left: 20%;
   margin-right: 20%;
+}
+
+@media screen and (min-width: 1400px) {
+  #border1 {
+    width: 50%;
+    margin-right: 20%;
+    margin-left: 20%;
+  }
+}
+
+.app-header {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: flex-end;
+  border-bottom: 1px solid black;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 5;
+  background-color: white;
+  width: 100%;
 }
 
 
