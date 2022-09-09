@@ -275,6 +275,7 @@
 }
 
 .ov-dropdown {
+  text-align: center;
   border: solid 1px;
   height: 44px;
   background-color: white;
