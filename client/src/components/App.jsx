@@ -40,7 +40,7 @@ function ProductIdSlider({ setProductId, productId }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))}>
+      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))} style={{ height: '80px' }}>
         {products ? products.map((product) => (
           <option key={product.id} value={product.id}>{product.name}</option>
         )) : null }
@@ -58,9 +58,13 @@ function App() {
   const [productId, setProductId] = useState(65631);
   return (
     <div>
+      <div className="app-header">
+        <ProductIdSlider setProductId={setProductId} productId={productId} />
+        <p> select your product</p>
+        <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '80px', width: '80px' }}/>
+      </div>
       <div id="border1">
         <div id="border2">
-          <ProductIdSlider setProductId={setProductId} productId={productId} />
           <Overview productId={productId} />
           <RelatedAndComparison productID={productId} setProductId={setProductId} />
           <QuestionsAndAnswers productId={productId} />

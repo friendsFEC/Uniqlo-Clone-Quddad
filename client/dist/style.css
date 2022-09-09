@@ -48,6 +48,15 @@ body {
   }
 }
 
+.app-header {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
 
 
 
