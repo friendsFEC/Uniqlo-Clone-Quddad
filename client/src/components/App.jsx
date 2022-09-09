@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { GrFormNext } from 'react-icons/gr';
 import QuestionsAndAnswers from './QuestionsAndAnswers';
 import RelatedAndComparison from './RelatedAndComparison';
 import Overview from './Overview';
@@ -60,8 +61,11 @@ function App() {
     <div>
       <div className="app-header">
         <ProductIdSlider setProductId={setProductId} productId={productId} />
-        <p> select your product</p>
-        <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '80px', width: '80px' }}/>
+        <GrFormNext />
+        <p style={{ fontSize: '30px', fontWeight: '600' }}>
+          Select Your Product
+        </p>
+        <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '90px', width: '90px' }}/>
       </div>
       <div id="border1">
         <div id="border2">

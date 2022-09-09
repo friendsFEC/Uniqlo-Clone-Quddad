@@ -26,7 +26,6 @@ titles
 */
 
 
-
 .star {
   width: 1em;
 }
@@ -36,7 +35,6 @@ body {
 }
 
 #border1 {
-  border: 1px solid;
   margin: 8%;
 }
 
@@ -51,10 +49,16 @@ body {
 .app-header {
   margin-bottom: 50px;
   display: flex;
-  flex-direction: row;
-  justify-content: stretch;
+  flex-direction: row-reverse;
+  justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid black;
+  position: fixed;
+  top: 0;
+  left:0;
+  z-index: 5;
+  background-color: white;
+  width: 100%;
 }
 
 
