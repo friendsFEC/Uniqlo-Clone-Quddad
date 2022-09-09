@@ -1,8 +1,11 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useReducer, useRef, useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import MainImageCarousel from './MainImageCarousel';
 
 export default function ProductImage({ photosData, extended, toggleView }) {
+  const [showMagnifier, setShowMagnifier] = useState(false);
+  const [[X, Y], setXY] = useState([0, 0]);
+  const [[w, h], setSize] = useState([0, 0]);
   const { length } = photosData;
   const image = useRef(null);
 
@@ -34,17 +37,33 @@ export default function ProductImage({ photosData, extended, toggleView }) {
 
   // handler to extend the image
   // working process
-
   const handleClick = () => {
     toggleView(!extended);
     image.current.style.cursor = image.current.style.cursor === 'zoom-out' ? 'zoom-in' : 'zoom-out';
-    // image.current.style.width = image.current.style.width === '600px' ? '450px' : '600px';
-    image.current.style.transition = 'width ease-in-out 2s';
-    // image.current.style.transform= 'scaleX(2)';
   };
 
-  // returns side carousel component and the Main image in a map function
-  // all images are there and their opacity changes
+  // zoom function
+  const turnOnZoom = (e) => {
+    // update image size and turn on magn
+    const elem = e.currentTarget;
+    const { width, height } = elem.getBoundingClientRect();
+    setSize([width, height]);
+    setShowMagnifier(true);
+  };
+
+  const moveZoom = (e) => {
+    // turn on zoom if not turned on already
+    if (!showMagnifier) {
+      turnOnZoom(e);
+    }
+    // update cursor position
+    const elem = e.currentTarget;
+    const { top, left } = elem.getBoundingClientRect();
+    // calculate cursor position on image relative to the image
+    const x = e.pageX - left - window.pageXOffset;
+    const y = e.pageY - top - window.pageYOffset;
+    setXY([x, y]);
+  };
 
   return (
     <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
@@ -56,18 +75,48 @@ export default function ProductImage({ photosData, extended, toggleView }) {
         {photosData.map((photo, index) => (
           <div
             key={photo.url}
+            className={index === count ? 'ov-imageBox_activeItem' : 'ov-imageBox_slideItem'}
             role="button"
             tabIndex="0"
             onKeyPress={handleClick}
-            className={index === count ? 'ov-imageBox_activeItem' : 'ov-imageBox_slideItem'}
             onClick={handleClick}
           >
-            <img
-              ref={image}
-              className={extended ? 'ov-img--extended' : 'ov-imageBox_mainImage'}
-              src={photo.url}
-              alt="productImage"
-            />
+            <div style={{ position: 'relative' }}>
+              <img
+                ref={image}
+                className={extended ? 'ov-img--extended' : 'ov-imageBox_mainImage'}
+                src={photo.url}
+                alt="productImage"
+                onMouseEnter={extended && index === count ? turnOnZoom : null}
+                onMouseMove={extended && index === count ? moveZoom : null}
+                onMouseLeave={() => setShowMagnifier(false)}
+              />
+              {extended && (
+                <div
+                  className="magnifier"
+                  style={{
+                    display: showMagnifier ? '' : 'none',
+                    position: 'absolute',
+                    pointerEvents: 'none',
+                    height: `${200}px`,
+                    width: `${200}px`,
+                    // move element center to cursor position
+                    top: `${Y - 200 / 2}px`,
+                    left: `${X - 200 / 2}px`,
+                    opacity: '1',
+                    border: '1px solid lightgray',
+                    backgroundColor: 'white',
+                    backgroundImage: index === count ? `url('${photo.url})` : 'none',
+                    backgroundRepeat: 'no-repeat',
+
+                    // calculate zoomed image size
+                    backgroundSize: `${w * 2}px ${h * 2}px`,
+                    backgroundPositionX: `${-X * 2 + 200 / 2}px`,
+                    backgroundPositionY: `${-Y * 2 + 200 / 2}px`,
+                  }}
+                />
+              )}
+            </div>
           </div>
         ))}
         {/* --end of photos slider. each image live inside it's div */}
