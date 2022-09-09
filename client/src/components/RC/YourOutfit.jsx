@@ -56,6 +56,7 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
       }
     }
     setRatingStorage(filteredRatings);
+    setIsReadyToAdd(true);
   }
 
   useEffect(
@@ -69,43 +70,38 @@ const YourOutfit = ( {productID, currentInfo, currentStyle, currentRating} ) => 
     <div>
       <h3 className = "rc-title"> Your Outfit </h3>
       <div className = "rc-yo-container">
-        {/* < GrFormPrevious className = "rc-rp-arrow"/> */}
-
+        <div className = "rc-rp-arrow" style={{opacity: 0}}>< GrFormPrevious /></div>
         <div id = "rc-removable-div">
-          <div className = "rc-yo-card">
-            <div id = "rc-yo-add-button-div">
+          <div className = "rc-yo-empty-add-card" id = "rc-yo-add-button-div" >
+            {/* <div id = "rc-yo-add-button-div"> */}
               <button className = "rc-yo-add-button" onClick = {() => {
                 setIsOpen(true);
                 setIsReadyToAdd(false);
                 removeDiv();
                 addProduct();
               }}>Add to Your Outfit</button>
-            </div>
+            {/* </div> */}
           </div>
         </div>
 
-        {/* {console.log(infoStorage, 'INFO STORAGE DURING RENDER')} */}
-        {/* {console.log(styleStorage, 'STYLE STORAGE DURING RENDER')} */}
-        {/* {console.log(ratingStorage, 'RATING STORAGE DURING RENDER')} */}
-
         {infoStorage.map((product, index) => {
-          return (<div key = {index}>
-            <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} product = {product} removeProduct = {removeProduct} index = {index}/>
+          return (
+            <div key = {index}>
+                <YOCard open = {isOpen} currentInfo = {infoStorage[index]} currentStyle = {styleStorage[index]} currentRating = {ratingStorage[index]} product = {product} removeProduct = {removeProduct} index = {index}/>
             </div>
           )
         })}
 
         {isOpen ?
-        <div className = "rc-yo-card">
+        <div className = "rc-yo-empty-add-card">
           <div id = "rc-yo-add-button-div">
             <button className = "rc-yo-add-button" onClick = {() => {
-            isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
-            : alert("This product is already a part of Your Outfit!")}}>
+              isReadyToAdd ? (addProduct(), setIsReadyToAdd(false))
+              : alert("This product is already a part of Your Outfit!")}}>
               Add to Your Outfit</button>
           </div>
         </div> : null}
-
-      {/* < GrFormNext className = "rc-rp-arrow"/> */}
+        <div className = "rc-rp-arrow" style={{opacity: 0}}>< GrFormNext /></div>
       </div>
     </div>
   )
