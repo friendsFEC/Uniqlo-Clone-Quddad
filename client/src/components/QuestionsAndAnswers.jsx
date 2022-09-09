@@ -63,7 +63,7 @@ function QuestionsAndAnswers({ product_id }) {
   if (isQuestionFilled) {
     return (
       <div id="qa">
-        <p>QUESTIONS & ANSWERS</p>
+        <p className="qaTitle">QUESTIONS & ANSWERS</p>
         <ListOfQA
           chosenProduct={questionList}
           isQuestionFilled={isQuestionFilled}
@@ -79,7 +79,7 @@ function QuestionsAndAnswers({ product_id }) {
   }
   return (
     <div id="qa">
-      <p>QUESTIONS & ANSWERS</p>
+      <p className="qaTitle">QUESTIONS & ANSWERS</p>
       <AddQuestions
         productInfo={productInfo}
       />

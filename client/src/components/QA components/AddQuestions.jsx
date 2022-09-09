@@ -5,8 +5,8 @@ function AddQuestions(props) {
   const [isOpen, setIsOpen] = useState(false);
   const { productInfo } = props;
   return (
-    <div>
-      <button className="qa-astext" type="button" onClick={() => setIsOpen(true)}><h2>Add a Question +</h2></button>
+    <div className="AddAQuestionBox">
+      <button className="qa-astext" type="button" onClick={() => setIsOpen(true)}><h2 >Add a Question +</h2></button>
       <AddQuestionsModal
         open={isOpen}
         onClose={() => setIsOpen(false)}
