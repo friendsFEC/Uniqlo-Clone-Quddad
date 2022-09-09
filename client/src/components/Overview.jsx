@@ -106,17 +106,9 @@ export default function Overview({ productId }) {
               <SizeAndQuantity sizes={styles[currStyle].skus} />
             </div>
           </div>
-        </div>
-        <div className="ov-descriptionBlock">
-          <h3 className="ov-title">{product.slogan}</h3>
-          <p>{product.description}</p>
-          <div className="ov-share">
-            <p> Share </p>
-            <div className="ov-socialMedia">
-              <BsFacebook className="ov-socialIcon" />
-              <BsInstagram className="ov-socialIcon" />
-              <BsTwitter className="ov-socialIcon" />
-            </div>
+          <div className="ov-descriptionBlock">
+            <h3 className="ov-title">{product.slogan}</h3>
+            <p>{product.description}</p>
           </div>
         </div>
       </div>
