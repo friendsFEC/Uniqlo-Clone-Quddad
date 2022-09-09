@@ -25,7 +25,7 @@
 
 #qa-ListOfQA--scrollListOfQuestion {
   overflow-y: scroll;
-  /* height: 75vh; */
+  height: 40%;
 }
 
 #qa-addQuestion--question{
