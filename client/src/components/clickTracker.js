@@ -20,6 +20,9 @@ export default function clickTracker(event) {
   let noMatch = true;
   // if there is no match, the reassign current to current.parentElement
   do {
+    if (current === null) {
+      break;
+    }
     const currentClasses = Array(current.classList);
     const classMatchFound = currentClasses.reduce((memo, className) => (
       memo ? true : classes.includes(className[0])
@@ -36,7 +39,7 @@ export default function clickTracker(event) {
   let element = event.target;
   element = `<${element.tagName.toLowerCase()} id=${element.id} class=${element.classList} />`;
   const widget = `<${current.tagName.toLowerCase()} id=${current.id} class=${current.classList} />`;
-  // console.log({element, widget, time: captureTime});
+  console.log({element, widget, time: captureTime});
   axios.post(
     serverURL,
     {
