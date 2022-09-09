@@ -91,6 +91,7 @@ function Answer(props) {
       {answersWithoutSeller.length > 2
         ? (
           <h3
+            className="qa-buttonSpecial"
             type="button"
             onClick={() => {
               answerComponentUpdate();

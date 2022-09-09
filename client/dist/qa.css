@@ -18,9 +18,7 @@
 
 #qa-filter {
   font-weight: bold;
-  padding-left: 1rem;
-
-  border: solid;
+  width:max-content;
 }
 
 #qa-ListOfQA--scrollListOfQuestion {
@@ -48,12 +46,16 @@
 
 .qa-QAItem-Question{
   display: flex;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
+  flex-flow: row;
 }
 
 .rightHandSide{
+
   align-items: stretch;
-  background-color:khaki;
+  /* background-color:khaki; */
+  align-self: flex-end;
+
 }
 
 .AddAQuestionBox{
@@ -61,9 +63,33 @@
   width:max-content;
   padding-left: 2%;
   padding-right: 2%;
-
 }
 
 .qaTitle {
   font-size: medium;
+}
+
+.qa-buttonSpecial{
+
+}
+
+.qa-buttonSpecial::before {
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+.qa-buttonSpecial:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.qa-buttonSpecial::before{
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0 0 0 0;
+  background: lightgreen;
+  transition: transform .25s ease;
+  z-index: -1;
 }

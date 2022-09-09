@@ -60,7 +60,7 @@ function Question(props) {
 
   return (
     <div className="qa-QAItem-Question">
-      <h3 className="leftHandSide">
+      <h3 className="qa-QAItem-Question leftHandSide">
         Question:
         {' '}
         { question_body }

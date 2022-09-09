@@ -30,14 +30,6 @@ function ListOfQA(props) {
       ? 2 : filteredQuestions.length);
   }, [chosenProduct, filteredQuestions, props.chosenProduct]);
 
-  const searchQuestions = (event) => {
-    let searchedQuestionsStr = event.target.value;
-    searchedQuestionsStr = searchedQuestionsStr.length >= 3 ? searchedQuestionsStr : '';
-    const { chosenProduct } = this.props;
-    const newChosenProduct = this.filterQuestions(searchedQuestionsStr, chosenProduct);
-    setQA(newChosenProduct);
-  };
-
   const filterQuestions = (searchedStr, questions) => {
     searchedStr = searchedStr || '';
     // if (searchedStr.length < 3) {
@@ -50,6 +42,13 @@ function ListOfQA(props) {
       return questionBody.match(regExpConst) !== null;
     });
     return results;
+  };
+
+  const searchQuestions = (event) => {
+    let searchedQuestionsStr = event.target.value;
+    searchedQuestionsStr = searchedQuestionsStr.length >= 3 ? searchedQuestionsStr : '';
+    const newChosenProduct = filterQuestions(searchedQuestionsStr, chosenProduct);
+    setQA(newChosenProduct);
   };
 
   const questionComponentUpdate = () => {
@@ -72,7 +71,7 @@ function ListOfQA(props) {
 
   return (
     <div id="qa-ListOfQA">
-      {/* <Filter searchQuestions={searchQuestions} /> */}
+      <Filter searchQuestions={searchQuestions} />
       {/*
     1. display questions
     2. display answers */}
