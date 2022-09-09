@@ -61,7 +61,7 @@ function App() {
     <div>
       <div className="app-header">
         <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '90px', width: '90px' }}/>
-        <div style={{ fontSize: '30px', fontWeight: '600', display: 'flex', flexDirection:'row', alignItems: 'center' }}>
+        <div style={{ fontSize: '30px', fontWeight: '600', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           Select Your Product
           <GrFormNext />
           <ProductIdSlider setProductId={setProductId} productId={productId} />
