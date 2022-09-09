@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { GrFormNext } from 'react-icons/gr';
 import QuestionsAndAnswers from './QuestionsAndAnswers';
 import RelatedAndComparison from './RelatedAndComparison';
 import Overview from './Overview';
@@ -41,7 +42,7 @@ function ProductIdSlider({ setProductId, productId }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))}>
+      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))} style={{ height: '80px' }}>
         {products ? products.map((product) => (
           <option key={product.id} value={product.id}>{product.name}</option>
         )) : null }
@@ -61,9 +62,16 @@ function App() {
   const [productId, setProductId] = useState(65631);
   return (
     <div>
+      <div className="app-header">
+        <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '90px', width: '90px' }}/>
+        <div style={{ fontSize: '30px', fontWeight: '600', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          Select Your Product
+          <GrFormNext />
+          <ProductIdSlider setProductId={setProductId} productId={productId} />
+        </div>
+      </div>
       <div id="border1">
         <div id="border2">
-          <ProductIdSlider setProductId={setProductId} productId={productId} />
           <Overview productId={productId} />
           <RelatedAndComparison productID={productId} setProductId={setProductId} />
           <QuestionsAndAnswers product_id={productId} />
