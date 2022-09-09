@@ -18,7 +18,8 @@
 
 #qa-filter {
   font-weight: bold;
-  width:max-content;
+  width:25%;
+  max-width: fit-content;
 }
 
 #qa-ListOfQA--scrollListOfQuestion {
@@ -70,6 +71,8 @@
 }
 
 .qa-buttonSpecial{
+  position: relative;
+  width: max-content;
 
 }
 
