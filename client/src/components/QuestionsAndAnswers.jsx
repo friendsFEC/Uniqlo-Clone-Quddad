@@ -14,7 +14,7 @@ class QuestionsAndAnswers extends React.Component {
 
     this.state = {
       product: [],
-      product_id: '65634',
+      product_id: '65636',
       productInfo: {},
     };
 
@@ -61,7 +61,6 @@ class QuestionsAndAnswers extends React.Component {
 
     Promise.all([getProductQA, getProductInfo])
       .then((...responses) => {
-        console.log('responses ', responses);
         const productQA = responses[0][0];
         const productInfo = responses[0][1];
         this.setProduct(productQA, productInfo);
