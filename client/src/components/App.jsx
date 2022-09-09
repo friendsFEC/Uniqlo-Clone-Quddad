@@ -43,7 +43,7 @@ function ProductIdSlider({ setProductId, productId }) {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))} style={{ height: '80px' }}>
+      <select id="slider" onChange={({ target }) => setProductId(Number(target.value))}>
         {products ? products.map((product) => (
           <option key={product.id} value={product.id}>{product.name}</option>
         )) : null }
@@ -65,7 +65,7 @@ function App() {
   return (
     <div>
       <div className="app-header">
-        <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '90px', width: '90px' }}/>
+        <img src="./img/app/quddad_Logo.png" alt="dalle" style={{ height: '110px', width: '110px', margin: '6px', position: 'relative', left: '-10%' }} />
         <div style={{ fontSize: '30px', fontWeight: '600', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           Select Your Product
           <GrFormNext />

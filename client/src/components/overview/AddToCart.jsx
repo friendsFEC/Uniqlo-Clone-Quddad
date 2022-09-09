@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { BsTwitter, BsFacebook, BsInstagram } from 'react-icons/bs';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Alert from './Alert';
@@ -38,6 +39,14 @@ export default function AddToCart({ sizeId, count }) {
         </button>
         )}
       <Alert show={success} trigger={trigger} />
+      <div className="ov-share">
+        <p>Share</p>
+        <div className="ov-socialMedia">
+          <BsFacebook className="ov-socialIcon" />
+          <BsInstagram className="ov-socialIcon" />
+          <BsTwitter className="ov-socialIcon" />
+        </div>
+      </div>
     </div>
   );
 }

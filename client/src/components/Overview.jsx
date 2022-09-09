@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BsTwitter, BsFacebook, BsInstagram } from 'react-icons/bs';
 import ProductImage from './overview/ProductImage';
 import ProductInfo from './overview/ProductInfo';
 import PriceTag from './overview/PriceTag';
@@ -105,10 +106,10 @@ export default function Overview({ productId }) {
               <SizeAndQuantity sizes={styles[currStyle].skus} />
             </div>
           </div>
-        </div>
-        <div className="ov-descriptionBlock">
-          <h3 className="ov-title">{product.slogan}</h3>
-          <p>{product.description}</p>
+          <div className="ov-descriptionBlock">
+            <h3 className="ov-title">{product.slogan}</h3>
+            <p>{product.description}</p>
+          </div>
         </div>
       </div>
     );
