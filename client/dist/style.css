@@ -38,6 +38,13 @@ body {
   margin: 8%;
 }
 
+#slider {
+  height: 44px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: white;
+}
+
 @media screen and (min-width: 1400px) {
   #border1 {
     width: 50%;
@@ -51,8 +58,8 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  align-items: flex-end;
-  border-bottom: 1px solid black;
+  align-items: center;
+  border-bottom: 1px solid darkgray;
   position: fixed;
   top: 0;
   left:0;
