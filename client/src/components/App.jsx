@@ -8,6 +8,7 @@ import Overview from './Overview';
 import ReviewsAndRatings from './ReviewsAndRatings';
 import config from '../../../config';
 import { logError } from './rr/utility';
+import clickTracker from './clickTracker';
 
 const serverURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/rfp/products';
 
@@ -54,6 +55,8 @@ ProductIdSlider.propTypes = {
   setProductId: PropTypes.func.isRequired,
   productId: PropTypes.number.isRequired,
 };
+
+window.addEventListener('click', clickTracker);
 
 function App() {
   const [productId, setProductId] = useState(65631);
