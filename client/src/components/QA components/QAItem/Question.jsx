@@ -70,7 +70,7 @@ function Question(props) {
         <h3>
           | Helpful?
         </h3>
-        <button type="button" onClick={() => handleHelpfulness()}>
+        <button className="qa-selector" type="button" onClick={() => handleHelpfulness()}>
           Yes
           {' '}
           {/* { question_helpfulness } */}
@@ -78,13 +78,14 @@ function Question(props) {
         </button>
         <button
           type="button"
+          className="qa-selector"
           onClick={() => {
             handleReport();
           }}
         >
           Report
         </button>
-        <button className="qa-astext" type="button" onClick={() => setIsOpen(true)}><h2>Add Answer</h2></button>
+        <button className="qa-astext qa-selector" type="button" onClick={() => setIsOpen(true)}><h2>Add Answer</h2></button>
         <AddAnswersModal
           open={isOpen}
           onClose={() => setIsOpen(false)}
