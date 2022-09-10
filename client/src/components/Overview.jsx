@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { BsTwitter, BsFacebook, BsInstagram } from 'react-icons/bs';
 import ProductImage from './overview/ProductImage';
 import ProductInfo from './overview/ProductInfo';
 import PriceTag from './overview/PriceTag';
 import SizeAndQuantity from './overview/SizeAndQuantity';
 import config from '../../../config';
 import StyleGrid from './overview/StyleGrid';
+import Features from './overview/Features.jsx';
 
 export default function Overview({ productId }) {
   const [product, setProduct] = useState({});
@@ -33,10 +33,10 @@ export default function Overview({ productId }) {
         transformResponse: [(data) => {
           const newData = JSON.parse(data);
           const {
-            id, name, category, description, slogan,
+            id, name, category, description, slogan, features,
           } = newData;
           return {
-            id, name, category, description, slogan,
+            id, name, category, description, slogan, features,
           };
         }],
       })
@@ -109,6 +109,7 @@ export default function Overview({ productId }) {
           <div className="ov-descriptionBlock">
             <h3 className="ov-title">{product.slogan}</h3>
             <p>{product.description}</p>
+            <Features />
           </div>
         </div>
       </div>
