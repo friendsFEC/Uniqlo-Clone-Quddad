@@ -11,7 +11,7 @@
 
 ## Getting Started
 
-Run `npm install` and to get dependencies.
+Run `npm install` to get dependencies.
 
 Run the development server with `npm run client-dev`, and open browse to
 `http://localhost:3000` to see the rendered app!
@@ -45,13 +45,13 @@ The AirBnB style guide has been installed. You can run the linter against
 the whole project by running `npm run lint` (this will lint everyone's work,
 and may generate more output than you can action).
 
-You can alos lint an individual file using
-`npx eslint --ext .jsx clint/src/<path to your file>`
+You can also lint an individual file using
+`npx eslint --ext .jsx client/src/<path to your file>`
 
 
 ## Authors
 
-- [@goksuokar](https://www.github.com/octokatherine)
-- [@stolinator](https://github.com/orgs/friendsFEC/people/stolinator)
-- [@jamesemerson](https://github.com/orgs/friendsFEC/people/jamesEmerson112)
-- [@nicolastiennguyen](https://github.com/orgs/friendsFEC/people/nicolastiennguyen)
+- [Goksu Okar](https://github.com/GoksuOkar)
+- [James Emerson](https://github.com/jamesEmerson112)
+- [James Stollhammer](https://github.com/stolinator)
+- [Nicolas Tiennguyen](https://github.com/nicolastiennguyen)
