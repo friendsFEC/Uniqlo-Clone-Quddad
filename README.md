@@ -5,7 +5,7 @@
 
 ## Demo
 
-![ProductOverview-Demo](https://github.com/friendsFEC/Uniqlo-Clone-Quddad/demos/overall-demo-gif.gif)
+![ProductOverview-Demo](https://github.com/friendsFEC/Uniqlo-Clone-Quddad/blob/60405285870a23da6470a9cbc7f6dd3fb30219e5/demos/overall-demo-gif.gif)
 
 ## Tech Stack
 
