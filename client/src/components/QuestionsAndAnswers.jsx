@@ -65,7 +65,7 @@ function QuestionsAndAnswers({ product_id }) {
   if (isQuestionFilled) {
     return (
       <div id="qa">
-        <p className="qaTitle">QUESTIONS & ANSWERS</p>
+        <p className="qaTitle">Questions & Answers</p>
         <ListOfQA
           chosenProduct={product}
           isQuestionFilled={isQuestionFilled}

@@ -1,7 +1,7 @@
 /* Ratings & Reviews CSS file */
 
 /* RESET */
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -15,8 +15,8 @@
 .rr dl, .rr dt, .rr dd, .rr ol, .rr ul, .rr li,
 .rr fieldset, .rr form, .rr label, .rr legend,
 .rr table, .rr caption, .rr tbody, .rr tfoot, .rr thead, .rr tr, .rr th, .rr td,
-.rr article, .rr aside, .rr canvas, .rr details, .rr embed, 
-.rr figure, .rr figcaption, .rr footer, .rr header, .rr hgroup, 
+.rr article, .rr aside, .rr canvas, .rr details, .rr embed,
+.rr figure, .rr figcaption, .rr footer, .rr header, .rr hgroup,
 .rr menu, .rr nav, .rr output, .rr ruby, .rr section, .rr summary,
 .rr time, .rr mark, .rr audio, .rr video {
 	margin: 0;
@@ -407,7 +407,7 @@
   line-height: 1.4rem;
 }
 .rr h1 {
-  font-weight: 600;
+  font-weight: 400;
   /*font-size: 2rem;*/
   font-size: 24px;
   /*line-height: 5rem;*/
