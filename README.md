@@ -4,7 +4,7 @@
 </div>
 
 ## About
-An e-commerce product detail page. Implemented front end that looks like [uniqlo webpage](www.uniqlo.com).
+An e-commerce product detail page. Implemented front end that looks like [uniqlo webpage](https://www.uniqlo.com/).
 Connected to Atelier API.
 
 ## Demo
