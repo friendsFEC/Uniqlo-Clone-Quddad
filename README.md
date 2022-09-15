@@ -4,7 +4,8 @@
 </div>
 
 ## About
-An e-commerce product detail page. Implemented front end that looks like www.uniqlo.com
+An e-commerce product detail page. Implemented front end that looks like ![uniqlo webpage](www.uniqlo.com).
+Connected to Atelier API.
 
 ## Demo
 
@@ -67,7 +68,7 @@ You can also lint an individual file using
 `npx eslint --ext .jsx client/src/<path to your file>`
 
 
-## Components and Contributers
+## Contributers
 Product Overview: Goksu Okar\
 [![Linkedin: LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/blake-lenhard/)](https://www.linkedin.com/in/goksu-okar-54028a231/)
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/Dieogenes)](https://github.com/GoksuOkar)
