@@ -1,7 +1,10 @@
 <div align="center">
   <img src="./client/dist/img/app/quddad_Logo.png" style="height: 60px; width: 60px"/>
-  <h1>Quddad Retail Page</h1>
+  <h1>Quddad Retail Page (Uniqlo clone)</h1>
 </div>
+
+## About
+An e-commerce product detail page. Implemented front end that looks like www.uniqlo.com
 
 ## Demo
 
