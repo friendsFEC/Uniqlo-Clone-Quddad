@@ -36,7 +36,6 @@ export default function ProductImage({ photosData, extended, toggleView }) {
   const [count, dispatch] = useReducer(selectImage, 0);
 
   // handler to extend the image
-  // working process
   const handleClick = () => {
     toggleView(!extended);
     image.current.style.cursor = image.current.style.cursor === 'zoom-out' ? 'zoom-in' : 'zoom-out';
@@ -68,7 +67,6 @@ export default function ProductImage({ photosData, extended, toggleView }) {
   return (
     <div className={extended ? 'ov-imageBox ov-imageBox--extended' : 'ov-imageBox'}>
       <MainImageCarousel photosData={photosData} dispatch={dispatch} selected={count} />
-      {/* --end of buttons */}
       <div className={extended ? 'ov-sliderContainer ov-sliderContainer--extended' : 'ov-sliderContainer'}>
         {count > 0 && <GrFormPrevious className="ov-imageBox_prev ov-btn" onClick={() => dispatch({ type: 'prev' })} />}
         {count < length - 1 && <GrFormNext className="ov-imageBox_next ov-btn" onClick={() => dispatch({ type: 'next' })} />}

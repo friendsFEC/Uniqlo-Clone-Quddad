@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { BsTwitter, BsFacebook, BsInstagram } from 'react-icons/bs';
 import ProductImage from './overview/ProductImage';
 import ProductInfo from './overview/ProductInfo';
 import PriceTag from './overview/PriceTag';
@@ -8,6 +7,7 @@ import SizeAndQuantity from './overview/SizeAndQuantity';
 import config from '../../../config';
 import StyleGrid from './overview/StyleGrid';
 
+// eslint-disable-next-line react/prop-types
 export default function Overview({ productId }) {
   const [product, setProduct] = useState({});
   const [styles, setStyles] = useState([]);
@@ -27,7 +27,7 @@ export default function Overview({ productId }) {
       },
     });
 
-    // gets the producct general info from API and return name, description etc as response data
+    // gets the producct general info from API and returns name, description etc as response
     const reqProduct = () => (
       Axios.get(one, {
         transformResponse: [(data) => {
@@ -95,7 +95,7 @@ export default function Overview({ productId }) {
             extended={extended}
           />
           <div className={extended ? 'noDisplay' : 'ov-infoBox'}>
-            <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating}/>
+            <ProductInfo product={product} currStyle={styles[currStyle]} rating={rating} />
             <div className="ov-title ov-title--Price">
               <PriceTag product={styles[currStyle]} />
             </div>

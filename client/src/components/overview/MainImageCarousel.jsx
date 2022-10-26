@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GrFormDown, GrFormUp } from 'react-icons/gr';
 
+// eslint-disable-next-line react/prop-types
 export default function MainImageCarousel({ photosData, dispatch, selected }) {
   const [current, setCurrent] = useState(selected);
   const upButton = useRef(null);
@@ -63,8 +64,8 @@ export default function MainImageCarousel({ photosData, dispatch, selected }) {
             <div
               className={current === index ? 'ov-thumbnail ov-thumbnail--active' : 'ov-thumbnail'}
               key={index}
-              onClick={()=> dispatch({type: 'changeImage', idx: index})}
-              onKeyPress={()=> dispatch({type: 'changeImage', idx: index})}
+              onClick={() => dispatch({ type: 'changeImage', idx: index })}
+              onKeyPress={() => dispatch({ type: 'changeImage', idx: index })}
               role="button"
               tabIndex={0}
             >

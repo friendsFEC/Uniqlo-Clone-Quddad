@@ -1,4 +1,8 @@
 import _ from 'underscore';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AddToCart from './AddToCart';
@@ -11,7 +15,7 @@ export default function SizeAndQuantity({ sizes }) {
   let quantity = 0;
 
   const changeSize = (option) => {
-    const newId = option.value;
+    const newId = option;
     setSizeId(newId);
   };
 
@@ -29,19 +33,34 @@ export default function SizeAndQuantity({ sizes }) {
 
   return (
     <div className="ov-selectorContainer">
-        <select className="ov-dropdown" onChange={({ target }) => changeSize(target)}>
-          {sizeId === 'noSize' && <option value="noSize">Select Size</option>}
+      <FormControl>
+        <InputLabel>Size</InputLabel>
+        <Select
+          defaultValue=""
+          onChange={(e) => { changeSize(e.target.value); }}
+          autoWidth
+          label="Size"
+        >
           {_.map(sizes, (property, id) => (
-            property.size && <option key={id} value={id}>{property.size}</option>
+            property.size && <MenuItem key={id} value={id}>{property.size}</MenuItem>
           ))}
-        </select>
-        {/* -- end of size selector */}
-        <select className="ov-dropdown" onChange={({ target }) => setCount(target.value)}>
-          {sizeId === 'noSize' ? <option>-</option> : _.range(1, quantity).map((num) => (
-            <option key={num} value={num}>{num}</option>
+        </Select>
+      </FormControl>
+      {/* -- end of size selector */}
+      <FormControl>
+        <Select
+          displayEmpty
+          onChange={(e) => { setCount(e.target.value); }}
+          autoWidth
+          label="Size"
+        >
+          <MenuItem><em>-</em></MenuItem>
+          {_.range(1, quantity).map((num) => (
+            <MenuItem key={num} value={num}>{num}</MenuItem>
           ))}
-        </select>
-        {/* --end of quantity selector */}
+        </Select>
+      </FormControl>
+      {/* --end of quantity selector */}
       <AddToCart count={count} sizeId={sizeId} />
     </div>
   );
