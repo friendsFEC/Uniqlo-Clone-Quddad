@@ -53,5 +53,5 @@ export default function AddToCart({ sizeId, count }) {
 
 AddToCart.propTypes = {
   sizeId: PropTypes.string.isRequired,
-  count: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
 };

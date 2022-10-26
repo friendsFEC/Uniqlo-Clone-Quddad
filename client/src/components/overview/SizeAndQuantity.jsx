@@ -11,7 +11,7 @@ import AddToCart from './AddToCart';
 
 export default function SizeAndQuantity({ sizes }) {
   const [sizeId, setSizeId] = useState('noSize');
-  const [count, setCount] = useState('1');
+  const [count, setCount] = useState(1);
   let quantity = 0;
 
   const changeSize = (option) => {
@@ -47,17 +47,22 @@ export default function SizeAndQuantity({ sizes }) {
         </Select>
       </FormControl>
       {/* -- end of size selector */}
-      <FormControl>
+      <FormControl disabled={sizeId === "noSize"}>
+        {
+          sizeId !== 'noSize' ? <InputLabel>Quantity</InputLabel> :
+          <InputLabel>-</InputLabel>
+        }
         <Select
-          displayEmpty
           onChange={(e) => { setCount(e.target.value); }}
+          value={sizeId === 'noSize' ? '' : count}
           autoWidth
-          label="Size"
+          label="Quantity"
         >
-          <MenuItem><em>-</em></MenuItem>
-          {_.range(1, quantity).map((num) => (
-            <MenuItem key={num} value={num}>{num}</MenuItem>
-          ))}
+          {
+            _.range(1, quantity).map((num) => (
+              <MenuItem key={num} value={num}>{num}</MenuItem>
+            ))
+          }
         </Select>
       </FormControl>
       {/* --end of quantity selector */}
